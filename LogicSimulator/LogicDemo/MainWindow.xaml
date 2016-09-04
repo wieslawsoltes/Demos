@@ -1,0 +1,28 @@
+﻿<Window x:Class="Logic.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:Logic"
+        Title="LogicSimulator" Height="700" Width="800" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0">
+            <MenuItem Header="_File">
+                <MenuItem x:Name="menuItemFileOpenDiagram" Header="_Open diagram..." Click="menuItemFileOpenDiagram_Click"/>
+                <MenuItem x:Name="menuItemFileSaveDiagram" Header="_Save diagram..." Click="menuItemFileSaveDiagram_Click"/>
+                <Separator/>
+                <MenuItem x:Name="menuItemFileExit" Header="Ex_it" Click="menuItemFileExit_Click"/>
+            </MenuItem>
+        </Menu>
+        <TabControl Grid.Row="1">
+            <TabItem Header="Diagram">
+                <local:DiagramView/>
+            </TabItem>
+            <TabItem Header="Model">
+                <local:ModelView/>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

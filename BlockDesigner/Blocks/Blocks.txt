@@ -1,0 +1,9 @@
+﻿execute ..\..\..\Blocks\Block.AndGate.txt
+execute ..\..\..\Blocks\Block.OrGate.txt
+execute ..\..\..\Blocks\Block.MemoryResetPriority.txt
+execute ..\..\..\Blocks\Block.MemorySetPriority.txt
+execute ..\..\..\Blocks\Block.TimerOn.txt
+execute ..\..\..\Blocks\Block.TimerOff.txt
+execute ..\..\..\Blocks\Block.TimerPulse.txt
+execute ..\..\..\Blocks\Block.OneWayMotor.txt
+execute ..\..\..\Blocks\Block.TwoWayMotor.txt

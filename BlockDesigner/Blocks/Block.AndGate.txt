@@ -1,0 +1,32 @@
+﻿
+block begin AndGate 30 30
+
+    // horizontal lines
+    path begin
+        line 0,0 30,0
+        line 0,30 30,30
+    path end
+
+    // vertical lines
+    path begin
+        line 0,0 0,30
+        line 30,0 30,30
+    path end
+
+    // pins
+    pin T 15 0
+    pin B 15 30
+    pin L 0 15
+    pin R 30 15
+
+    grid begin 0 0 30 30
+        row 30
+        column 30
+        // text
+        text 0 0 1 1 center center Arial 14 false &
+    grid end
+
+    // name
+    //text 30 30 bottom right Arial 10 false ag1
+
+block end

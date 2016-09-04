@@ -1,0 +1,65 @@
+﻿<!-- Copyright (c) Wiesław Šoltés. All rights reserved. -->
+<!-- Licensed under the MIT license. See LICENSE file in the project root for full license information. -->
+<UserControl x:Class="WpfPrimitivesEditor.PrimitiveEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="1200"
+             FocusVisualStyle="{x:Null}"
+             UseLayoutRounding="False" SnapsToDevicePixels="True"
+             TextOptions.TextFormattingMode="Ideal" TextOptions.TextHintingMode="Auto" TextOptions.TextRenderingMode="ClearType"
+             PreviewKeyDown="UserControl_PreviewKeyDown"
+             PreviewMouseRightButtonDown="UserControl_PreviewMouseRightButtonDown"
+             PreviewMouseMove="UserControl_PreviewMouseMove"
+             PreviewMouseLeftButtonDown="UserControl_PreviewMouseLeftButtonDown">
+    <UserControl.Resources>
+        <Style x:Key="EllipseThumbTemplateStyle" TargetType="{x:Type Ellipse}">
+            <Setter Property="Width" Value="12"/>
+            <Setter Property="Height" Value="12"/>
+            <Setter Property="Fill" Value="White"/>
+            <Setter Property="Stroke" Value="DeepSkyBlue"/>
+            <Setter Property="StrokeThickness" Value="2"/>
+        </Style>
+        <Style x:Key="RectangleThumbTemplateStyle" TargetType="{x:Type Rectangle}">
+            <Setter Property="Width" Value="12"/>
+            <Setter Property="Height" Value="12"/>
+            <Setter Property="Fill" Value="White"/>
+            <Setter Property="Stroke" Value="DeepSkyBlue"/>
+            <Setter Property="StrokeThickness" Value="2"/>
+        </Style>
+        <ControlTemplate x:Key="EllipseThumbControlTemplate" TargetType="{x:Type Thumb}">
+            <Ellipse Style="{StaticResource EllipseThumbTemplateStyle}"/>
+        </ControlTemplate>
+        <ControlTemplate x:Key="RectangleThumbControlTemplate" TargetType="{x:Type Thumb}">
+            <Rectangle Style="{StaticResource RectangleThumbTemplateStyle}"/>
+        </ControlTemplate>
+        <Style x:Key="ThumbControlTemplateStyle" TargetType="{x:Type Thumb}">
+            <Setter Property="Panel.ZIndex" Value="1"/>
+            <Setter Property="Width" Value="12"/>
+            <Setter Property="Height" Value="12"/>
+            <Setter Property="Margin" Value="-6,-6,0,0"/>
+            <Setter Property="Cursor" Value="SizeAll"/>
+        </Style>
+        <Style x:Key="EllipseThumbControlTemplateStyle" TargetType="{x:Type Thumb}" BasedOn="{StaticResource ThumbControlTemplateStyle}">
+            <Setter Property="Template" Value="{StaticResource EllipseThumbControlTemplate}"/>
+        </Style>
+        <Style x:Key="RectangleThumbControlTemplateStyle" TargetType="{x:Type Thumb}" BasedOn="{StaticResource ThumbControlTemplateStyle}">
+            <Setter Property="Template" Value="{StaticResource RectangleThumbControlTemplate}"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid Margin="5">
+                <Canvas x:Name="canvasDrawing" Width="800" Height="600" Background="WhiteSmoke"/>
+                <Canvas x:Name="canvasEditor" Width="800" Height="600" Background="Transparent">
+                    <Thumb x:Name="ts" Canvas.Left="0" Canvas.Top="0" DragDelta="ts_DragDelta" Style="{StaticResource EllipseThumbControlTemplateStyle}"/>
+                    <Thumb x:Name="tp1" Canvas.Left="0" Canvas.Top="0" DragDelta="tp1_DragDelta" Style="{StaticResource RectangleThumbControlTemplateStyle}"/>
+                    <Thumb x:Name="tp2" Canvas.Left="0" Canvas.Top="0" DragDelta="tp2_DragDelta" Style="{StaticResource EllipseThumbControlTemplateStyle}"/>
+                </Canvas>
+            </Grid>
+            <ListBox ItemsSource="{Binding QuadraticBeziers}" Width="250" Height="600" Margin="5" SelectionMode="Single" SelectionChanged="ListBox_SelectionChanged"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

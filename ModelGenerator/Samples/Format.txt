@@ -1,0 +1,159 @@
+
+//---------------------------------------------------------------
+
+
+N <Name1> [<Name2> ...]
+    => namespace <Name1>.<Name2> { ... }
+
+A <Name> [Params] 
+    => public abstract class <Name> : [Params] { ... }
+
+I <Name> [Params] 
+    => public interface <Name> : [Params] { ... }
+
+C <Name> [Params] 
+    => public class <Name> : [Params] { ... }
+
+P <Name> <Type>
+    => public <Type> <Name> { get; set; }
+
+L <Name> <Type>
+    => public List<<Type>> <Name> { get; set; }
+    => + in class constructor: this.<Name> = new List<<Type>>();
+
+F <Name> <RType> [Params:Types]
+    => <Rtype> <Name>([Type1] [Param1], [Type2] [Param2], ...);
+
+
+//---------------------------------------------------------------
+
+namespace Logic.Model
+
+N Logic Model
+{
+
+    //---------------------------------------------------------------
+
+    public abstract class Element
+    {
+        public Element() { }
+        public string Name { get; set; }
+        public UInt32 Id { get; set; }
+        public Element Parent { get; set; }
+        public List<Element> Children { get; set; }
+    }
+
+    A Element
+    {
+        P Name string
+        P Id UInt32
+        P Parent Element
+        L Children Element
+    }
+
+    //---------------------------------------------------------------
+
+    public interface IClock
+    {
+        long Cycle { get; set; }
+        int Resolution { get; set; }
+    }
+
+    I IClock
+    {
+        P Cycle long
+        P Resolution int
+    }
+
+    //---------------------------------------------------------------
+
+
+    public interface ISimulation
+    {
+        void Compile();
+        void Calculate();
+        void Reset();
+
+        Element Element { get; set; }
+
+        IClock Clock { get; set; }
+
+        IState State { get; set; }
+        bool? InitialState { get; set; }
+        Tuple<IState,bool>[] StatesCache { get; set; }
+        bool HaveCache { get; set; }
+
+        Element[] DependsOn { get; set; }
+    }
+
+    I ISimulation
+    {
+        F Compile void
+        F Calculate void
+        F Reset void
+        P Element Element
+        P Clock IClock
+        P IState State
+        P InitialState bool?
+        P StatesCache Tuple<IState,bool>[]
+        P HaveCache bool
+        P DependsOn Element[]
+    }
+
+    //---------------------------------------------------------------
+
+    public interface IStateSimulation
+    {
+        ISimulation Simulation { get; set; }
+    }
+
+
+    I IStateSimulation
+    {
+        P Simulation ISimulation
+    }
+
+    //---------------------------------------------------------------
+
+    public class Wire : Element
+    {
+        public Wire() : base() { }
+        public Wire(string name) : this() { this.Name = name; }
+
+        public Pin Start { get; set; }
+        public Pin End { get; set; }
+
+        public bool InvertStart { get; set; }
+        public bool InvertEnd { get; set; }
+    }
+
+    C Wire Element
+    {
+        P Start Pin
+        P End Pin
+        P InvertStart bool
+        P InvertEnd bool
+    }
+
+    //---------------------------------------------------------------
+
+    public class AndGate : Element, IStateSimulation
+    {
+        public AndGate()
+            : base()
+        {
+            this.Children = new List<Element>();
+        }
+
+        public AndGate(string name) : this() { this.Name = name; }
+
+        public ISimulation Simulation { get; set; }
+    }
+
+    C AndGate Element IStateSimulation
+    {
+        P Simulation ISimulation
+    }
+
+    //---------------------------------------------------------------
+}

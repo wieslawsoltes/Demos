@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2012 for Windows Desktop
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalChart", "SignalChart\SignalChart.csproj", "{6889C482-FE86-4394-8E76-486D17672C4D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic.Chart", "Logic.Chart\Logic.Chart.csproj", "{C874F25F-E2CE-4127-B1EF-E00A3900CFC7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6889C482-FE86-4394-8E76-486D17672C4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6889C482-FE86-4394-8E76-486D17672C4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6889C482-FE86-4394-8E76-486D17672C4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6889C482-FE86-4394-8E76-486D17672C4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C874F25F-E2CE-4127-B1EF-E00A3900CFC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C874F25F-E2CE-4127-B1EF-E00A3900CFC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C874F25F-E2CE-4127-B1EF-E00A3900CFC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C874F25F-E2CE-4127-B1EF-E00A3900CFC7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,23 @@
+add solution sln1
+add project prj1
+add context ctx1
+add signal s1
+add signal s2
+add orgate og1
+add orgate og2
+add signal s3
+add signal s4
+add pin p1
+add pin p2
+add pin p3
+add pin p4
+connect o_s1 p1 false false
+connect p1 p2 false false
+connect o_s2 p2 false false
+connect p2 t_og1 false false
+connect o_s1 p3 false false
+connect p3 p4 false false
+connect o_s2 p4 false false
+connect p4 t_og2 false false
+connect r_og1 i_s3 false false
+connect r_og2 i_s4 false false

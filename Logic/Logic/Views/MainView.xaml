@@ -1,0 +1,90 @@
+﻿<!-- Copyright (c) Wiesław Šoltés. All rights reserved. -->
+<!-- Licensed under the MIT license. See LICENSE file in the project root for full license information. -->
+<Window x:Class="Logic.Views.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:views="clr-namespace:Logic.Views"
+        xmlns:vm="clr-namespace:Logic.ViewModels"
+        xmlns:controls="clr-namespace:Logic.Controls"
+        WindowStartupLocation="CenterScreen" WindowState="Maximized"
+        Title="{Binding Path=Solution.Name, StringFormat={}{0} - Logic, FallbackValue=Logic}" 
+        Width="800" Height="600"
+        SnapsToDevicePixels="True" UseLayoutRounding="True"
+        TextOptions.TextFormattingMode="Display"
+        TextOptions.TextHintingMode="Auto"
+        TextOptions.TextRenderingMode="Auto">
+    
+    <Window.Resources>
+
+        <DataTemplate DataType="{x:Type vm:ContextModelView}">
+
+            <controls:ContextBorder x:Name="ContextBorder" 
+                                    DataContext="{Binding DataContext, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" 
+                                    UseLayoutRounding="True" SnapsToDevicePixels="False" ClipToBounds="True" 
+                                    Background="{DynamicResource BackgroundColorKey}"
+                                    Options="{Binding Path=Options, Mode=TwoWay}">
+                <views:ContextView ZoomManager="{Binding ElementName=ContextBorder}"/>
+            </controls:ContextBorder>
+            
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vm:SolutionModelView}">
+            <views:SolutionView DataContext="{Binding DataContext, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vm:DashboardModelView}">
+            <views:DashboardView DataContext="{Binding DataContext, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
+        </DataTemplate>
+
+    </Window.Resources>
+
+    <Window.InputBindings>
+        <!-- file -->
+        <KeyBinding Key="P" Modifiers="Control" Command="{Binding PrintCommand}" CommandParameter="{Binding Solution}"/>
+        <KeyBinding Key="O" Modifiers="Control" Command="{Binding OpenCommand}"/>
+        <KeyBinding Key="S" Modifiers="Control" Command="{Binding SaveCommand}"/>
+        <KeyBinding Key="S" Modifiers="Control+Shift" Command="{Binding SaveAsCommand}"/>
+        <KeyBinding Key="N" Modifiers="Control+Alt" Command="{Binding NewCommand}"/>
+        <KeyBinding Key="C" Modifiers="Control+Alt" Command="{Binding CloseCommand}"/>
+        <KeyBinding Key="F4" Modifiers="Alt" Command="{Binding ExitCommand}"/>
+        <!-- edit -->
+        <KeyBinding Key="X" Modifiers="Control" Command="{Binding CutCommand}"/>
+        <KeyBinding Key="C" Modifiers="Control" Command="{Binding CopyCommand}"/>
+        <KeyBinding Key="V" Modifiers="Control" Command="{Binding PasteCommand}"/>
+        <KeyBinding Key="Delete" Command="{Binding DelCommand}"/>
+        <KeyBinding Key="A" Modifiers="Control" Command="{Binding SelectAllCommand}"/>
+        <KeyBinding Key="Z" Modifiers="Control" Command="{Binding UndoCommand}"/>
+        <KeyBinding Key="Y" Modifiers="Control" Command="{Binding RedoCommand}"/>
+        <!-- view -->
+        <KeyBinding Key="Escape" Modifiers="" Command="{Binding ZoomToFitCommand}"/>
+        <KeyBinding Key="D5" Modifiers="Control" Command="{Binding ZoomToFitCommand}"/>
+        <KeyBinding Key="NumPad5" Modifiers="Control" Command="{Binding ZoomToFitCommand}"/>
+        <KeyBinding Key="D0" Modifiers="Control" Command="{Binding ResetZoomCommand}"/>
+        <KeyBinding Key="NumPad0" Modifiers="Control" Command="{Binding ResetZoomCommand}"/>
+        <KeyBinding Key="OemPlus" Modifiers="Control" Command="{Binding ZoomInCommand}"/>
+        <KeyBinding Key="Add" Modifiers="Control" Command="{Binding ZoomInCommand}"/>
+        <KeyBinding Key="OemMinus" Modifiers="Control" Command="{Binding ZoomOutCommand}"/>
+        <KeyBinding Key="Subtract" Modifiers="Control" Command="{Binding ZoomOutCommand}"/>
+        <KeyBinding Key="F9" Modifiers="" Command="{Binding PreviousViewCommand}"/>
+        <KeyBinding Key="F10" Modifiers="" Command="{Binding NextViewCommand}"/>
+        <!-- solution -->
+        <KeyBinding Key="N" Modifiers="Control+Shift" Command="{Binding AddProjectCommand}"/>
+        <KeyBinding Key="R" Modifiers="Control+Shift" Command="{Binding RemoveProjectCommand}"/>
+        <KeyBinding Key="D" Modifiers="Control+Shift" Command="{Binding DuplicateProjectCommand}"/>
+        <!-- project -->
+        <KeyBinding Key="N" Modifiers="Control" Command="{Binding AddContextCommand}"/>
+        <KeyBinding Key="R" Modifiers="Control" Command="{Binding RemoveContextCommand}"/>
+        <KeyBinding Key="D" Modifiers="Control" Command="{Binding DuplicateContextCommand}"/>
+        <!-- simulation -->
+        <KeyBinding Key="F5" Modifiers="" Command="{Binding RunCommand}"/>
+        <KeyBinding Key="F6" Modifiers="" Command="{Binding StopCommand}"/>
+        <KeyBinding Key="F7" Modifiers="" Command="{Binding RestartCommand}"/>
+        <!-- other -->
+        <KeyBinding Key="F8" Modifiers="" Command="{Binding ShowChartsCommand}"/>
+    </Window.InputBindings>
+
+    <Grid>
+        <ContentControl Content="{Binding CurrentView}"/>
+    </Grid>
+    
+</Window>

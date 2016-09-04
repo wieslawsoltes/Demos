@@ -1,0 +1,56 @@
+﻿<!-- Copyright (c) Wiesław Šoltés. All rights reserved. -->
+<!-- Licensed under the MIT license. See LICENSE file in the project root for full license information. -->
+<UserControl x:Class="PanAndZoom.ImageViewer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:PanAndZoom"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800" 
+             Focusable="True" FocusVisualStyle="{x:Null}">
+    <Grid>
+        <Grid.Resources>
+            <Style x:Key="TextBoxStyle" TargetType="TextBlock">
+                <Setter Property="Visibility" Value="Hidden"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding ElementName=image, Path=Source}" Value="{x:Null}">
+                        <DataTrigger.Setters>
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger.Setters>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Resources>
+        
+        <local:ZoomBorder x:Name="zoomBorder" ClipToBounds="True" Background="Gray">
+            <Image x:Name="image" Source="{x:Null}"/>
+        </local:ZoomBorder>
+
+        <TextBlock Style="{StaticResource TextBoxStyle}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Snow">
+            <Run FontWeight="Bold">PanAndZoom is a simple image viewer.</Run><LineBreak/>
+            <Run></Run><LineBreak/>
+            <Run FontWeight="Bold">Mouse:</Run><LineBreak/>
+            <Run>- Mouse left button down and hold-> drag image</Run><LineBreak/>
+            <Run>- Mouse right button clock -> rest image zoom</Run><LineBreak/>
+            <Run>- Mouse middle button click -> open image(s)</Run><LineBreak/>
+            <Run>- Mouse wheel up/down -> zoom image in/out</Run><LineBreak/>
+            <Run></Run><LineBreak/>
+            <Run FontWeight="Bold">Keyboard:</Run><LineBreak/>
+            <Run>- Escape -> rest image zoom</Run><LineBreak/>
+            <Run>- R -> rest image zoom</Run><LineBreak/>
+            <Run>- Space, next arrow, page down -> next image</Run><LineBreak/>
+            <Run>- Previous arrow, page up -> previous image</Run><LineBreak/>
+            <Run>- Home -> first image</Run><LineBreak/>
+            <Run>- End -> last image</Run><LineBreak/>
+            <Run>- O -> open image(s)</Run><LineBreak/>
+            <Run>- C -> close image(s)</Run><LineBreak/>
+            <Run>- S -> save image</Run><LineBreak/>
+            <Run></Run><LineBreak/>
+            <Run FontWeight="Bold">Other:</Run><LineBreak/>
+            <Run>- Drag and drop file to open image(s)</Run><LineBreak/>
+            <Run>- Set file path(s) in program command line args to open image(s)"</Run><LineBreak/>
+        </TextBlock>
+
+    </Grid>
+</UserControl>

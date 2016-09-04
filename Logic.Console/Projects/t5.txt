@@ -1,0 +1,44 @@
+add solution sln1
+add project prj1
+add context ctx1
+add orgate og1
+add signal s1
+add signal s2
+add signal s3
+add pin p1
+add pin p2
+add pin p3
+add signal s4
+add signal s5
+add signal s6
+add pin p4
+add pin p5
+add pin p6
+add pin p7
+add signal s7
+add signal s8
+add signal s9
+add signal s10
+add pin p8
+add pin p9
+add pin p10
+connect o_s1 p1 false false
+connect p1 p2 false false
+connect o_s2 p2 false false
+connect p2 p3 false false
+connect o_s3 p3 false false
+connect p3 t_og1 false false
+connect o_s4 p4 false false
+connect p4 p6 false false
+connect p5 l_og1 false false
+connect o_s5 p6 false false
+connect p6 p7 false false
+connect o_s6 p7 false false
+connect p7 p5 false false
+connect r_og1 i_s10 false false
+connect o_s9 p8 false false
+connect p8 p9 false false
+connect o_s8 p9 false false
+connect p9 p10 false false
+connect o_s7 p10 false false
+connect p10 b_og1 false false

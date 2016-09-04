@@ -1,0 +1,246 @@
+﻿<!-- Copyright (c) Wiesław Šoltés. All rights reserved. -->
+<!-- Licensed under the MIT license. See LICENSE file in the project root for full license information. -->
+<Window x:Class="WpfMatrix.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="800" Width="1100"
+        WindowStartupLocation="CenterScreen" WindowState="Normal">
+
+    <Grid  Background="#FFDDDDDD">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="350"/>
+        </Grid.ColumnDefinitions>
+
+        <Canvas x:Name="canvas" Background="Red" Width="200" Height="200" Grid.Column="0" RenderTransformOrigin="0.5,0.5"/>
+
+        <StackPanel Grid.Column="1">
+
+            <Grid x:Name="RenderTransformOriginGrid" Margin="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="90"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="60"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- RenderTransformOrigin -->
+                <TextBlock Text="RenderTransform Origin:" FontWeight="SemiBold" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0"/>
+
+                <!-- X -->
+                <TextBlock Text="X" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="0" Grid.Row="1"/>
+                <Slider x:Name="RenderTransformOriginX" Minimum="0" Maximum="1" Value="0.5" SmallChange="0.01" LargeChange="0.1" TickFrequency="0.01" IsSnapToTickEnabled="True" Margin="2" Grid.Column="1" Grid.Row="1" ValueChanged="Slider_ValueChanged"/>
+                <TextBox Text="{Binding ElementName=RenderTransformOriginX, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="2" Grid.Row="1"/>
+
+                <!-- Y -->
+                <TextBlock Text="Y" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="0" Grid.Row="2"/>
+                <Slider x:Name="RenderTransformOriginY" Minimum="0" Maximum="1" Value="0.5" SmallChange="0.01" LargeChange="0.1" TickFrequency="0.01" IsSnapToTickEnabled="True" Margin="2" Grid.Column="1" Grid.Row="2" ValueChanged="Slider_ValueChanged"/>
+                <TextBox Text="{Binding ElementName=RenderTransformOriginY, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="2" Grid.Row="2"/>
+
+            </Grid>
+
+            <Grid x:Name="LayoutTransformGrid" Margin="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="90"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="60"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- Matrix -->
+                <TextBlock Text="LayoutTransform Matrix:" FontWeight="SemiBold" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0"/>
+
+                <!-- M11 -->
+                <TextBlock Text="M11" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="0" Grid.Row="1"/>
+                <Slider x:Name="LayoutTransformMatrixM11" Minimum="0" Maximum="2" Value="1" SmallChange="0.01" LargeChange="0.1" TickFrequency="0.01" IsSnapToTickEnabled="True" Margin="2" Grid.Column="1" Grid.Row="1" ValueChanged="Slider_ValueChanged"/>
+                <TextBox Text="{Binding ElementName=LayoutTransformMatrixM11, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="2" Grid.Row="1"/>
+
+                <!-- M12 -->
+                <TextBlock Text="M12" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="0" Grid.Row="2"/>
+                <Slider x:Name="LayoutTransformMatrixM12" Minimum="0" Maximum="2" Value="0" SmallChange="0.01" LargeChange="0.1" TickFrequency="0.01" IsSnapToTickEnabled="True" Margin="2" Grid.Column="1" Grid.Row="2" ValueChanged="Slider_ValueChanged"/>
+                <TextBox Text="{Binding ElementName=LayoutTransformMatrixM12, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="2" Grid.Row="2"/>
+
+                <!-- M21 -->
+                <TextBlock Text="M21" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="0" Grid.Row="3"/>
+                <Slider x:Name="LayoutTransformMatrixM21" Minimum="0" Maximum="2" Value="0" SmallChange="0.01" LargeChange="0.1" TickFrequency="0.01" IsSnapToTickEnabled="True" Margin="2" Grid.Column="1" Grid.Row="3" ValueChanged="Slider_ValueChanged"/>
+                <TextBox Text="{Binding ElementName=LayoutTransformMatrixM21, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="2" Grid.Row="3"/>
+
+                <!-- M22 -->
+                <TextBlock Text="M22" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="0" Grid.Row="4"/>
+                <Slider x:Name="LayoutTransformMatrixM22" Minimum="0" Maximum="2" Value="1" SmallChange="0.01" LargeChange="0.1" TickFrequency="0.01" IsSnapToTickEnabled="True" Margin="2" Grid.Column="1" Grid.Row="4" ValueChanged="Slider_ValueChanged"/>
+                <TextBox Text="{Binding ElementName=LayoutTransformMatrixM22, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="2" Grid.Row="4"/>
+
+                <!-- OffsetX -->
+                <TextBlock Text="OffsetX" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="0" Grid.Row="5"/>
+                <Slider x:Name="LayoutTransformMatrixOffsetX" Minimum="-100" Maximum="100" Value="0" SmallChange="0.1" LargeChange="1" TickFrequency="0.1" IsSnapToTickEnabled="True" Margin="2" Grid.Column="1" Grid.Row="5" ValueChanged="Slider_ValueChanged"/>
+                <TextBox Text="{Binding ElementName=LayoutTransformMatrixOffsetX, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="2" Grid.Row="5"/>
+
+                <!-- OffsetY -->
+                <TextBlock Text="OffsetY" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="0" Grid.Row="6"/>
+                <Slider x:Name="LayoutTransformMatrixOffsetY" Minimum="-100" Maximum="100" Value="0" SmallChange="0.1" LargeChange="1" TickFrequency="0.1" IsSnapToTickEnabled="True" Margin="2" Grid.Column="1" Grid.Row="6" ValueChanged="Slider_ValueChanged"/>
+                <TextBox Text="{Binding ElementName=LayoutTransformMatrixOffsetY, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="2" Grid.Row="6"/>
+
+                <!-- Matrix Prepend -->
+                <TextBlock Text="LayoutTransform Matrix Prepend:" FontWeight="SemiBold" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="7"/>
+
+                <!-- ScaleX -->
+                <TextBlock Text="ScaleX" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="0" Grid.Row="8"/>
+                <Slider x:Name="LayoutTransformScaleX" Minimum="0" Maximum="2" Value="1" SmallChange="0.01" LargeChange="0.1" TickFrequency="0.01" IsSnapToTickEnabled="True" Margin="2" Grid.Column="1" Grid.Row="8" ValueChanged="Slider_ValueChanged"/>
+                <TextBox Text="{Binding ElementName=LayoutTransformScaleX, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="2" Grid.Row="8"/>
+
+                <!-- ScaleY -->
+                <TextBlock Text="ScaleY" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="0" Grid.Row="9"/>
+                <Slider x:Name="LayoutTransformScaleY" Minimum="0" Maximum="2" Value="1" SmallChange="0.01" LargeChange="0.1" TickFrequency="0.01" IsSnapToTickEnabled="True" Margin="2" Grid.Column="1" Grid.Row="9" ValueChanged="Slider_ValueChanged"/>
+                <TextBox Text="{Binding ElementName=LayoutTransformScaleY, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="2" Grid.Row="9"/>
+
+                <!-- SkewX -->
+                <TextBlock Text="SkewX" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="0" Grid.Row="10"/>
+                <Slider x:Name="LayoutTransformSkewX" Minimum="0" Maximum="100" Value="0" SmallChange="0.1" LargeChange="1" TickFrequency="0.1" IsSnapToTickEnabled="True" Margin="2" Grid.Column="1" Grid.Row="10" ValueChanged="Slider_ValueChanged"/>
+                <TextBox Text="{Binding ElementName=LayoutTransformSkewX, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="2" Grid.Row="10"/>
+
+                <!-- SkewY -->
+                <TextBlock Text="SkewY" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="0" Grid.Row="11"/>
+                <Slider x:Name="LayoutTransformSkewY" Minimum="0" Maximum="100" Value="0" SmallChange="0.1" LargeChange="1" TickFrequency="1" IsSnapToTickEnabled="True" Margin="2" Grid.Column="1" Grid.Row="11" ValueChanged="Slider_ValueChanged"/>
+                <TextBox Text="{Binding ElementName=LayoutTransformSkewY, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="2" Grid.Row="11"/>
+
+                <!-- RotateAngle -->
+                <TextBlock Text="RotateAngle" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="0" Grid.Row="12"/>
+                <Slider x:Name="LayoutTransformRotateAngle" Minimum="0" Maximum="360" Value="0" SmallChange="0.1" LargeChange="1" TickFrequency="0.1" IsSnapToTickEnabled="True" Margin="2" Grid.Column="1" Grid.Row="12" ValueChanged="Slider_ValueChanged"/>
+                <TextBox Text="{Binding ElementName=LayoutTransformRotateAngle, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="2" Grid.Row="12"/>
+
+                <!-- OffsetX -->
+                <TextBlock Text="OffsetX" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="0" Grid.Row="13"/>
+                <Slider x:Name="LayoutTransformOffsetX" Minimum="-100" Maximum="100" Value="0" SmallChange="0.1" LargeChange="1" TickFrequency="0.1" IsSnapToTickEnabled="True" Margin="2" Grid.Column="1" Grid.Row="13" ValueChanged="Slider_ValueChanged"/>
+                <TextBox Text="{Binding ElementName=LayoutTransformOffsetX, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="2" Grid.Row="13"/>
+
+                <!-- OffsetY -->
+                <TextBlock Text="OffsetY" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="0" Grid.Row="14"/>
+                <Slider x:Name="LayoutTransformOffsetY" Minimum="-100" Maximum="100" Value="0" SmallChange="0.1" LargeChange="1" TickFrequency="0.1" IsSnapToTickEnabled="True" Margin="2" Grid.Column="1" Grid.Row="14" ValueChanged="Slider_ValueChanged"/>
+                <TextBox Text="{Binding ElementName=LayoutTransformOffsetY, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="2" Grid.Row="14"/>
+
+            </Grid>
+
+            <Grid x:Name="RenderTransformGrid" Margin="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="90"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="60"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- Matrix -->
+                <TextBlock Text="RenderTransform Matrix:" FontWeight="SemiBold" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0"/>
+
+                <!-- M11 -->
+                <TextBlock Text="M11" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="0" Grid.Row="1"/>
+                <Slider x:Name="RenderTransformMatrixM11" Minimum="0" Maximum="2" Value="1" SmallChange="0.01" LargeChange="0.1" TickFrequency="0.01" IsSnapToTickEnabled="True" Margin="2" Grid.Column="1" Grid.Row="1" ValueChanged="Slider_ValueChanged"/>
+                <TextBox Text="{Binding ElementName=RenderTransformMatrixM11, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="2" Grid.Row="1"/>
+
+                <!-- M12 -->
+                <TextBlock Text="M12" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="0" Grid.Row="2"/>
+                <Slider x:Name="RenderTransformMatrixM12" Minimum="0" Maximum="2" Value="0" SmallChange="0.01" LargeChange="0.1" TickFrequency="0.01" IsSnapToTickEnabled="True" Margin="2" Grid.Column="1" Grid.Row="2" ValueChanged="Slider_ValueChanged"/>
+                <TextBox Text="{Binding ElementName=RenderTransformMatrixM12, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="2" Grid.Row="2"/>
+
+                <!-- M21 -->
+                <TextBlock Text="M21" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="0" Grid.Row="3"/>
+                <Slider x:Name="RenderTransformMatrixM21" Minimum="0" Maximum="2" Value="0" SmallChange="0.01" LargeChange="0.1" TickFrequency="0.01" IsSnapToTickEnabled="True" Margin="2" Grid.Column="1" Grid.Row="3" ValueChanged="Slider_ValueChanged"/>
+                <TextBox Text="{Binding ElementName=RenderTransformMatrixM21, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="2" Grid.Row="3"/>
+
+                <!-- M22 -->
+                <TextBlock Text="M22" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="0" Grid.Row="4"/>
+                <Slider x:Name="RenderTransformMatrixM22" Minimum="0" Maximum="2" Value="1" SmallChange="0.01" LargeChange="0.1" TickFrequency="0.01" IsSnapToTickEnabled="True" Margin="2" Grid.Column="1" Grid.Row="4" ValueChanged="Slider_ValueChanged"/>
+                <TextBox Text="{Binding ElementName=RenderTransformMatrixM22, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="2" Grid.Row="4"/>
+
+                <!-- OffsetX -->
+                <TextBlock Text="OffsetX" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="0" Grid.Row="5"/>
+                <Slider x:Name="RenderTransformMatrixOffsetX" Minimum="-100" Maximum="100" Value="0" SmallChange="0.1" LargeChange="1" TickFrequency="0.1" IsSnapToTickEnabled="True" Margin="2" Grid.Column="1" Grid.Row="5" ValueChanged="Slider_ValueChanged"/>
+                <TextBox Text="{Binding ElementName=RenderTransformMatrixOffsetX, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="2" Grid.Row="5"/>
+
+                <!-- OffsetY -->
+                <TextBlock Text="OffsetY" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="0" Grid.Row="6"/>
+                <Slider x:Name="RenderTransformMatrixOffsetY" Minimum="-100" Maximum="100" Value="0" SmallChange="0.1" LargeChange="1" TickFrequency="0.1" IsSnapToTickEnabled="True" Margin="2" Grid.Column="1" Grid.Row="6" ValueChanged="Slider_ValueChanged"/>
+                <TextBox Text="{Binding ElementName=RenderTransformMatrixOffsetY, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="2" Grid.Row="6"/>
+
+                <!-- Matrix Prepend -->
+                <TextBlock Text="RenderTransform Matrix Prepend:" FontWeight="SemiBold" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="7"/>
+
+                <!-- ScaleX -->
+                <TextBlock Text="ScaleX" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="0" Grid.Row="8"/>
+                <Slider x:Name="RenderTransformScaleX" Minimum="0" Maximum="2" Value="1" SmallChange="0.01" LargeChange="0.1" TickFrequency="0.01" IsSnapToTickEnabled="True" Margin="2" Grid.Column="1" Grid.Row="8" ValueChanged="Slider_ValueChanged"/>
+                <TextBox Text="{Binding ElementName=RenderTransformScaleX, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="2" Grid.Row="8"/>
+
+                <!-- ScaleY -->
+                <TextBlock Text="ScaleY" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="0" Grid.Row="9"/>
+                <Slider x:Name="RenderTransformScaleY" Minimum="0" Maximum="2" Value="1" SmallChange="0.01" LargeChange="0.1" TickFrequency="0.01" IsSnapToTickEnabled="True" Margin="2" Grid.Column="1" Grid.Row="9" ValueChanged="Slider_ValueChanged"/>
+                <TextBox Text="{Binding ElementName=RenderTransformScaleY, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="2" Grid.Row="9"/>
+
+                <!-- SkewX -->
+                <TextBlock Text="SkewX" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="0" Grid.Row="10"/>
+                <Slider x:Name="RenderTransformSkewX" Minimum="0" Maximum="100" Value="0" SmallChange="0.1" LargeChange="1" TickFrequency="0.1" IsSnapToTickEnabled="True" Margin="2" Grid.Column="1" Grid.Row="10" ValueChanged="Slider_ValueChanged"/>
+                <TextBox Text="{Binding ElementName=RenderTransformSkewX, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="2" Grid.Row="10"/>
+
+                <!-- SkewY -->
+                <TextBlock Text="SkewY" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="0" Grid.Row="11"/>
+                <Slider x:Name="RenderTransformSkewY" Minimum="0" Maximum="100" Value="0" SmallChange="0.1" LargeChange="1" TickFrequency="1" IsSnapToTickEnabled="True" Margin="2" Grid.Column="1" Grid.Row="11" ValueChanged="Slider_ValueChanged"/>
+                <TextBox Text="{Binding ElementName=RenderTransformSkewY, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="2" Grid.Row="11"/>
+
+                <!-- RotateAngle -->
+                <TextBlock Text="RotateAngle" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="0" Grid.Row="12"/>
+                <Slider x:Name="RenderTransformRotateAngle" Minimum="0" Maximum="360" Value="0" SmallChange="0.1" LargeChange="1" TickFrequency="0.1" IsSnapToTickEnabled="True" Margin="2" Grid.Column="1" Grid.Row="12" ValueChanged="Slider_ValueChanged"/>
+                <TextBox Text="{Binding ElementName=RenderTransformRotateAngle, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="2" Grid.Row="12"/>
+
+                <!-- OffsetX -->
+                <TextBlock Text="OffsetX" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="0" Grid.Row="13"/>
+                <Slider x:Name="RenderTransformOffsetX" Minimum="-100" Maximum="100" Value="0" SmallChange="0.1" LargeChange="1" TickFrequency="0.1" IsSnapToTickEnabled="True" Margin="2" Grid.Column="1" Grid.Row="13" ValueChanged="Slider_ValueChanged"/>
+                <TextBox Text="{Binding ElementName=RenderTransformOffsetX, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="2" Grid.Row="13"/>
+
+                <!-- OffsetY -->
+                <TextBlock Text="OffsetY" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="0" Grid.Row="14"/>
+                <Slider x:Name="RenderTransformOffsetY" Minimum="-100" Maximum="100" Value="0" SmallChange="0.1" LargeChange="1" TickFrequency="0.1" IsSnapToTickEnabled="True" Margin="2" Grid.Column="1" Grid.Row="14" ValueChanged="Slider_ValueChanged"/>
+                <TextBox Text="{Binding ElementName=RenderTransformOffsetY, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" TextAlignment="Left" Margin="2" Grid.Column="2" Grid.Row="14"/>
+
+            </Grid>
+
+        </StackPanel>
+
+    </Grid>
+
+</Window>

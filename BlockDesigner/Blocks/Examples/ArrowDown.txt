@@ -1,0 +1,8 @@
+﻿
+block begin ArrowDown 30 15
+
+    path begin
+        line 0,0 15,15 30,0 close
+    path end
+
+block end

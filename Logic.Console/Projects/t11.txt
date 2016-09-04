@@ -1,0 +1,46 @@
+delete all
+add context c1
+set context c1
+add signal s1
+add signal s2
+add signal s3
+add signal s4
+add signal s5
+add signal s6
+add signal s7
+add signal s8
+add signal s9
+add signal s10
+add andgate ag1
+add pin p1
+add pin p2
+add pin p3
+add andgate ag2
+add andgate ag3
+add pin p4
+add pin p5
+add pin p6
+add pin p7
+add pin p8
+add pin p9
+connect o_s1 p1 false true
+connect p1 p2 false false
+connect o_s2 p2 false false
+connect p2 p3 false false
+connect o_s3 p3 false false
+connect p3 t_ag1 false false
+connect o_s4 p4 false true
+connect p4 p5 false false
+connect o_s5 p5 false false
+connect p5 p6 false false
+connect o_s6 p6 false false
+connect p6 t_ag2 false false
+connect o_s7 p7 false true
+connect p7 p8 false false
+connect o_s8 p8 false false
+connect p8 p9 false false
+connect o_s9 p9 false false
+connect p9 t_ag3 false false
+connect r_ag1 l_ag2 false false
+connect r_ag2 l_ag3 false true
+connect r_ag3 i_s10 false false

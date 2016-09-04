@@ -1,0 +1,45 @@
+add solution sln1
+add project prj1
+add context ctx1
+add signal s1
+add signal s2
+add andgate ag1
+add andgate ag2
+add signal s3
+add signal s4
+add andgate ag3
+add signal s5
+add pin p1
+add pin p2
+add pin p3
+add signal s6
+add signal s7
+add andgate ag4
+add andgate ag5
+add signal s8
+add signal s9
+add andgate ag6
+add signal s10
+add pin p4
+add pin p5
+add pin p6
+connect o_s1 p1 false false
+connect p1 t_ag1 false false
+connect o_s2 l_ag1 false false
+connect r_ag1 p2 false false
+connect p2 t_ag2 false false
+connect o_s3 l_ag2 false false
+connect r_ag2 p3 false false
+connect p3 t_ag3 false false
+connect o_s4 l_ag3 false false
+connect r_ag3 i_s5 false false
+connect o_s6 p4 false false
+connect p4 t_ag4 false false
+connect o_s7 l_ag4 false false
+connect r_ag4 p5 false false
+connect p5 t_ag5 false false
+connect o_s8 l_ag5 false false
+connect r_ag5 p6 false false
+connect p6 t_ag6 false false
+connect o_s9 l_ag6 false false
+connect r_ag6 i_s10 false false

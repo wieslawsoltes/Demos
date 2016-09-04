@@ -1,0 +1,16 @@
+﻿<!-- Copyright (c) Wiesław Šoltés. All rights reserved. -->
+<!-- Licensed under the MIT license. See LICENSE file in the project root for full license information. -->
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="BaseDictionary.xaml"/>
+        <ResourceDictionary Source="SignalDictionary.xaml"/>
+        <ResourceDictionary Source="GatesDictionary.xaml"/>
+        <ResourceDictionary Source="MemoryDictionary.xaml"/>
+        <ResourceDictionary Source="TimersDictionary.xaml"/>
+        <ResourceDictionary Source="BlocksDictionary.xaml"/>
+        <ResourceDictionary Source="ContextDictionary.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+</ResourceDictionary>

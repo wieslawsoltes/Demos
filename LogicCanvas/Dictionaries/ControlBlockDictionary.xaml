@@ -1,0 +1,1115 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- control block base template -->
+
+    <ControlTemplate x:Key="ControlBlockBaseTemplate">
+        <Canvas Width="16.0cm" Height="4.0cm" ClipToBounds="False">
+            <!-- horizontal lines -->
+            <Line X1="0.0cm" Y1="0.0cm" X2="16.0cm" Y2="0.0cm" Style="{StaticResource ResourceKey=ControlBlockBorderLineStyle}"/>
+            <Line X1="0.0cm" Y1="0.5cm" X2="16.0cm" Y2="0.5cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="0.0cm" Y1="1.0cm" X2="16.0cm" Y2="1.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="0.0cm" Y1="1.5cm" X2="1.0cm" Y2="1.5cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="0.0cm" Y1="2.0cm" X2="1.0cm" Y2="2.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="0.0cm" Y1="2.5cm" X2="1.0cm" Y2="2.5cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="15.0cm" Y1="1.5cm" X2="16.0cm" Y2="1.5cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="15.0cm" Y1="2.0cm" X2="16.0cm" Y2="2.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="15.0cm" Y1="2.5cm" X2="16.0cm" Y2="2.5cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="0.0cm" Y1="3.0cm" X2="16.0cm" Y2="3.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="0.0cm" Y1="3.5cm" X2="16.0cm" Y2="3.5cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="0.0cm" Y1="4.0cm" X2="16.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockBorderLineStyle}"/>
+            <!-- vertical lines -->
+            <Line X1="0.0cm" Y1="0.0cm" X2="0.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockBorderLineStyle}"/>
+            <Line X1="1.0cm" Y1="0.0cm" X2="1.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="2.0cm" Y1="0.0cm" X2="2.0cm" Y2="1.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="2.0cm" Y1="3.0cm" X2="2.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="3.0cm" Y1="0.0cm" X2="3.0cm" Y2="1.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="3.0cm" Y1="3.0cm" X2="3.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="4.0cm" Y1="0.0cm" X2="4.0cm" Y2="1.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="4.0cm" Y1="3.0cm" X2="4.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="5.0cm" Y1="0.0cm" X2="5.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="6.0cm" Y1="0.0cm" X2="6.0cm" Y2="1.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="6.0cm" Y1="3.0cm" X2="6.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="7.0cm" Y1="0.0cm" X2="7.0cm" Y2="1.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="7.0cm" Y1="3.0cm" X2="7.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="8.0cm" Y1="0.0cm" X2="8.0cm" Y2="1.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="8.0cm" Y1="3.0cm" X2="8.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="9.0cm" Y1="0.0cm" X2="9.0cm" Y2="1.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="9.0cm" Y1="3.0cm" X2="9.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="10.0cm" Y1="0.0cm" X2="10.0cm" Y2="1.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="10.0cm" Y1="3.0cm" X2="10.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="11.0cm" Y1="0.0cm" X2="11.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="12.0cm" Y1="0.0cm" X2="12.0cm" Y2="1.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="12.0cm" Y1="3.0cm" X2="12.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="13.0cm" Y1="0.0cm" X2="13.0cm" Y2="1.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="13.0cm" Y1="3.0cm" X2="13.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="14.0cm" Y1="0.0cm" X2="14.0cm" Y2="1.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="14.0cm" Y1="3.0cm" X2="14.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="15.0cm" Y1="0.0cm" X2="15.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="16.0cm" Y1="0.0cm" X2="16.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockBorderLineStyle}"/>
+        </Canvas>
+    </ControlTemplate>
+
+    <!-- 01: one-way motor control block -->
+
+    <ControlTemplate x:Key="OneWayMotorControlBlock">
+        <Canvas Width="16.0cm" Height="4.0cm" ClipToBounds="False" Style="{StaticResource ResourceKey=ControlBlockBaseCanvasStyle}">
+            <!-- control block base template -->
+            <Control Template="{StaticResource ResourceKey=ControlBlockBaseTemplate}"/>
+            <!-- control block title text -->
+            <Grid Width="14.0cm" Height="1.0cm" Canvas.Left="1.0cm" Canvas.Top="1.0cm">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4.0cm"/>
+                    <ColumnDefinition Width="6.0cm"/>
+                    <ColumnDefinition Width="4.0cm"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="OFF" Grid.Column="0" Style="{StaticResource ResourceKey=ControlBlockTitleTextStyle}"/>
+                <TextBlock Text="MOTOR" Grid.Column="1" Style="{StaticResource ResourceKey=ControlBlockTitleTextStyle}"/>
+                <TextBlock Text="ON" Grid.Column="2" Style="{StaticResource ResourceKey=ControlBlockTitleTextStyle}"/>
+            </Grid>
+            <!-- control block input text -->
+            <Grid Width="16.0cm" Height="1.0cm" Canvas.Left="0.0cm" Canvas.Top="0.0cm">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.5cm"/>
+                    <RowDefinition Height="0.5cm"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="SA" ToolTip="Protection Off" Grid.Column="1" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YB32" ToolTip="PROT OFF" Grid.Column="1" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="FA" ToolTip="Release Off" Grid.Column="2" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YB34" ToolTip="REL OFF" Grid.Column="2" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="HA" ToolTip="Command Hand Off" Grid.Column="3" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YB12" ToolTip="HND OFF" Grid.Column="3" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="AA" ToolTip="Command Auto Off" Grid.Column="4" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YB22" ToolTip="AUTO OFF" Grid.Column="4" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="ST" ToolTip="Fault" Grid.Column="7" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YB44" ToolTip="FAULT" Grid.Column="7" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="AE" ToolTip="Command Auto On" Grid.Column="11" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YB21" ToolTip="AUTO ON" Grid.Column="11" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="HE" ToolTip="Command Hand On" Grid.Column="12" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YB11" ToolTip="HND ON" Grid.Column="12" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="FE" ToolTip="Release On" Grid.Column="13" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YB33" ToolTip="REL ON" Grid.Column="13" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="SE" ToolTip="Protection On" Grid.Column="14" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YB31" ToolTip="PROT ON" Grid.Column="14" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+            </Grid>
+            <!-- control block output text -->
+            <Grid Width="16.0cm" Height="1.0cm" Canvas.Left="0.0cm" Canvas.Top="3.0cm">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.5cm"/>
+                    <RowDefinition Height="0.5cm"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="XB02" ToolTip="Fb OFF" Grid.Column="2" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="REA" ToolTip="Feedback Off" Grid.Column="2" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="XB92" ToolTip="Cmd OFF" Grid.Column="3" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="BA" ToolTip="Command Off" Grid.Column="3" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="XB46" ToolTip="Fb FAULT" Grid.Column="7" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="RST" ToolTip="Feedback Fault" Grid.Column="7" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="XB01" ToolTip="Fb ON" Grid.Column="12" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="REE" ToolTip="Feedback On" Grid.Column="12" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="XB91" ToolTip="Cmd ON" Grid.Column="13" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="BE" ToolTip="Command On" Grid.Column="13" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+            </Grid>
+        </Canvas>
+    </ControlTemplate>
+
+    <!-- 02: two-way motor control block -->
+
+    <ControlTemplate x:Key="TwoWayMotorControlBlock">
+        <Canvas Width="16.0cm" Height="4.0cm" ClipToBounds="False" Style="{StaticResource ResourceKey=ControlBlockBaseCanvasStyle}">
+            <!-- control block base template -->
+            <Control Template="{StaticResource ResourceKey=ControlBlockBaseTemplate}"/>
+            <!-- control block title text -->
+            <Grid Width="14.0cm" Height="1.0cm" Canvas.Left="1.0cm" Canvas.Top="1.0cm">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4.0cm"/>
+                    <ColumnDefinition Width="6.0cm"/>
+                    <ColumnDefinition Width="4.0cm"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="LEFT" Grid.Column="0" Style="{StaticResource ResourceKey=ControlBlockTitleTextStyle}"/>
+                <TextBlock Text="STOP" Grid.Column="1" Style="{StaticResource ResourceKey=ControlBlockTitleTextStyle}"/>
+                <TextBlock Text="RIGHT" Grid.Column="2" Style="{StaticResource ResourceKey=ControlBlockTitleTextStyle}"/>
+            </Grid>
+            <!-- control block input text -->
+            <Grid Width="16.0cm" Height="1.0cm" Canvas.Left="0.0cm" Canvas.Top="0.0cm">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.5cm"/>
+                    <RowDefinition Height="0.5cm"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="SA" Grid.Column="1" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YB32" Grid.Column="1" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="FA" Grid.Column="2" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YB34" Grid.Column="2" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="HA" Grid.Column="3" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YB12" Grid.Column="3" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="AA" Grid.Column="4" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YB22" Grid.Column="4" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="SS" Grid.Column="6" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YB33" Grid.Column="6" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="ST" Grid.Column="7" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YB44" Grid.Column="7" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="AS" Grid.Column="8" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YB23" Grid.Column="8" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="HS" Grid.Column="9" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YB13" Grid.Column="9" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="AE" Grid.Column="11" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YB21" Grid.Column="11" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="HE" Grid.Column="12" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YB11" Grid.Column="12" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="FE" Grid.Column="13" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YB33" Grid.Column="13" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="SE" Grid.Column="14" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YB31" Grid.Column="14" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+            </Grid>
+            <!-- control block output text -->
+            <Grid Width="16.0cm" Height="1.0cm" Canvas.Left="0.0cm" Canvas.Top="3.0cm">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.5cm"/>
+                    <RowDefinition Height="0.5cm"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="XB02" Grid.Column="2" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="REA" Grid.Column="2" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="XB92" Grid.Column="3" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="BA" Grid.Column="3" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="XB46" Grid.Column="7" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="RST" Grid.Column="7" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="XB03" Grid.Column="8" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="RES" Grid.Column="8" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="XB93" Grid.Column="9" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="BS" Grid.Column="9" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="XB01" Grid.Column="12" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="REE" Grid.Column="12" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="XB91" Grid.Column="13" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="BE" Grid.Column="13" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+            </Grid>
+        </Canvas>
+    </ControlTemplate>
+
+    <!-- 03: solenoind valve control block -->
+
+    <ControlTemplate x:Key="SolenoidValveControlBlock">
+        <Canvas Width="16.0cm" Height="4.0cm" ClipToBounds="False" Style="{StaticResource ResourceKey=ControlBlockBaseCanvasStyle}">
+            <!-- control block base template -->
+            <Control Template="{StaticResource ResourceKey=ControlBlockBaseTemplate}"/>
+            <!-- control block title text -->
+            <Grid Width="14.0cm" Height="1.0cm" Canvas.Left="1.0cm" Canvas.Top="1.0cm">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4.0cm"/>
+                    <ColumnDefinition Width="6.0cm"/>
+                    <ColumnDefinition Width="4.0cm"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="CLOSE" Grid.Column="0" Style="{StaticResource ResourceKey=ControlBlockTitleTextStyle}"/>
+                <TextBlock Text="SOLENOID VALVE" Grid.Column="1" Style="{StaticResource ResourceKey=ControlBlockTitleTextStyle}"/>
+                <TextBlock Text="OPEN" Grid.Column="2" Style="{StaticResource ResourceKey=ControlBlockTitleTextStyle}"/>
+            </Grid>
+            <!-- control block input text -->
+            <Grid Width="16.0cm" Height="1.0cm" Canvas.Left="0.0cm" Canvas.Top="0.0cm">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.5cm"/>
+                    <RowDefinition Height="0.5cm"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="SZ" Grid.Column="1" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YB32" Grid.Column="1" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="FZ" Grid.Column="2" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YB34" Grid.Column="2" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="HZ" Grid.Column="3" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YB12" Grid.Column="3" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="AZ" Grid.Column="4" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YB22" Grid.Column="4" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="AA" Grid.Column="11" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YB21" Grid.Column="11" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="HA" Grid.Column="12" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YB11" Grid.Column="12" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="FA" Grid.Column="13" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YB33" Grid.Column="13" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="SA" Grid.Column="14" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YB31" Grid.Column="14" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+            </Grid>
+            <!-- control block output text -->
+            <Grid Width="16.0cm" Height="1.0cm" Canvas.Left="0.0cm" Canvas.Top="3.0cm">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.5cm"/>
+                    <RowDefinition Height="0.5cm"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="XB02" Grid.Column="2" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="REZ" Grid.Column="2" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="XB92" Grid.Column="3" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="BZ" Grid.Column="3" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="XB46" Grid.Column="7" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="RST" Grid.Column="7" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="XB01" Grid.Column="12" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="REA" Grid.Column="12" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="XB91" Grid.Column="13" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="BA" Grid.Column="13" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+            </Grid>
+        </Canvas>
+    </ControlTemplate>
+
+    <!-- 04: throttling valve control block -->
+
+    <ControlTemplate x:Key="ThrottlingValveControlBlock">
+        <Canvas Width="16.0cm" Height="4.0cm" ClipToBounds="False" Style="{StaticResource ResourceKey=ControlBlockBaseCanvasStyle}">
+            <!-- control block base template -->
+            <Control Template="{StaticResource ResourceKey=ControlBlockBaseTemplate}"/>
+            <!-- control block title text -->
+            <Grid Width="14.0cm" Height="1.0cm" Canvas.Left="1.0cm" Canvas.Top="1.0cm">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4.0cm"/>
+                    <ColumnDefinition Width="6.0cm"/>
+                    <ColumnDefinition Width="4.0cm"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="CLOSE" Grid.Column="0" Style="{StaticResource ResourceKey=ControlBlockTitleTextStyle}"/>
+                <TextBlock Text="THROTTLING VALVE" Grid.Column="1" Style="{StaticResource ResourceKey=ControlBlockTitleTextStyle}"/>
+                <TextBlock Text="OPEN" Grid.Column="2" Style="{StaticResource ResourceKey=ControlBlockTitleTextStyle}"/>
+            </Grid>
+            <!-- control block input text -->
+            <Grid Width="16.0cm" Height="1.0cm" Canvas.Left="0.0cm" Canvas.Top="0.0cm">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.5cm"/>
+                    <RowDefinition Height="0.5cm"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="SA" Grid.Column="1" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YB32" Grid.Column="1" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="FA" Grid.Column="2" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YB34" Grid.Column="2" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="HA" Grid.Column="3" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YB12" Grid.Column="3" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="AA" Grid.Column="4" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YB22" Grid.Column="4" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="ST" Grid.Column="7" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YB44" Grid.Column="7" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="AE" Grid.Column="11" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YB21" Grid.Column="11" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="HE" Grid.Column="12" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YB11" Grid.Column="12" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="FE" Grid.Column="13" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YB33" Grid.Column="13" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="SE" Grid.Column="14" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YB31" Grid.Column="14" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+            </Grid>
+            <!-- control block output text -->
+            <Grid Width="16.0cm" Height="1.0cm" Canvas.Left="0.0cm" Canvas.Top="3.0cm">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.5cm"/>
+                    <RowDefinition Height="0.5cm"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="XB02" Grid.Column="2" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="REA" Grid.Column="2" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="XB92" Grid.Column="3" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="BA" Grid.Column="3" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="XB46" Grid.Column="7" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="RST" Grid.Column="7" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="XB01" Grid.Column="12" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="REE" Grid.Column="12" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="XB91" Grid.Column="13" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="BE" Grid.Column="13" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+            </Grid>
+        </Canvas>
+    </ControlTemplate>
+
+    <!-- 05: control valve control block -->
+
+    <ControlTemplate x:Key="ControlValveControlBlock">
+        <Canvas Width="16.0cm" Height="4.0cm" ClipToBounds="False" Style="{StaticResource ResourceKey=ControlBlockBaseCanvasStyle}">
+            <!-- control block base template -->
+            <Control Template="{StaticResource ResourceKey=ControlBlockBaseTemplate}"/>
+            <!-- control block title text -->
+            <Grid Width="14.0cm" Height="1.0cm" Canvas.Left="1.0cm" Canvas.Top="1.0cm">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4.0cm"/>
+                    <ColumnDefinition Width="6.0cm"/>
+                    <ColumnDefinition Width="4.0cm"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="CLOSE" Grid.Column="0" Style="{StaticResource ResourceKey=ControlBlockTitleTextStyle}"/>
+                <TextBlock Text="CONTROL VALVE" Grid.Column="1" Style="{StaticResource ResourceKey=ControlBlockTitleTextStyle}"/>
+                <TextBlock Text="OPEN" Grid.Column="2" Style="{StaticResource ResourceKey=ControlBlockTitleTextStyle}"/>
+            </Grid>
+            <!-- control block input text -->
+            <Grid Width="16.0cm" Height="1.0cm" Canvas.Left="0.0cm" Canvas.Top="0.0cm">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.5cm"/>
+                    <RowDefinition Height="0.5cm"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="SZ" Grid.Column="1" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YC32" Grid.Column="1" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="FZ" Grid.Column="2" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YC34" Grid.Column="2" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="HZ" Grid.Column="3" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YC12" Grid.Column="3" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="AZ" Grid.Column="4" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YC22" Grid.Column="4" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="HR" Grid.Column="5" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YC24" Grid.Column="5" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="H/A" Grid.Column="6" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YC14" Grid.Column="6" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="ST" Grid.Column="7" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YC44" Grid.Column="7" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="AR" Grid.Column="9" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YC23" Grid.Column="9" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="AA" Grid.Column="11" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YC21" Grid.Column="11" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="HA" Grid.Column="12" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YC11" Grid.Column="12" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="FA" Grid.Column="13" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YC33" Grid.Column="13" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="SA" Grid.Column="14" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YC31" Grid.Column="14" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+            </Grid>
+            <!-- control block output text -->
+            <Grid Width="16.0cm" Height="1.0cm" Canvas.Left="0.0cm" Canvas.Top="3.0cm">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.5cm"/>
+                    <RowDefinition Height="0.5cm"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="XC02" Grid.Column="2" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="REZ" Grid.Column="2" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="XC92" Grid.Column="3" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="BZ" Grid.Column="3" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="XC14" Grid.Column="6" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="RRH" Grid.Column="6" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="XC46" Grid.Column="7" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="RST" Grid.Column="7" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="XC13" Grid.Column="8" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="RRA" Grid.Column="8" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="XC01" Grid.Column="12" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="REA" Grid.Column="12" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="XC91" Grid.Column="13" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="BA" Grid.Column="13" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+            </Grid>
+        </Canvas>
+    </ControlTemplate>
+
+    <!-- 06: frequency converter control block -->
+
+    <ControlTemplate x:Key="FrequencyConverterControlBlock">
+        <Canvas Width="16.0cm" Height="4.0cm" ClipToBounds="False" Style="{StaticResource ResourceKey=ControlBlockBaseCanvasStyle}">
+            <!-- control block base template -->
+            <Control Template="{StaticResource ResourceKey=ControlBlockBaseTemplate}"/>
+            <!-- control block title text -->
+            <Grid Width="14.0cm" Height="1.0cm" Canvas.Left="1.0cm" Canvas.Top="1.0cm">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4.0cm"/>
+                    <ColumnDefinition Width="6.0cm"/>
+                    <ColumnDefinition Width="4.0cm"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="OFF" Grid.Column="0" Style="{StaticResource ResourceKey=ControlBlockTitleTextStyle}"/>
+                <TextBlock Text="FREQ CONVERTER" Grid.Column="1" Style="{StaticResource ResourceKey=ControlBlockTitleTextStyle}"/>
+                <TextBlock Text="ON" Grid.Column="2" Style="{StaticResource ResourceKey=ControlBlockTitleTextStyle}"/>
+            </Grid>
+            <!-- control block input text -->
+            <Grid Width="16.0cm" Height="1.0cm" Canvas.Left="0.0cm" Canvas.Top="0.0cm">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.5cm"/>
+                    <RowDefinition Height="0.5cm"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="SZ" Grid.Column="1" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YC32" Grid.Column="1" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="FZ" Grid.Column="2" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YC34" Grid.Column="2" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="HZ" Grid.Column="3" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YC12" Grid.Column="3" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="AZ" Grid.Column="4" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YC22" Grid.Column="4" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="HR" Grid.Column="5" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YC24" Grid.Column="5" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="H/A" Grid.Column="6" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YC14" Grid.Column="6" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="ST" Grid.Column="7" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YC44" Grid.Column="7" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="SP" Grid.Column="8" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="AR" Grid.Column="9" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YC23" Grid.Column="9" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="AA" Grid.Column="11" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YC21" Grid.Column="11" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="HA" Grid.Column="12" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YC11" Grid.Column="12" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="FA" Grid.Column="13" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YC33" Grid.Column="13" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="SA" Grid.Column="14" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YC31" Grid.Column="14" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+            </Grid>
+            <!-- control block output text -->
+            <Grid Width="16.0cm" Height="1.0cm" Canvas.Left="0.0cm" Canvas.Top="3.0cm">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.5cm"/>
+                    <RowDefinition Height="0.5cm"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="XC02" Grid.Column="2" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="REZ" Grid.Column="2" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="XC92" Grid.Column="3" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="BZ" Grid.Column="3" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="XC14" Grid.Column="6" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="RRH" Grid.Column="6" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="XC46" Grid.Column="7" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="RST" Grid.Column="7" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="XC13" Grid.Column="8" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="RRA" Grid.Column="8" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="XC01" Grid.Column="12" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="REA" Grid.Column="12" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="XC91" Grid.Column="13" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="BA" Grid.Column="13" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+            </Grid>
+        </Canvas>
+    </ControlTemplate>
+    
+    <!-- 07: sequence control control block -->
+
+    <ControlTemplate x:Key="SequenceControlControlBlock">
+        <Canvas Width="16.0cm" Height="4.0cm" ClipToBounds="False" Style="{StaticResource ResourceKey=ControlBlockBaseCanvasStyle}">
+            <!-- control block base template -->
+            <Control Template="{StaticResource ResourceKey=ControlBlockBaseTemplate}"/>
+            <!-- control block title text -->
+            <Grid Width="14.0cm" Height="1.0cm" Canvas.Left="1.0cm" Canvas.Top="1.0cm">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4.0cm"/>
+                    <ColumnDefinition Width="6.0cm"/>
+                    <ColumnDefinition Width="4.0cm"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="STOP" Grid.Column="0" Style="{StaticResource ResourceKey=ControlBlockTitleTextStyle}"/>
+                <TextBlock Text="SEQUENCE CONTROL" Grid.Column="1" Style="{StaticResource ResourceKey=ControlBlockTitleTextStyle}"/>
+                <TextBlock Text="START" Grid.Column="2" Style="{StaticResource ResourceKey=ControlBlockTitleTextStyle}"/>
+            </Grid>
+            <!-- control block input text -->
+            <Grid Width="16.0cm" Height="1.0cm" Canvas.Left="0.0cm" Canvas.Top="0.0cm">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.5cm"/>
+                    <RowDefinition Height="0.5cm"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="FS" ToolTip="Release Prg Stop" Grid.Column="1" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YA32" Grid.Column="1" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="HS" ToolTip="Command Hand Stop" Grid.Column="2" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YA16" Grid.Column="2" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="AS" ToolTip="Command Auto Stop" Grid.Column="3" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YA26" Grid.Column="3" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="ES" ToolTip="Feedback Prg OFF" Grid.Column="4" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YA02" Grid.Column="4" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="HP" ToolTip="Command Prg Hand" Grid.Column="5" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YA22" Grid.Column="5" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="H/A" ToolTip="Selection H/A" Grid.Column="6" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YA11" Grid.Column="6" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="TB" ToolTip="Tap mode ON" Grid.Column="7" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YA13" Grid.Column="7" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="FP" ToolTip="Release Prg" Grid.Column="8" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YA14" Grid.Column="8" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="KH" ToolTip="Criteria Prg Halt" Grid.Column="9" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YA10" Grid.Column="9" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="AP" ToolTip="Command Prg Auto" Grid.Column="10" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YA21" Grid.Column="10" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="EB" ToolTip="Feedback Prg ON" Grid.Column="11" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YA01" Grid.Column="11" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="AB" ToolTip="Command Auto Start" Grid.Column="12" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YA25" Grid.Column="12" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="HB" ToolTip="Command Hand Start" Grid.Column="13" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YA15" Grid.Column="13" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="FB" ToolTip="Release Prg Start" Grid.Column="14" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YA31" Grid.Column="14" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+            </Grid>
+            <!-- control block output text -->
+            <Grid Width="16.0cm" Height="1.0cm" Canvas.Left="0.0cm" Canvas.Top="3.0cm">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.5cm"/>
+                    <RowDefinition Height="0.5cm"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="XA02" Grid.Column="2" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="BS" Grid.Column="2" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="XA08" Grid.Column="3" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="RAZ" Grid.Column="3" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="XA81" Grid.Column="4" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="RPS" Grid.Column="4" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="XA12" Grid.Column="5" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="RPH" Grid.Column="5" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="XA05" Grid.Column="7" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="RST" Grid.Column="7" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="XA13" Grid.Column="8" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="RHP" Grid.Column="8" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="XA11" Grid.Column="9" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="RPA" Grid.Column="9" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="XA83" Grid.Column="11" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="RPB" Grid.Column="11" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="XA07" Grid.Column="12" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="REB" Grid.Column="12" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="XA01" Grid.Column="13" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="BB" Grid.Column="13" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+            </Grid>
+        </Canvas>
+    </ControlTemplate>
+
+    <!-- 08: group control two-devices control block -->
+
+    <ControlTemplate x:Key="GroupControlTwoDevicesControlBlock">
+        <Canvas Width="16.0cm" Height="4.0cm" ClipToBounds="False" Style="{StaticResource ResourceKey=ControlBlockBaseCanvasStyle}">
+            <!-- control block horizontal lines -->
+            <Line X1="0.0cm" Y1="0.0cm" X2="16.0cm" Y2="0.0cm" Style="{StaticResource ResourceKey=ControlBlockBorderLineStyle}"/>
+            <Line X1="0.0cm" Y1="0.5cm" X2="16.0cm" Y2="0.5cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="0.0cm" Y1="1.0cm" X2="16.0cm" Y2="1.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="0.0cm" Y1="1.5cm" X2="1.0cm" Y2="1.5cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="1.0cm" Y1="1.5cm" X2="15.0cm" Y2="1.5cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="0.0cm" Y1="2.0cm" X2="1.0cm" Y2="2.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="2.0cm" Y1="2.5cm" X2="10.0cm" Y2="2.5cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="0.0cm" Y1="2.5cm" X2="1.0cm" Y2="2.5cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="15.0cm" Y1="1.5cm" X2="16.0cm" Y2="1.5cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="15.0cm" Y1="2.0cm" X2="16.0cm" Y2="2.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="15.0cm" Y1="2.5cm" X2="16.0cm" Y2="2.5cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="0.0cm" Y1="3.0cm" X2="16.0cm" Y2="3.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="0.0cm" Y1="3.5cm" X2="16.0cm" Y2="3.5cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="0.0cm" Y1="4.0cm" X2="16.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockBorderLineStyle}"/>
+            <!-- control block vertical lines -->
+            <Line X1="0.0cm" Y1="0.0cm" X2="0.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockBorderLineStyle}"/>
+            <Line X1="1.0cm" Y1="0.0cm" X2="1.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="2.0cm" Y1="0.0cm" X2="2.0cm" Y2="1.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="2.0cm" Y1="2.5cm" X2="2.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="3.0cm" Y1="0.0cm" X2="3.0cm" Y2="1.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="3.0cm" Y1="3.0cm" X2="3.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="4.0cm" Y1="0.0cm" X2="4.0cm" Y2="1.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="4.0cm" Y1="3.0cm" X2="4.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="5.0cm" Y1="0.0cm" X2="5.0cm" Y2="1.5cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="5.0cm" Y1="3.0cm" X2="5.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="6.0cm" Y1="0.0cm" X2="6.0cm" Y2="1.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="6.0cm" Y1="2.5cm" X2="6.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="7.0cm" Y1="0.0cm" X2="7.0cm" Y2="1.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="7.0cm" Y1="3.0cm" X2="7.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="8.0cm" Y1="0.0cm" X2="8.0cm" Y2="1.5cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="8.0cm" Y1="3.0cm" X2="8.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="9.0cm" Y1="0.0cm" X2="9.0cm" Y2="1.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="9.0cm" Y1="3.0cm" X2="9.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="10.0cm" Y1="0.0cm" X2="10.0cm" Y2="1.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="10.0cm" Y1="2.5cm" X2="10.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="11.0cm" Y1="0.0cm" X2="11.0cm" Y2="1.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="11.0cm" Y1="3.0cm" X2="11.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="12.0cm" Y1="0.0cm" X2="12.0cm" Y2="1.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="12.0cm" Y1="3.0cm" X2="12.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="13.0cm" Y1="0.0cm" X2="13.0cm" Y2="1.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="13.0cm" Y1="3.0cm" X2="13.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="14.0cm" Y1="0.0cm" X2="14.0cm" Y2="1.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="14.0cm" Y1="3.0cm" X2="14.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="15.0cm" Y1="0.0cm" X2="15.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="16.0cm" Y1="0.0cm" X2="16.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockBorderLineStyle}"/>
+            <!-- control block input sub-title text -->
+            <Grid Width="14.0cm" Height="0.5cm" Canvas.Left="1.0cm" Canvas.Top="1.0cm">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4.0cm"/>
+                    <ColumnDefinition Width="3.0cm"/>
+                    <ColumnDefinition Width="7.0cm"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="OFF" Grid.Column="0" Style="{StaticResource ResourceKey=ControlBlockSubTitleTextStyle}"/>
+                <TextBlock Text="ON" Grid.Column="1" Style="{StaticResource ResourceKey=ControlBlockSubTitleTextStyle}"/>
+                <TextBlock Text="CRITERIA TO CHANGE" Grid.Column="2" Style="{StaticResource ResourceKey=ControlBlockSubTitleTextStyle}"/>
+            </Grid>
+            <!-- control block output sub-title text -->
+            <Grid Width="8.0cm" Height="0.5cm" Canvas.Left="2.0cm" Canvas.Top="2.5cm">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4.0cm"/>
+                    <ColumnDefinition Width="4.0cm"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="EQUIPMENT 1" Grid.Column="0" Style="{StaticResource ResourceKey=ControlBlockSubTitleTextStyle}"/>
+                <TextBlock Text="EQUIPMENT 2" Grid.Column="1" Style="{StaticResource ResourceKey=ControlBlockSubTitleTextStyle}"/>
+            </Grid>
+            <!-- control block input text -->
+            <Grid Width="16.0cm" Height="1.0cm" Canvas.Left="0.0cm" Canvas.Top="0.0cm">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.5cm"/>
+                    <RowDefinition Height="0.5cm"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="SA" ToolTip="" Grid.Column="1" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YA32" Grid.Column="1" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="FA" ToolTip="" Grid.Column="2" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YA34" Grid.Column="2" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="HA" ToolTip="" Grid.Column="3" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YA12" Grid.Column="3" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="AA" ToolTip="" Grid.Column="4" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YA22" Grid.Column="4" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="HE" ToolTip="" Grid.Column="5" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YA11" Grid.Column="5" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="AE" ToolTip="" Grid.Column="6" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YA21" Grid.Column="6" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="FE" ToolTip="" Grid.Column="7" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YA33" Grid.Column="7" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="ST1" ToolTip="" Grid.Column="8" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YA44" Grid.Column="8" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="ST2" ToolTip="" Grid.Column="9" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YA45" Grid.Column="9" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="ZAA" ToolTip="" Grid.Column="11" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YA72" Grid.Column="11" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="ZAE" ToolTip="" Grid.Column="12" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YA71" Grid.Column="12" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="SEL1" ToolTip="" Grid.Column="13" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="SEL2" ToolTip="" Grid.Column="14" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+            </Grid>
+            <!-- control block output text -->
+            <Grid Width="16.0cm" Height="1.0cm" Canvas.Left="0.0cm" Canvas.Top="3.0cm">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.5cm"/>
+                    <RowDefinition Height="0.5cm"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="XA02" Grid.Column="1" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="VWA" Grid.Column="1" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="XA92" Grid.Column="4" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="BA1" Grid.Column="4" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="XA91" Grid.Column="5" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="BE1" Grid.Column="5" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="XA94" Grid.Column="8" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="BA2" Grid.Column="8" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="XA93" Grid.Column="9" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="BE2" Grid.Column="9" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="XA01" Grid.Column="14" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="VWE" Grid.Column="14" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+            </Grid>
+        </Canvas>
+    </ControlTemplate>
+    
+    <!-- 09: group control three-devices control block -->
+
+    <ControlTemplate x:Key="GroupControlThreeDevicesControlBlock">
+        <Canvas Width="16.0cm" Height="4.0cm" ClipToBounds="False" Style="{StaticResource ResourceKey=ControlBlockBaseCanvasStyle}">
+            <!-- control block horizontal lines -->
+            <Line X1="0.0cm" Y1="0.0cm" X2="16.0cm" Y2="0.0cm" Style="{StaticResource ResourceKey=ControlBlockBorderLineStyle}"/>
+            <Line X1="0.0cm" Y1="0.5cm" X2="16.0cm" Y2="0.5cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="0.0cm" Y1="1.0cm" X2="16.0cm" Y2="1.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="0.0cm" Y1="1.5cm" X2="1.0cm" Y2="1.5cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="1.0cm" Y1="1.5cm" X2="15.0cm" Y2="1.5cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="0.0cm" Y1="2.0cm" X2="1.0cm" Y2="2.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="2.0cm" Y1="2.5cm" X2="14.0cm" Y2="2.5cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="0.0cm" Y1="2.5cm" X2="1.0cm" Y2="2.5cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="15.0cm" Y1="1.5cm" X2="16.0cm" Y2="1.5cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="15.0cm" Y1="2.0cm" X2="16.0cm" Y2="2.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="15.0cm" Y1="2.5cm" X2="16.0cm" Y2="2.5cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="0.0cm" Y1="3.0cm" X2="16.0cm" Y2="3.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="0.0cm" Y1="3.5cm" X2="16.0cm" Y2="3.5cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="0.0cm" Y1="4.0cm" X2="16.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockBorderLineStyle}"/>
+            <!-- control block vertical lines -->
+            <Line X1="0.0cm" Y1="0.0cm" X2="0.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockBorderLineStyle}"/>
+            <Line X1="1.0cm" Y1="0.0cm" X2="1.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="2.0cm" Y1="0.0cm" X2="2.0cm" Y2="1.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="2.0cm" Y1="2.5cm" X2="2.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="3.0cm" Y1="0.0cm" X2="3.0cm" Y2="1.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="3.0cm" Y1="3.0cm" X2="3.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="4.0cm" Y1="0.0cm" X2="4.0cm" Y2="1.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="4.0cm" Y1="3.0cm" X2="4.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="5.0cm" Y1="0.0cm" X2="5.0cm" Y2="1.5cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="5.0cm" Y1="3.0cm" X2="5.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="6.0cm" Y1="0.0cm" X2="6.0cm" Y2="1.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="6.0cm" Y1="2.5cm" X2="6.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="7.0cm" Y1="0.0cm" X2="7.0cm" Y2="1.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="7.0cm" Y1="3.0cm" X2="7.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="8.0cm" Y1="0.0cm" X2="8.0cm" Y2="1.5cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="8.0cm" Y1="3.0cm" X2="8.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="9.0cm" Y1="0.0cm" X2="9.0cm" Y2="1.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="9.0cm" Y1="3.0cm" X2="9.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="10.0cm" Y1="0.0cm" X2="10.0cm" Y2="1.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="10.0cm" Y1="2.5cm" X2="10.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="11.0cm" Y1="0.0cm" X2="11.0cm" Y2="1.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="11.0cm" Y1="3.0cm" X2="11.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="12.0cm" Y1="0.0cm" X2="12.0cm" Y2="1.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="12.0cm" Y1="3.0cm" X2="12.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="13.0cm" Y1="0.0cm" X2="13.0cm" Y2="1.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="13.0cm" Y1="3.0cm" X2="13.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="14.0cm" Y1="0.0cm" X2="14.0cm" Y2="1.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="14.0cm" Y1="2.5cm" X2="14.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="15.0cm" Y1="0.0cm" X2="15.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockLineStyle}"/>
+            <Line X1="16.0cm" Y1="0.0cm" X2="16.0cm" Y2="4.0cm" Style="{StaticResource ResourceKey=ControlBlockBorderLineStyle}"/>
+            <!-- control block input sub-title text -->
+            <Grid Width="14.0cm" Height="0.5cm" Canvas.Left="1.0cm" Canvas.Top="1.0cm">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4.0cm"/>
+                    <ColumnDefinition Width="3.0cm"/>
+                    <ColumnDefinition Width="7.0cm"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="OFF" Grid.Column="0" Style="{StaticResource ResourceKey=ControlBlockSubTitleTextStyle}"/>
+                <TextBlock Text="ON" Grid.Column="1" Style="{StaticResource ResourceKey=ControlBlockSubTitleTextStyle}"/>
+                <TextBlock Text="CRITERIA TO CHANGE" Grid.Column="2" Style="{StaticResource ResourceKey=ControlBlockSubTitleTextStyle}"/>
+            </Grid>
+            <!-- control block output sub-title text -->
+            <Grid Width="12.0cm" Height="0.5cm" Canvas.Left="2.0cm" Canvas.Top="2.5cm">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4.0cm"/>
+                    <ColumnDefinition Width="4.0cm"/>
+                    <ColumnDefinition Width="4.0cm"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="EQUIPMENT 1" Grid.Column="0" Style="{StaticResource ResourceKey=ControlBlockSubTitleTextStyle}"/>
+                <TextBlock Text="EQUIPMENT 2" Grid.Column="1" Style="{StaticResource ResourceKey=ControlBlockSubTitleTextStyle}"/>
+                <TextBlock Text="EQUIPMENT 3" Grid.Column="2" Style="{StaticResource ResourceKey=ControlBlockSubTitleTextStyle}"/>
+            </Grid>
+            <!-- control block input text -->
+            <Grid Width="16.0cm" Height="1.0cm" Canvas.Left="0.0cm" Canvas.Top="0.0cm">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.5cm"/>
+                    <RowDefinition Height="0.5cm"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="SA" ToolTip="" Grid.Column="1" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YA32" Grid.Column="1" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="FA" ToolTip="" Grid.Column="2" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YA34" Grid.Column="2" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="HA" ToolTip="" Grid.Column="3" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YA12" Grid.Column="3" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="AA" ToolTip="" Grid.Column="4" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YA22" Grid.Column="4" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="HE" ToolTip="" Grid.Column="5" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YA11" Grid.Column="5" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="AE" ToolTip="" Grid.Column="6" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YA21" Grid.Column="6" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="FE" ToolTip="" Grid.Column="7" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YA33" Grid.Column="7" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="ST1" ToolTip="" Grid.Column="8" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YA44" Grid.Column="8" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="ST2" ToolTip="" Grid.Column="9" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YA45" Grid.Column="9" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="ST3" ToolTip="" Grid.Column="10" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YA46" Grid.Column="10" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="ZAA" ToolTip="" Grid.Column="11" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YA72" Grid.Column="11" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="ZAE" ToolTip="" Grid.Column="12" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="YA71" Grid.Column="12" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="SEL1" ToolTip="" Grid.Column="13" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="SEL2" ToolTip="" Grid.Column="14" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="SEL3" ToolTip="" Grid.Column="15" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+            </Grid>
+            <!-- control block output text -->
+            <Grid Width="16.0cm" Height="1.0cm" Canvas.Left="0.0cm" Canvas.Top="3.0cm">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.5cm"/>
+                    <RowDefinition Height="0.5cm"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="XA02" Grid.Column="1" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="VWA" Grid.Column="1" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="XA92" Grid.Column="4" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="BA1" Grid.Column="4" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="XA91" Grid.Column="5" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="BE1" Grid.Column="5" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="XA94" Grid.Column="8" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="BA2" Grid.Column="8" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="XA93" Grid.Column="9" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="BE2" Grid.Column="9" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="XA96" Grid.Column="12" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="BA3" Grid.Column="12" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="XA95" Grid.Column="13" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="BE3" Grid.Column="13" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="XA01" Grid.Column="14" Grid.Row="0" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+                <TextBlock Text="VWE" Grid.Column="14" Grid.Row="1" Style="{StaticResource ResourceKey=ControlBlockInputTextStyle}"/>
+            </Grid>
+        </Canvas>
+    </ControlTemplate>
+
+</ResourceDictionary>

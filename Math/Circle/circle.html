@@ -1,0 +1,100 @@
+<!-- Copyright (c) Wiesław Šoltés. All rights reserved. -->
+<!-- Licensed under the MIT license. See LICENSE file in the project root for full license information. -->
+<!DOCTYPE html>
+<html>
+    <body>
+
+    <table>
+        <tr>
+            <td width="200" valign="top">
+                <p>r0: <input id="r0" type="range" min="0" max="600" step="1" value="100"></p>
+                <p>r1: <input id="r1" type="range" min="0" max="600" step="1" value="100"></p>
+                <p>x0: <input id="x0" type="range" min="0" max="600" step="1" value="300"></p>
+                <p>y0: <input id="y0" type="range" min="0" max="600" step="1" value="200"></p>
+                <p>t0: <input id="t0" type="range" min="0" max="360" step="0.1" value="0"></p>
+                <p>t1: <input id="t1" type="range" min="0" max="360" step="0.1" value="360"></p>
+            </td>
+            <td valign="middle">
+                <p><canvas id="canvas" width="600" height="600"></canvas></p>
+            </td>
+        </tr>
+    </table>
+
+    <script>
+
+        var precision = 0.001;
+
+        toRadians = function(degrees) { return degrees * Math.PI / 180; };
+        toDegrees = function(radians) { return radians * 180 / Math.PI; };
+
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+        
+        var ir0 = document.getElementById('r0');
+        var ir1 = document.getElementById('r1');
+        var ix0 = document.getElementById('x0');
+        var iy0 = document.getElementById('y0');
+        var it0 = document.getElementById('t0');
+        var it1 = document.getElementById('t1');
+
+        ir0.oninput = function(value) { draw(); };
+        ir1.oninput = function(value) { draw(); };
+        ix0.oninput = function(value) { draw(); };
+        iy0.oninput = function(value) { draw(); };
+        it0.oninput = function(value) { draw(); };
+        it1.oninput = function(value) { draw(); };
+
+        // parameters
+        // r0: radius x axis
+        // r1: radius y axis
+        // x0: center point x coordinate
+        // y0: center point y coordinate
+        // t0: start angle in radians
+        // t1: end angle in radians
+        // step: calculations precision
+        function circle(r0, r1, x0, y0, t0,  t1, step)
+        {
+            var start = Math.min(t0, t1);
+            var end = Math.max(t0, t1);
+            var first = true;
+            ctx.beginPath();
+            for (var t = start; t <= end; t += step)
+            {
+                var x = x0 + r0 * Math.cos(t);
+                var y = y0 + r1 * Math.sin(t);
+                if (first)
+                {
+                    ctx.moveTo(x, y);
+                    first = false;
+                }
+                else
+                {
+                    ctx.lineTo(x, y);
+                }
+                //ctx.fillRect(x, y, 1, 1);
+            }
+            ctx.stroke();
+        };
+
+        function draw()
+        {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            var r0 = parseFloat(ir0.value);
+            var r1 = parseFloat(ir1.value);
+            var x0 = parseFloat(ix0.value);
+            var y0 = parseFloat(iy0.value);
+            var t0 = toRadians(parseFloat(it0.value));
+            var t1 = toRadians(parseFloat(it1.value));
+
+            //console.log(r0 + ' ' + r1 + ' ' + x0 + ' ' + y0 + ' ' + t0 + ' ' + t1);
+
+            circle(r0, r1, x0, y0, t0, t1, precision);
+        };
+
+        draw();
+
+    </script>
+
+    </body>
+</html>

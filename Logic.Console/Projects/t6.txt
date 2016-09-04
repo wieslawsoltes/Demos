@@ -1,0 +1,149 @@
+add solution sln1
+add project prj1
+add context ctx1
+add signal s1
+add signal s2
+add signal s3
+add signal s4
+add signal s5
+add signal s6
+add signal s7
+add signal s8
+add signal s9
+add signal s10
+add signal s11
+add signal s12
+add signal s13
+add signal s14
+add signal s15
+add signal s16
+add signal s17
+add signal s18
+add signal s19
+add signal s20
+add orgate og1
+add signal s21
+add pin p1
+add pin p2
+add pin p3
+add pin p4
+add pin p5
+add pin p6
+add pin p7
+add pin p8
+add pin p9
+add pin p10
+add pin p11
+add pin p12
+add pin p13
+add pin p14
+add pin p15
+add pin p16
+add pin p17
+add pin p18
+add pin p19
+add pin p20
+add orgate og2
+add signal s22
+add pin p21
+add pin p22
+add pin p23
+add pin p24
+add pin p25
+add pin p26
+add pin p27
+add pin p28
+add pin p29
+add pin p30
+add pin p31
+add pin p32
+add pin p33
+add pin p34
+add pin p35
+add pin p36
+add pin p37
+add pin p38
+add pin p39
+add pin p40
+connect o_s1 p1 false false
+connect p1 p2 false false
+connect o_s2 p2 false false
+connect p2 p3 false false
+connect o_s4 p3 false false
+connect p3 p4 false false
+connect o_s3 p4 false false
+connect p4 p5 false false
+connect o_s8 p5 false false
+connect p5 p6 false false
+connect o_s7 p6 false false
+connect p6 p7 false false
+connect o_s5 p7 false false
+connect p7 p8 false false
+connect o_s6 p8 false false
+connect p8 p9 false false
+connect o_s16 p9 false false
+connect p9 p10 false false
+connect o_s15 p10 false false
+connect p10 p11 false false
+connect o_s13 p11 false false
+connect p11 p12 false false
+connect o_s14 p12 false false
+connect p12 p13 false false
+connect o_s9 p13 false false
+connect p13 p14 false false
+connect o_s10 p14 false false
+connect p14 p15 false false
+connect o_s12 p15 false false
+connect p15 p16 false false
+connect o_s11 p16 false false
+connect p16 p17 false false
+connect o_s20 p17 false false
+connect p17 p18 false false
+connect o_s19 p18 false false
+connect p18 p19 false false
+connect o_s17 p19 false false
+connect p19 p20 false false
+connect o_s18 p20 false false
+connect p20 t_og1 false false
+connect r_og1 i_s21 false false
+connect o_s1 p21 false false
+connect p21 p22 false false
+connect o_s2 p22 false false
+connect p22 p23 false false
+connect o_s4 p23 false false
+connect p23 p24 false false
+connect o_s3 p24 false false
+connect p24 p25 false false
+connect o_s8 p25 false false
+connect p25 p26 false false
+connect o_s7 p26 false false
+connect p26 p27 false false
+connect o_s5 p27 false false
+connect p27 p28 false false
+connect o_s6 p28 false false
+connect p28 p29 false false
+connect o_s16 p29 false false
+connect p29 p30 false false
+connect o_s15 p30 false false
+connect p30 p31 false false
+connect o_s13 p31 false false
+connect p31 p32 false false
+connect o_s14 p32 false false
+connect p32 p33 false false
+connect o_s9 p33 false false
+connect p33 p34 false false
+connect o_s10 p34 false false
+connect p34 p35 false false
+connect o_s12 p35 false false
+connect p35 p36 false false
+connect o_s11 p36 false false
+connect p36 p37 false false
+connect o_s20 p37 false false
+connect p37 p38 false false
+connect o_s19 p38 false false
+connect p38 p39 false false
+connect o_s17 p39 false false
+connect p39 p40 false false
+connect o_s18 p40 false false
+connect p40 t_og2 false false
+connect r_og2 i_s22 false false

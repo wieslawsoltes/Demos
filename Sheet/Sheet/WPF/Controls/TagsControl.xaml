@@ -1,0 +1,36 @@
+﻿<!-- Copyright (c) Wiesław Šoltés. All rights reserved. -->
+<!-- Licensed under the MIT license. See LICENSE file in the project root for full license information. -->
+<UserControl x:Class="Sheet.TagsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Sheet"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" 
+             d:DesignWidth="300"
+             Focusable="False" 
+             FocusVisualStyle="{x:Null}"
+             Background="WhiteSmoke" 
+             UseLayoutRounding="False" SnapsToDevicePixels="True" 
+             TextOptions.TextFormattingMode="Ideal" TextOptions.TextRenderingMode="ClearType" TextOptions.TextHintingMode="Auto">
+    <UserControl.Resources>
+        <DataTemplate x:Key="TagListDataTemplateKey">
+            <Border Margin="4" Padding="2" BorderThickness="1,0,0,0" BorderBrush="LightGray">
+                <StackPanel>
+                    <!--<local:PropertiesControl/>-->
+                    <CheckBox Margin="4,2,2,2" 
+                              IsChecked="{Binding Simulation.State.State, FallbackValue=False, Mode=TwoWay}" 
+                              Content="{Binding Simulation.State.State, FallbackValue=False, Mode=TwoWay}" 
+                              IsThreeState="False"/>
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+    </UserControl.Resources>
+    <ListBox Background="Transparent" 
+             ItemsSource="{Binding}" 
+             HorizontalContentAlignment="Stretch"  
+             BorderBrush="{x:Null}"
+             BorderThickness="0"
+             ItemTemplate="{DynamicResource TagListDataTemplateKey}"/>
+</UserControl>

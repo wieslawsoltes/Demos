@@ -1,0 +1,580 @@
+﻿<!-- Copyright (c) Wiesław Šoltés. All rights reserved. -->
+<!-- Licensed under the MIT license. See LICENSE file in the project root for full license information. -->
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:model="clr-namespace:Logic.Model"
+                    xmlns:selectors="clr-namespace:Logic.Views.Selectors"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:controls="clr-namespace:Logic.Controls">
+
+    <!-- data providers -->
+
+    <ObjectDataProvider x:Key="OptionsDataProvider" ObjectInstance="{x:Type model:Options}"/>
+
+    <ObjectDataProvider x:Key="LabelPositionEnum" MethodName="GetValues" ObjectType="{x:Type sys:Enum}">
+        <ObjectDataProvider.MethodParameters>
+            <x:Type TypeName="model:LabelPosition"/>
+        </ObjectDataProvider.MethodParameters>
+    </ObjectDataProvider>
+
+    <ObjectDataProvider x:Key="PageTypeEnum" MethodName="GetValues" ObjectType="{x:Type sys:Enum}">
+        <ObjectDataProvider.MethodParameters>
+            <x:Type TypeName="model:PageType"/>
+        </ObjectDataProvider.MethodParameters>
+    </ObjectDataProvider>
+
+    <!-- selectors -->
+
+    <selectors:ModelDataTemplateSelector x:Key="ModelDataTemplateSelector"/>
+
+    <selectors:ModelContainerStyleSelector x:Key="ModelContainerStyleSelector"/>
+
+    <!-- color brushes -->
+
+    <SolidColorBrush x:Key="BackgroundColorKey" Color="Black"/>
+    <SolidColorBrush x:Key="GridColorKey" Color="#FF212121"/>
+    <SolidColorBrush x:Key="PageColorKey" Color="#FF555555"/>
+    <SolidColorBrush x:Key="LogicColorKey" Color="#FF56CAD6"/>
+    <SolidColorBrush x:Key="LogicSelectedColorKey" Color="Violet"/>
+    <SolidColorBrush x:Key="HelperColorKey" Color="#FF464646"/>
+    <SolidColorBrush x:Key="LogicMouseOverColorKey" Color="Yellow"/>
+    <SolidColorBrush x:Key="LogicTrueStateColorKey" Color="#FFFF0000"/>
+    <SolidColorBrush x:Key="LogicFalseStateColorKey" Color="#FF43E84E"/>
+    <SolidColorBrush x:Key="LogicNullStateColorKey" Color="Yellow"/>
+
+    <!-- text styles -->
+
+    <Style x:Key="SignalTextBlockStyleKey" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="Arial"/>
+        <!--<Setter Property="FontSize" Value="10"/>-->
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="Foreground" Value="{DynamicResource LogicColorKey}"/>
+        <Setter Property="RenderOptions.EdgeMode" Value="Aliased"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Tag.Simulation.State.State, FallbackValue=null}" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource LogicTrueStateColorKey}"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Tag.Simulation.State.State, FallbackValue=null}" Value="False">
+                <Setter Property="Foreground" Value="{DynamicResource LogicFalseStateColorKey}"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Tag.Simulation.State.State, FallbackValue=null}" Value="{x:Null}">
+                <Setter Property="Foreground" Value="{DynamicResource LogicNullStateColorKey}"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Tag.Simulation}" Value="{x:Null}">
+                <Setter Property="Foreground" Value="{DynamicResource LogicColorKey}"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource LogicSelectedColorKey}"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="LogicTextBlockStyleKey" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="Arial"/>
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="Foreground" Value="{DynamicResource LogicColorKey}"/>
+        <Setter Property="RenderOptions.EdgeMode" Value="Aliased"/>
+        <Style.Triggers>
+            <!--
+            <DataTrigger Binding="{Binding Tag.Simulation.State.State, FallbackValue=null}" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource LogicTrueStateColorKey}"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Tag.Simulation.State.State, FallbackValue=null}" Value="False">
+                <Setter Property="Foreground" Value="{DynamicResource LogicFalseStateColorKey}"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Tag.Simulation.State.State, FallbackValue=null}" Value="{x:Null}">
+                <Setter Property="Foreground" Value="{DynamicResource LogicNullStateColorKey}"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Simulation}" Value="{x:Null}">
+                <Setter Property="Foreground" Value="{DynamicResource LogicColorKey}"/>
+            </DataTrigger>
+            -->
+            <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource LogicSelectedColorKey}"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="LogicSmallTextBlockStyleKey" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="Arial"/>
+        <Setter Property="FontSize" Value="10"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="Foreground" Value="{DynamicResource LogicColorKey}"/>
+        <Setter Property="RenderOptions.EdgeMode" Value="Aliased"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource LogicSelectedColorKey}"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="NameTextBlockStyleKey" TargetType="TextBlock" BasedOn="{StaticResource LogicSmallTextBlockStyleKey}">
+        <Setter Property="Margin" Value="0,0,0,0"/>
+        <Setter Property="VerticalAlignment" Value="Bottom"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+    </Style>
+
+    <Style x:Key="LogicTimerTextBlockStyleKey" TargetType="TextBlock" BasedOn="{StaticResource LogicSmallTextBlockStyleKey}">
+        <Setter Property="Margin" Value="-100,-14,-100,0"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding LabelPosition}" Value="Bottom">
+                <Setter Property="Margin" Value="-100,0,-100,-15"/>
+                <Setter Property="VerticalAlignment" Value="Bottom"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding LabelPosition}" Value="Left">
+                <Setter Property="Margin" Value="-100,0,36,0"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Right"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding LabelPosition}" Value="Right">
+                <Setter Property="Margin" Value="36,0,-100,0"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="NumberTextBlockStyleKey" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="Arial"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="Thin"/>
+        <Setter Property="Foreground" Value="{DynamicResource PageColorKey}"/>
+        <Setter Property="RenderOptions.EdgeMode" Value="Aliased"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="SmallHeaderTextBlockStyleKey" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="Arial"/>
+        <!--<Setter Property="FontSize" Value="10"/>-->
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="Thin"/>
+        <Setter Property="Foreground" Value="{DynamicResource PageColorKey}"/>
+        <Setter Property="RenderOptions.EdgeMode" Value="Aliased"/>
+    </Style>
+
+    <Style x:Key="LargeHeaderTextBlockStyleKey" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="Arial"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="Thin"/>
+        <Setter Property="Foreground" Value="{DynamicResource PageColorKey}"/>
+        <Setter Property="RenderOptions.EdgeMode" Value="Aliased"/>
+    </Style>
+
+    <Style x:Key="TitleTextBlockStyleKey" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="Arial"/>
+        <Setter Property="FontSize" Value="32"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="Foreground" Value="{DynamicResource LogicColorKey}"/>
+        <Setter Property="RenderOptions.EdgeMode" Value="Aliased"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource LogicSelectedColorKey}"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="LogicBlockSmallTextBlockStyleKey" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="Arial"/>
+        <Setter Property="FontSize" Value="9"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="Margin" Value="2"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="{DynamicResource LogicColorKey}"/>
+        <Setter Property="RenderOptions.EdgeMode" Value="Aliased"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource LogicSelectedColorKey}"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="LogicBlockMediumTextBlockStyleKey" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="Arial"/>
+        <Setter Property="FontSize" Value="10"/>
+        <Setter Property="FontWeight" Value="Medium"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="{DynamicResource LogicColorKey}"/>
+        <Setter Property="RenderOptions.EdgeMode" Value="Aliased"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource LogicSelectedColorKey}"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="LogicBlockLargeTextBlockStyleKey" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="Arial"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="Medium"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="{DynamicResource LogicColorKey}"/>
+        <Setter Property="RenderOptions.EdgeMode" Value="Aliased"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource LogicSelectedColorKey}"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- path styles -->
+
+    <Style x:Key="LogicSignalPathStyleKey" TargetType="Path">
+        <Setter Property="Stroke" Value="{DynamicResource LogicColorKey}"/>
+        <Setter Property="StrokeThickness" Value="{Binding Source={StaticResource OptionsDataProvider}, Path=Thickness}"/>
+        <Setter Property="StrokeStartLineCap" Value="Square"/>
+        <Setter Property="StrokeEndLineCap" Value="Square"/>
+        <Setter Property="StrokeLineJoin" Value="Miter"/>
+        <Setter Property="Fill" Value="{DynamicResource LogicColorKey}"/>
+        <Setter Property="RenderOptions.EdgeMode" Value="Aliased"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Tag.Simulation.State.State, FallbackValue=null}" Value="True">
+                <Setter Property="Stroke" Value="{DynamicResource LogicTrueStateColorKey}"/>
+                <Setter Property="Fill" Value="{DynamicResource LogicTrueStateColorKey}"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Tag.Simulation.State.State, FallbackValue=null}" Value="False">
+                <Setter Property="Stroke" Value="{DynamicResource LogicFalseStateColorKey}"/>
+                <Setter Property="Fill" Value="{DynamicResource LogicFalseStateColorKey}"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Tag.Simulation.State.State, FallbackValue=null}" Value="{x:Null}">
+                <Setter Property="Stroke" Value="{DynamicResource LogicNullStateColorKey}"/>
+                <Setter Property="Fill" Value="{DynamicResource LogicNullStateColorKey}"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Tag.Simulation}" Value="{x:Null}">
+                <Setter Property="Stroke" Value="{DynamicResource LogicColorKey}"/>
+                <Setter Property="Fill" Value="{DynamicResource LogicColorKey}"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                <Setter Property="Stroke" Value="{DynamicResource LogicSelectedColorKey}"/>
+                <Setter Property="Fill" Value="{DynamicResource LogicSelectedColorKey}"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="LogicPathStyleKey" TargetType="Path">
+        <Setter Property="Stroke" Value="{DynamicResource LogicColorKey}"/>
+        <Setter Property="StrokeThickness" Value="{Binding Source={StaticResource OptionsDataProvider}, Path=Thickness}"/>
+        <Setter Property="StrokeStartLineCap" Value="Square"/>
+        <Setter Property="StrokeEndLineCap" Value="Square"/>
+        <Setter Property="StrokeLineJoin" Value="Miter"/>
+        <Setter Property="Fill" Value="{DynamicResource LogicColorKey}"/>
+        <Setter Property="RenderOptions.EdgeMode" Value="Aliased"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                <Setter Property="Stroke" Value="{DynamicResource LogicSelectedColorKey}"/>
+                <Setter Property="Fill" Value="{DynamicResource LogicSelectedColorKey}"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="LogicEllipseStyleKey" TargetType="Ellipse">
+        <Setter Property="Stroke" Value="{DynamicResource LogicColorKey}"/>
+        <Setter Property="StrokeThickness" Value="{Binding Source={StaticResource OptionsDataProvider}, Path=Thickness}"/>
+        <Setter Property="Fill" Value="{DynamicResource BackgroundColorKey}"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                <Setter Property="Stroke" Value="{DynamicResource LogicSelectedColorKey}"/>
+                <Setter Property="Fill" Value="{DynamicResource BackgroundColorKey}"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Source={StaticResource OptionsDataProvider}, Path=IsPrinting}" Value="True">
+                <Setter Property="Fill" Value="Transparent"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="PagePathStyleKey" TargetType="Path">
+        <Setter Property="Stroke" Value="{DynamicResource PageColorKey}"/>
+        <Setter Property="StrokeThickness" Value="{Binding Source={StaticResource OptionsDataProvider}, Path=Thickness}"/>
+        <Setter Property="StrokeStartLineCap" Value="Square"/>
+        <Setter Property="StrokeEndLineCap" Value="Square"/>
+        <Setter Property="StrokeLineJoin" Value="Miter"/>
+        <Setter Property="RenderOptions.EdgeMode" Value="Aliased"/>
+    </Style>
+
+    <Style x:Key="PagePrintPathStyleKey" TargetType="Path">
+        <Setter Property="Stroke" Value="{DynamicResource PageColorKey}"/>
+        <Setter Property="StrokeThickness" Value="{Binding Source={StaticResource OptionsDataProvider}, Path=Thickness}"/>
+        <Setter Property="StrokeStartLineCap" Value="Square"/>
+        <Setter Property="StrokeEndLineCap" Value="Square"/>
+        <Setter Property="StrokeLineJoin" Value="Miter"/>
+        <Setter Property="RenderOptions.EdgeMode" Value="Aliased"/>
+        <Setter Property="Visibility" Value="Collapsed"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Source={StaticResource OptionsDataProvider}, Path=IsPrinting}" Value="True">
+                <Setter Property="Visibility" Value="Visible"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="GridPathStyleKey" TargetType="Path">
+        <Setter Property="Stroke" Value="{DynamicResource GridColorKey}"/>
+        <Setter Property="StrokeThickness" Value="{Binding Source={StaticResource OptionsDataProvider}, Path=Thickness}"/>
+        <Setter Property="StrokeStartLineCap" Value="Square"/>
+        <Setter Property="StrokeEndLineCap" Value="Square"/>
+        <Setter Property="StrokeLineJoin" Value="Miter"/>
+        <Setter Property="RenderOptions.EdgeMode" Value="Aliased"/>
+        <Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Source={StaticResource OptionsDataProvider}, Path=IsPrinting}" Value="True">
+                <Setter Property="Visibility" Value="Collapsed"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="GridPrintPathStyleKey" TargetType="Path">
+        <Setter Property="Stroke" Value="{DynamicResource GridColorKey}"/>
+        <Setter Property="StrokeThickness" Value="{Binding Source={StaticResource OptionsDataProvider}, Path=Thickness}"/>
+        <Setter Property="StrokeStartLineCap" Value="Square"/>
+        <Setter Property="StrokeEndLineCap" Value="Square"/>
+        <Setter Property="StrokeLineJoin" Value="Miter"/>
+        <Setter Property="RenderOptions.EdgeMode" Value="Aliased"/>
+        <Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality"/>
+        <Setter Property="Visibility" Value="Visible"/>
+    </Style>
+
+    <!-- background canvas styles -->
+
+    <Style x:Key="BackgroundCanvasStyleKey" TargetType="Canvas">
+        <Setter Property="ClipToBounds" Value="False"/>
+        <Setter Property="Background" Value="{DynamicResource BackgroundColorKey}"/>
+    </Style>
+
+    <!-- Wire template -->
+
+    <Style x:Key="HelperWireStyleKey" TargetType="{x:Type Line}">
+        <Setter Property="Stroke" Value="{DynamicResource HelperColorKey}"/>
+        <Setter Property="StrokeThickness" Value="15"/>
+        <Setter Property="StrokeStartLineCap" Value="Round"/>
+        <Setter Property="StrokeEndLineCap" Value="Round"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="UseLayoutRounding" Value="False"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Source={StaticResource OptionsDataProvider}, Path=HideHelperLines}" Value="True">
+                <Setter Property="Stroke" Value="Transparent"/>
+            </DataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Source={StaticResource OptionsDataProvider}, Path=CaptureMouse}" Value="True"/>
+                    <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True"/>
+                </MultiDataTrigger.Conditions>
+                <!--<Setter Property="Stroke" Value="{DynamicResource LogicMouseOverColorKey}"/>-->
+                <Setter Property="Cursor" Value="Cross"/>
+            </MultiDataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="WireStyleKey" TargetType="{x:Type Line}">
+        <Setter Property="Stroke" Value="{DynamicResource LogicColorKey}"/>
+        <Setter Property="StrokeThickness" Value="{Binding Source={StaticResource OptionsDataProvider}, Path=Thickness}"/>
+        <Setter Property="StrokeStartLineCap" Value="Round"/>
+        <Setter Property="StrokeEndLineCap" Value="Round"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="UseLayoutRounding" Value="False"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                <Setter Property="Stroke" Value="{DynamicResource LogicSelectedColorKey}"/>
+            </DataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Source={StaticResource OptionsDataProvider}, Path=CaptureMouse}" Value="True"/>
+                    <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True"/>
+                </MultiDataTrigger.Conditions>
+                <!--<Setter Property="Stroke" Value="{DynamicResource LogicMouseOverColorKey}"/>-->
+                <Setter Property="Cursor" Value="Cross"/>
+            </MultiDataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="WireCanvasStyleKey" TargetType="{x:Type Canvas}">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IsLocked}" Value="True">
+                <Setter Property="IsHitTestVisible" Value="False"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="InvertedStartEllipseStyleKey" TargetType="{x:Type Ellipse}">
+        <Setter Property="Stroke" Value="{DynamicResource LogicColorKey}"/>
+        <Setter Property="StrokeThickness" Value="{Binding Source={StaticResource OptionsDataProvider}, Path=Thickness}"/>
+        <Setter Property="Fill" Value="Transparent"/>
+        <Setter Property="Width" Value="10"/>
+        <Setter Property="Height" Value="10"/>
+        <Setter Property="Margin" Value="0,0,0,0"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="UseLayoutRounding" Value="False"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                <Setter Property="Stroke" Value="{DynamicResource LogicSelectedColorKey}"/>
+                <Setter Property="Fill" Value="Transparent"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding InvertStart}" Value="False">
+                <Setter Property="Stroke" Value="Transparent"/>
+                <Setter Property="Fill" Value="Transparent"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="InvertedEndEllipseStyleKey" TargetType="{x:Type Ellipse}">
+        <Setter Property="Stroke" Value="{DynamicResource LogicColorKey}"/>
+        <Setter Property="StrokeThickness" Value="{Binding Source={StaticResource OptionsDataProvider}, Path=Thickness}"/>
+        <Setter Property="Fill" Value="Transparent"/>
+        <Setter Property="Width" Value="10"/>
+        <Setter Property="Height" Value="10"/>
+        <Setter Property="Margin" Value="0,0,0,0"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="UseLayoutRounding" Value="False"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                <Setter Property="Stroke" Value="{DynamicResource LogicSelectedColorKey}"/>
+                <Setter Property="Fill" Value="Transparent"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding InvertEnd}" Value="False">
+                <Setter Property="Stroke" Value="Transparent"/>
+                <Setter Property="Fill" Value="Transparent"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <ControlTemplate x:Key="WireControlTemplateKey">
+        <Canvas Style="{DynamicResource WireCanvasStyleKey}">
+
+            <!--<Line X1="{Binding Start.X}" Y1="{Binding Start.Y}" X2="{Binding End.X}" Y2="{Binding End.Y}" Style="{DynamicResource HelperLineStyleKey}"/>-->
+            <Line X1="{Binding StartPoint.X}" Y1="{Binding StartPoint.Y}" X2="{Binding EndPoint.X}" Y2="{Binding EndPoint.Y}" Style="{DynamicResource HelperWireStyleKey}"/>
+
+            <Line X1="{Binding StartPoint.X}" Y1="{Binding StartPoint.Y}" X2="{Binding EndPoint.X}" Y2="{Binding EndPoint.Y}" Style="{DynamicResource WireStyleKey}"/>
+            <Ellipse Canvas.Left="{Binding StartCenter.X}" Canvas.Top="{Binding StartCenter.Y}" Style="{DynamicResource InvertedStartEllipseStyleKey}"/>
+            <Ellipse Canvas.Left="{Binding EndCenter.X}" Canvas.Top="{Binding EndCenter.Y}" Style="{DynamicResource InvertedEndEllipseStyleKey}"/>
+        </Canvas>
+    </ControlTemplate>
+
+    <DataTemplate x:Key="WireDataTemplateKey">
+        <Control Template="{DynamicResource WireControlTemplateKey}"/>
+    </DataTemplate>
+
+    <ContextMenu x:Key="WireContextMenu" DataContext="{Binding PlacementTarget.DataContext, RelativeSource={RelativeSource Self}}">
+        <MenuItem IsCheckable="True" IsChecked="{Binding InvertStart}" Header="Invert Start"/>
+        <MenuItem IsCheckable="True" IsChecked="{Binding InvertEnd}" Header="Invert End"/>
+        <MenuItem IsCheckable="True" IsChecked="{Binding DisableShortenWire}" Header="Don't Shorten Wire"/>
+    </ContextMenu>
+
+    <Style x:Key="WireContainerStyleKey" TargetType="ContentPresenter">
+        <Setter Property="ContextMenu" Value="{DynamicResource WireContextMenu}"/>
+        <Setter Property="Canvas.Left" Value="{Binding X}"/>
+        <Setter Property="Canvas.Top" Value="{Binding Y}"/>
+        <Setter Property="Panel.ZIndex" Value="{Binding Z}"/>
+    </Style>
+
+    <!-- Pin template -->
+
+    <Style x:Key="PinEllipseStyleKey" TargetType="{x:Type Ellipse}">
+        <Setter Property="Stroke" Value="{DynamicResource LogicColorKey}"/>
+        <Setter Property="StrokeThickness" Value="1"/>
+        <Setter Property="Fill" Value="{DynamicResource LogicColorKey}"/>
+        <Setter Property="Width" Value="8"/>
+        <Setter Property="Height" Value="8"/>
+        <Setter Property="Margin" Value="-4,-4,0,0"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="UseLayoutRounding" Value="False"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Stroke" Value="{DynamicResource LogicMouseOverColorKey}"/>
+                <Setter Property="Fill" Value="{DynamicResource LogicMouseOverColorKey}"/>
+                <Setter Property="Cursor" Value="Cross"/>
+            </Trigger>
+            <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                <Setter Property="Stroke" Value="{DynamicResource LogicSelectedColorKey}"/>
+                <Setter Property="Fill" Value="{DynamicResource LogicSelectedColorKey}"/>
+                <Setter Property="Cursor" Value="Arrow"/>
+            </DataTrigger>
+            <!--<DataTrigger Binding="{Binding Parent.IsSelected, FallbackValue=False}" Value="True">
+                <Setter Property="Stroke" Value="Transparent"/>
+                <Setter Property="Fill" Value="Transparent"/>
+                <Setter Property="Visibility" Value="Collapsed"/>
+            </DataTrigger>-->
+            <DataTrigger Binding="{Binding Source={StaticResource OptionsDataProvider}, Path=HidePins}" Value="True">
+                <Setter Property="Stroke" Value="Transparent"/>
+                <Setter Property="Fill" Value="Transparent"/>
+                <Setter Property="Visibility" Value="Collapsed"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Source={StaticResource OptionsDataProvider}, Path=SimulationIsRunning}" Value="True">
+                <Setter Property="Stroke" Value="Transparent"/>
+                <Setter Property="Fill" Value="Transparent"/>
+                <Setter Property="Visibility" Value="Collapsed"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="HelperPinEllipseStyleKey" TargetType="{x:Type Ellipse}">
+        <Setter Property="Stroke" Value="{DynamicResource HelperColorKey}"/>
+        <Setter Property="StrokeThickness" Value="1"/>
+        <Setter Property="Fill" Value="{DynamicResource HelperColorKey}"/>
+        <Setter Property="Width" Value="15"/>
+        <Setter Property="Height" Value="15"/>
+        <Setter Property="Margin" Value="-7.5,-7.5,0,0"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="UseLayoutRounding" Value="False"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Source={StaticResource OptionsDataProvider}, Path=HideHelperLines}" Value="True">
+                <Setter Property="Stroke" Value="Transparent"/>
+                <Setter Property="Fill" Value="Transparent"/>
+                <!--<Setter Property="Visibility" Value="Collapsed"/>-->
+            </DataTrigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Stroke" Value="{DynamicResource LogicMouseOverColorKey}"/>
+                <Setter Property="Fill" Value="{DynamicResource LogicMouseOverColorKey}"/>
+                <Setter Property="Cursor" Value="Cross"/>
+                <Setter Property="Panel.ZIndex" Value="2"/>
+            </Trigger>
+            <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                <Setter Property="Stroke" Value="Transparent"/>
+                <Setter Property="Fill" Value="Transparent"/>
+                <Setter Property="Visibility" Value="Collapsed"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Source={StaticResource OptionsDataProvider}, Path=HidePins}" Value="True">
+                <Setter Property="Stroke" Value="Transparent"/>
+                <Setter Property="Fill" Value="Transparent"/>
+                <Setter Property="Visibility" Value="Collapsed"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Source={StaticResource OptionsDataProvider}, Path=SimulationIsRunning}" Value="True">
+                <Setter Property="Stroke" Value="Transparent"/>
+                <Setter Property="Fill" Value="Transparent"/>
+                <Setter Property="Visibility" Value="Collapsed"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <ControlTemplate x:Key="PinControlTemplateKey">
+        <Canvas>
+            <Ellipse Style="{DynamicResource HelperPinEllipseStyleKey}"/>
+            <Ellipse Style="{DynamicResource PinEllipseStyleKey}"/>
+        </Canvas>
+    </ControlTemplate>
+
+    <Style x:Key="PinThumbStyleKey" TargetType="{x:Type controls:ContextThumb}">
+        <Setter Property="UIElement.IsHitTestVisible" Value="True"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IsLocked}" Value="True">
+                <Setter Property="IsHitTestVisible" Value="False"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <DataTemplate x:Key="PinDataTemplateKey">
+        <controls:ContextThumb Style="{DynamicResource PinThumbStyleKey}" Template="{DynamicResource PinControlTemplateKey}"/>
+    </DataTemplate>
+
+    <Style x:Key="PinContainerStyleKey" TargetType="ContentPresenter">
+        <Setter Property="Canvas.Left" Value="{Binding X}"/>
+        <Setter Property="Canvas.Top" Value="{Binding Y}"/>
+        <Setter Property="Panel.ZIndex" Value="{Binding Z}"/>
+    </Style>
+
+</ResourceDictionary>

@@ -1,0 +1,20 @@
+﻿<!-- Copyright (c) Wiesław Šoltés. All rights reserved. -->
+<!-- Licensed under the MIT license. See LICENSE file in the project root for full license information. -->
+<Application x:Class="BlockDesigner.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+
+        <Style x:Key="BlockEllipseKey" TargetType="Ellipse" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+            <Setter Property="Stroke" Value="Red"/>
+            <Setter Property="Fill" Value="Red"/>
+            <Setter Property="StrokeThickness" Value="1.0"/>
+            <Setter Property="Width" Value="8.0"/>
+            <Setter Property="Height" Value="8.0"/>
+            <Setter Property="Margin" Value="-4,-4,0,0"/>
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+        </Style>
+
+    </Application.Resources>
+</Application>

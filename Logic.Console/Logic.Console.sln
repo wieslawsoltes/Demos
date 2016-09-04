@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2012 for Windows Desktop
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic.Console", "Logic.Console\Logic.Console.csproj", "{7F9C669C-A083-4666-A01C-8CC58A23FD18}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D4055DB2-449D-4EDA-AAF7-0F32B72F1367} = {D4055DB2-449D-4EDA-AAF7-0F32B72F1367}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic.Model", "Logic.Model\Logic.Model.csproj", "{D4055DB2-449D-4EDA-AAF7-0F32B72F1367}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic.Simulation", "Logic.Simulation\Logic.Simulation.csproj", "{CD41700E-74CA-4196-A045-A7F8ADA866B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic.TruthTables", "Logic.TruthTables\Logic.TruthTables.csproj", "{3CB9D94D-FFDF-4435-BA05-32D361649E54}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic.WPF", "Logic.WPF\Logic.WPF.csproj", "{504F1050-C563-4EF6-809E-5FDB103CF962}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic.Parser", "Logic.Parser\Logic.Parser.csproj", "{0BE43EC0-3921-4642-9273-030AFBC76ADD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7F9C669C-A083-4666-A01C-8CC58A23FD18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F9C669C-A083-4666-A01C-8CC58A23FD18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F9C669C-A083-4666-A01C-8CC58A23FD18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F9C669C-A083-4666-A01C-8CC58A23FD18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4055DB2-449D-4EDA-AAF7-0F32B72F1367}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4055DB2-449D-4EDA-AAF7-0F32B72F1367}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4055DB2-449D-4EDA-AAF7-0F32B72F1367}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4055DB2-449D-4EDA-AAF7-0F32B72F1367}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD41700E-74CA-4196-A045-A7F8ADA866B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD41700E-74CA-4196-A045-A7F8ADA866B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD41700E-74CA-4196-A045-A7F8ADA866B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD41700E-74CA-4196-A045-A7F8ADA866B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CB9D94D-FFDF-4435-BA05-32D361649E54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CB9D94D-FFDF-4435-BA05-32D361649E54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CB9D94D-FFDF-4435-BA05-32D361649E54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CB9D94D-FFDF-4435-BA05-32D361649E54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{504F1050-C563-4EF6-809E-5FDB103CF962}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{504F1050-C563-4EF6-809E-5FDB103CF962}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{504F1050-C563-4EF6-809E-5FDB103CF962}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{504F1050-C563-4EF6-809E-5FDB103CF962}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BE43EC0-3921-4642-9273-030AFBC76ADD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BE43EC0-3921-4642-9273-030AFBC76ADD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BE43EC0-3921-4642-9273-030AFBC76ADD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BE43EC0-3921-4642-9273-030AFBC76ADD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,11 @@
+﻿<Window x:Class="rt.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="rt" Height="600" Width="800"
+        WindowStartupLocation="CenterScreen" WindowState="Normal">
+    <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+            <Image x:Name="rtImage" Stretch="None" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        </ScrollViewer>
+    </Grid>
+</Window>

@@ -1,0 +1,537 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- page base template -->
+
+    <ControlTemplate x:Key="PageBase">
+        <Canvas Width="42.0cm" Height="29.7cm" ClipToBounds="False">
+            <!-- page frame numbers -->
+            <!-- page frame numbers vertical lines -->
+            <Line X1="2.064cm" Y1="0.015cm" X2="2.064cm" Y2="0.4cm" Style="{StaticResource ResourceKey=PageFrameLineStyle}"/>
+            <Line X1="3.728cm" Y1="0.015cm" X2="3.728cm" Y2="0.4cm" Style="{StaticResource ResourceKey=PageFrameLineStyle}"/>
+            <Line X1="5.392cm" Y1="0.015cm" X2="5.392cm" Y2="0.4cm" Style="{StaticResource ResourceKey=PageFrameLineStyle}"/>
+            <Line X1="7.056cm" Y1="0.015cm" X2="7.056cm" Y2="0.4cm" Style="{StaticResource ResourceKey=PageFrameLineStyle}"/>
+            <Line X1="8.720cm" Y1="0.015cm" X2="8.720cm" Y2="0.4cm" Style="{StaticResource ResourceKey=PageFrameLineStyle}"/>
+            <Line X1="10.384cm" Y1="0.015cm" X2="10.384cm" Y2="0.4cm" Style="{StaticResource ResourceKey=PageFrameLineStyle}"/>
+            <Line X1="12.048cm" Y1="0.015cm" X2="12.048cm" Y2="0.4cm" Style="{StaticResource ResourceKey=PageFrameLineStyle}"/>
+            <Line X1="13.712cm" Y1="0.015cm" X2="13.712cm" Y2="0.4cm" Style="{StaticResource ResourceKey=PageFrameLineStyle}"/>
+            <Line X1="15.376cm" Y1="0.015cm" X2="15.376cm" Y2="0.4cm" Style="{StaticResource ResourceKey=PageFrameLineStyle}"/>
+            <Line X1="17.040cm" Y1="0.015cm" X2="17.040cm" Y2="0.4cm" Style="{StaticResource ResourceKey=PageFrameLineStyle}"/>
+            <Line X1="18.704cm" Y1="0.015cm" X2="18.704cm" Y2="0.4cm" Style="{StaticResource ResourceKey=PageFrameLineStyle}"/>
+            <Line X1="20.368cm" Y1="0.015cm" X2="20.368cm" Y2="0.4cm" Style="{StaticResource ResourceKey=PageFrameLineStyle}"/>
+            <Line X1="22.032cm" Y1="0.015cm" X2="22.032cm" Y2="0.4cm" Style="{StaticResource ResourceKey=PageFrameLineStyle}"/>
+            <Line X1="23.696cm" Y1="0.015cm" X2="23.696cm" Y2="0.4cm" Style="{StaticResource ResourceKey=PageFrameLineStyle}"/>
+            <Line X1="25.360cm" Y1="0.015cm" X2="25.360cm" Y2="0.4cm" Style="{StaticResource ResourceKey=PageFrameLineStyle}"/>
+            <Line X1="27.024cm" Y1="0.015cm" X2="27.024cm" Y2="0.4cm" Style="{StaticResource ResourceKey=PageFrameLineStyle}"/>
+            <Line X1="28.688cm" Y1="0.015cm" X2="28.688cm" Y2="0.4cm" Style="{StaticResource ResourceKey=PageFrameLineStyle}"/>
+            <Line X1="30.352cm" Y1="0.015cm" X2="30.352cm" Y2="0.4cm" Style="{StaticResource ResourceKey=PageFrameLineStyle}"/>
+            <Line X1="32.016cm" Y1="0.015cm" X2="32.016cm" Y2="0.4cm" Style="{StaticResource ResourceKey=PageFrameLineStyle}"/>
+            <Line X1="33.680cm" Y1="0.015cm" X2="33.680cm" Y2="0.4cm" Style="{StaticResource ResourceKey=PageFrameLineStyle}"/>
+            <Line X1="35.344cm" Y1="0.015cm" X2="35.344cm" Y2="0.4cm" Style="{StaticResource ResourceKey=PageFrameLineStyle}"/>
+            <Line X1="37.008cm" Y1="0.015cm" X2="37.008cm" Y2="0.4cm" Style="{StaticResource ResourceKey=PageFrameLineStyle}"/>
+            <Line X1="38.672cm" Y1="0.015cm" X2="38.672cm" Y2="0.4cm" Style="{StaticResource ResourceKey=PageFrameLineStyle}"/>
+            <Line X1="40.336cm" Y1="0.015cm" X2="40.336cm" Y2="0.4cm" Style="{StaticResource ResourceKey=PageFrameLineStyle}"/>
+            <!-- page frame numbers horizontal text -->
+            <Grid Width="41.6cm" Height="0.4cm" Canvas.Left="0.4cm" Canvas.Top="0.0cm">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.664cm"/>
+                    <ColumnDefinition Width="1.664cm"/>
+                    <ColumnDefinition Width="1.664cm"/>
+                    <ColumnDefinition Width="1.664cm"/>
+                    <ColumnDefinition Width="1.664cm"/>
+                    <ColumnDefinition Width="1.664cm"/>
+                    <ColumnDefinition Width="1.664cm"/>
+                    <ColumnDefinition Width="1.664cm"/>
+                    <ColumnDefinition Width="1.664cm"/>
+                    <ColumnDefinition Width="1.664cm"/>
+                    <ColumnDefinition Width="1.664cm"/>
+                    <ColumnDefinition Width="1.664cm"/>
+                    <ColumnDefinition Width="1.664cm"/>
+                    <ColumnDefinition Width="1.664cm"/>
+                    <ColumnDefinition Width="1.664cm"/>
+                    <ColumnDefinition Width="1.664cm"/>
+                    <ColumnDefinition Width="1.664cm"/>
+                    <ColumnDefinition Width="1.664cm"/>
+                    <ColumnDefinition Width="1.664cm"/>
+                    <ColumnDefinition Width="1.664cm"/>
+                    <ColumnDefinition Width="1.664cm"/>
+                    <ColumnDefinition Width="1.664cm"/>
+                    <ColumnDefinition Width="1.664cm"/>
+                    <ColumnDefinition Width="1.664cm"/>
+                    <ColumnDefinition Width="1.664cm"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="1" Grid.Column="0" Style="{StaticResource ResourceKey=PageFrameTextStyle}"/>
+                <TextBlock Text="2" Grid.Column="1" Style="{StaticResource ResourceKey=PageFrameTextStyle}"/>
+                <TextBlock Text="3" Grid.Column="2" Style="{StaticResource ResourceKey=PageFrameTextStyle}"/>
+                <TextBlock Text="4" Grid.Column="3" Style="{StaticResource ResourceKey=PageFrameTextStyle}"/>
+                <TextBlock Text="5" Grid.Column="4" Style="{StaticResource ResourceKey=PageFrameTextStyle}"/>
+                <TextBlock Text="6" Grid.Column="5" Style="{StaticResource ResourceKey=PageFrameTextStyle}"/>
+                <TextBlock Text="7" Grid.Column="6" Style="{StaticResource ResourceKey=PageFrameTextStyle}"/>
+                <TextBlock Text="8" Grid.Column="7" Style="{StaticResource ResourceKey=PageFrameTextStyle}"/>
+                <TextBlock Text="9" Grid.Column="8" Style="{StaticResource ResourceKey=PageFrameTextStyle}"/>
+                <TextBlock Text="10" Grid.Column="9" Style="{StaticResource ResourceKey=PageFrameTextStyle}"/>
+                <TextBlock Text="11" Grid.Column="10" Style="{StaticResource ResourceKey=PageFrameTextStyle}"/>
+                <TextBlock Text="12" Grid.Column="11" Style="{StaticResource ResourceKey=PageFrameTextStyle}"/>
+                <TextBlock Text="13" Grid.Column="12" Style="{StaticResource ResourceKey=PageFrameTextStyle}"/>
+                <TextBlock Text="14" Grid.Column="13" Style="{StaticResource ResourceKey=PageFrameTextStyle}"/>
+                <TextBlock Text="15" Grid.Column="14" Style="{StaticResource ResourceKey=PageFrameTextStyle}"/>
+                <TextBlock Text="16" Grid.Column="15" Style="{StaticResource ResourceKey=PageFrameTextStyle}"/>
+                <TextBlock Text="17" Grid.Column="16" Style="{StaticResource ResourceKey=PageFrameTextStyle}"/>
+                <TextBlock Text="18" Grid.Column="17" Style="{StaticResource ResourceKey=PageFrameTextStyle}"/>
+                <TextBlock Text="19" Grid.Column="18" Style="{StaticResource ResourceKey=PageFrameTextStyle}"/>
+                <TextBlock Text="20" Grid.Column="19" Style="{StaticResource ResourceKey=PageFrameTextStyle}"/>
+                <TextBlock Text="21" Grid.Column="20" Style="{StaticResource ResourceKey=PageFrameTextStyle}"/>
+                <TextBlock Text="22" Grid.Column="21" Style="{StaticResource ResourceKey=PageFrameTextStyle}"/>
+                <TextBlock Text="23" Grid.Column="22" Style="{StaticResource ResourceKey=PageFrameTextStyle}"/>
+                <TextBlock Text="24" Grid.Column="23" Style="{StaticResource ResourceKey=PageFrameTextStyle}"/>
+                <TextBlock Text="25" Grid.Column="24" Style="{StaticResource ResourceKey=PageFrameTextStyle}"/>
+            </Grid>
+            <!-- page frame numbers vertical lines -->
+            <Line X1="0.015cm" Y1="2.23125cm" X2="0.4cm" Y2="2.23125cm" Style="{StaticResource ResourceKey=PageFrameLineStyle}"/>
+            <Line X1="0.015cm" Y1="4.06250cm" X2="0.4cm" Y2="4.06250cm" Style="{StaticResource ResourceKey=PageFrameLineStyle}"/>
+            <Line X1="0.015cm" Y1="5.89375cm" X2="0.4cm" Y2="5.89375cm" Style="{StaticResource ResourceKey=PageFrameLineStyle}"/>
+            <Line X1="0.015cm" Y1="7.72500cm" X2="0.4cm" Y2="7.72500cm" Style="{StaticResource ResourceKey=PageFrameLineStyle}"/>
+            <Line X1="0.015cm" Y1="9.55625cm" X2="0.4cm" Y2="9.55625cm" Style="{StaticResource ResourceKey=PageFrameLineStyle}"/>
+            <Line X1="0.015cm" Y1="11.38750cm" X2="0.4cm" Y2="11.38750cm" Style="{StaticResource ResourceKey=PageFrameLineStyle}"/>
+            <Line X1="0.015cm" Y1="13.21875cm" X2="0.4cm" Y2="13.21875cm" Style="{StaticResource ResourceKey=PageFrameLineStyle}"/>
+            <Line X1="0.015cm" Y1="15.05000cm" X2="0.4cm" Y2="15.05000cm" Style="{StaticResource ResourceKey=PageFrameLineStyle}"/>
+            <Line X1="0.015cm" Y1="16.88125cm" X2="0.4cm" Y2="16.88125cm" Style="{StaticResource ResourceKey=PageFrameLineStyle}"/>
+            <Line X1="0.015cm" Y1="18.71250cm" X2="0.4cm" Y2="18.71250cm" Style="{StaticResource ResourceKey=PageFrameLineStyle}"/>
+            <Line X1="0.015cm" Y1="20.54375cm" X2="0.4cm" Y2="20.54375cm" Style="{StaticResource ResourceKey=PageFrameLineStyle}"/>
+            <Line X1="0.015cm" Y1="22.37500cm" X2="0.4cm" Y2="22.37500cm" Style="{StaticResource ResourceKey=PageFrameLineStyle}"/>
+            <Line X1="0.015cm" Y1="24.20625cm" X2="0.4cm" Y2="24.20625cm" Style="{StaticResource ResourceKey=PageFrameLineStyle}"/>
+            <Line X1="0.015cm" Y1="26.03750cm" X2="0.4cm" Y2="26.03750cm" Style="{StaticResource ResourceKey=PageFrameLineStyle}"/>
+            <Line X1="0.015cm" Y1="27.86875cm" X2="0.4cm" Y2="27.86875cm" Style="{StaticResource ResourceKey=PageFrameLineStyle}"/>
+            <!-- page frame numbers vertical text -->
+            <Grid Width="0.4cm" Height="29.3cm" Canvas.Left="0.015cm" Canvas.Top="0.4cm">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.385cm"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1.83125cm"/>
+                    <RowDefinition Height="1.83125cm"/>
+                    <RowDefinition Height="1.83125cm"/>
+                    <RowDefinition Height="1.83125cm"/>
+                    <RowDefinition Height="1.83125cm"/>
+                    <RowDefinition Height="1.83125cm"/>
+                    <RowDefinition Height="1.83125cm"/>
+                    <RowDefinition Height="1.83125cm"/>
+                    <RowDefinition Height="1.83125cm"/>
+                    <RowDefinition Height="1.83125cm"/>
+                    <RowDefinition Height="1.83125cm"/>
+                    <RowDefinition Height="1.83125cm"/>
+                    <RowDefinition Height="1.83125cm"/>
+                    <RowDefinition Height="1.83125cm"/>
+                    <RowDefinition Height="1.83125cm"/>
+                    <RowDefinition Height="1.83125cm"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="A" Grid.Row="0" Style="{StaticResource ResourceKey=PageFrameTextStyle}"/>
+                <TextBlock Text="B" Grid.Row="1" Style="{StaticResource ResourceKey=PageFrameTextStyle}"/>
+                <TextBlock Text="C" Grid.Row="2" Style="{StaticResource ResourceKey=PageFrameTextStyle}"/>
+                <TextBlock Text="D" Grid.Row="3" Style="{StaticResource ResourceKey=PageFrameTextStyle}"/>
+                <TextBlock Text="E" Grid.Row="4" Style="{StaticResource ResourceKey=PageFrameTextStyle}"/>
+                <TextBlock Text="F" Grid.Row="5" Style="{StaticResource ResourceKey=PageFrameTextStyle}"/>
+                <TextBlock Text="G" Grid.Row="6" Style="{StaticResource ResourceKey=PageFrameTextStyle}"/>
+                <TextBlock Text="H" Grid.Row="7" Style="{StaticResource ResourceKey=PageFrameTextStyle}"/>
+                <TextBlock Text="I" Grid.Row="8" Style="{StaticResource ResourceKey=PageFrameTextStyle}"/>
+                <TextBlock Text="J" Grid.Row="9" Style="{StaticResource ResourceKey=PageFrameTextStyle}"/>
+                <TextBlock Text="K" Grid.Row="10" Style="{StaticResource ResourceKey=PageFrameTextStyle}"/>
+                <TextBlock Text="L" Grid.Row="11" Style="{StaticResource ResourceKey=PageFrameTextStyle}"/>
+                <TextBlock Text="M" Grid.Row="12" Style="{StaticResource ResourceKey=PageFrameTextStyle}"/>
+                <TextBlock Text="N" Grid.Row="13" Style="{StaticResource ResourceKey=PageFrameTextStyle}"/>
+                <TextBlock Text="O" Grid.Row="14" Style="{StaticResource ResourceKey=PageFrameTextStyle}"/>
+                <TextBlock Text="P" Grid.Row="15" Style="{StaticResource ResourceKey=PageFrameTextStyle}"/>
+            </Grid>
+            <!-- page table template -->
+            <!-- table horizontal lines -->
+            <Line X1="0.4cm" Y1="27.6cm" X2="6.7cm" Y2="27.6cm" Style="{StaticResource ResourceKey=PageTableLineStyle}"/>
+            <Line X1="0.4cm" Y1="28.3cm" X2="6.7cm" Y2="28.3cm" Style="{StaticResource ResourceKey=PageTableLineStyle}"/>
+            <Line X1="0.4cm" Y1="29.0cm" X2="6.7cm" Y2="29.0cm" Style="{StaticResource ResourceKey=PageTableLineStyle}"/>
+            <Line X1="15.7cm" Y1="27.6cm" X2="24.6cm" Y2="27.6cm" Style="{StaticResource ResourceKey=PageTableLineStyle}"/>
+            <Line X1="15.7cm" Y1="28.3cm" X2="24.6cm" Y2="28.3cm" Style="{StaticResource ResourceKey=PageTableLineStyle}"/>
+            <Line X1="15.7cm" Y1="29.0cm" X2="24.6cm" Y2="29.0cm" Style="{StaticResource ResourceKey=PageTableLineStyle}"/>
+            <Line X1="24.6cm" Y1="27.6cm" X2="37.2cm" Y2="27.6cm" Style="{StaticResource ResourceKey=PageTableLineStyle}"/>
+            <Line X1="35.0cm" Y1="28.3cm" X2="41.985cm" Y2="28.3cm" Style="{StaticResource ResourceKey=PageTableLineStyle}"/>
+            <!-- table vertical lines -->
+            <Line X1="0.4cm" Y1="26.9cm" X2="0.4cm" Y2="29.685cm" Style="{StaticResource ResourceKey=PageTableLineStyle}"/>
+            <Line X1="1.4cm" Y1="26.9cm" X2="1.4cm" Y2="29.685cm" Style="{StaticResource ResourceKey=PageTableLineStyle}"/>
+            <Line X1="3.2cm" Y1="26.9cm" X2="3.2cm" Y2="29.685cm" Style="{StaticResource ResourceKey=PageTableLineStyle}"/>
+            <Line X1="6.7cm" Y1="26.9cm" X2="6.7cm" Y2="29.685cm" Style="{StaticResource ResourceKey=PageTableLineStyle}"/>
+            <Line X1="11.2cm" Y1="26.9cm" X2="11.2cm" Y2="29.685cm" Style="{StaticResource ResourceKey=PageTableLineStyle}"/>
+            <Line X1="15.7cm" Y1="26.9cm" X2="15.7cm" Y2="29.685cm" Style="{StaticResource ResourceKey=PageTableLineStyle}"/>
+            <Line X1="17.4cm" Y1="26.9cm" X2="17.4cm" Y2="29.685cm" Style="{StaticResource ResourceKey=PageTableLineStyle}"/>
+            <Line X1="20.9cm" Y1="26.9cm" X2="20.9cm" Y2="29.685cm" Style="{StaticResource ResourceKey=PageTableLineStyle}"/>
+            <Line X1="22.5cm" Y1="26.9cm" X2="22.5cm" Y2="29.685cm" Style="{StaticResource ResourceKey=PageTableLineStyle}"/>
+            <Line X1="24.6cm" Y1="26.9cm" X2="24.6cm" Y2="29.685cm" Style="{StaticResource ResourceKey=PageTableLineStyle}"/>
+            <Line X1="35.0cm" Y1="26.9cm" X2="35.0cm" Y2="29.685cm" Style="{StaticResource ResourceKey=PageTableLineStyle}"/>
+            <Line X1="36.1cm" Y1="26.9cm" X2="36.1cm" Y2="29.685cm" Style="{StaticResource ResourceKey=PageTableLineStyle}"/>
+            <Line X1="37.2cm" Y1="26.9cm" X2="37.2cm" Y2="28.3cm" Style="{StaticResource ResourceKey=PageTableLineStyle}"/>
+            <!-- page frame template -->
+            <!-- frame horizontal lines -->
+            <Line X1="0.015cm" Y1="0.015cm" X2="41.985cm" Y2="0.015cm" VerticalAlignment="Bottom" Style="{StaticResource ResourceKey=PageFrameLineStyle}"/>
+            <Line X1="0.4cm" Y1="0.4cm" X2="41.985cm" Y2="0.4cm" Style="{StaticResource ResourceKey=PageFrameLineStyle}"/>
+            <Line X1="0.4cm" Y1="26.1cm" X2="41.985cm" Y2="26.1cm" Style="{StaticResource ResourceKey=PageFrameLineStyle}"/>
+            <Line X1="0.4cm" Y1="26.9cm" X2="41.985cm" Y2="26.9cm" Style="{StaticResource ResourceKey=PageFrameLineStyle}"/>
+            <Line X1="0.015cm" Y1="29.685cm" X2="41.985cm" Y2="29.685cm" VerticalAlignment="Top" Style="{StaticResource ResourceKey=PageFrameLineStyle}"/>
+            <!-- frame vertical lines -->
+            <Line X1="0.015cm" Y1="0.015cm" X2="0.015cm" Y2="29.685cm" HorizontalAlignment="Right"  Style="{StaticResource ResourceKey=PageFrameLineStyle}"/>
+            <Line X1="0.4cm" Y1="0.4cm" X2="0.4cm" Y2="26.9cm" Style="{StaticResource ResourceKey=PageFrameLineStyle}"/>
+            <Line X1="41.985cm" Y1="0.015cm" X2="41.985cm" Y2="29.685cm" HorizontalAlignment="Left" Style="{StaticResource ResourceKey=PageFrameLineStyle}"/>
+            <!-- page table text -->
+            <Grid Width="42.0cm" Height="2.8cm" Canvas.Left="0.0cm" Canvas.Top="26.9cm">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.7cm"/>
+                    <RowDefinition Height="0.7cm"/>
+                    <RowDefinition Height="0.7cm"/>
+                    <RowDefinition Height="0.7cm"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.4cm"/>
+                    <ColumnDefinition Width="1.0cm"/>
+                    <ColumnDefinition Width="1.8cm"/>
+                    <ColumnDefinition Width="3.5cm"/>
+                    <ColumnDefinition Width="4.5cm"/>
+                    <ColumnDefinition Width="4.5cm"/>
+                    <ColumnDefinition Width="1.7cm"/>
+                    <ColumnDefinition Width="3.5cm"/>
+                    <ColumnDefinition Width="1.6cm"/>
+                    <ColumnDefinition Width="2.1cm"/>
+                    <ColumnDefinition Width="10.4cm"/>
+                    <ColumnDefinition Width="1.1cm"/>
+                    <ColumnDefinition Width="1.1cm"/>
+                    <ColumnDefinition Width="4.9cm"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="{Binding Path=Table.Revision4.Revision}" Grid.Column="1" Grid.Row="0" Style="{StaticResource ResourceKey=TableNormalCenterTextStyle}" />
+                <TextBlock Text="{Binding Path=Table.Revision4.Date}" Grid.Column="2" Grid.Row="0" Style="{StaticResource ResourceKey=TableNormalCenterTextStyle}" />
+                <TextBlock Text="{Binding Path=Table.Revision4.Author}" Grid.Column="3" Grid.Row="0" Style="{StaticResource ResourceKey=TableNormalLeftTextStyle}" />
+                <TextBlock Text="{Binding Path=Table.Revision3.Revision}" Grid.Column="1" Grid.Row="1" Style="{StaticResource ResourceKey=TableNormalCenterTextStyle}" />
+                <TextBlock Text="{Binding Path=Table.Revision3.Date}" Grid.Column="2" Grid.Row="1" Style="{StaticResource ResourceKey=TableNormalCenterTextStyle}" />
+                <TextBlock Text="{Binding Path=Table.Revision3.Author}" Grid.Column="3" Grid.Row="1" Style="{StaticResource ResourceKey=TableNormalLeftTextStyle}" />
+                <TextBlock Text="{Binding Path=Table.Revision2.Revision}" Grid.Column="1" Grid.Row="2" Style="{StaticResource ResourceKey=TableNormalCenterTextStyle}" />
+                <TextBlock Text="{Binding Path=Table.Revision2.Date}" Grid.Column="2" Grid.Row="2" Style="{StaticResource ResourceKey=TableNormalCenterTextStyle}" />
+                <TextBlock Text="{Binding Path=Table.Revision2.Author}" Grid.Column="3" Grid.Row="2" Style="{StaticResource ResourceKey=TableNormalLeftTextStyle}" />
+                <TextBlock Text="{Binding Path=Table.Revision1.Revision}" Grid.Column="1" Grid.Row="3" Style="{StaticResource ResourceKey=TableNormalCenterTextStyle}" />
+                <TextBlock Text="{Binding Path=Table.Revision1.Date}" Grid.Column="2" Grid.Row="3" Style="{StaticResource ResourceKey=TableNormalCenterTextStyle}" />
+                <TextBlock Text="{Binding Path=Table.Revision1.Author}" Grid.Column="3" Grid.Row="3" Style="{StaticResource ResourceKey=TableNormalLeftTextStyle}" />
+                <Image Source="{Binding Path=Table.Logo1}" Width="4.5cm" Height="2.8cm" Grid.Column="4" Grid.Row="0" Grid.RowSpan="4"/>
+                <Image Source="{Binding Path=Table.Logo2}" Width="4.5cm" Height="2.8cm" Grid.Column="5" Grid.Row="0" Grid.RowSpan="4" />
+                <TextBlock Text="Drawn" Grid.Column="6" Grid.Row="0" Style="{StaticResource ResourceKey=TableLabelLeftTextStyle}" />
+                <TextBlock Text="Checked" Grid.Column="6" Grid.Row="1" Style="{StaticResource ResourceKey=TableLabelLeftTextStyle}" />
+                <TextBlock Text="{Binding Path=Table.DrawnBy}" Grid.Column="7" Grid.Row="0" Style="{StaticResource ResourceKey=TableNormalLeftTextStyle}" />
+                <TextBlock Text="{Binding Path=Table.CheckedBy}" Grid.Column="7" Grid.Row="1" Style="{StaticResource ResourceKey=TableNormalLeftTextStyle}" />
+                <TextBlock Text="Date" Grid.Column="9" Grid.Row="0" Style="{StaticResource ResourceKey=TableLabelCenterTextStyle}" />
+                <TextBlock Text="{Binding Path=Table.Date}" Grid.Column="9" Grid.Row="1" Style="{StaticResource ResourceKey=TableNormalCenterTextStyle}" />
+                <TextBlock Text="{Binding Path=Table.Type}" Grid.Column="10" Grid.Row="0" Style="{StaticResource ResourceKey=TableLargeCenterTextStyle}" />
+                <TextBlock Text="{Binding Path=Table.Description1}" Grid.Column="10" Grid.Row="1" Style="{StaticResource ResourceKey=TableLargeLeftTextStyle}" />
+                <TextBlock Text="{Binding Path=Table.Description2}" Grid.Column="10" Grid.Row="2" Style="{StaticResource ResourceKey=TableLargeLeftTextStyle}" />
+                <TextBlock Text="{Binding Path=Table.Description3}" Grid.Column="10" Grid.Row="3" Style="{StaticResource ResourceKey=TableLargeLeftTextStyle}" />
+                <Grid Grid.Column="11" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.1cm"/>
+                        <ColumnDefinition Width="1.1cm"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.35cm"/>
+                        <RowDefinition Height="0.35cm"/>
+                        <RowDefinition Height="0.35cm"/>
+                        <RowDefinition Height="0.35cm"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Rev." Grid.Column="0" Grid.Row="0" Style="{StaticResource ResourceKey=TableLabelCenterTextStyle}" />
+                    <TextBlock Text="{Binding Path=Table.Revision}" Grid.Column="0" Grid.Row="1" Style="{StaticResource ResourceKey=TableNormalCenterTextStyle}" />
+                    <TextBlock Text="Page" Grid.Column="1" Grid.Row="0" Style="{StaticResource ResourceKey=TableLabelCenterTextStyle}" />
+                    <TextBlock Text="{Binding Path=Table.Page}" Grid.Column="1" Grid.Row="1" Style="{StaticResource ResourceKey=TableNormalCenterTextStyle}" />
+                    <TextBlock Text="Format" Grid.Column="0" Grid.Row="2" Style="{StaticResource ResourceKey=TableLabelCenterTextStyle}" />
+                    <TextBlock Text="{Binding Path=Table.Format}" Grid.Column="0" Grid.Row="3" Style="{StaticResource ResourceKey=TableNormalCenterTextStyle}" />
+                    <TextBlock Text="Pages" Grid.Column="1" Grid.Row="2" Style="{StaticResource ResourceKey=TableLabelCenterTextStyle}" />
+                    <TextBlock Text="{Binding Path=Table.Pages}" Grid.Column="1" Grid.Row="3" Style="{StaticResource ResourceKey=TableNormalCenterTextStyle}" />
+                </Grid>
+                <TextBlock Text="Status" Grid.Column="11" Grid.Row="2" Style="{StaticResource ResourceKey=TableLabelCenterTextStyle}" />
+                <TextBlock Text="{Binding Path=Table.Status}" Grid.Column="11" Grid.Row="3" Style="{StaticResource ResourceKey=TableNormalCenterTextStyle}" />
+                <Grid Grid.Column="13" Grid.ColumnSpan="1" Grid.Row="0" Grid.RowSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.6cm"/>
+                        <ColumnDefinition Width="3.2cm"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.4cm"/>
+                        <RowDefinition Height="0.50cm"/>
+                        <RowDefinition Height="0.50cm"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Project" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Style="{StaticResource ResourceKey=TableLabelCenterTextStyle}" />
+                    <TextBlock Text="{Binding Path=Table.Project}" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Style="{StaticResource ResourceKey=TableLargeCenterTextStyle}" />
+                    <TextBlock Text="Order No" Grid.Column="0" Grid.ColumnSpan="1" Grid.Row="2" Style="{StaticResource ResourceKey=TableLabelLeftTextStyle}" />
+                    <TextBlock Text="{Binding Path=Table.OrderNo}" Grid.Column="1" Grid.Row="2" Style="{StaticResource ResourceKey=TableNormalCenterTextStyle}" />
+                </Grid>
+                <Grid Grid.Column="12" Grid.ColumnSpan="2" Grid.Row="2" Grid.RowSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5.9cm"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.4cm"/>
+                        <RowDefinition Height="0.50cm"/>
+                        <RowDefinition Height="0.50cm"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Document No" Grid.Column="0" Grid.Row="0" Style="{StaticResource ResourceKey=TableLabelLeftTextStyle}" />
+                    <TextBlock Text="{Binding Path=Table.DocumentNo1}" Grid.Column="0" Grid.Row="1" Style="{StaticResource ResourceKey=TableNormalLeftTextStyle}" />
+                    <TextBlock Text="{Binding Path=Table.DocumentNo2}" Grid.Column="0" Grid.Row="2" Style="{StaticResource ResourceKey=TableNormalRightTextStyle}" />
+                </Grid>
+            </Grid>
+        </Canvas>
+    </ControlTemplate>
+    
+    <!-- logic page background -->
+
+    <ControlTemplate x:Key="LogicPage">
+        <Canvas Width="42.0cm" Height="29.7cm" ClipToBounds="False">
+            <!-- background grid for logic -->
+            <!-- grid horizontal lines -->
+            <Line X1="11.2cm" Y1="2.1cm" X2="31.2cm" Y2="2.1cm" Style="{StaticResource ResourceKey=PageBackgroundGridLineStyle}"/>
+            <Line X1="11.2cm" Y1="3.1cm" X2="31.2cm" Y2="3.1cm" Style="{StaticResource ResourceKey=PageBackgroundGridLineStyle}"/>
+            <Line X1="11.2cm" Y1="4.1cm" X2="31.2cm" Y2="4.1cm" Style="{StaticResource ResourceKey=PageBackgroundGridLineStyle}"/>
+            <Line X1="11.2cm" Y1="5.1cm" X2="31.2cm" Y2="5.1cm" Style="{StaticResource ResourceKey=PageBackgroundGridLineStyle}"/>
+            <Line X1="11.2cm" Y1="6.1cm" X2="31.2cm" Y2="6.1cm" Style="{StaticResource ResourceKey=PageBackgroundGridLineStyle}"/>
+            <Line X1="11.2cm" Y1="7.1cm" X2="31.2cm" Y2="7.1cm" Style="{StaticResource ResourceKey=PageBackgroundGridLineStyle}"/>
+            <Line X1="11.2cm" Y1="8.1cm" X2="31.2cm" Y2="8.1cm" Style="{StaticResource ResourceKey=PageBackgroundGridLineStyle}"/>
+            <Line X1="11.2cm" Y1="9.1cm" X2="31.2cm" Y2="9.1cm" Style="{StaticResource ResourceKey=PageBackgroundGridLineStyle}"/>
+            <Line X1="11.2cm" Y1="10.1cm" X2="31.2cm" Y2="10.1cm" Style="{StaticResource ResourceKey=PageBackgroundGridLineStyle}"/>
+            <Line X1="11.2cm" Y1="11.1cm" X2="31.2cm" Y2="11.1cm" Style="{StaticResource ResourceKey=PageBackgroundGridLineStyle}"/>
+            <Line X1="11.2cm" Y1="12.1cm" X2="31.2cm" Y2="12.1cm" Style="{StaticResource ResourceKey=PageBackgroundGridLineStyle}"/>
+            <Line X1="11.2cm" Y1="13.1cm" X2="31.2cm" Y2="13.1cm" Style="{StaticResource ResourceKey=PageBackgroundGridLineStyle}"/>
+            <Line X1="11.2cm" Y1="14.1cm" X2="31.2cm" Y2="14.1cm" Style="{StaticResource ResourceKey=PageBackgroundGridLineStyle}"/>
+            <Line X1="11.2cm" Y1="15.1cm" X2="31.2cm" Y2="15.1cm" Style="{StaticResource ResourceKey=PageBackgroundGridLineStyle}"/>
+            <Line X1="11.2cm" Y1="16.1cm" X2="31.2cm" Y2="16.1cm" Style="{StaticResource ResourceKey=PageBackgroundGridLineStyle}"/>
+            <Line X1="11.2cm" Y1="17.1cm" X2="31.2cm" Y2="17.1cm" Style="{StaticResource ResourceKey=PageBackgroundGridLineStyle}"/>
+            <Line X1="11.2cm" Y1="18.1cm" X2="31.2cm" Y2="18.1cm" Style="{StaticResource ResourceKey=PageBackgroundGridLineStyle}"/>
+            <Line X1="11.2cm" Y1="19.1cm" X2="31.2cm" Y2="19.1cm" Style="{StaticResource ResourceKey=PageBackgroundGridLineStyle}"/>
+            <Line X1="11.2cm" Y1="20.1cm" X2="31.2cm" Y2="20.1cm" Style="{StaticResource ResourceKey=PageBackgroundGridLineStyle}"/>
+            <Line X1="11.2cm" Y1="21.1cm" X2="31.2cm" Y2="21.1cm" Style="{StaticResource ResourceKey=PageBackgroundGridLineStyle}"/>
+            <Line X1="11.2cm" Y1="22.1cm" X2="31.2cm" Y2="22.1cm" Style="{StaticResource ResourceKey=PageBackgroundGridLineStyle}"/>
+            <Line X1="11.2cm" Y1="23.1cm" X2="31.2cm" Y2="23.1cm" Style="{StaticResource ResourceKey=PageBackgroundGridLineStyle}"/>
+            <Line X1="11.2cm" Y1="24.1cm" X2="31.2cm" Y2="24.1cm" Style="{StaticResource ResourceKey=PageBackgroundGridLineStyle}"/>
+            <Line X1="11.2cm" Y1="25.1cm" X2="31.2cm" Y2="25.1cm" Style="{StaticResource ResourceKey=PageBackgroundGridLineStyle}"/>
+            <!-- grid vertical lines -->
+            <Line X1="12.2cm" Y1="1.1cm" X2="12.2cm" Y2="26.1cm" Style="{StaticResource ResourceKey=PageBackgroundGridLineStyle}"/>
+            <Line X1="13.2cm" Y1="1.1cm" X2="13.2cm" Y2="26.1cm" Style="{StaticResource ResourceKey=PageBackgroundGridLineStyle}"/>
+            <Line X1="14.2cm" Y1="1.1cm" X2="14.2cm" Y2="26.1cm" Style="{StaticResource ResourceKey=PageBackgroundGridLineStyle}"/>
+            <Line X1="15.2cm" Y1="1.1cm" X2="15.2cm" Y2="26.1cm" Style="{StaticResource ResourceKey=PageBackgroundGridLineStyle}"/>
+            <Line X1="16.2cm" Y1="1.1cm" X2="16.2cm" Y2="26.1cm" Style="{StaticResource ResourceKey=PageBackgroundGridLineStyle}"/>
+            <Line X1="17.2cm" Y1="1.1cm" X2="17.2cm" Y2="26.1cm" Style="{StaticResource ResourceKey=PageBackgroundGridLineStyle}"/>
+            <Line X1="18.2cm" Y1="1.1cm" X2="18.2cm" Y2="26.1cm" Style="{StaticResource ResourceKey=PageBackgroundGridLineStyle}"/>
+            <Line X1="19.2cm" Y1="1.1cm" X2="19.2cm" Y2="26.1cm" Style="{StaticResource ResourceKey=PageBackgroundGridLineStyle}"/>
+            <Line X1="20.2cm" Y1="1.1cm" X2="20.2cm" Y2="26.1cm" Style="{StaticResource ResourceKey=PageBackgroundGridLineStyle}"/>
+            <Line X1="21.2cm" Y1="1.1cm" X2="21.2cm" Y2="26.1cm" Style="{StaticResource ResourceKey=PageBackgroundGridLineStyle}"/>
+            <Line X1="22.2cm" Y1="1.1cm" X2="22.2cm" Y2="26.1cm" Style="{StaticResource ResourceKey=PageBackgroundGridLineStyle}"/>
+            <Line X1="23.2cm" Y1="1.1cm" X2="23.2cm" Y2="26.1cm" Style="{StaticResource ResourceKey=PageBackgroundGridLineStyle}"/>
+            <Line X1="24.2cm" Y1="1.1cm" X2="24.2cm" Y2="26.1cm" Style="{StaticResource ResourceKey=PageBackgroundGridLineStyle}"/>
+            <Line X1="25.2cm" Y1="1.1cm" X2="25.2cm" Y2="26.1cm" Style="{StaticResource ResourceKey=PageBackgroundGridLineStyle}"/>
+            <Line X1="26.2cm" Y1="1.1cm" X2="26.2cm" Y2="26.1cm" Style="{StaticResource ResourceKey=PageBackgroundGridLineStyle}"/>
+            <Line X1="27.2cm" Y1="1.1cm" X2="27.2cm" Y2="26.1cm" Style="{StaticResource ResourceKey=PageBackgroundGridLineStyle}"/>
+            <Line X1="28.2cm" Y1="1.1cm" X2="28.2cm" Y2="26.1cm" Style="{StaticResource ResourceKey=PageBackgroundGridLineStyle}"/>
+            <Line X1="29.2cm" Y1="1.1cm" X2="29.2cm" Y2="26.1cm" Style="{StaticResource ResourceKey=PageBackgroundGridLineStyle}"/>
+            <Line X1="30.2cm" Y1="1.1cm" X2="30.2cm" Y2="26.1cm" Style="{StaticResource ResourceKey=PageBackgroundGridLineStyle}"/>
+            <!-- logic frame -->
+            <!-- logic frame horizontal lines -->
+            <Line X1="11.2cm" Y1="1.1cm" X2="31.2cm" Y2="1.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <!-- logic frame vertical lines -->
+            <Line X1="11.2cm" Y1="0.4cm" X2="11.2cm" Y2="1.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="31.2cm" Y1="0.4cm" X2="31.2cm" Y2="1.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <!-- inputs: vertical lines -->
+            <Line X1="1.3cm" Y1="1.1cm" X2="1.3cm" Y2="26.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="8.3cm" Y1="1.1cm" X2="8.3cm" Y2="26.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="11.2cm" Y1="1.1cm" X2="11.2cm" Y2="26.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <!-- inputs: horizontal lines -->
+            <Line X1="0.4cm" Y1="1.1cm" X2="11.2cm" Y2="1.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="0.4cm" Y1="2.1cm" X2="11.2cm" Y2="2.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="0.4cm" Y1="2.1cm" X2="11.2cm" Y2="2.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="0.4cm" Y1="2.1cm" X2="11.2cm" Y2="2.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="0.4cm" Y1="3.1cm" X2="11.2cm" Y2="3.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="0.4cm" Y1="4.1cm" X2="11.2cm" Y2="4.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="0.4cm" Y1="5.1cm" X2="11.2cm" Y2="5.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="0.4cm" Y1="6.1cm" X2="11.2cm" Y2="6.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="0.4cm" Y1="7.1cm" X2="11.2cm" Y2="7.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="0.4cm" Y1="8.1cm" X2="11.2cm" Y2="8.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="0.4cm" Y1="9.1cm" X2="11.2cm" Y2="9.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="0.4cm" Y1="10.1cm" X2="11.2cm" Y2="10.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="0.4cm" Y1="11.1cm" X2="11.2cm" Y2="11.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="0.4cm" Y1="12.1cm" X2="11.2cm" Y2="12.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="0.4cm" Y1="13.1cm" X2="11.2cm" Y2="13.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="0.4cm" Y1="14.1cm" X2="11.2cm" Y2="14.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="0.4cm" Y1="15.1cm" X2="11.2cm" Y2="15.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="0.4cm" Y1="16.1cm" X2="11.2cm" Y2="16.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="0.4cm" Y1="17.1cm" X2="11.2cm" Y2="17.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="0.4cm" Y1="18.1cm" X2="11.2cm" Y2="18.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="0.4cm" Y1="19.1cm" X2="11.2cm" Y2="19.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="0.4cm" Y1="20.1cm" X2="11.2cm" Y2="20.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="0.4cm" Y1="21.1cm" X2="11.2cm" Y2="21.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="0.4cm" Y1="22.1cm" X2="11.2cm" Y2="22.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="0.4cm" Y1="23.1cm" X2="11.2cm" Y2="23.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="0.4cm" Y1="24.1cm" X2="11.2cm" Y2="24.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="0.4cm" Y1="25.1cm" X2="11.2cm" Y2="25.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <!-- outputs: vertical lines -->
+            <Line X1="31.2cm" Y1="1.1cm" X2="31.2cm" Y2="26.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="38.2cm" Y1="1.1cm" X2="38.2cm" Y2="26.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="41.1cm" Y1="1.1cm" X2="41.1cm" Y2="26.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <!-- outputs: horizontal lines -->
+            <Line X1="31.2cm" Y1="1.1cm" X2="41.985cm" Y2="1.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="31.2cm" Y1="2.1cm" X2="41.985cm" Y2="2.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="31.2cm" Y1="2.1cm" X2="41.985cm" Y2="2.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="31.2cm" Y1="2.1cm" X2="41.985cm" Y2="2.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="31.2cm" Y1="3.1cm" X2="41.985cm" Y2="3.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="31.2cm" Y1="4.1cm" X2="41.985cm" Y2="4.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="31.2cm" Y1="5.1cm" X2="41.985cm" Y2="5.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="31.2cm" Y1="6.1cm" X2="41.985cm" Y2="6.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="31.2cm" Y1="7.1cm" X2="41.985cm" Y2="7.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="31.2cm" Y1="8.1cm" X2="41.985cm" Y2="8.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="31.2cm" Y1="9.1cm" X2="41.985cm" Y2="9.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="31.2cm" Y1="10.1cm" X2="41.985cm" Y2="10.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="31.2cm" Y1="11.1cm" X2="41.985cm" Y2="11.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="31.2cm" Y1="12.1cm" X2="41.985cm" Y2="12.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="31.2cm" Y1="13.1cm" X2="41.985cm" Y2="13.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="31.2cm" Y1="14.1cm" X2="41.985cm" Y2="14.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="31.2cm" Y1="15.1cm" X2="41.985cm" Y2="15.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="31.2cm" Y1="16.1cm" X2="41.985cm" Y2="16.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="31.2cm" Y1="17.1cm" X2="41.985cm" Y2="17.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="31.2cm" Y1="18.1cm" X2="41.985cm" Y2="18.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="31.2cm" Y1="19.1cm" X2="41.985cm" Y2="19.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="31.2cm" Y1="20.1cm" X2="41.985cm" Y2="20.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="31.2cm" Y1="21.1cm" X2="41.985cm" Y2="21.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="31.2cm" Y1="22.1cm" X2="41.985cm" Y2="22.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="31.2cm" Y1="23.1cm" X2="41.985cm" Y2="23.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="31.2cm" Y1="24.1cm" X2="41.985cm" Y2="24.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <Line X1="31.2cm" Y1="25.1cm" X2="41.985cm" Y2="25.1cm" Style="{StaticResource ResourceKey=PageLogicFrameLineStyle}"/>
+            <!-- logic header text -->
+            <Grid Width="41.5cm" Height="0.7cm" Canvas.Left="0.4cm" Canvas.Top="0.4cm">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10.8cm"/>
+                    <ColumnDefinition Width="20.0cm"/>
+                    <ColumnDefinition Width="10.8cm"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="I N P U T S" Grid.Column="0" Style="{StaticResource ResourceKey=PageFrameHeaderTextStyle}"/>
+                <TextBlock Text="F U N C T I O N" Grid.Column="1" Style="{StaticResource ResourceKey=PageFrameHeaderTextStyle}"/>
+                <TextBlock Text="O U T P U T S" Grid.Column="2" Style="{StaticResource ResourceKey=PageFrameHeaderTextStyle}"/>
+            </Grid>
+            <!-- line number text -->
+            <Grid Width="41.6cm" Height="25.0cm" Canvas.Left="0.4cm" Canvas.Top="1.1cm">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.9cm"/>
+                    <ColumnDefinition Width="7.0cm"/>
+                    <ColumnDefinition Width="2.9cm"/>
+                    <ColumnDefinition Width="20.0cm"/>
+                    <ColumnDefinition Width="7.0cm"/>
+                    <ColumnDefinition Width="2.9cm"/>
+                    <ColumnDefinition Width="0.9cm"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1.0cm"/>
+                    <RowDefinition Height="1.0cm"/>
+                    <RowDefinition Height="1.0cm"/>
+                    <RowDefinition Height="1.0cm"/>
+                    <RowDefinition Height="1.0cm"/>
+                    <RowDefinition Height="1.0cm"/>
+                    <RowDefinition Height="1.0cm"/>
+                    <RowDefinition Height="1.0cm"/>
+                    <RowDefinition Height="1.0cm"/>
+                    <RowDefinition Height="1.0cm"/>
+                    <RowDefinition Height="1.0cm"/>
+                    <RowDefinition Height="1.0cm"/>
+                    <RowDefinition Height="1.0cm"/>
+                    <RowDefinition Height="1.0cm"/>
+                    <RowDefinition Height="1.0cm"/>
+                    <RowDefinition Height="1.0cm"/>
+                    <RowDefinition Height="1.0cm"/>
+                    <RowDefinition Height="1.0cm"/>
+                    <RowDefinition Height="1.0cm"/>
+                    <RowDefinition Height="1.0cm"/>
+                    <RowDefinition Height="1.0cm"/>
+                    <RowDefinition Height="1.0cm"/>
+                    <RowDefinition Height="1.0cm"/>
+                    <RowDefinition Height="1.0cm"/>
+                    <RowDefinition Height="1.0cm"/>
+                </Grid.RowDefinitions>
+                <!-- data inputs header text -->
+                <Grid Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="7.0cm"/>
+                        <ColumnDefinition Width="2.9cm"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.5cm"/>
+                        <RowDefinition Height="0.5cm"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Designation" Grid.Column="0" Grid.Row="0" Style="{StaticResource ResourceKey=PageDataHeaderTextStyle}"/>
+                    <TextBlock Text="Signal" Grid.Column="1" Grid.Row="0" Style="{StaticResource ResourceKey=PageDataHeaderTextStyle}"/>
+                    <TextBlock Text="Description" Grid.Column="0" Grid.Row="1" Style="{StaticResource ResourceKey=PageDataHeaderTextStyle}"/>
+                    <TextBlock Text="Condition" Grid.Column="1" Grid.Row="1" Style="{StaticResource ResourceKey=PageDataHeaderTextStyle}"/>
+                </Grid>
+                <!-- data outputs header text -->
+                <Grid Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="7.0cm"/>
+                        <ColumnDefinition Width="2.9cm"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.5cm"/>
+                        <RowDefinition Height="0.5cm"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Designation" Grid.Column="0" Grid.Row="0" Style="{StaticResource ResourceKey=PageDataHeaderTextStyle}"/>
+                    <TextBlock Text="Signal" Grid.Column="1" Grid.Row="0" Style="{StaticResource ResourceKey=PageDataHeaderTextStyle}"/>
+                    <TextBlock Text="Description" Grid.Column="0" Grid.Row="1" Style="{StaticResource ResourceKey=PageDataHeaderTextStyle}"/>
+                    <TextBlock Text="Condition" Grid.Column="1" Grid.Row="1" Style="{StaticResource ResourceKey=PageDataHeaderTextStyle}"/>
+                </Grid>
+                <!-- numbers left side -->
+                <TextBlock Text="01" Grid.Column="0" Grid.Row="1" Style="{StaticResource ResourceKey=PageFrameNumberTextStyle}"/>
+                <TextBlock Text="02" Grid.Column="0" Grid.Row="2" Style="{StaticResource ResourceKey=PageFrameNumberTextStyle}"/>
+                <TextBlock Text="03" Grid.Column="0" Grid.Row="3" Style="{StaticResource ResourceKey=PageFrameNumberTextStyle}"/>
+                <TextBlock Text="04" Grid.Column="0" Grid.Row="4" Style="{StaticResource ResourceKey=PageFrameNumberTextStyle}"/>
+                <TextBlock Text="05" Grid.Column="0" Grid.Row="5" Style="{StaticResource ResourceKey=PageFrameNumberTextStyle}"/>
+                <TextBlock Text="06" Grid.Column="0" Grid.Row="6" Style="{StaticResource ResourceKey=PageFrameNumberTextStyle}"/>
+                <TextBlock Text="07" Grid.Column="0" Grid.Row="7" Style="{StaticResource ResourceKey=PageFrameNumberTextStyle}"/>
+                <TextBlock Text="08" Grid.Column="0" Grid.Row="8" Style="{StaticResource ResourceKey=PageFrameNumberTextStyle}"/>
+                <TextBlock Text="09" Grid.Column="0" Grid.Row="9" Style="{StaticResource ResourceKey=PageFrameNumberTextStyle}"/>
+                <TextBlock Text="10" Grid.Column="0" Grid.Row="10" Style="{StaticResource ResourceKey=PageFrameNumberTextStyle}"/>
+                <TextBlock Text="11" Grid.Column="0" Grid.Row="11" Style="{StaticResource ResourceKey=PageFrameNumberTextStyle}"/>
+                <TextBlock Text="12" Grid.Column="0" Grid.Row="12" Style="{StaticResource ResourceKey=PageFrameNumberTextStyle}"/>
+                <TextBlock Text="13" Grid.Column="0" Grid.Row="13" Style="{StaticResource ResourceKey=PageFrameNumberTextStyle}"/>
+                <TextBlock Text="14" Grid.Column="0" Grid.Row="14" Style="{StaticResource ResourceKey=PageFrameNumberTextStyle}"/>
+                <TextBlock Text="15" Grid.Column="0" Grid.Row="15" Style="{StaticResource ResourceKey=PageFrameNumberTextStyle}"/>
+                <TextBlock Text="16" Grid.Column="0" Grid.Row="16" Style="{StaticResource ResourceKey=PageFrameNumberTextStyle}"/>
+                <TextBlock Text="17" Grid.Column="0" Grid.Row="17" Style="{StaticResource ResourceKey=PageFrameNumberTextStyle}"/>
+                <TextBlock Text="18" Grid.Column="0" Grid.Row="18" Style="{StaticResource ResourceKey=PageFrameNumberTextStyle}"/>
+                <TextBlock Text="19" Grid.Column="0" Grid.Row="19" Style="{StaticResource ResourceKey=PageFrameNumberTextStyle}"/>
+                <TextBlock Text="20" Grid.Column="0" Grid.Row="20" Style="{StaticResource ResourceKey=PageFrameNumberTextStyle}"/>
+                <TextBlock Text="21" Grid.Column="0" Grid.Row="21" Style="{StaticResource ResourceKey=PageFrameNumberTextStyle}"/>
+                <TextBlock Text="22" Grid.Column="0" Grid.Row="22" Style="{StaticResource ResourceKey=PageFrameNumberTextStyle}"/>
+                <TextBlock Text="23" Grid.Column="0" Grid.Row="23" Style="{StaticResource ResourceKey=PageFrameNumberTextStyle}"/>
+                <TextBlock Text="24" Grid.Column="0" Grid.Row="24" Style="{StaticResource ResourceKey=PageFrameNumberTextStyle}"/>
+                <!-- numbers right side -->
+                <TextBlock Text="01" Grid.Column="6" Grid.Row="1" Style="{StaticResource ResourceKey=PageFrameNumberTextStyle}"/>
+                <TextBlock Text="02" Grid.Column="6" Grid.Row="2" Style="{StaticResource ResourceKey=PageFrameNumberTextStyle}"/>
+                <TextBlock Text="03" Grid.Column="6" Grid.Row="3" Style="{StaticResource ResourceKey=PageFrameNumberTextStyle}"/>
+                <TextBlock Text="04" Grid.Column="6" Grid.Row="4" Style="{StaticResource ResourceKey=PageFrameNumberTextStyle}"/>
+                <TextBlock Text="05" Grid.Column="6" Grid.Row="5" Style="{StaticResource ResourceKey=PageFrameNumberTextStyle}"/>
+                <TextBlock Text="06" Grid.Column="6" Grid.Row="6" Style="{StaticResource ResourceKey=PageFrameNumberTextStyle}"/>
+                <TextBlock Text="07" Grid.Column="6" Grid.Row="7" Style="{StaticResource ResourceKey=PageFrameNumberTextStyle}"/>
+                <TextBlock Text="08" Grid.Column="6" Grid.Row="8" Style="{StaticResource ResourceKey=PageFrameNumberTextStyle}"/>
+                <TextBlock Text="09" Grid.Column="6" Grid.Row="9" Style="{StaticResource ResourceKey=PageFrameNumberTextStyle}"/>
+                <TextBlock Text="10" Grid.Column="6" Grid.Row="10" Style="{StaticResource ResourceKey=PageFrameNumberTextStyle}"/>
+                <TextBlock Text="11" Grid.Column="6" Grid.Row="11" Style="{StaticResource ResourceKey=PageFrameNumberTextStyle}"/>
+                <TextBlock Text="12" Grid.Column="6" Grid.Row="12" Style="{StaticResource ResourceKey=PageFrameNumberTextStyle}"/>
+                <TextBlock Text="13" Grid.Column="6" Grid.Row="13" Style="{StaticResource ResourceKey=PageFrameNumberTextStyle}"/>
+                <TextBlock Text="14" Grid.Column="6" Grid.Row="14" Style="{StaticResource ResourceKey=PageFrameNumberTextStyle}"/>
+                <TextBlock Text="15" Grid.Column="6" Grid.Row="15" Style="{StaticResource ResourceKey=PageFrameNumberTextStyle}"/>
+                <TextBlock Text="16" Grid.Column="6" Grid.Row="16" Style="{StaticResource ResourceKey=PageFrameNumberTextStyle}"/>
+                <TextBlock Text="17" Grid.Column="6" Grid.Row="17" Style="{StaticResource ResourceKey=PageFrameNumberTextStyle}"/>
+                <TextBlock Text="18" Grid.Column="6" Grid.Row="18" Style="{StaticResource ResourceKey=PageFrameNumberTextStyle}"/>
+                <TextBlock Text="19" Grid.Column="6" Grid.Row="19" Style="{StaticResource ResourceKey=PageFrameNumberTextStyle}"/>
+                <TextBlock Text="20" Grid.Column="6" Grid.Row="20" Style="{StaticResource ResourceKey=PageFrameNumberTextStyle}"/>
+                <TextBlock Text="21" Grid.Column="6" Grid.Row="21" Style="{StaticResource ResourceKey=PageFrameNumberTextStyle}"/>
+                <TextBlock Text="22" Grid.Column="6" Grid.Row="22" Style="{StaticResource ResourceKey=PageFrameNumberTextStyle}"/>
+                <TextBlock Text="23" Grid.Column="6" Grid.Row="23" Style="{StaticResource ResourceKey=PageFrameNumberTextStyle}"/>
+                <TextBlock Text="24" Grid.Column="6" Grid.Row="24" Style="{StaticResource ResourceKey=PageFrameNumberTextStyle}"/>
+            </Grid>
+            <!-- page base template -->
+            <Control Template="{StaticResource ResourceKey=PageBase}"/>
+        </Canvas>
+    </ControlTemplate>
+
+</ResourceDictionary>

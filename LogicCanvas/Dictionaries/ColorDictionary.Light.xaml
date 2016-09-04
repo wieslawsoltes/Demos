@@ -1,0 +1,47 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- page colors -->
+
+    <SolidColorBrush x:Key="PageEditForegroundColor" Color="#FF000000"/>
+    <SolidColorBrush x:Key="PageTextEditForegroundColor" Color="#FF0000FF"/>
+    <SolidColorBrush x:Key="PageTableEditForegroundColor" Color="#FFFF0000"/>
+    <SolidColorBrush x:Key="PageLogicEditForegroundColor" Color="#FF800080"/>
+    <SolidColorBrush x:Key="PageFrameEditForegroundColor" Color="#FF000000"/>
+    <SolidColorBrush x:Key="PageGridEditForegroundColor" Color="#3F7F7F7F"/>
+    <SolidColorBrush x:Key="PageEditBackgroundColor" Color="#FFFFFFFF"/>
+    
+    <SolidColorBrush x:Key="PagePrintForegroundColor" Color="#FF000000"/>
+    <SolidColorBrush x:Key="PagePrintBackgroundColor" Color="#00FFFFFF"/>
+
+    <!-- logic colors -->
+
+    <SolidColorBrush x:Key="LogicEditForegroundColor" Color="#FF0000FF"/>
+    <SolidColorBrush x:Key="LogicLineEditForegroundColor" Color="#FFFF1493"/>
+    <SolidColorBrush x:Key="LogicDataEditForegroundColor" Color="#FF0000FF"/>
+    <SolidColorBrush x:Key="LogickEditBackgroundColor" Color="#FFFFFFFF"/>
+
+    <SolidColorBrush x:Key="LogicPrintForegroundColor" Color="#FF000000"/>
+    <SolidColorBrush x:Key="LogicPrintBackgroundColor" Color="#00FFFFFF"/>
+
+    <SolidColorBrush x:Key="LogicPrintModifiedForegroundColor" Color="#FFFF0000"/>
+    <SolidColorBrush x:Key="LogicPrintNewForegroundColor" Color="#FF0000FF"/>
+
+    <!-- control block colors -->
+
+    <SolidColorBrush x:Key="ControlBlockEditForegroundColor" Color="#FF0000FF"/>
+    <SolidColorBrush x:Key="ControlBlockEditBackgroundColor" Color="#FFFFFFFF"/>
+
+    <SolidColorBrush x:Key="ControlBlockPrintForegroundColor" Color="#FF000000"/>
+    <SolidColorBrush x:Key="ControlBlockPrintBackgroundColor" Color="#00FFFFFF"/>
+
+
+    <SolidColorBrush x:Key="ControlBlockPrintModifiedForegroundColor" Color="#FFFF0000"/>
+    <SolidColorBrush x:Key="ControlBlockPrintNewForegroundColor" Color="#FF0000FF"/>
+
+    <!-- window colors -->
+
+    <SolidColorBrush x:Key="WindowEditBackgroundColor" Color="#FFFFFFFF"/>
+    <SolidColorBrush x:Key="WindowPrintBackgroundColor" Color="#FFFFFFFF"/>
+
+</ResourceDictionary>

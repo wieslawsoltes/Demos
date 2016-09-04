@@ -1,0 +1,389 @@
+﻿<Window x:Class="LogicCanvas.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:LogicCanvas"
+        xmlns:custom="clr-namespace:LogicCanvas.CustomElements"
+        xmlns:controls="clr-namespace:LogicCanvas.Controls"
+        Title="LogicCanvas" 
+        Height="594" Width="1000"
+        Background="White" SnapsToDevicePixels="True"
+        WindowStartupLocation="CenterScreen" WindowState="Maximized">
+
+    <Window.Resources>
+
+        <local:ItemTemplateSelector x:Key="ItemTemplateSelector"/>
+        <local:ItemContainerStyleSelector x:Key="ItemContainerStyleSelector"/>
+        <local:ItemPropertiesTemplateSelector x:Key="ItemPropertiesTemplateSelector"/>
+
+        <Style x:Key="ScrollViewerStyle" TargetType="ScrollViewer">
+            <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="HorizontalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        </Style>
+        
+        <Style x:Key="PageContentControl" TargetType="ContentControl">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+        </Style>
+
+        <Style TargetType="Thumb">
+
+            <EventSetter Event="MouseDoubleClick" Handler="Thumb_MouseDoubleClick"/>
+
+            <EventSetter Event="PreviewMouseDown" Handler="Thumb_PreviewMouseDown"/>
+            <EventSetter Event="PreviewMouseUp" Handler="Thumb_PreviewMouseUp"/>
+            <EventSetter Event="DragDelta" Handler="Thumb_DragDelta"/>
+            <EventSetter Event="PreviewMouseLeftButtonDown" Handler="Thumb_PreviewMouseLeftButtonDown"/>
+        </Style>
+
+        <ContextMenu x:Key="ItemContextMenu" DataContext="{Binding PlacementTarget.DataContext, RelativeSource={RelativeSource Self}}">
+            <MenuItem Header="Cut" InputGestureText="Ctrl+X" Click="itemContextMenuCut_Click"/>
+            <MenuItem Header="Copy" InputGestureText="Ctrl+C" Click="itemContextMenuCopy_Click"/>
+            <MenuItem Header="Paste" InputGestureText="Ctrl+V" Click="itemContextMenuPaste_Click"/>
+            <MenuItem Header="Delete" InputGestureText="Del" Click="itemContextMenuDelete_Click"/>
+            <Separator/>
+            <MenuItem Header="Delete Permanently" InputGestureText="Ctrl+Del" Click="itemContextMenuDeletePermanently_Click"/>
+            <Separator/>
+            <MenuItem Header="Status">
+                <MenuItem Header="IsNew" IsChecked="{Binding Path=IsNew}" Click="itemContextMenuStatusIsNew_Click"/>
+                <MenuItem Header="IsModified" IsChecked="{Binding Path=IsModified}" Click="itemContextMenuStatusIsModified_Click"/>
+                <MenuItem Header="IsDeleted" IsChecked="{Binding Path=IsDeleted}" Click="itemContextMenuStatusIsDeleted_Click"/>
+            </MenuItem>
+            <Separator/>
+            <MenuItem Header="Properties" InputGestureText="Alt+Enter" Click="itemContextMenuProperties_Click"/>
+        </ContextMenu>
+
+        <ContextMenu x:Key="LineItemContextMenu" DataContext="{Binding PlacementTarget.DataContext, RelativeSource={RelativeSource Self}}">
+            <MenuItem Header="Start is Inverted" IsChecked="{Binding Path=IsStartInverted}" Click="itemContextMenuIsStartInverted_Click"/>
+            <MenuItem Header="End is Inverted" IsChecked="{Binding Path=IsEndInverted}" Click="itemContextMenuIsEndInverted_Click"/>
+            <Separator/>
+            <MenuItem Header="Cut" InputGestureText="Ctrl+X" Click="itemContextMenuCut_Click"/>
+            <MenuItem Header="Copy" InputGestureText="Ctrl+C" Click="itemContextMenuCopy_Click"/>
+            <MenuItem Header="Paste" InputGestureText="Ctrl+V" Click="itemContextMenuPaste_Click"/>
+            <MenuItem Header="Delete" InputGestureText="Del" Click="itemContextMenuDelete_Click"/>
+            <Separator/>
+            <MenuItem Header="Delete Permanently" InputGestureText="Ctrl+Del" Click="itemContextMenuDeletePermanently_Click"/>
+            <Separator/>
+            <MenuItem Header="Status">
+                <MenuItem Header="IsNew" IsChecked="{Binding Path=IsNew}" Click="itemContextMenuStatusIsNew_Click"/>
+                <MenuItem Header="IsModified" IsChecked="{Binding Path=IsModified}" Click="itemContextMenuStatusIsModified_Click"/>
+                <MenuItem Header="IsDeleted" IsChecked="{Binding Path=IsDeleted}" Click="itemContextMenuStatusIsDeleted_Click"/>
+            </MenuItem>
+            <Separator/>
+            <MenuItem Header="Properties" InputGestureText="Alt+Enter" Click="itemContextMenuProperties_Click"/>
+        </ContextMenu>
+        
+        <Style x:Key="LineItemStyleKey" TargetType="ContentPresenter">
+            <Setter Property="ContextMenu" Value="{StaticResource ResourceKey=LineItemContextMenu}" />
+            <Setter Property="Canvas.Left" Value="{Binding Path=X}" />
+            <Setter Property="Canvas.Top" Value="{Binding Path=Y}" />
+            <Setter Property="Panel.ZIndex" Value="{Binding Path=Z}" />
+            <Style.Triggers>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Path=DataContext.IsDeletedVisible, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Canvas}}}" Value="False"/>
+                        <Condition Binding="{Binding Path=IsDeleted}" Value="True"/>
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                </MultiDataTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Path=DataContext.IsDeletedVisible, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Canvas}}}" Value="True"/>
+                        <Condition Binding="{Binding Path=IsDeleted}" Value="True"/>
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="Visibility" Value="Visible"/>
+                </MultiDataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="ItemStyleKey" TargetType="ContentPresenter">
+            <Setter Property="ContextMenu" Value="{StaticResource ResourceKey=ItemContextMenu}" />
+            <Setter Property="Canvas.Left" Value="{Binding Path=X}" />
+            <Setter Property="Canvas.Top" Value="{Binding Path=Y}" />
+            <Setter Property="Panel.ZIndex" Value="{Binding Path=Z}" />
+            <Style.Triggers>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Path=DataContext.IsDeletedVisible, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Canvas}}}" Value="False"/>
+                        <Condition Binding="{Binding Path=IsDeleted}" Value="True"/>
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                </MultiDataTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding Path=DataContext.IsDeletedVisible, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Canvas}}}" Value="True"/>
+                        <Condition Binding="{Binding Path=IsDeleted}" Value="True"/>
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="Visibility" Value="Visible"/>
+                </MultiDataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <ContextMenu x:Key="PageContextMenu" DataContext="{Binding PlacementTarget.DataContext, RelativeSource={RelativeSource Self}}">
+            <MenuItem Header="Insert Logic">
+                <MenuItem x:Name="menuItemInsertAndGateLogic" Header="AND Gate" Click="menuItemInsertAndGateLogic_Click"/>
+                <MenuItem x:Name="menuItemInsertOrGateLogic" Header="OR Gate" Click="menuItemInsertOrGateLogic_Click"/>
+                <MenuItem x:Name="menuItemInsertMemoryResetPriorityLogic" Header="Memory (Reset Priority)" Click="menuItemInsertMemoryResetPriorityLogic_Click"/>
+                <MenuItem x:Name="menuItemInsertMemorySetPriorityLogic" Header="Memory (Set Priority)" Click="menuItemInsertMemorySetPriorityLogic_Click"/>
+                <MenuItem x:Name="menuItemInsertSequenceStepLogic" Header="Sequence Step" Click="menuItemInsertSequenceStepLogic_Click"/>
+            </MenuItem>
+            <MenuItem Header="Insert Data Block">
+                <MenuItem x:Name="menuItemInsertDataBlockLogicAsInput" Header="Input" Click="menuItemInsertDataBlockLogicAsInput_Click"/>
+                <MenuItem x:Name="menuItemInsertDataBlockLogicAsOutput" Header="Output" Click="menuItemInsertDataBlockLogicAsOutput_Click"/>
+                <MenuItem x:Name="menuItemInsertDataBlockLogicAsAuto" Header="Auto" Click="menuItemInsertDataBlockLogicAsAuto_Click"/>
+            </MenuItem>
+            <MenuItem Header="Insert Control Block">
+                <MenuItem x:Name="menuItemInsertOneWayMotorControlBlock" Header="One Way Motor" Click="menuItemInsertOneWayMotorControlBlock_Click"/>
+                <MenuItem x:Name="menuItemInsertTwoWayMotorControlBlock" Header="Two Way Motor" Click="menuItemInsertTwoWayMotorControlBlock_Click"/>
+                <MenuItem x:Name="menuItemInsertSolenoidValveControlBlock" Header="Solenoid Valve" Click="menuItemInsertSolenoidValveControlBlock_Click"/>
+                <MenuItem x:Name="menuItemInsertThrottlingValveControlBlock" Header="Throttling Valve" Click="menuItemInsertThrottlingValveControlBlock_Click"/>
+                <MenuItem x:Name="menuItemInsertControlValveControlBlock" Header="Control Valve" Click="menuItemInsertControlValveControlBlock_Click"/>
+                <MenuItem x:Name="menuItemInsertFrequencyConverterControlBlock" Header="Frequency Converter" Click="menuItemInsertFrequencyConverterControlBlock_Click"/>
+                <MenuItem x:Name="menuItemInsertSequenceControlControlBlock" Header="Sequence Control" Click="menuItemInsertSequenceControlControlBlock_Click"/>
+                <MenuItem x:Name="menuItemInsertGroupControlTwoDevicesControlBlock" Header="Group Control Two Devices" Click="menuItemInsertGroupControlTwoDevicesControlBlock_Click"/>
+                <MenuItem x:Name="menuItemInsertGroupControlThreeDevicesControlBlock" Header="Group Control Three Devices" Click="menuItemInsertGroupControlThreeDevicesControlBlock_Click"/>
+            </MenuItem>
+            <Separator/>
+            <MenuItem x:Name="pageContextMenuPaste" Header="Paste" InputGestureText="Ctrl+V" Click="pageContextMenuPaste_Click"/>
+            <Separator/>
+            <MenuItem x:Name="menuItemFileOpen" Header="_Open..." InputGestureText="Ctrl+O" Click="menuItemFileOpen_Click"/>
+            <MenuItem x:Name="menuItemFileSave" Header="_Save..." InputGestureText="Ctrl+S" Click="menuItemFileSave_Click"/>
+            <MenuItem x:Name="menuItemFilePrint" Header="_Print..." InputGestureText="Ctrl+P" Click="menuItemFilePrint_Click"/>
+            <Separator/>
+            <MenuItem x:Name="menuItemViewGrid" Header="Toggle _Grid Visible" IsChecked="{Binding Path=IsGridVisible}" InputGestureText="F5" Click="menuItemViewGrid_Click"/>
+            <MenuItem x:Name="menuItemViewPrint" Header="Toggle Print _Preview" IsChecked="{Binding Path=IsPrinting}" InputGestureText="F6" Click="menuItemViewPrint_Click"/>
+            <MenuItem x:Name="menuItemViewDeleted" Header="Toggle Deleted _Visible" IsChecked="{Binding Path=IsDeletedVisible}" InputGestureText="F7" Click="menuItemViewDeleted_Click"/>
+            <Separator/>
+            <MenuItem x:Name="pageContextMenuDeleteAll" Header="_Delete All" Click="pageContextMenuDeleteAll_Click"/>
+            <Separator/>
+            <MenuItem Header="Items Status">
+                <MenuItem x:Name="pageContextMenuStatusResetAll" Header="Reset All" Click="pageContextMenuStatusResetAll_Click"/>
+                <Separator/>
+                <MenuItem x:Name="pageContextMenuSetAllIsNew" Header="Set IsNew" Click="pageContextMenuSetAllIsNew_Click"/>
+                <MenuItem x:Name="pageContextMenuResetAllIsNew" Header="Reset IsNew" Click="pageContextMenuResetAllIsNew_Click"/>
+                <Separator/>
+                <MenuItem x:Name="pageContextMenuSetAllIsModified" Header="Set IsModified" Click="pageContextMenuSetAllIsModified_Click"/>
+                <MenuItem x:Name="pageContextMenuResetAllIsModified" Header="Reset IsModified" Click="pageContextMenuResetAllIsModified_Click"/>
+                <Separator/>
+                <MenuItem x:Name="pageContextMenuSetAllIsDeleted" Header="Set IsDeleted" Click="pageContextMenuSetAllIsDeleted_Click"/>
+                <MenuItem x:Name="pageContextMenuResetAllIsDeleted" Header="Reset IsDeleted" Click="pageContextMenuResetAllIsDeleted_Click"/>
+            </MenuItem>
+            <Separator/>
+            <MenuItem Header="_Theme">
+                <MenuItem x:Name="menuItemThemeLight" Header="_Light" Click="menuItemThemeLight_Click"/>
+                <MenuItem x:Name="menuItemThemeDark" Header="_Dark" Click="menuItemThemeDark_Click"/>
+            </MenuItem>
+            <Separator/>
+            <MenuItem x:Name="menuItemFileExit" Header="E_xit" Click="menuItemFileExit_Click"/>
+        </ContextMenu>
+
+        <ControlTemplate x:Key="LogicPageItems">
+            <ItemsControl ItemsSource="{Binding Path=Items}" 
+                          ItemTemplateSelector="{StaticResource ResourceKey=ItemTemplateSelector}"
+                          ItemContainerStyleSelector="{StaticResource ResourceKey=ItemContainerStyleSelector}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+						<controls:PageCanvas Width="42.0cm" Height="29.7cm" ContextMenu="{StaticResource ResourceKey=PageContextMenu}" Background="Transparent"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </ControlTemplate>
+
+        <DataTemplate x:Key="LogicPageItemTemplate1">
+            <Grid>
+                <Control Template="{StaticResource ResourceKey=LogicPage}"/>
+                <Control Template="{StaticResource ResourceKey=LogicPageItems}"/>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="LogicPageItemTemplate2">
+            <Grid Margin="10,5,10,5">
+                <Control Template="{StaticResource ResourceKey=LogicPage}"/>
+                <Control Template="{StaticResource ResourceKey=LogicPageItems}"/>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="LogicPageItemListTemplate">
+            <ItemsControl ItemsSource="{Binding}" ItemTemplate="{StaticResource ResourceKey=LogicPageItemTemplate2}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel ScrollViewer.CanContentScroll="False" VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </DataTemplate>
+
+    </Window.Resources>
+
+    <Grid SnapsToDevicePixels="True" ClipToBounds="True">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="250"/>
+        </Grid.ColumnDefinitions>
+
+
+        <Grid Grid.Column="0" Margin="5,5,0,5" Style="{StaticResource ResourceKey=GridEditorStyle}" ClipToBounds="True" SnapsToDevicePixels="True">
+            <Viewbox Stretch="Uniform">
+                <controls:ZoomBorder x:Name="PageZoomView">
+                    <ContentControl x:Name="PageView" Content="{Binding}" ContentTemplate="{StaticResource ResourceKey=LogicPageItemTemplate1}" Style="{StaticResource ResourceKey=PageContentControl}" AllowDrop="True" Drop="PageView_Drop" DragEnter="PageView_DragEnter"/>
+                </controls:ZoomBorder>
+            </Viewbox>
+        </Grid>
+
+        <GridSplitter Grid.Column="1" Height="Auto" Width="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Transparent" ResizeDirection="Columns" ResizeBehavior="PreviousAndNext" ShowsPreview="False" />
+
+
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="344"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TabControl Grid.Row="0" Margin="0,5,5,0">
+
+                <!-- Page Table -->
+                
+                <TabItem Header="Page">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                        <Grid Height="Auto" VerticalAlignment="Top">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Text="DrawnBy"/>
+                            <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" Text="CheckedBy"/>
+                            <TextBlock Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center" Text="Date"/>
+                            <TextBlock Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center" Text="Type"/>
+                            <TextBlock Grid.Column="0" Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Center" Text="Description1"/>
+                            <TextBlock Grid.Column="0" Grid.Row="5" HorizontalAlignment="Right" VerticalAlignment="Center" Text="Description2"/>
+                            <TextBlock Grid.Column="0" Grid.Row="6" HorizontalAlignment="Right" VerticalAlignment="Center" Text="Description3"/>
+                            <TextBlock Grid.Column="0" Grid.Row="7" HorizontalAlignment="Right" VerticalAlignment="Center" Text="Revision"/>
+                            <TextBlock Grid.Column="0" Grid.Row="8" HorizontalAlignment="Right" VerticalAlignment="Center" Text="Format"/>
+                            <TextBlock Grid.Column="0" Grid.Row="9" HorizontalAlignment="Right" VerticalAlignment="Center" Text="Page"/>
+                            <TextBlock Grid.Column="0" Grid.Row="10" HorizontalAlignment="Right" VerticalAlignment="Center" Text="Pages"/>
+                            <TextBlock Grid.Column="0" Grid.Row="11" HorizontalAlignment="Right" VerticalAlignment="Center" Text="Status"/>
+                            <TextBlock Grid.Column="0" Grid.Row="12" HorizontalAlignment="Right" VerticalAlignment="Center" Text="Project"/>
+                            <TextBlock Grid.Column="0" Grid.Row="13" HorizontalAlignment="Right" VerticalAlignment="Center" Text="OrderNo"/>
+                            <TextBlock Grid.Column="0" Grid.Row="14" HorizontalAlignment="Right" VerticalAlignment="Center" Text="DocumentNo1"/>
+                            <TextBlock Grid.Column="0" Grid.Row="15" HorizontalAlignment="Right" VerticalAlignment="Center" Text="DocumentNo2"/>
+                            <TextBox Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Margin="4,2,2,2" Padding="2" Text="{Binding Path=Table.DrawnBy, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Margin="4,2,2,2" Padding="2" Text="{Binding Path=Table.CheckedBy, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Margin="4,2,2,2" Padding="2" Text="{Binding Path=Table.Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" Margin="4,2,2,2" Padding="2" Text="{Binding Path=Table.Type, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" Margin="4,2,2,2" Padding="2" Text="{Binding Path=Table.Description1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" Margin="4,2,2,2" Padding="2" Text="{Binding Path=Table.Description2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Grid.Column="1" Grid.Row="6" VerticalAlignment="Center" Margin="4,2,2,2" Padding="2" Text="{Binding Path=Table.Description3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Grid.Column="1" Grid.Row="7" VerticalAlignment="Center" Margin="4,2,2,2" Padding="2" Text="{Binding Path=Table.Revision, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Grid.Column="1" Grid.Row="8" VerticalAlignment="Center" Margin="4,2,2,2" Padding="2" Text="{Binding Path=Table.Format, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Grid.Column="1" Grid.Row="9" VerticalAlignment="Center" Margin="4,2,2,2" Padding="2" Text="{Binding Path=Table.Page, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Grid.Column="1" Grid.Row="10" VerticalAlignment="Center" Margin="4,2,2,2" Padding="2" Text="{Binding Path=Table.Pages, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Grid.Column="1" Grid.Row="11" VerticalAlignment="Center" Margin="4,2,2,2" Padding="2" Text="{Binding Path=Table.Status, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Grid.Column="1" Grid.Row="12" VerticalAlignment="Center" Margin="4,2,2,2" Padding="2" Text="{Binding Path=Table.Project, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Grid.Column="1" Grid.Row="13" VerticalAlignment="Center" Margin="4,2,2,2" Padding="2" Text="{Binding Path=Table.OrderNo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Grid.Column="1" Grid.Row="14" VerticalAlignment="Center" Margin="4,2,2,2" Padding="2" Text="{Binding Path=Table.DocumentNo1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Grid.Column="1" Grid.Row="15" VerticalAlignment="Center" Margin="4,2,2,2" Padding="2" Text="{Binding Path=Table.DocumentNo2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </Grid>
+                    </ScrollViewer>
+                </TabItem>
+
+                <!-- Item Properties -->
+                
+                <TabItem Header="Properties">
+
+                    <ContentControl Content="{Binding}" DataContext="{Binding Path=SelectedItem, Mode=TwoWay}" ContentTemplateSelector="{StaticResource ResourceKey=ItemPropertiesTemplateSelector}"/>
+
+                </TabItem>
+
+            </TabControl>
+            
+            <GridSplitter Grid.Row="1" Height="5" Width="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Transparent" ResizeDirection="Rows" ResizeBehavior="PreviousAndNext" ShowsPreview="False" />
+
+            <TabControl Grid.Row="2" Margin="0,0,5,5">
+
+                <!-- Signal List -->
+
+                <TabItem Header="Signals">
+                    <ListBox ItemsSource="{Binding Path=Signals}" 
+                             HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"
+                             ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" SelectionMode="Single" PreviewMouseLeftButtonDown="ListBox_PreviewMouseLeftButtonDown" PreviewMouseMove="ListBox_PreviewMouseMove">
+                        <ListBox.Resources>
+                            <Style x:Key="DataItemTextStyle" TargetType="TextBlock">
+                                <Setter Property="FontSize" Value="12"/>
+                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                <Setter Property="HorizontalAlignment" Value="Left"/>
+                                <Setter Property="Margin" Value="0"/>
+                                <Setter Property="Padding" Value="1"/>
+                            </Style>
+                        </ListBox.Resources>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Border Margin="1,2,3,2" BorderBrush="Black" BorderThickness="1">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Text="{Binding Path=Designation}" Grid.Column="0" Grid.Row="0" Style="{StaticResource ResourceKey=DataItemTextStyle}"/>
+                                        <TextBlock Text="{Binding Path=Signal}" Grid.Column="1" Grid.Row="1" Style="{StaticResource ResourceKey=DataItemTextStyle}"/>
+                                        <TextBlock Text="{Binding Path=Description}" Grid.Column="0" Grid.Row="2" Style="{StaticResource ResourceKey=DataItemTextStyle}"/>
+                                        <TextBlock Text="{Binding Path=Condition}" Grid.Column="1" Grid.Row="3" Style="{StaticResource ResourceKey=DataItemTextStyle}"/>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </TabItem>
+
+                <!-- Item List -->
+                
+                <TabItem Header="Items">
+
+                    <ListBox ItemsSource="{Binding Path=Items}" 
+                             HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"
+                             ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" SelectionMode="Extended"
+                             KeyDown="ListBox_KeyDown">
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem">
+                                <Setter Property="ContextMenu" Value="{StaticResource ResourceKey=ItemContextMenu}" />
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                    </ListBox>
+                    
+                </TabItem>
+
+            </TabControl>
+            
+        </Grid>
+        
+    </Grid>
+
+</Window>

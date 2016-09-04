@@ -1,0 +1,1412 @@
+﻿{
+  "$id": "1",
+  "$type": "Logic.Model.Solution, Logic.Model",
+  "Tags": {
+    "$id": "2",
+    "$values": []
+  },
+  "Id": "e8dbb902-108c-4110-a101-3dae642b3ce0",
+  "X": 0.0,
+  "Y": 0.0,
+  "Z": 0.0,
+  "IsLocked": false,
+  "Name": "sln1",
+  "FactoryName": "",
+  "IsEditable": true,
+  "SelectChildren": true,
+  "Parent": null,
+  "Children": {
+    "$id": "3",
+    "$values": [
+      {
+        "$id": "4",
+        "$type": "Logic.Model.Project, Logic.Model",
+        "Title": {
+          "$id": "5",
+          "$type": "Logic.Model.Title, Logic.Model",
+          "DocumentId": "ID",
+          "DocumentTitle": "TITLE",
+          "DocumentNumber": "NUMBER"
+        },
+        "Id": "56b3867d-60e0-4240-9eeb-0cc2125cb31b",
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0,
+        "IsLocked": false,
+        "Name": "prj1",
+        "FactoryName": "",
+        "IsEditable": true,
+        "SelectChildren": true,
+        "Parent": {
+          "$ref": "1"
+        },
+        "Children": {
+          "$id": "6",
+          "$values": [
+            {
+              "$id": "7",
+              "$type": "Logic.Model.Context, Logic.Model",
+              "Number": 0,
+              "IsTitlePage": false,
+              "Id": "ab9b8540-6ce6-499f-9ca0-f1b9bdc22752",
+              "X": 0.0,
+              "Y": 0.0,
+              "Z": 0.0,
+              "IsLocked": false,
+              "Name": "ctx1",
+              "FactoryName": "",
+              "IsEditable": true,
+              "SelectChildren": true,
+              "Parent": {
+                "$ref": "4"
+              },
+              "Children": {
+                "$id": "8",
+                "$values": [
+                  {
+                    "$id": "9",
+                    "$type": "Logic.Model.Signal, Logic.Model",
+                    "Tag": {
+                      "$id": "10",
+                      "$type": "Logic.Model.Tag, Logic.Model",
+                      "Id": "415db26c-74a1-4cc0-93d4-a3cc60c7afa9",
+                      "Designation": "Designation",
+                      "Description": "Description",
+                      "Signal": "Signal",
+                      "Condition": "Condition"
+                    },
+                    "Id": "b2ccde8f-c27e-478c-8b00-18b3b0e45074",
+                    "X": 45.0,
+                    "Y": 125.0,
+                    "Z": 1.0,
+                    "IsLocked": false,
+                    "Name": "s1",
+                    "FactoryName": "",
+                    "IsEditable": true,
+                    "SelectChildren": true,
+                    "Parent": {
+                      "$ref": "7"
+                    },
+                    "Children": {
+                      "$id": "11",
+                      "$values": [
+                        {
+                          "$id": "12",
+                          "$type": "Logic.Model.Pin, Logic.Model",
+                          "IsConnected": false,
+                          "IsUpdated": false,
+                          "Id": "7a5b50aa-8df5-4e03-984b-67f44c46e0b3",
+                          "X": 45.0,
+                          "Y": 140.0,
+                          "Z": 2.0,
+                          "IsLocked": false,
+                          "Name": "i_s1",
+                          "FactoryName": "I",
+                          "IsEditable": false,
+                          "SelectChildren": true,
+                          "Parent": {
+                            "$ref": "9"
+                          },
+                          "Children": {
+                            "$id": "13",
+                            "$values": []
+                          }
+                        },
+                        {
+                          "$id": "14",
+                          "$type": "Logic.Model.Pin, Logic.Model",
+                          "IsConnected": false,
+                          "IsUpdated": false,
+                          "Id": "2e846268-7630-411d-9e59-033f37217a41",
+                          "X": 330.0,
+                          "Y": 140.0,
+                          "Z": 2.0,
+                          "IsLocked": false,
+                          "Name": "o_s1",
+                          "FactoryName": "O",
+                          "IsEditable": false,
+                          "SelectChildren": true,
+                          "Parent": {
+                            "$ref": "9"
+                          },
+                          "Children": {
+                            "$id": "15",
+                            "$values": []
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "$ref": "12"
+                  },
+                  {
+                    "$ref": "14"
+                  },
+                  {
+                    "$id": "16",
+                    "$type": "Logic.Model.Signal, Logic.Model",
+                    "Tag": {
+                      "$id": "17",
+                      "$type": "Logic.Model.Tag, Logic.Model",
+                      "Id": "bff88cf7-e5d0-4f33-b222-e936f1c71896",
+                      "Designation": "Designation",
+                      "Description": "Description",
+                      "Signal": "Signal",
+                      "Condition": "Condition"
+                    },
+                    "Id": "97e61796-8118-40ef-b79f-8aa06e5fea26",
+                    "X": 45.0,
+                    "Y": 185.0,
+                    "Z": 1.0,
+                    "IsLocked": false,
+                    "Name": "s2",
+                    "FactoryName": "",
+                    "IsEditable": true,
+                    "SelectChildren": true,
+                    "Parent": {
+                      "$ref": "7"
+                    },
+                    "Children": {
+                      "$id": "18",
+                      "$values": [
+                        {
+                          "$id": "19",
+                          "$type": "Logic.Model.Pin, Logic.Model",
+                          "IsConnected": false,
+                          "IsUpdated": false,
+                          "Id": "7c207901-eb1c-4903-a859-21454a19a9bb",
+                          "X": 45.0,
+                          "Y": 200.0,
+                          "Z": 2.0,
+                          "IsLocked": false,
+                          "Name": "i_s2",
+                          "FactoryName": "I",
+                          "IsEditable": false,
+                          "SelectChildren": true,
+                          "Parent": {
+                            "$ref": "16"
+                          },
+                          "Children": {
+                            "$id": "20",
+                            "$values": []
+                          }
+                        },
+                        {
+                          "$id": "21",
+                          "$type": "Logic.Model.Pin, Logic.Model",
+                          "IsConnected": false,
+                          "IsUpdated": false,
+                          "Id": "36dcffa1-d8bc-429b-96b4-88ba4d019615",
+                          "X": 330.0,
+                          "Y": 200.0,
+                          "Z": 2.0,
+                          "IsLocked": false,
+                          "Name": "o_s2",
+                          "FactoryName": "O",
+                          "IsEditable": false,
+                          "SelectChildren": true,
+                          "Parent": {
+                            "$ref": "16"
+                          },
+                          "Children": {
+                            "$id": "22",
+                            "$values": []
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "$ref": "19"
+                  },
+                  {
+                    "$ref": "21"
+                  },
+                  {
+                    "$id": "23",
+                    "$type": "Logic.Model.AndGate, Logic.Model",
+                    "Id": "f0d9b6fb-f503-4d6b-b0d6-1e10a1295125",
+                    "X": 450.0,
+                    "Y": 245.0,
+                    "Z": 1.0,
+                    "IsLocked": false,
+                    "Name": "ag1",
+                    "FactoryName": "",
+                    "IsEditable": true,
+                    "SelectChildren": true,
+                    "Parent": {
+                      "$ref": "7"
+                    },
+                    "Children": {
+                      "$id": "24",
+                      "$values": [
+                        {
+                          "$id": "25",
+                          "$type": "Logic.Model.Pin, Logic.Model",
+                          "IsConnected": false,
+                          "IsUpdated": false,
+                          "Id": "45201bd5-5821-43ec-ae87-de2ce131630f",
+                          "X": 450.0,
+                          "Y": 260.0,
+                          "Z": 2.0,
+                          "IsLocked": false,
+                          "Name": "l_ag1",
+                          "FactoryName": "L",
+                          "IsEditable": false,
+                          "SelectChildren": true,
+                          "Parent": {
+                            "$ref": "23"
+                          },
+                          "Children": {
+                            "$id": "26",
+                            "$values": []
+                          }
+                        },
+                        {
+                          "$id": "27",
+                          "$type": "Logic.Model.Pin, Logic.Model",
+                          "IsConnected": false,
+                          "IsUpdated": false,
+                          "Id": "000af5e3-682a-464d-bd10-651b9d1e7c44",
+                          "X": 480.0,
+                          "Y": 260.0,
+                          "Z": 2.0,
+                          "IsLocked": false,
+                          "Name": "r_ag1",
+                          "FactoryName": "R",
+                          "IsEditable": false,
+                          "SelectChildren": true,
+                          "Parent": {
+                            "$ref": "23"
+                          },
+                          "Children": {
+                            "$id": "28",
+                            "$values": []
+                          }
+                        },
+                        {
+                          "$id": "29",
+                          "$type": "Logic.Model.Pin, Logic.Model",
+                          "IsConnected": false,
+                          "IsUpdated": false,
+                          "Id": "c33925f9-05ef-4eb5-b7f5-b56c78ac48ba",
+                          "X": 465.0,
+                          "Y": 245.0,
+                          "Z": 2.0,
+                          "IsLocked": false,
+                          "Name": "t_ag1",
+                          "FactoryName": "T",
+                          "IsEditable": false,
+                          "SelectChildren": true,
+                          "Parent": {
+                            "$ref": "23"
+                          },
+                          "Children": {
+                            "$id": "30",
+                            "$values": []
+                          }
+                        },
+                        {
+                          "$id": "31",
+                          "$type": "Logic.Model.Pin, Logic.Model",
+                          "IsConnected": false,
+                          "IsUpdated": false,
+                          "Id": "c1cd39c9-302a-48dc-9aad-01ebeca988ab",
+                          "X": 465.0,
+                          "Y": 275.0,
+                          "Z": 2.0,
+                          "IsLocked": false,
+                          "Name": "b_ag1",
+                          "FactoryName": "B",
+                          "IsEditable": false,
+                          "SelectChildren": true,
+                          "Parent": {
+                            "$ref": "23"
+                          },
+                          "Children": {
+                            "$id": "32",
+                            "$values": []
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "$ref": "25"
+                  },
+                  {
+                    "$ref": "27"
+                  },
+                  {
+                    "$ref": "29"
+                  },
+                  {
+                    "$ref": "31"
+                  },
+                  {
+                    "$id": "33",
+                    "$type": "Logic.Model.OrGate, Logic.Model",
+                    "Id": "996c7d2e-2f98-4fef-8d22-68c9c46f7c15",
+                    "X": 630.0,
+                    "Y": 245.0,
+                    "Z": 1.0,
+                    "IsLocked": false,
+                    "Name": "og1",
+                    "FactoryName": "",
+                    "IsEditable": true,
+                    "SelectChildren": true,
+                    "Parent": {
+                      "$ref": "7"
+                    },
+                    "Children": {
+                      "$id": "34",
+                      "$values": [
+                        {
+                          "$id": "35",
+                          "$type": "Logic.Model.Pin, Logic.Model",
+                          "IsConnected": false,
+                          "IsUpdated": false,
+                          "Id": "d4f904ef-a13a-415c-8296-32588887ccd1",
+                          "X": 630.0,
+                          "Y": 260.0,
+                          "Z": 2.0,
+                          "IsLocked": false,
+                          "Name": "l_og1",
+                          "FactoryName": "L",
+                          "IsEditable": false,
+                          "SelectChildren": true,
+                          "Parent": {
+                            "$ref": "33"
+                          },
+                          "Children": {
+                            "$id": "36",
+                            "$values": []
+                          }
+                        },
+                        {
+                          "$id": "37",
+                          "$type": "Logic.Model.Pin, Logic.Model",
+                          "IsConnected": false,
+                          "IsUpdated": false,
+                          "Id": "bbbc89c7-c29c-4ef8-84b0-e5f9ed16eedf",
+                          "X": 660.0,
+                          "Y": 260.0,
+                          "Z": 2.0,
+                          "IsLocked": false,
+                          "Name": "r_og1",
+                          "FactoryName": "R",
+                          "IsEditable": false,
+                          "SelectChildren": true,
+                          "Parent": {
+                            "$ref": "33"
+                          },
+                          "Children": {
+                            "$id": "38",
+                            "$values": []
+                          }
+                        },
+                        {
+                          "$id": "39",
+                          "$type": "Logic.Model.Pin, Logic.Model",
+                          "IsConnected": false,
+                          "IsUpdated": false,
+                          "Id": "7c6e3180-1ca1-4b0c-be1c-cd31937f9f6f",
+                          "X": 645.0,
+                          "Y": 245.0,
+                          "Z": 2.0,
+                          "IsLocked": false,
+                          "Name": "t_og1",
+                          "FactoryName": "T",
+                          "IsEditable": false,
+                          "SelectChildren": true,
+                          "Parent": {
+                            "$ref": "33"
+                          },
+                          "Children": {
+                            "$id": "40",
+                            "$values": []
+                          }
+                        },
+                        {
+                          "$id": "41",
+                          "$type": "Logic.Model.Pin, Logic.Model",
+                          "IsConnected": false,
+                          "IsUpdated": false,
+                          "Id": "081133d1-2d6c-4bdb-8617-b5e69f9dc798",
+                          "X": 645.0,
+                          "Y": 275.0,
+                          "Z": 2.0,
+                          "IsLocked": false,
+                          "Name": "b_og1",
+                          "FactoryName": "B",
+                          "IsEditable": false,
+                          "SelectChildren": true,
+                          "Parent": {
+                            "$ref": "33"
+                          },
+                          "Children": {
+                            "$id": "42",
+                            "$values": []
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "$ref": "35"
+                  },
+                  {
+                    "$ref": "37"
+                  },
+                  {
+                    "$ref": "39"
+                  },
+                  {
+                    "$ref": "41"
+                  },
+                  {
+                    "$id": "43",
+                    "$type": "Logic.Model.TimerOnDelay, Logic.Model",
+                    "Delay": 1.0,
+                    "Unit": "s",
+                    "LabelPosition": 2,
+                    "Id": "af044d67-2dd9-4be0-b966-945d755d9986",
+                    "X": 540.0,
+                    "Y": 245.0,
+                    "Z": 1.0,
+                    "IsLocked": false,
+                    "Name": "ton1",
+                    "FactoryName": "",
+                    "IsEditable": true,
+                    "SelectChildren": true,
+                    "Parent": {
+                      "$ref": "7"
+                    },
+                    "Children": {
+                      "$id": "44",
+                      "$values": [
+                        {
+                          "$id": "45",
+                          "$type": "Logic.Model.Pin, Logic.Model",
+                          "IsConnected": false,
+                          "IsUpdated": false,
+                          "Id": "a1de531d-0b28-412c-9aa0-9b2597eea758",
+                          "X": 540.0,
+                          "Y": 260.0,
+                          "Z": 2.0,
+                          "IsLocked": false,
+                          "Name": "l_ton1",
+                          "FactoryName": "L",
+                          "IsEditable": false,
+                          "SelectChildren": true,
+                          "Parent": {
+                            "$ref": "43"
+                          },
+                          "Children": {
+                            "$id": "46",
+                            "$values": []
+                          }
+                        },
+                        {
+                          "$id": "47",
+                          "$type": "Logic.Model.Pin, Logic.Model",
+                          "IsConnected": false,
+                          "IsUpdated": false,
+                          "Id": "1f0495c4-a657-498b-bfe6-6ebb53099122",
+                          "X": 570.0,
+                          "Y": 260.0,
+                          "Z": 2.0,
+                          "IsLocked": false,
+                          "Name": "r_ton1",
+                          "FactoryName": "R",
+                          "IsEditable": false,
+                          "SelectChildren": true,
+                          "Parent": {
+                            "$ref": "43"
+                          },
+                          "Children": {
+                            "$id": "48",
+                            "$values": []
+                          }
+                        },
+                        {
+                          "$id": "49",
+                          "$type": "Logic.Model.Pin, Logic.Model",
+                          "IsConnected": false,
+                          "IsUpdated": false,
+                          "Id": "2ef438f4-dd2b-42f0-9668-736208590515",
+                          "X": 555.0,
+                          "Y": 245.0,
+                          "Z": 2.0,
+                          "IsLocked": false,
+                          "Name": "t_ton1",
+                          "FactoryName": "T",
+                          "IsEditable": false,
+                          "SelectChildren": true,
+                          "Parent": {
+                            "$ref": "43"
+                          },
+                          "Children": {
+                            "$id": "50",
+                            "$values": []
+                          }
+                        },
+                        {
+                          "$id": "51",
+                          "$type": "Logic.Model.Pin, Logic.Model",
+                          "IsConnected": false,
+                          "IsUpdated": false,
+                          "Id": "067443ea-f8b5-4b10-867d-dceaeacaaa42",
+                          "X": 555.0,
+                          "Y": 275.0,
+                          "Z": 2.0,
+                          "IsLocked": false,
+                          "Name": "b_ton1",
+                          "FactoryName": "B",
+                          "IsEditable": false,
+                          "SelectChildren": true,
+                          "Parent": {
+                            "$ref": "43"
+                          },
+                          "Children": {
+                            "$id": "52",
+                            "$values": []
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "$ref": "45"
+                  },
+                  {
+                    "$ref": "47"
+                  },
+                  {
+                    "$ref": "49"
+                  },
+                  {
+                    "$ref": "51"
+                  },
+                  {
+                    "$id": "53",
+                    "$type": "Logic.Model.TimerOffDelay, Logic.Model",
+                    "Delay": 1.0,
+                    "Unit": "s",
+                    "LabelPosition": 2,
+                    "Id": "165b4e61-b5db-418e-92d6-07f7acfa9af3",
+                    "X": 390.0,
+                    "Y": 185.0,
+                    "Z": 1.0,
+                    "IsLocked": false,
+                    "Name": "toff1",
+                    "FactoryName": "",
+                    "IsEditable": true,
+                    "SelectChildren": true,
+                    "Parent": {
+                      "$ref": "7"
+                    },
+                    "Children": {
+                      "$id": "54",
+                      "$values": [
+                        {
+                          "$id": "55",
+                          "$type": "Logic.Model.Pin, Logic.Model",
+                          "IsConnected": false,
+                          "IsUpdated": false,
+                          "Id": "cf41bdc9-f62c-4bfd-9a88-d4a374a8683f",
+                          "X": 390.0,
+                          "Y": 200.0,
+                          "Z": 2.0,
+                          "IsLocked": false,
+                          "Name": "l_toff1",
+                          "FactoryName": "L",
+                          "IsEditable": false,
+                          "SelectChildren": true,
+                          "Parent": {
+                            "$ref": "53"
+                          },
+                          "Children": {
+                            "$id": "56",
+                            "$values": []
+                          }
+                        },
+                        {
+                          "$id": "57",
+                          "$type": "Logic.Model.Pin, Logic.Model",
+                          "IsConnected": false,
+                          "IsUpdated": false,
+                          "Id": "00c5767f-e5b9-4137-8fb2-18f1eaf2e008",
+                          "X": 420.00000000000006,
+                          "Y": 200.0,
+                          "Z": 2.0,
+                          "IsLocked": false,
+                          "Name": "r_toff1",
+                          "FactoryName": "R",
+                          "IsEditable": false,
+                          "SelectChildren": true,
+                          "Parent": {
+                            "$ref": "53"
+                          },
+                          "Children": {
+                            "$id": "58",
+                            "$values": []
+                          }
+                        },
+                        {
+                          "$id": "59",
+                          "$type": "Logic.Model.Pin, Logic.Model",
+                          "IsConnected": false,
+                          "IsUpdated": false,
+                          "Id": "a0d6a422-505c-4efd-9033-b9c4617143ca",
+                          "X": 405.0,
+                          "Y": 185.0,
+                          "Z": 2.0,
+                          "IsLocked": false,
+                          "Name": "t_toff1",
+                          "FactoryName": "T",
+                          "IsEditable": false,
+                          "SelectChildren": true,
+                          "Parent": {
+                            "$ref": "53"
+                          },
+                          "Children": {
+                            "$id": "60",
+                            "$values": []
+                          }
+                        },
+                        {
+                          "$id": "61",
+                          "$type": "Logic.Model.Pin, Logic.Model",
+                          "IsConnected": false,
+                          "IsUpdated": false,
+                          "Id": "f9b05c13-9c82-4010-b604-331600fd73ab",
+                          "X": 405.0,
+                          "Y": 215.0,
+                          "Z": 2.0,
+                          "IsLocked": false,
+                          "Name": "b_toff1",
+                          "FactoryName": "B",
+                          "IsEditable": false,
+                          "SelectChildren": true,
+                          "Parent": {
+                            "$ref": "53"
+                          },
+                          "Children": {
+                            "$id": "62",
+                            "$values": []
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "$ref": "55"
+                  },
+                  {
+                    "$ref": "57"
+                  },
+                  {
+                    "$ref": "59"
+                  },
+                  {
+                    "$ref": "61"
+                  },
+                  {
+                    "$id": "63",
+                    "$type": "Logic.Model.TimerPulse, Logic.Model",
+                    "Delay": 1.0,
+                    "Unit": "s",
+                    "LabelPosition": 2,
+                    "Id": "ae1dc733-048d-43a3-a169-03c603e2f6c5",
+                    "X": 720.0,
+                    "Y": 245.0,
+                    "Z": 1.0,
+                    "IsLocked": false,
+                    "Name": "tp1",
+                    "FactoryName": "",
+                    "IsEditable": true,
+                    "SelectChildren": true,
+                    "Parent": {
+                      "$ref": "7"
+                    },
+                    "Children": {
+                      "$id": "64",
+                      "$values": [
+                        {
+                          "$id": "65",
+                          "$type": "Logic.Model.Pin, Logic.Model",
+                          "IsConnected": false,
+                          "IsUpdated": false,
+                          "Id": "8204c612-374a-4313-93ae-96162d6623c1",
+                          "X": 720.0,
+                          "Y": 260.0,
+                          "Z": 2.0,
+                          "IsLocked": false,
+                          "Name": "l_tp1",
+                          "FactoryName": "L",
+                          "IsEditable": false,
+                          "SelectChildren": true,
+                          "Parent": {
+                            "$ref": "63"
+                          },
+                          "Children": {
+                            "$id": "66",
+                            "$values": []
+                          }
+                        },
+                        {
+                          "$id": "67",
+                          "$type": "Logic.Model.Pin, Logic.Model",
+                          "IsConnected": false,
+                          "IsUpdated": false,
+                          "Id": "68a6c5af-7606-4649-b35d-d73504a93035",
+                          "X": 750.0,
+                          "Y": 260.0,
+                          "Z": 2.0,
+                          "IsLocked": false,
+                          "Name": "r_tp1",
+                          "FactoryName": "R",
+                          "IsEditable": false,
+                          "SelectChildren": true,
+                          "Parent": {
+                            "$ref": "63"
+                          },
+                          "Children": {
+                            "$id": "68",
+                            "$values": []
+                          }
+                        },
+                        {
+                          "$id": "69",
+                          "$type": "Logic.Model.Pin, Logic.Model",
+                          "IsConnected": false,
+                          "IsUpdated": false,
+                          "Id": "153663d0-482b-4a82-8590-e22dedf7f535",
+                          "X": 735.0,
+                          "Y": 245.0,
+                          "Z": 2.0,
+                          "IsLocked": false,
+                          "Name": "t_tp1",
+                          "FactoryName": "T",
+                          "IsEditable": false,
+                          "SelectChildren": true,
+                          "Parent": {
+                            "$ref": "63"
+                          },
+                          "Children": {
+                            "$id": "70",
+                            "$values": []
+                          }
+                        },
+                        {
+                          "$id": "71",
+                          "$type": "Logic.Model.Pin, Logic.Model",
+                          "IsConnected": false,
+                          "IsUpdated": false,
+                          "Id": "b243ade1-4b52-4113-ab22-5403537261dc",
+                          "X": 735.0,
+                          "Y": 275.0,
+                          "Z": 2.0,
+                          "IsLocked": false,
+                          "Name": "b_tp1",
+                          "FactoryName": "B",
+                          "IsEditable": false,
+                          "SelectChildren": true,
+                          "Parent": {
+                            "$ref": "63"
+                          },
+                          "Children": {
+                            "$id": "72",
+                            "$values": []
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "$ref": "65"
+                  },
+                  {
+                    "$ref": "67"
+                  },
+                  {
+                    "$ref": "69"
+                  },
+                  {
+                    "$ref": "71"
+                  },
+                  {
+                    "$id": "73",
+                    "$type": "Logic.Model.Signal, Logic.Model",
+                    "Tag": {
+                      "$id": "74",
+                      "$type": "Logic.Model.Tag, Logic.Model",
+                      "Id": "1f17dee5-4b67-441a-94fd-8a8b430db426",
+                      "Designation": "Designation",
+                      "Description": "Description",
+                      "Signal": "Signal",
+                      "Condition": "Condition"
+                    },
+                    "Id": "85ecc83f-70db-4422-bad5-272000876313",
+                    "X": 45.0,
+                    "Y": 245.0,
+                    "Z": 1.0,
+                    "IsLocked": false,
+                    "Name": "s3",
+                    "FactoryName": "",
+                    "IsEditable": true,
+                    "SelectChildren": true,
+                    "Parent": {
+                      "$ref": "7"
+                    },
+                    "Children": {
+                      "$id": "75",
+                      "$values": [
+                        {
+                          "$id": "76",
+                          "$type": "Logic.Model.Pin, Logic.Model",
+                          "IsConnected": false,
+                          "IsUpdated": false,
+                          "Id": "d4102914-e7c8-4bd4-a18a-d20492bcd096",
+                          "X": 45.0,
+                          "Y": 260.0,
+                          "Z": 2.0,
+                          "IsLocked": false,
+                          "Name": "i_s3",
+                          "FactoryName": "I",
+                          "IsEditable": false,
+                          "SelectChildren": true,
+                          "Parent": {
+                            "$ref": "73"
+                          },
+                          "Children": {
+                            "$id": "77",
+                            "$values": []
+                          }
+                        },
+                        {
+                          "$id": "78",
+                          "$type": "Logic.Model.Pin, Logic.Model",
+                          "IsConnected": false,
+                          "IsUpdated": false,
+                          "Id": "a066bcce-aaef-4f3d-93f3-34c65d1f7aab",
+                          "X": 330.0,
+                          "Y": 260.0,
+                          "Z": 2.0,
+                          "IsLocked": false,
+                          "Name": "o_s3",
+                          "FactoryName": "O",
+                          "IsEditable": false,
+                          "SelectChildren": true,
+                          "Parent": {
+                            "$ref": "73"
+                          },
+                          "Children": {
+                            "$id": "79",
+                            "$values": []
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "$ref": "76"
+                  },
+                  {
+                    "$ref": "78"
+                  },
+                  {
+                    "$id": "80",
+                    "$type": "Logic.Model.Signal, Logic.Model",
+                    "Tag": {
+                      "$id": "81",
+                      "$type": "Logic.Model.Tag, Logic.Model",
+                      "Id": "28177cac-ac07-44c7-81fc-a1c59b0402a5",
+                      "Designation": "Designation",
+                      "Description": "Description",
+                      "Signal": "Signal",
+                      "Condition": "Condition"
+                    },
+                    "Id": "19f810f1-7fa4-497c-a592-ae96ea8909dc",
+                    "X": 930.0,
+                    "Y": 245.0,
+                    "Z": 1.0,
+                    "IsLocked": false,
+                    "Name": "s4",
+                    "FactoryName": "",
+                    "IsEditable": true,
+                    "SelectChildren": true,
+                    "Parent": {
+                      "$ref": "7"
+                    },
+                    "Children": {
+                      "$id": "82",
+                      "$values": [
+                        {
+                          "$id": "83",
+                          "$type": "Logic.Model.Pin, Logic.Model",
+                          "IsConnected": false,
+                          "IsUpdated": false,
+                          "Id": "eb185f0a-2683-4b61-86d2-456b34d217ea",
+                          "X": 930.0,
+                          "Y": 260.0,
+                          "Z": 2.0,
+                          "IsLocked": false,
+                          "Name": "i_s4",
+                          "FactoryName": "I",
+                          "IsEditable": false,
+                          "SelectChildren": true,
+                          "Parent": {
+                            "$ref": "80"
+                          },
+                          "Children": {
+                            "$id": "84",
+                            "$values": []
+                          }
+                        },
+                        {
+                          "$id": "85",
+                          "$type": "Logic.Model.Pin, Logic.Model",
+                          "IsConnected": false,
+                          "IsUpdated": false,
+                          "Id": "fadb9c8f-d5bb-4289-bcad-291c99afa195",
+                          "X": 1215.0,
+                          "Y": 260.0,
+                          "Z": 2.0,
+                          "IsLocked": false,
+                          "Name": "o_s4",
+                          "FactoryName": "O",
+                          "IsEditable": false,
+                          "SelectChildren": true,
+                          "Parent": {
+                            "$ref": "80"
+                          },
+                          "Children": {
+                            "$id": "86",
+                            "$values": []
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "$ref": "83"
+                  },
+                  {
+                    "$ref": "85"
+                  },
+                  {
+                    "$id": "87",
+                    "$type": "Logic.Model.Pin, Logic.Model",
+                    "IsConnected": false,
+                    "IsUpdated": false,
+                    "Id": "0e8a2acd-ad5f-4eb1-b279-db5d2ab52a37",
+                    "X": 645.0,
+                    "Y": 140.0,
+                    "Z": 2.0,
+                    "IsLocked": false,
+                    "Name": "p1",
+                    "FactoryName": "",
+                    "IsEditable": false,
+                    "SelectChildren": true,
+                    "Parent": {
+                      "$ref": "7"
+                    },
+                    "Children": {
+                      "$id": "88",
+                      "$values": []
+                    }
+                  },
+                  {
+                    "$id": "89",
+                    "$type": "Logic.Model.Wire, Logic.Model",
+                    "Start": {
+                      "$ref": "14"
+                    },
+                    "End": {
+                      "$ref": "87"
+                    },
+                    "InvertStart": false,
+                    "DisableShortenWire": false,
+                    "InvertEnd": false,
+                    "Id": "542ab820-d361-4aa0-9063-574562d46e0f",
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": 1.0,
+                    "IsLocked": false,
+                    "Name": "w1",
+                    "FactoryName": "",
+                    "IsEditable": true,
+                    "SelectChildren": false,
+                    "Parent": {
+                      "$ref": "7"
+                    },
+                    "Children": {
+                      "$id": "90",
+                      "$values": [
+                        {
+                          "$ref": "14"
+                        },
+                        {
+                          "$ref": "87"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "$id": "91",
+                    "$type": "Logic.Model.Wire, Logic.Model",
+                    "Start": {
+                      "$ref": "87"
+                    },
+                    "End": {
+                      "$ref": "39"
+                    },
+                    "InvertStart": false,
+                    "DisableShortenWire": false,
+                    "InvertEnd": false,
+                    "Id": "6aba407e-a987-4fb3-8059-82f9821f8f73",
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": 1.0,
+                    "IsLocked": false,
+                    "Name": "w2",
+                    "FactoryName": "",
+                    "IsEditable": true,
+                    "SelectChildren": false,
+                    "Parent": {
+                      "$ref": "7"
+                    },
+                    "Children": {
+                      "$id": "92",
+                      "$values": [
+                        {
+                          "$ref": "87"
+                        },
+                        {
+                          "$ref": "39"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "$id": "93",
+                    "$type": "Logic.Model.Wire, Logic.Model",
+                    "Start": {
+                      "$ref": "21"
+                    },
+                    "End": {
+                      "$ref": "55"
+                    },
+                    "InvertStart": false,
+                    "DisableShortenWire": false,
+                    "InvertEnd": false,
+                    "Id": "9e10a8ec-97d0-4455-9b94-1ab34969ef5a",
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": 1.0,
+                    "IsLocked": false,
+                    "Name": "w3",
+                    "FactoryName": "",
+                    "IsEditable": true,
+                    "SelectChildren": false,
+                    "Parent": {
+                      "$ref": "7"
+                    },
+                    "Children": {
+                      "$id": "94",
+                      "$values": [
+                        {
+                          "$ref": "21"
+                        },
+                        {
+                          "$ref": "55"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "$id": "95",
+                    "$type": "Logic.Model.Pin, Logic.Model",
+                    "IsConnected": false,
+                    "IsUpdated": false,
+                    "Id": "eb7dab77-8583-4fbe-ab25-14fde0d527d6",
+                    "X": 465.0,
+                    "Y": 200.0,
+                    "Z": 2.0,
+                    "IsLocked": false,
+                    "Name": "p2",
+                    "FactoryName": "",
+                    "IsEditable": false,
+                    "SelectChildren": true,
+                    "Parent": {
+                      "$ref": "7"
+                    },
+                    "Children": {
+                      "$id": "96",
+                      "$values": []
+                    }
+                  },
+                  {
+                    "$id": "97",
+                    "$type": "Logic.Model.Wire, Logic.Model",
+                    "Start": {
+                      "$ref": "57"
+                    },
+                    "End": {
+                      "$ref": "95"
+                    },
+                    "InvertStart": false,
+                    "DisableShortenWire": false,
+                    "InvertEnd": false,
+                    "Id": "34b06c7a-6c4e-4f7b-a0da-0ff8e5db28a9",
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": 1.0,
+                    "IsLocked": false,
+                    "Name": "w4",
+                    "FactoryName": "",
+                    "IsEditable": true,
+                    "SelectChildren": false,
+                    "Parent": {
+                      "$ref": "7"
+                    },
+                    "Children": {
+                      "$id": "98",
+                      "$values": [
+                        {
+                          "$ref": "57"
+                        },
+                        {
+                          "$ref": "95"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "$id": "99",
+                    "$type": "Logic.Model.Wire, Logic.Model",
+                    "Start": {
+                      "$ref": "95"
+                    },
+                    "End": {
+                      "$ref": "29"
+                    },
+                    "InvertStart": false,
+                    "DisableShortenWire": false,
+                    "InvertEnd": false,
+                    "Id": "f110f1b4-c7a6-4b84-b094-70e355409360",
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": 1.0,
+                    "IsLocked": false,
+                    "Name": "w5",
+                    "FactoryName": "",
+                    "IsEditable": true,
+                    "SelectChildren": false,
+                    "Parent": {
+                      "$ref": "7"
+                    },
+                    "Children": {
+                      "$id": "100",
+                      "$values": [
+                        {
+                          "$ref": "95"
+                        },
+                        {
+                          "$ref": "29"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "$id": "101",
+                    "$type": "Logic.Model.Wire, Logic.Model",
+                    "Start": {
+                      "$ref": "78"
+                    },
+                    "End": {
+                      "$ref": "25"
+                    },
+                    "InvertStart": false,
+                    "DisableShortenWire": false,
+                    "InvertEnd": false,
+                    "Id": "ae96309b-03da-4ee5-8017-464236b82300",
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": 1.0,
+                    "IsLocked": false,
+                    "Name": "w6",
+                    "FactoryName": "",
+                    "IsEditable": true,
+                    "SelectChildren": false,
+                    "Parent": {
+                      "$ref": "7"
+                    },
+                    "Children": {
+                      "$id": "102",
+                      "$values": [
+                        {
+                          "$ref": "78"
+                        },
+                        {
+                          "$ref": "25"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "$id": "103",
+                    "$type": "Logic.Model.Wire, Logic.Model",
+                    "Start": {
+                      "$ref": "27"
+                    },
+                    "End": {
+                      "$ref": "45"
+                    },
+                    "InvertStart": false,
+                    "DisableShortenWire": false,
+                    "InvertEnd": false,
+                    "Id": "549f6dd6-8db9-48e2-bef2-e7d662db9ff7",
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": 1.0,
+                    "IsLocked": false,
+                    "Name": "w7",
+                    "FactoryName": "",
+                    "IsEditable": true,
+                    "SelectChildren": false,
+                    "Parent": {
+                      "$ref": "7"
+                    },
+                    "Children": {
+                      "$id": "104",
+                      "$values": [
+                        {
+                          "$ref": "27"
+                        },
+                        {
+                          "$ref": "45"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "$id": "105",
+                    "$type": "Logic.Model.Wire, Logic.Model",
+                    "Start": {
+                      "$ref": "47"
+                    },
+                    "End": {
+                      "$ref": "35"
+                    },
+                    "InvertStart": false,
+                    "DisableShortenWire": false,
+                    "InvertEnd": false,
+                    "Id": "2d05dba2-1dc1-43a4-b8b1-eb5da71f4bae",
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": 1.0,
+                    "IsLocked": false,
+                    "Name": "w8",
+                    "FactoryName": "",
+                    "IsEditable": true,
+                    "SelectChildren": false,
+                    "Parent": {
+                      "$ref": "7"
+                    },
+                    "Children": {
+                      "$id": "106",
+                      "$values": [
+                        {
+                          "$ref": "47"
+                        },
+                        {
+                          "$ref": "35"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "$id": "107",
+                    "$type": "Logic.Model.Wire, Logic.Model",
+                    "Start": {
+                      "$ref": "37"
+                    },
+                    "End": {
+                      "$ref": "65"
+                    },
+                    "InvertStart": false,
+                    "DisableShortenWire": false,
+                    "InvertEnd": false,
+                    "Id": "33f96955-aa2a-4ad9-b3c1-5b2bd1b444f5",
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": 1.0,
+                    "IsLocked": false,
+                    "Name": "w9",
+                    "FactoryName": "",
+                    "IsEditable": true,
+                    "SelectChildren": false,
+                    "Parent": {
+                      "$ref": "7"
+                    },
+                    "Children": {
+                      "$id": "108",
+                      "$values": [
+                        {
+                          "$ref": "37"
+                        },
+                        {
+                          "$ref": "65"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "$id": "109",
+                    "$type": "Logic.Model.Wire, Logic.Model",
+                    "Start": {
+                      "$ref": "67"
+                    },
+                    "End": {
+                      "$ref": "83"
+                    },
+                    "InvertStart": false,
+                    "DisableShortenWire": false,
+                    "InvertEnd": false,
+                    "Id": "5e093844-7191-4d1e-b1c1-5d0d7e54d818",
+                    "X": 0.0,
+                    "Y": 0.0,
+                    "Z": 1.0,
+                    "IsLocked": false,
+                    "Name": "w10",
+                    "FactoryName": "",
+                    "IsEditable": true,
+                    "SelectChildren": false,
+                    "Parent": {
+                      "$ref": "7"
+                    },
+                    "Children": {
+                      "$id": "110",
+                      "$values": [
+                        {
+                          "$ref": "67"
+                        },
+                        {
+                          "$ref": "83"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

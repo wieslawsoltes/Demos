@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="Logic.DiagramView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Logic"
+             xmlns:selectors="clr-namespace:Logic.Selectors"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="720">
+    <UserControl.Resources>
+        <Style TargetType="Thumb">
+            <EventSetter Event="DragDelta" Handler="Thumb_DragDelta"/>
+        </Style>
+        <selectors:LogicDataTemplateSelector x:Key="LogicDataTemplateSelector"/>
+    </UserControl.Resources>
+    <Grid SnapsToDevicePixels="True">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+            <ItemsControl ItemsSource="{Binding Path=Elements}" 
+                          ItemTemplateSelector="{StaticResource ResourceKey=LogicDataTemplateSelector}">
+                <ItemsControl.LayoutTransform>
+                    <ScaleTransform ScaleX="1.0" ScaleY="1.0"/>
+                </ItemsControl.LayoutTransform>
+                <ItemsControl.ItemContainerStyle>
+                    <Style TargetType="ContentPresenter">
+                        <Setter Property="Canvas.Left" Value="{Binding Path=X}"/>
+                        <Setter Property="Canvas.Top" Value="{Binding Path=Y}"/>
+                        <Setter Property="Panel.ZIndex" Value="{Binding Path=Z}"/>
+                    </Style>
+                </ItemsControl.ItemContainerStyle>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Canvas Width="720" Height="600" Background="Black"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

@@ -1,0 +1,64 @@
+<!-- Copyright (c) Wiesław Šoltés. All rights reserved. -->
+<!-- Licensed under the MIT license. See LICENSE file in the project root for full license information. -->
+<Window x:Class="TestBindings.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TestBindings"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="700" Width="1100"
+        WindowStartupLocation="CenterScreen"
+        UseLayoutRounding="True" SnapsToDevicePixels="True"
+        TextOptions.TextFormattingMode="Display"
+        TextOptions.TextHintingMode="Auto"
+        TextOptions.TextRenderingMode="Auto">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="Points (target)" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0"/>
+        <TextBlock Text="Values (source)" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="1"/>
+        <TextBlock Text="Canvas" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="2"/>
+
+        <ListBox ItemsSource="{Binding Layer.Test.Points}" 
+                 VirtualizingPanel.IsVirtualizing="True"
+                 VirtualizingPanel.VirtualizationMode="Recycling"
+                 HorizontalContentAlignment="Stretch" 
+                 Grid.Row="1" Grid.Column="0">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBox Text="{Binding X, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Slider Value="{Binding X}" Minimum="0" Maximum="600"/>
+                        <TextBox Text="{Binding Y, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Slider Value="{Binding Y}" Minimum="0" Maximum="600"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <ListBox ItemsSource="{Binding Layer.Test.Values}"
+                 VirtualizingPanel.IsVirtualizing="True"
+                 VirtualizingPanel.VirtualizationMode="Recycling"
+                 HorizontalContentAlignment="Stretch" 
+                 Grid.Row="1" Grid.Column="1">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBox Text="{Binding Content, UpdateSourceTrigger=PropertyChanged}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <Canvas x:Name="canvas" Background="LightGray" Width="600" Height="600" Grid.Row="1" Grid.Column="2">
+
+        </Canvas>
+    </Grid>
+</Window>

@@ -1,0 +1,314 @@
+﻿<!-- Copyright (c) Wiesław Šoltés. All rights reserved. -->
+<!-- Licensed under the MIT license. See LICENSE file in the project root for full license information. -->
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:MultiLineDemo"
+        xmlns:controls="clr-namespace:Logic.Controls"
+        x:Class="MultiLineDemo.MainWindow"
+        Title="MainWindow" 
+        Height="700" Width="1048" 
+        WindowStartupLocation="CenterScreen" WindowState="Maximized">
+
+    <Window.Resources>
+
+        <Style x:Key="HelperLineStyleKey" TargetType="{x:Type Line}">
+            <Setter Property="Stroke" Value="#FF464646"/>
+            <Setter Property="StrokeThickness" Value="15"/>
+            <Setter Property="StrokeStartLineCap" Value="Round"/>
+            <Setter Property="StrokeEndLineCap" Value="Round"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding DataContext.HideHelperLines, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" Value="True">
+                    <Setter Property="Stroke" Value="Transparent"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="SelectedLineStyleKey" TargetType="{x:Type Line}">
+            <Setter Property="Stroke" Value="Transparent"/>
+            <Setter Property="StrokeThickness" Value="15"/>
+            <Setter Property="StrokeStartLineCap" Value="Round"/>
+            <Setter Property="StrokeEndLineCap" Value="Round"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                    <Setter Property="Stroke" Value="#FF464646"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="LineStyleKey" TargetType="{x:Type Line}">
+            <Setter Property="Stroke" Value="#FF56CAD6"/>
+            <Setter Property="StrokeThickness" Value="1"/>
+            <Setter Property="StrokeStartLineCap" Value="Round"/>
+            <Setter Property="StrokeEndLineCap" Value="Round"/>
+        </Style>
+
+        <Style x:Key="HelperPinRectangleStyleKey" TargetType="{x:Type Rectangle}">
+            <Setter Property="Stroke" Value="#FF464646"/>
+            <Setter Property="StrokeThickness" Value="1"/>
+            <Setter Property="Fill" Value="#FF464646"/>
+            <Setter Property="Width" Value="15"/>
+            <Setter Property="Height" Value="15"/>
+            <Setter Property="Margin" Value="-7.5,-7.5,0,0"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding DataContext.HideHelperLines, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" Value="True">
+                    <Setter Property="Stroke" Value="Transparent"/>
+                    <Setter Property="Fill" Value="Transparent"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="PinEllipseStyleKey" TargetType="{x:Type Ellipse}">
+            <Setter Property="Stroke" Value="#FF56CAD6"/>
+            <Setter Property="StrokeThickness" Value="1"/>
+            <Setter Property="Fill" Value="#FF56CAD6"/>
+            <Setter Property="Width" Value="8"/>
+            <Setter Property="Height" Value="8"/>
+            <Setter Property="Margin" Value="-4,-4,0,0"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsConnected}" Value="True">
+                    <Setter Property="Stroke" Value="Transparent"/>
+                    <Setter Property="Fill" Value="Transparent"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding DataContext.HidePins, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" Value="True">
+                    <Setter Property="Stroke" Value="Transparent"/>
+                    <Setter Property="Fill" Value="Transparent"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="InvertedStartEllipseStyleKey" TargetType="{x:Type Ellipse}">
+            <Setter Property="Stroke" Value="#FF56CAD6"/>
+            <Setter Property="StrokeThickness" Value="1"/>
+            <Setter Property="Fill" Value="Transparent"/>
+            <Setter Property="Width" Value="10"/>
+            <Setter Property="Height" Value="10"/>
+            <Setter Property="Margin" Value="0,0,0,0"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding InvertStart}" Value="False">
+                    <Setter Property="Stroke" Value="Transparent"/>
+                    <Setter Property="Fill" Value="Transparent"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="InvertedEndEllipseStyleKey" TargetType="{x:Type Ellipse}">
+            <Setter Property="Stroke" Value="#FF56CAD6"/>
+            <Setter Property="StrokeThickness" Value="1"/>
+            <Setter Property="Fill" Value="Transparent"/>
+            <Setter Property="Width" Value="10"/>
+            <Setter Property="Height" Value="10"/>
+            <Setter Property="Margin" Value="0,0,0,0"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding InvertEnd}" Value="False">
+                    <Setter Property="Stroke" Value="Transparent"/>
+                    <Setter Property="Fill" Value="Transparent"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="PinThumbStyleKey" TargetType="{x:Type Thumb}">
+            <EventSetter Event="Thumb.DragDelta" Handler="Thumb_DragDelta"/>
+            <Setter Property="UIElement.IsHitTestVisible" Value="True"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding DisableHitTest}" Value="True">
+                    <Setter Property="IsHitTestVisible" Value="False"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        
+        <DataTemplate x:Key="LineDataTemplateKey">
+            <Canvas>
+                <Canvas.Style>
+                    <Style TargetType="{x:Type Canvas}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding DisableHitTest}" Value="True">
+                                <Setter Property="IsHitTestVisible" Value="False"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Canvas.Style>
+                <Line X1="{Binding Start.X}" Y1="{Binding Start.Y}" X2="{Binding End.X}" Y2="{Binding End.Y}" Style="{DynamicResource SelectedLineStyleKey}"/>
+                <Line X1="{Binding Start.X}" Y1="{Binding Start.Y}" X2="{Binding End.X}" Y2="{Binding End.Y}" Style="{DynamicResource HelperLineStyleKey}"/>
+                <Line X1="{Binding StartPoint.X}" Y1="{Binding StartPoint.Y}" X2="{Binding EndPoint.X}" Y2="{Binding EndPoint.Y}" Style="{DynamicResource LineStyleKey}"/>
+                <Ellipse Canvas.Left="{Binding StartCenter.X}" Canvas.Top="{Binding StartCenter.Y}" Style="{DynamicResource InvertedStartEllipseStyleKey}"/>
+                <Ellipse Canvas.Left="{Binding EndCenter.X}" Canvas.Top="{Binding EndCenter.Y}" Style="{DynamicResource InvertedEndEllipseStyleKey}"/>
+            </Canvas>
+        </DataTemplate>
+
+        <DataTemplate x:Key="PinDataTemplateKey">
+            <Thumb Style="{DynamicResource PinThumbStyleKey}" >
+                <Thumb.Template>
+                    <ControlTemplate>
+                        <Canvas>
+                            <Rectangle Style="{DynamicResource HelperPinRectangleStyleKey}"/>
+                            <Ellipse Style="{DynamicResource PinEllipseStyleKey}"/>
+                        </Canvas>
+                    </ControlTemplate>
+                </Thumb.Template>
+            </Thumb>
+        </DataTemplate>
+
+        <local:ModelDataTemplateSelector x:Key="ModelDataTemplateSelector"/>
+
+        <ControlTemplate x:Key="PageItemsControlTemplateKey">
+            <ItemsControl ItemsSource="{Binding Elements}" ItemTemplateSelector="{DynamicResource ModelDataTemplateSelector}" Width="800" Height="600">
+                <ItemsControl.ItemContainerStyle>
+                    <Style TargetType="{x:Type ContentPresenter}">
+                        <Setter Property="Canvas.Left" Value="{Binding X}"/>
+                        <Setter Property="Canvas.Top" Value="{Binding Y}"/>
+                        <Setter Property="Panel.ZIndex" Value="{Binding Z}"/>
+                    </Style>
+                </ItemsControl.ItemContainerStyle>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <controls:ContextCanvas Width="800" Height="600" Background="#FF212121" ClipToBounds="True"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </ControlTemplate>
+
+        <DataTemplate x:Key="PageItemsDataTemplateKey">
+            <Control Template="{DynamicResource PageItemsControlTemplateKey}"/>
+        </DataTemplate>
+        
+        <!-- list item data templates -->
+
+        <DataTemplate x:Key="PinListDataTemplateKey">
+            <Border Margin="2" BorderThickness="1" BorderBrush="Black">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Grid Background="LightGray">
+                            <TextBlock VerticalAlignment="Center" TextAlignment="Center" Width="20" Text="{Binding Id}"/>
+                        </Grid>
+                        <StackPanel>
+                            <TextBlock Text="{Binding X}"/>
+                            <TextBlock Text="{Binding Y}"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <CheckBox IsChecked="{Binding IsSelected}" Content="IsSelected" />
+                    <CheckBox IsChecked="{Binding DisableHitTest}" Content="DisableHitTest" />
+                    <CheckBox IsChecked="{Binding IsConnected}" Content="IsConnected" />
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="LineListDataTemplateKey">
+            <Border Margin="2" BorderThickness="1" BorderBrush="Black">
+                <StackPanel Orientation="Horizontal">
+                    <Grid Background="LightGray">
+                        <TextBlock VerticalAlignment="Center" TextAlignment="Center" Width="20" Text="{Binding Id}"/>
+                    </Grid>
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Grid Background="LightBlue">
+                                <TextBlock VerticalAlignment="Center" TextAlignment="Center" Width="20" Text="{Binding Start.Id}"/>
+                            </Grid>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Start.X}"/>
+                                <TextBlock Text="{Binding Start.Y}"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Grid Background="LightGreen">
+                                <TextBlock VerticalAlignment="Center" TextAlignment="Center" Width="20" Text="{Binding End.Id}"/>
+                            </Grid>
+                            <StackPanel>
+                                <TextBlock Text="{Binding End.X}"/>
+                                <TextBlock Text="{Binding End.Y}"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <CheckBox IsChecked="{Binding IsSelected}" Content="IsSelected" />
+                        <CheckBox IsChecked="{Binding DisableHitTest}" Content="DisableHitTest" />
+                        <CheckBox IsChecked="{Binding InvertStart}" Content="InvertStart" />
+                        <CheckBox IsChecked="{Binding InvertEnd}" Content="InvertEnd" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="ConnectedLineListDataTemplateKey">
+            <Border Margin="2" BorderThickness="1" BorderBrush="Black">
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Grid Background="LightPink">
+                                <TextBlock VerticalAlignment="Center" TextAlignment="Center" Width="40" Text="Pins:"/>
+                            </Grid>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Pins.Count}"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Grid Background="LightPink">
+                                <TextBlock VerticalAlignment="Center" TextAlignment="Center" Width="40" Text="Lines:"/>
+                            </Grid>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Lines.Count}"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <CheckBox IsChecked="{Binding IsSelected}" Content="IsSelected" />
+                        <CheckBox IsChecked="{Binding IsConnected}" Content="IsConnected" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+
+    </Window.Resources>
+
+    <Grid SnapsToDevicePixels="True">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- connected lines Sync update -->
+        <!--
+        <Rectangle Grid.Column="3" Grid.Row="0">
+            <Rectangle.Style>
+                <Style TargetType="{x:Type Rectangle}">
+                    <Setter Property="Fill" Value="Transparent"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=Sync}" Value="True">
+                            <Setter Property="Fill" Value="LightPink"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Rectangle.Style>
+        </Rectangle>
+        -->
+        
+        <ListBox Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Lines}" Margin="0" Width="150" HorizontalContentAlignment="Stretch" ItemTemplate="{DynamicResource LineListDataTemplateKey}"/>
+        <ListBox Grid.Column="2" Grid.Row="1" ItemsSource="{Binding Pins}" Margin="0" Width="150" HorizontalContentAlignment="Stretch" ItemTemplate="{DynamicResource PinListDataTemplateKey}"/>
+        <ListBox Grid.Column="3" Grid.Row="1" ItemsSource="{Binding ConnectedLines}" Margin="0" Width="150" HorizontalContentAlignment="Stretch" ItemTemplate="{DynamicResource ConnectedLineListDataTemplateKey}"/>
+        
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button x:Name="ButtonOpen" Content="Open" Margin="2" Click="ButtonOpen_Click"/>
+            <Button x:Name="ButtonSave" Content="Save" Margin="2" Click="ButtonSave_Click"/>
+            <Button x:Name="ButtonReset" Content="Reset" Margin="2" Click="ButtonReset_Click"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="0">
+            <CheckBox IsChecked="{Binding CaptureMouse}" Content="Capture Mouse" />
+            <CheckBox IsChecked="{Binding HidePins}" Content="Hide Pins" />
+            <CheckBox IsChecked="{Binding HideHelperLines}" Content="Hide Helper Lines" />
+            <TextBlock Text="Ctrl+Left Click on line to split | Ctrl+Left Click on pin to connect line | Ctrl+Right Click to remove line/pin | Shift + Left Click to (de)select connected lines | Left Click to (de)select single line" />
+        </StackPanel>
+
+        <ScrollViewer Grid.Column="1" Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+            <ContentControl ContentTemplate="{DynamicResource PageItemsDataTemplateKey}" Content="{Binding}">
+                <ContentControl.LayoutTransform>
+                    <ScaleTransform ScaleX="1.0" ScaleY="1.0"/>
+                </ContentControl.LayoutTransform>
+            </ContentControl>
+        </ScrollViewer>
+
+    </Grid>
+
+</Window>

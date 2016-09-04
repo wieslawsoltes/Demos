@@ -1,0 +1,360 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4B6F08A2-9152-435B-ADAC-8E1BE224AD2A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Logic</RootNamespace>
+    <AssemblyName>Logic</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1-beta3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="ReachFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Reactive.Core, Version=2.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rx-Core.2.3.0-beta2\lib\net45\System.Reactive.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces, Version=2.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rx-Interfaces.2.3.0-beta2\lib\net45\System.Reactive.Interfaces.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Linq, Version=2.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rx-Linq.2.3.0-beta2\lib\net45\System.Reactive.Linq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.PlatformServices, Version=2.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rx-PlatformServices.2.3.0-beta2\lib\net45\System.Reactive.PlatformServices.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Windows.Threading, Version=2.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rx-Xaml.2.3.0-beta2\lib\net45\System.Reactive.Windows.Threading.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft SDKs\Expression\Blend\.NETFramework\v4.0\Libraries\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Chart\Chart.xaml.cs">
+      <DependentUpon>Chart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Chart\Model\ChartContext.cs" />
+    <Compile Include="Chart\Model\High.cs" />
+    <Compile Include="Chart\Model\Low.cs" />
+    <Compile Include="Chart\Model\ObservableQueue.cs" />
+    <Compile Include="Chart\Model\SignalState.cs" />
+    <Compile Include="Chart\Model\TransitionHigh.cs" />
+    <Compile Include="Chart\Model\TransitionLow.cs" />
+    <Compile Include="Chart\Model\Undefined.cs" />
+    <Compile Include="Chart\SignalStateSelector.cs" />
+    <Compile Include="Controls\ContextBorder.cs" />
+    <Compile Include="Controls\ContextCanvas.cs" />
+    <Compile Include="Elements\Core\IElement.cs" />
+    <Compile Include="Elements\Gates\AndGateElement.cs" />
+    <Compile Include="Elements\Gates\OrGateElement.cs" />
+    <Compile Include="Elements\Signals\SignalElement.cs" />
+    <Compile Include="Elements\Timers\TimerOffElement.cs" />
+    <Compile Include="Elements\Timers\TimerOnElement.cs" />
+    <Compile Include="Elements\Timers\TimerPulseElement.cs" />
+    <Compile Include="Model\Core\Element.cs" />
+    <Compile Include="Model\Core\IId.cs" />
+    <Compile Include="Model\Core\ILocation.cs" />
+    <Compile Include="Model\Core\ISelected.cs" />
+    <Compile Include="Model\Core\ITimer.cs" />
+    <Compile Include="Model\Core\Location.cs" />
+    <Compile Include="Model\Core\NotifyObject.cs" />
+    <Compile Include="Model\Core\Property.cs" />
+    <Compile Include="Model\Elements\Basic\Pin.cs" />
+    <Compile Include="Model\Elements\Basic\Signal.cs" />
+    <Compile Include="Model\Elements\Basic\Tag.cs" />
+    <Compile Include="Model\Elements\Basic\Wire.cs" />
+    <Compile Include="Model\Elements\Gates\AndGate.cs" />
+    <Compile Include="Model\Elements\Gates\BufferGate.cs" />
+    <Compile Include="Model\Elements\Gates\NandGate.cs" />
+    <Compile Include="Model\Elements\Gates\NorGate.cs" />
+    <Compile Include="Model\Elements\Gates\NotGate.cs" />
+    <Compile Include="Model\Elements\Gates\OrGate.cs" />
+    <Compile Include="Model\Elements\Gates\XnorGate.cs" />
+    <Compile Include="Model\Elements\Gates\XorGate.cs" />
+    <Compile Include="Model\Elements\Memory\MemoryResetPriority.cs" />
+    <Compile Include="Model\Elements\Memory\MemorySetPriority.cs" />
+    <Compile Include="Model\Elements\Timers\TimerOff.cs" />
+    <Compile Include="Model\Elements\Timers\TimerOn.cs" />
+    <Compile Include="Model\Elements\Timers\TimerPulse.cs" />
+    <Compile Include="Model\Enums\Alignment.cs" />
+    <Compile Include="Model\Enums\LabelPosition.cs" />
+    <Compile Include="Model\Enums\PageType.cs" />
+    <Compile Include="Model\Enums\PinType.cs" />
+    <Compile Include="Model\Factory.cs" />
+    <Compile Include="Model\Manager.cs" />
+    <Compile Include="Model\Recent.cs" />
+    <Compile Include="Model\Solution\Context.cs" />
+    <Compile Include="Model\Solution\Defaults.cs" />
+    <Compile Include="Model\Solution\Options.cs" />
+    <Compile Include="Model\Solution\Project.cs" />
+    <Compile Include="Model\Solution\Solution.cs" />
+    <Compile Include="Model\Solution\Title.cs" />
+    <Compile Include="Model\UndoRedoActions.cs" />
+    <Compile Include="Services\MouseService.cs" />
+    <Compile Include="Controls\ContextThumb.cs" />
+    <Compile Include="Controls\SelectionAdorner.cs" />
+    <Compile Include="Services\SelectionService.cs" />
+    <Compile Include="Simulation\BoolState.cs" />
+    <Compile Include="Simulation\Clock.cs" />
+    <Compile Include="Simulation\Core\IClock.cs" />
+    <Compile Include="Simulation\Core\ISimulation.cs" />
+    <Compile Include="Simulation\Core\IState.cs" />
+    <Compile Include="Simulation\Core\IStateSimulation.cs" />
+    <Compile Include="Simulation\Core\SimulationCache.cs" />
+    <Compile Include="Simulation\Core\SimulationContext.cs" />
+    <Compile Include="Simulation\Elements\AndGateSimulation.cs" />
+    <Compile Include="Simulation\Elements\BufferGateSimulation.cs" />
+    <Compile Include="Simulation\Elements\MemoryResetPrioritySimulation.cs" />
+    <Compile Include="Simulation\Elements\MemorySetPrioritySimulation.cs" />
+    <Compile Include="Simulation\Elements\NandGateSimulation.cs" />
+    <Compile Include="Simulation\Elements\NorGateSimulation.cs" />
+    <Compile Include="Simulation\Elements\NotGateSimulation.cs" />
+    <Compile Include="Simulation\Elements\OrGateSimulation.cs" />
+    <Compile Include="Simulation\Elements\TagSimulation.cs" />
+    <Compile Include="Simulation\Elements\TimerOffSimulation.cs" />
+    <Compile Include="Simulation\Elements\TimerOnSimulation.cs" />
+    <Compile Include="Simulation\Elements\TimerPulseSimulation.cs" />
+    <Compile Include="Simulation\Elements\XnorGateSimulation.cs" />
+    <Compile Include="Simulation\Elements\XorGateSimulation.cs" />
+    <Compile Include="Simulation\Simulation.cs" />
+    <Compile Include="Simulation\SimulationFactory.cs" />
+    <Compile Include="Simulation\SimulationSettings.cs" />
+    <Compile Include="Services\FileService.cs" />
+    <Compile Include="Services\PrintService.cs" />
+    <Compile Include="Utilities\Serializer.cs" />
+    <Compile Include="Utilities\SnapToGrid.cs" />
+    <Compile Include="Utilities\UndoRedoAction.cs" />
+    <Compile Include="Utilities\UndoRedoFramework.cs" />
+    <Compile Include="Utilities\UndoRedoState.cs" />
+    <Compile Include="ViewModels\ContextModelView.cs" />
+    <Compile Include="ViewModels\Core\IAction.cs" />
+    <Compile Include="ViewModels\Core\IExportService.cs" />
+    <Compile Include="ViewModels\Core\IFileService.cs" />
+    <Compile Include="ViewModels\Core\IPrintService.cs" />
+    <Compile Include="ViewModels\Core\IView.cs" />
+    <Compile Include="ViewModels\Core\IZoomService.cs" />
+    <Compile Include="ViewModels\Core\ViewModelBase.cs" />
+    <Compile Include="ViewModels\DashboardModelView.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\SolutionModelView.cs" />
+    <Compile Include="ViewModels\UICommand.cs" />
+    <Compile Include="Views\ChartView.xaml.cs">
+      <DependentUpon>ChartView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ColorEditor.cs" />
+    <Compile Include="Views\ColorEditorView.xaml.cs">
+      <DependentUpon>ColorEditorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DashboardView.xaml.cs">
+      <DependentUpon>DashboardView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Selectors\ModelContainerStyleSelector.cs" />
+    <Compile Include="Views\Selectors\ModelDataTemplateSelector.cs" />
+    <Compile Include="Views\SignalView.xaml.cs">
+      <DependentUpon>SignalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SolutionView.xaml.cs">
+      <DependentUpon>SolutionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TagView.xaml.cs">
+      <DependentUpon>TagView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ContextView.xaml.cs">
+      <DependentUpon>ContextView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SolutionTreeView.xaml.cs">
+      <DependentUpon>SolutionTreeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ToolboxView.xaml.cs">
+      <DependentUpon>ToolboxView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Chart\Chart.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dictionaries\BaseDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dictionaries\BlocksDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dictionaries\ContextDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dictionaries\GatesDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dictionaries\MemoryDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dictionaries\SignalDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dictionaries\TimersDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ChartView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ColorEditorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DashboardView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SignalView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SolutionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TagView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ContextView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dictionaries\RootDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Views\SolutionTreeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ToolboxView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="app.manifest" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\PageWhite.png" />
+    <Resource Include="Images\ProjectClosed.png" />
+    <Resource Include="Images\ProjectOpen.png" />
+    <Resource Include="Images\ProjectSelected.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

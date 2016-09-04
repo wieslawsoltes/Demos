@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="Logic.ModelView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Logic"
+             xmlns:selectors="clr-namespace:Logic.Selectors"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <selectors:LogicValueDataTemplateSelector x:Key="LogicValueDataTemplateSelector"/>
+    </UserControl.Resources>
+    <Grid SnapsToDevicePixels="True">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Elements"
+                   Grid.Column="0" Grid.Row="0" 
+                   Margin="0" Padding="2" 
+                   Background="LightGreen" 
+                   TextAlignment="Center" FontWeight="DemiBold"/>
+        <ListBox ItemsSource="{Binding Path=Elements}" 
+                 ItemTemplateSelector="{StaticResource ResourceKey=LogicValueDataTemplateSelector}" 
+                 Grid.Column="0" Grid.Row="2" 
+                 HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" 
+                 BorderThickness="0"/>
+    </Grid>   
+</UserControl>

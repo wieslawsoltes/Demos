@@ -1,0 +1,135 @@
+﻿<!-- Copyright (c) Wiesław Šoltés. All rights reserved. -->
+<!-- Licensed under the MIT license. See LICENSE file in the project root for full license information. -->
+<Window x:Class="UndoRedoDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:UndoRedoDemo"
+        Title="UndoRedo Demo" Height="450" Width="800" 
+        WindowStartupLocation="CenterScreen"
+        UseLayoutRounding="True" SnapsToDevicePixels="True">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="70"/>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="150"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <Button x:Name="buttonUndo" Content="_Undo" Margin="4" Click="buttonUndo_Click" IsEnabled="{Binding Source={x:Static local:UndoRedoFramework.State}, Path=CanUndo}"/>
+            <Button x:Name="buttonRedo" Content="_Redo" Margin="4" Click="buttonRedo_Click" IsEnabled="{Binding Source={x:Static local:UndoRedoFramework.State}, Path=CanRedo}"/>
+            <Button x:Name="buttonReset" Content="R_eset" Margin="4" Click="buttonReset_Click"/>
+            <Button x:Name="buttonReplay" Content="Re_play" Margin="4" Click="buttonReplay_Click"/>
+        </StackPanel>
+
+        <TextBlock Text="Undo Actions" Grid.Row="0" Grid.Column="2" Margin="4"/>
+        
+        <Border Grid.Row="1" Grid.Column="2" Margin="4" BorderBrush="Black" BorderThickness="1">
+            <ListBox ItemsSource="{Binding Source={x:Static local:UndoRedoFramework.UndoActions}}" HorizontalContentAlignment="Stretch" Margin="2" BorderThickness="0" BorderBrush="Transparent">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Path=Name}"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Border>
+
+        <TextBlock Text="Redo Actions" Grid.Row="0" Grid.Column="3" Margin="4"/>
+        
+        <Border Grid.Row="1" Grid.Column="3" Margin="4" BorderBrush="Black" BorderThickness="1">
+            <ListBox ItemsSource="{Binding Source={x:Static local:UndoRedoFramework.RedoActions}}" HorizontalContentAlignment="Stretch" Margin="2" BorderThickness="0" BorderBrush="Transparent">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Path=Name}"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Border>
+
+        <Canvas Grid.Row="1" Grid.Column="0" Width="300" Height="300" Background="LightGray">
+            
+            <Grid ShowGridLines="True" Width="300" Height="300">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+            </Grid>
+            
+            <Thumb Canvas.Left="90" Canvas.Top="90" 
+                   DragDelta="Thumb_DragDelta" 
+                   DragStarted="Thumb_DragStarted"
+                   DragCompleted="Thumb_DragCompleted"
+                   Tag="thumb0">
+                <Thumb.Template>
+                    <ControlTemplate>
+                        <Rectangle Width="30" Height="30" Fill="Red"></Rectangle>
+                    </ControlTemplate>
+                </Thumb.Template>
+            </Thumb>
+
+            <Thumb Canvas.Left="150" Canvas.Top="90" 
+                   DragDelta="Thumb_DragDelta" 
+                   DragCompleted="Thumb_DragCompleted" 
+                   DragStarted="Thumb_DragStarted"
+                   Tag="thumb1">
+                <Thumb.Template>
+                    <ControlTemplate>
+                        <Rectangle Width="30" Height="30" Fill="Red"></Rectangle>
+                    </ControlTemplate>
+                </Thumb.Template>
+            </Thumb>
+
+            <Thumb Canvas.Left="150" Canvas.Top="180" 
+                   DragDelta="Thumb_DragDelta" 
+                   DragCompleted="Thumb_DragCompleted" 
+                   DragStarted="Thumb_DragStarted"
+                   Tag="thumb2">
+                <Thumb.Template>
+                    <ControlTemplate>
+                        <Rectangle Width="30" Height="30" Fill="Red"></Rectangle>
+                    </ControlTemplate>
+                </Thumb.Template>
+            </Thumb>
+
+            <Thumb Canvas.Left="90" Canvas.Top="180" 
+                   DragDelta="Thumb_DragDelta" 
+                   DragCompleted="Thumb_DragCompleted" 
+                   DragStarted="Thumb_DragStarted"
+                   Tag="thumb3">
+                <Thumb.Template>
+                    <ControlTemplate>
+                        <Rectangle Width="30" Height="30" Fill="Red"></Rectangle>
+                    </ControlTemplate>
+                </Thumb.Template>
+            </Thumb>
+
+        </Canvas>
+
+    </Grid>
+    
+</Window>

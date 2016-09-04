@@ -1,0 +1,71 @@
+Logic.Console Commands:
+
+HELP
+	Show program help text
+QUIT
+	Quit program
+CLS
+	Clear console buffer
+LS
+	List all elements
+STATE <Name> <True|False|Null>
+	Set element state
+STATE
+	Show elements with state
+DEBUG <On|Off>
+	Enable/disable debug output
+LOG <On|Off>
+	Enable/disable log to file for Run
+RUN
+	Run simulation for all contexts
+RUN <Milliseconds>
+	Run simulation in periodic time intervals
+	Cycle interval is in milliseconds (default 100ms)
+BREAK
+	Stop periodic simulation
+EXECUTE <FileName>
+	Execute commands from .txt file
+ADD Solution <Name>
+	Create solution
+ADD Project <Name>
+	Create project
+ADD Context <Name>
+	Create context
+ADD Signal <Name>
+	Create signal
+ADD Pin <Name>
+	Create pin
+ADD AndGate <Name>
+	Create And gate
+ADD OrGate <Name>
+	Create Or gate
+ADD TimerOn <Name>
+	Create Timer On
+ADD TimerOff <Name>
+	Create Timer Off
+ADD TimerPulse <Name>
+	Create Timer Pulse
+CONNECT <Name> <Name>
+	Connect two pins with wire
+CONNECT <Name> <Name> <True|False> <True|False>
+	Connect two pins with wire and set Invert Start/End flag
+RESET
+	Reset current solution
+PACK <FileName> <FileName>
+	Compress binary file
+UNPACK <FileName> <FileName>
+	DeCompress binary file
+
+Notes:
+
+- All commands and arguments are case insensitive.
+- Use '//' for comments at the beginning of a line.
+- All commands can be executed from .txt script files.
+- It is possible to execute scripts within scripts.
+
+Command-line:
+
+Logic.Console <FileName>
+	Execute commands from .txt file and run simulation in 100ms intervals
+Logic.Console <FileName> <Milliseconds>
+	Execute commands from .txt file and run simulation in ms intervals

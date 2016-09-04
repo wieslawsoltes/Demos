@@ -1,0 +1,18 @@
+delete all
+add context c1
+set context c1
+add signal s1
+add signal s2
+add signal s3
+add andgate ag1
+add signal s4
+add pin p1
+add pin p2
+add pin p3
+connect o_s1 p1 false true
+connect p1 p2 false false
+connect o_s2 p2 false true
+connect p2 p3 false false
+connect o_s3 p3 false false
+connect p3 t_ag1 false false
+connect r_ag1 i_s4 false false

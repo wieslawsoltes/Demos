@@ -1,0 +1,58 @@
+﻿<!-- Copyright (c) Wiesław Šoltés. All rights reserved. -->
+<!-- Licensed under the MIT license. See LICENSE file in the project root for full license information. -->
+<UserControl x:Class="Logic.Chart.Chart"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Logic.Chart"
+             mc:Ignorable="d" 
+             d:DesignHeight="28" d:DesignWidth="600"
+             SnapsToDevicePixels="True">
+    
+    <UserControl.Resources>
+
+        <local:SignalStateSelector x:Key="SignalStateSelector"/>
+
+        <DataTemplate x:Key="LowDataTemplateKey">
+            <Path Width="20" Height="1" Stretch="UniformToFill" Stroke="Red" StrokeStartLineCap="Square" StrokeEndLineCap="Square" StrokeThickness="1" Data="M 0,0 L 1,0" VerticalAlignment="Bottom" RenderOptions.EdgeMode="Aliased"/>
+        </DataTemplate>
+
+        <DataTemplate x:Key="HighDataTemplateKey">
+            <Path Width="20" Height="1" Stretch="UniformToFill" Stroke="Red" StrokeStartLineCap="Square" StrokeEndLineCap="Square" StrokeThickness="1" Data="M 0,0 L 1,0" VerticalAlignment="Top" RenderOptions.EdgeMode="Aliased"/>
+        </DataTemplate>
+
+        <DataTemplate x:Key="TransitionLowDataTemplateKey">
+            <Path Width="20" Height="20" Stretch="UniformToFill" Stroke="Red" StrokeStartLineCap="Square" StrokeEndLineCap="Square" StrokeThickness="1" Data="M 0,0 L 0,1 1,1" VerticalAlignment="Bottom" RenderOptions.EdgeMode="Aliased"/>
+        </DataTemplate>
+
+        <DataTemplate x:Key="TransitionHighDataTemplateKey">
+            <Path Width="20" Height="20" Stretch="UniformToFill" Stroke="Red" StrokeStartLineCap="Square" StrokeEndLineCap="Square" StrokeThickness="1" Data="M 0,1 L 0,0 1,0" VerticalAlignment="Bottom" RenderOptions.EdgeMode="Aliased"/>
+        </DataTemplate>
+
+        <DataTemplate x:Key="UndefinedDataTemplateKey">
+            <Path Width="20" Height="20" Stretch="UniformToFill" Stroke="Red" StrokeStartLineCap="Square" StrokeEndLineCap="Square" StrokeThickness="1" VerticalAlignment="Top" RenderOptions.EdgeMode="Aliased"/>
+        </DataTemplate>
+
+    </UserControl.Resources>
+
+    <Grid Height="28">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <CheckBox Grid.Column="0" Margin="2,4,8,4" VerticalAlignment="Center" IsChecked="{Binding Signal.Tag.Simulation.State.State, FallbackValue={x:Null}}" Content="{Binding Signal.Name}"/>
+        <Border Grid.Column="1" BorderBrush="Black" BorderThickness="0" Height="28">
+            <ScrollViewer x:Name="scrollViewer" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" CanContentScroll="False" Margin="2,2,2,2">
+                <ItemsControl ItemsSource="{Binding States}" ItemTemplateSelector="{StaticResource SignalStateSelector}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling" Height="20"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </ScrollViewer>
+        </Border>
+    </Grid>
+    
+</UserControl>

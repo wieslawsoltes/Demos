@@ -1,0 +1,1295 @@
+﻿<!-- Copyright (c) Wiesław Šoltés. All rights reserved. -->
+<!-- Licensed under the MIT license. See LICENSE file in the project root for full license information. -->
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:Logic.Controls">
+
+    <!-- OneWayMotorBlock template -->
+
+    <ControlTemplate x:Key="OneWayMotorBlockControlTemplateKey">
+        <Canvas Width="480" Height="120" Style="{DynamicResource BackgroundCanvasStyleKey}">
+            <Path Data="M0,0 L480,0 M480,15 L0,15 M0,30 L480,30 M480,45 L450,45 M30,45 L0,45 M0,60 L30,60 M450,60 L480,60 M480,75 L450,75 M30,75 L0,75 M0,90 L480,90 M480,105 0,105 M0,120 L480,120" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M0,0 L0,120 M30,120 L30,0" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M60,0 L60,30 M90,30 L90,0 M120,30 L120,0 M150,0 L150,30 M180,30 L180,0 M210,0 L210,30 M240,30 L240,0 M270,0 L270,30 M300,30 L300,0 M330,0 L330,30 M360,30 L360,0 M390,0 L390,30 M420,30 L420,0" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M60,90 L60,120 M90,120 L90,90 M120,120 L120,90 M150,90 L150,120 M180,120 L180,90 M210,90 L210,120 M240,120 L240,90 M270,90 L270,120 M300,120 L300,90 M330,90 L330,120 M360,120 L360,90 M390,90 L390,120 M420,120 L420,90" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M450,0 L450,120 M480,120 L480,0" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M150,30 L150,90 M330,90 L330,30" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Grid Width="480" Height="120">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <!-- inputs -->
+                <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="SA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YB32" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="FA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YB34" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="HA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YB12" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="AA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YB22" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="7" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="ST" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YB44" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="11" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="AE" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YB21" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="12" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="HE" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YB11" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="13" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="FE" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YB33" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="14" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="SE" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YB31" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <!-- outputs -->
+                <StackPanel Grid.Row="5" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XB02" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="REA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XB92" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="BA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="7" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XB46" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="RST" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="12" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XB01" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="REE" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="13" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XB91" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="BE" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <!-- headers -->
+                <TextBlock Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="4" Text="OFF" Style="{DynamicResource LogicBlockLargeTextBlockStyleKey}"/>
+                <TextBlock Grid.Row="1" Grid.Column="5" Grid.RowSpan="2" Grid.ColumnSpan="6" Text="MOTOR" Style="{DynamicResource LogicBlockLargeTextBlockStyleKey}"/>
+                <TextBlock Grid.Row="1" Grid.Column="11" Grid.RowSpan="2" Grid.ColumnSpan="4" Text="ON" Style="{DynamicResource LogicBlockLargeTextBlockStyleKey}"/>
+            </Grid>
+        </Canvas>
+    </ControlTemplate>
+
+    <DataTemplate x:Key="OneWayMotorBlockDataTemplateKey">
+        <controls:ContextThumb Template="{DynamicResource OneWayMotorBlockControlTemplateKey}"/>
+    </DataTemplate>
+
+    <Style x:Key="OneWayMotorBlockContainerStyleKey" TargetType="ContentPresenter">
+        <Setter Property="Canvas.Left" Value="{Binding X}"/>
+        <Setter Property="Canvas.Top" Value="{Binding Y}"/>
+        <Setter Property="Panel.ZIndex" Value="{Binding Z}"/>
+    </Style>
+
+    <!-- TwoWayMotorBlock template -->
+
+    <ControlTemplate x:Key="TwoWayMotorBlockControlTemplateKey">
+        <Canvas Width="480" Height="120" Style="{DynamicResource BackgroundCanvasStyleKey}">
+            <Path Data="M0,0 L480,0 M480,15 L0,15 M0,30 L480,30 M480,45 L450,45 M30,45 L0,45 M0,60 L30,60 M450,60 L480,60 M480,75 L450,75 M30,75 L0,75 M0,90 L480,90 M480,105 0,105 M0,120 L480,120" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M0,0 L0,120 M30,120 L30,0" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M60,0 L60,30 M90,30 L90,0 M120,30 L120,0 M150,0 L150,30 M180,30 L180,0 M210,0 L210,30 M240,30 L240,0 M270,0 L270,30 M300,30 L300,0 M330,0 L330,30 M360,30 L360,0 M390,0 L390,30 M420,30 L420,0" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M60,90 L60,120 M90,120 L90,90 M120,120 L120,90 M150,90 L150,120 M180,120 L180,90 M210,90 L210,120 M240,120 L240,90 M270,90 L270,120 M300,120 L300,90 M330,90 L330,120 M360,120 L360,90 M390,90 L390,120 M420,120 L420,90" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M450,0 L450,120 M480,120 L480,0" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M150,30 L150,90 M330,90 L330,30" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Grid Width="480" Height="120">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <!-- inputs -->
+                <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="SA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YB32" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="FA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YB34" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="HA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YB12" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="AA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YB22" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="6" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="SS" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YB33" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="7" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="ST" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YB44" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="8" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="AS" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YB23" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="9" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="HS" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YB13" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="11" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="AE" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YB21" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="12" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="HE" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YB11" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="13" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="FE" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YB33" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="14" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="SE" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YB31" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <!-- outputs -->
+                <StackPanel Grid.Row="5" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XB02" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="REA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XB92" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="BA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="7" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XB46" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="RST" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="8" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XB03" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="RES" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="9" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XB93" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="BS" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="12" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XB01" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="REE" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="13" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XB91" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="BE" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <!-- headers -->
+                <TextBlock Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="4" Text="LEFT" Style="{DynamicResource LogicBlockLargeTextBlockStyleKey}"/>
+                <TextBlock Grid.Row="1" Grid.Column="5" Grid.RowSpan="2" Grid.ColumnSpan="6" Text="STOP" Style="{DynamicResource LogicBlockLargeTextBlockStyleKey}"/>
+                <TextBlock Grid.Row="1" Grid.Column="11" Grid.RowSpan="2" Grid.ColumnSpan="4" Text="RIGHT" Style="{DynamicResource LogicBlockLargeTextBlockStyleKey}"/>
+            </Grid>
+        </Canvas>
+    </ControlTemplate>
+
+    <DataTemplate x:Key="TwoWayMotorBlockDataTemplateKey">
+        <controls:ContextThumb Template="{DynamicResource TwoWayMotorBlockControlTemplateKey}"/>
+    </DataTemplate>
+
+    <Style x:Key="TwoWayMotorBlockContainerStyleKey" TargetType="ContentPresenter">
+        <Setter Property="Canvas.Left" Value="{Binding X}"/>
+        <Setter Property="Canvas.Top" Value="{Binding Y}"/>
+        <Setter Property="Panel.ZIndex" Value="{Binding Z}"/>
+    </Style>
+
+    <!-- SolenoidValve template -->
+
+    <ControlTemplate x:Key="SolenoidValveBlockControlTemplateKey">
+        <Canvas Width="480" Height="120" Style="{DynamicResource BackgroundCanvasStyleKey}">
+            <Path Data="M0,0 L480,0 M480,15 L0,15 M0,30 L480,30 M480,45 L450,45 M30,45 L0,45 M0,60 L30,60 M450,60 L480,60 M480,75 L450,75 M30,75 L0,75 M0,90 L480,90 M480,105 0,105 M0,120 L480,120" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M0,0 L0,120 M30,120 L30,0" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M60,0 L60,30 M90,30 L90,0 M120,30 L120,0 M150,0 L150,30 M180,30 L180,0 M210,0 L210,30 M240,30 L240,0 M270,0 L270,30 M300,30 L300,0 M330,0 L330,30 M360,30 L360,0 M390,0 L390,30 M420,30 L420,0" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M60,90 L60,120 M90,120 L90,90 M120,120 L120,90 M150,90 L150,120 M180,120 L180,90 M210,90 L210,120 M240,120 L240,90 M270,90 L270,120 M300,120 L300,90 M330,90 L330,120 M360,120 L360,90 M390,90 L390,120 M420,120 L420,90" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M450,0 L450,120 M480,120 L480,0" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M150,30 L150,90 M330,90 L330,30" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Grid Width="480" Height="120">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <!-- inputs -->
+                <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="SZ" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YB32" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="FZ" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YB34" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="HZ" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YB12" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="AZ" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YB22" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="11" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="AA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YB21" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="12" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="HA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YB11" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="13" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="FA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YB33" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="14" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="SA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YB31" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <!-- outputs -->
+                <StackPanel Grid.Row="5" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XB02" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="REZ" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XB92" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="BZ" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="7" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XB46" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="RST" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="12" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XB01" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="REA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="13" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XB91" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="BA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <!-- headers -->
+                <TextBlock Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="4" Text="CLOSE" Style="{DynamicResource LogicBlockLargeTextBlockStyleKey}"/>
+                <TextBlock Grid.Row="1" Grid.Column="5" Grid.RowSpan="2" Grid.ColumnSpan="6" Text="SOLENOID VALVE" Style="{DynamicResource LogicBlockLargeTextBlockStyleKey}"/>
+                <TextBlock Grid.Row="1" Grid.Column="11" Grid.RowSpan="2" Grid.ColumnSpan="4" Text="OPEN" Style="{DynamicResource LogicBlockLargeTextBlockStyleKey}"/>
+            </Grid>
+        </Canvas>
+    </ControlTemplate>
+
+    <DataTemplate x:Key="SolenoidValveBlockDataTemplateKey">
+        <controls:ContextThumb Template="{DynamicResource SolenoidValveBlockControlTemplateKey}"/>
+    </DataTemplate>
+
+    <Style x:Key="SolenoidValveBlockContainerStyleKey" TargetType="ContentPresenter">
+        <Setter Property="Canvas.Left" Value="{Binding X}"/>
+        <Setter Property="Canvas.Top" Value="{Binding Y}"/>
+        <Setter Property="Panel.ZIndex" Value="{Binding Z}"/>
+    </Style>
+
+    <!-- OpenCloseActuator template -->
+
+    <ControlTemplate x:Key="OpenCloseActuatorBlockControlTemplateKey">
+        <Canvas Width="480" Height="120" Style="{DynamicResource BackgroundCanvasStyleKey}">
+            <Path Data="M0,0 L480,0 M480,15 L0,15 M0,30 L480,30 M480,45 L450,45 M30,45 L0,45 M0,60 L30,60 M450,60 L480,60 M480,75 L450,75 M30,75 L0,75 M0,90 L480,90 M480,105 0,105 M0,120 L480,120" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M0,0 L0,120 M30,120 L30,0" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M60,0 L60,30 M90,30 L90,0 M120,30 L120,0 M150,0 L150,30 M180,30 L180,0 M210,0 L210,30 M240,30 L240,0 M270,0 L270,30 M300,30 L300,0 M330,0 L330,30 M360,30 L360,0 M390,0 L390,30 M420,30 L420,0" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M60,90 L60,120 M90,120 L90,90 M120,120 L120,90 M150,90 L150,120 M180,120 L180,90 M210,90 L210,120 M240,120 L240,90 M270,90 L270,120 M300,120 L300,90 M330,90 L330,120 M360,120 L360,90 M390,90 L390,120 M420,120 L420,90" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M450,0 L450,120 M480,120 L480,0" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M150,30 L150,90 M330,90 L330,30" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Grid Width="480" Height="120">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <!-- inputs -->
+                <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="SZ" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YB32" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="FZ" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YB34" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="HZ" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YB12" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="AZ" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YB22" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="7" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="ST" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YB44" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="11" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="AA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YB21" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="12" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="HA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YB11" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="13" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="FA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YB33" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="14" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="SA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YB31" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <!-- outputs -->
+                <StackPanel Grid.Row="5" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XB02" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="REZ" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XB92" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="BZ" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="7" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XB46" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="RST" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="12" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XB01" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="REA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="13" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XB91" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="BA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <!-- headers -->
+                <TextBlock Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="4" Text="CLOSE" Style="{DynamicResource LogicBlockLargeTextBlockStyleKey}"/>
+                <TextBlock Grid.Row="1" Grid.Column="5" Grid.RowSpan="2" Grid.ColumnSpan="6" Text="ACTUATOR" Style="{DynamicResource LogicBlockLargeTextBlockStyleKey}"/>
+                <TextBlock Grid.Row="1" Grid.Column="11" Grid.RowSpan="2" Grid.ColumnSpan="4" Text="OPEN" Style="{DynamicResource LogicBlockLargeTextBlockStyleKey}"/>
+            </Grid>
+        </Canvas>
+    </ControlTemplate>
+
+    <DataTemplate x:Key="OpenCloseActuatorBlockDataTemplateKey">
+        <controls:ContextThumb Template="{DynamicResource OpenCloseActuatorBlockControlTemplateKey}"/>
+    </DataTemplate>
+
+    <Style x:Key="OpenCloseActuatorBlockContainerStyleKey" TargetType="ContentPresenter">
+        <Setter Property="Canvas.Left" Value="{Binding X}"/>
+        <Setter Property="Canvas.Top" Value="{Binding Y}"/>
+        <Setter Property="Panel.ZIndex" Value="{Binding Z}"/>
+    </Style>
+
+    <!-- ControlActuatorBlock template -->
+
+    <ControlTemplate x:Key="ControlActuatorBlockControlTemplateKey">
+        <Canvas Width="480" Height="120" Style="{DynamicResource BackgroundCanvasStyleKey}">
+            <Path Data="M0,0 L480,0 M480,15 L0,15 M0,30 L480,30 M480,45 L450,45 M30,45 L0,45 M0,60 L30,60 M450,60 L480,60 M480,75 L450,75 M30,75 L0,75 M0,90 L480,90 M480,105 0,105 M0,120 L480,120" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M0,0 L0,120 M30,120 L30,0" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M60,0 L60,30 M90,30 L90,0 M120,30 L120,0 M150,0 L150,30 M180,30 L180,0 M210,0 L210,30 M240,30 L240,0 M270,0 L270,30 M300,30 L300,0 M330,0 L330,30 M360,30 L360,0 M390,0 L390,30 M420,30 L420,0" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M60,90 L60,120 M90,120 L90,90 M120,120 L120,90 M150,90 L150,120 M180,120 L180,90 M210,90 L210,120 M240,120 L240,90 M270,90 L270,120 M300,120 L300,90 M330,90 L330,120 M360,120 L360,90 M390,90 L390,120 M420,120 L420,90" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M450,0 L450,120 M480,120 L480,0" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M150,30 L150,90 M330,90 L330,30" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Grid Width="480" Height="120">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <!-- inputs -->
+                <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="SZ" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YC32" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="FZ" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YC34" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="HZ" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YC12" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="AZ" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YC22" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="HR" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YC24" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="6" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="H/A" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YC14" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="7" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="ST" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YC44" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="9" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="AR" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YC23" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="11" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="AA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YC21" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="12" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="HA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YC11" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="13" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="FA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YC33" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="14" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="SA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YC31" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <!-- outputs -->
+                <StackPanel Grid.Row="5" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XC02" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="REZ" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XC92" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="BZ" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="6" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XC14" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="RRH" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="7" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XC46" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="RST" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="8" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XC13" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="RRA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="12" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XC01" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="REA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="13" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XC91" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="BA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <!-- headers -->
+                <TextBlock Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="4" Text="CLOSE" Style="{DynamicResource LogicBlockLargeTextBlockStyleKey}"/>
+                <TextBlock Grid.Row="1" Grid.Column="5" Grid.RowSpan="2" Grid.ColumnSpan="6" Text="CONTROL ACTUATOR" Style="{DynamicResource LogicBlockLargeTextBlockStyleKey}"/>
+                <TextBlock Grid.Row="1" Grid.Column="11" Grid.RowSpan="2" Grid.ColumnSpan="4" Text="OPEN" Style="{DynamicResource LogicBlockLargeTextBlockStyleKey}"/>
+            </Grid>
+        </Canvas>
+    </ControlTemplate>
+
+    <DataTemplate x:Key="ControlActuatorBlockDataTemplateKey">
+        <controls:ContextThumb Template="{DynamicResource ControlActuatorBlockControlTemplateKey}"/>
+    </DataTemplate>
+
+    <Style x:Key="ControlActuatorBlockContainerStyleKey" TargetType="ContentPresenter">
+        <Setter Property="Canvas.Left" Value="{Binding X}"/>
+        <Setter Property="Canvas.Top" Value="{Binding Y}"/>
+        <Setter Property="Panel.ZIndex" Value="{Binding Z}"/>
+    </Style>
+
+    <!-- VariableSpeedDriveBlock template -->
+
+    <ControlTemplate x:Key="VariableSpeedDriveBlockControlTemplateKey">
+        <Canvas Width="480" Height="120" Style="{DynamicResource BackgroundCanvasStyleKey}">
+            <Path Data="M0,0 L480,0 M480,15 L0,15 M0,30 L480,30 M480,45 L450,45 M30,45 L0,45 M0,60 L30,60 M450,60 L480,60 M480,75 L450,75 M30,75 L0,75 M0,90 L480,90 M480,105 0,105 M0,120 L480,120" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M0,0 L0,120 M30,120 L30,0" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M60,0 L60,30 M90,30 L90,0 M120,30 L120,0 M150,0 L150,30 M180,30 L180,0 M210,0 L210,30 M240,30 L240,0 M270,0 L270,30 M300,30 L300,0 M330,0 L330,30 M360,30 L360,0 M390,0 L390,30 M420,30 L420,0" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M60,90 L60,120 M90,120 L90,90 M120,120 L120,90 M150,90 L150,120 M180,120 L180,90 M210,90 L210,120 M240,120 L240,90 M270,90 L270,120 M300,120 L300,90 M330,90 L330,120 M360,120 L360,90 M390,90 L390,120 M420,120 L420,90" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M450,0 L450,120 M480,120 L480,0" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M150,30 L150,90 M330,90 L330,30" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Grid Width="480" Height="120">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <!-- inputs -->
+                <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="SA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YC32" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="FA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YC34" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="HA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YC12" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="AA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YC22" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="HR" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YC24" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="6" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="H/A" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YC14" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="7" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="ST" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YC44" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="9" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="AR" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YC23" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="11" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="AE" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YC21" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="12" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="HE" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YC11" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="13" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="FE" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YC33" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="14" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="SE" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YC31" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <!-- outputs -->
+                <StackPanel Grid.Row="5" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XC02" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="REA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XC92" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="BA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="6" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XC14" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="RRH" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="7" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XC46" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="RST" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="8" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XC13" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="RRA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="12" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XC01" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="REE" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="13" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XC91" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="BE" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <!-- headers -->
+                <TextBlock Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="4" Text="OFF" Style="{DynamicResource LogicBlockLargeTextBlockStyleKey}"/>
+                <TextBlock Grid.Row="1" Grid.Column="5" Grid.RowSpan="2" Grid.ColumnSpan="6" Text="VARIABLE SPEED DRIVE" Style="{DynamicResource LogicBlockLargeTextBlockStyleKey}"/>
+                <TextBlock Grid.Row="1" Grid.Column="11" Grid.RowSpan="2" Grid.ColumnSpan="4" Text="ON" Style="{DynamicResource LogicBlockLargeTextBlockStyleKey}"/>
+            </Grid>
+        </Canvas>
+    </ControlTemplate>
+
+    <DataTemplate x:Key="VariableSpeedDriveBlockDataTemplateKey">
+        <controls:ContextThumb Template="{DynamicResource VariableSpeedDriveBlockControlTemplateKey}"/>
+    </DataTemplate>
+
+    <Style x:Key="VariableSpeedDriveBlockContainerStyleKey" TargetType="ContentPresenter">
+        <Setter Property="Canvas.Left" Value="{Binding X}"/>
+        <Setter Property="Canvas.Top" Value="{Binding Y}"/>
+        <Setter Property="Panel.ZIndex" Value="{Binding Z}"/>
+    </Style>
+
+    <!-- GroupControlBlock template -->
+
+    <ControlTemplate x:Key="GroupControlBlockControlTemplateKey">
+        <Canvas Width="480" Height="120" Style="{DynamicResource BackgroundCanvasStyleKey}">
+            <Path Data="M0,0 L480,0 M480,15 L0,15 M0,30 L480,30 M480,45 L450,45 M30,45 L0,45 M0,60 L30,60 M450,60 L480,60 M480,75 L450,75 M30,75 L0,75 M0,90 L480,90 M480,105 0,105 M0,120 L480,120" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M0,0 L0,120 M30,120 L30,0" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M60,0 L60,30 M90,30 L90,0 M120,30 L120,0 M150,0 L150,30 M180,30 L180,0 M210,0 L210,30 M240,30 L240,0 M270,0 L270,30 M300,30 L300,0 M330,0 L330,30 M360,30 L360,0 M390,0 L390,30 M420,30 L420,0" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M60,90 L60,120 M90,120 L90,90 M120,120 L120,90 M150,90 L150,120 M180,120 L180,90 M210,90 L210,120 M240,120 L240,90 M270,90 L270,120 M300,120 L300,90 M330,90 L330,120 M360,120 L360,90 M390,90 L390,120 M420,120 L420,90" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M450,0 L450,120 M480,120 L480,0" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M150,30 L150,90 M330,90 L330,30" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Grid Width="480" Height="120">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <!-- inputs -->
+                <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="FS" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YA32" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="HS" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YA16" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="AS" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YA26" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="ES" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YA02" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="HP" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YA22" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="6" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="H/A" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YA11" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="7" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="TB" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YA13" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="8" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="FP" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YA14" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="9" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="KH" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YA10" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="10" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="AP" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YA21" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="11" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="EB" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YA01" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="12" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="AB" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YA25" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="13" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="HB" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YA15" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="14" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="FB" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YA31" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <!-- outputs -->
+                <StackPanel Grid.Row="5" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XA02" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="BS" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XA08" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="RAZ" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XA84" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="RPS" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XA12" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="RPH" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="7" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XA05" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="RST" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="8" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XA13" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="RHP" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="9" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XA11" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="RPA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="11" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XA83" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="RPB" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="12" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XA07" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="REB" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="13" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XA01" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="BB" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <!-- headers -->
+                <TextBlock Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="4" Text="STOP" Style="{DynamicResource LogicBlockLargeTextBlockStyleKey}"/>
+                <TextBlock Grid.Row="1" Grid.Column="5" Grid.RowSpan="2" Grid.ColumnSpan="6" Text="GROUP CONTROL" Style="{DynamicResource LogicBlockLargeTextBlockStyleKey}"/>
+                <TextBlock Grid.Row="1" Grid.Column="11" Grid.RowSpan="2" Grid.ColumnSpan="4" Text="START" Style="{DynamicResource LogicBlockLargeTextBlockStyleKey}"/>
+            </Grid>
+        </Canvas>
+    </ControlTemplate>
+
+    <DataTemplate x:Key="GroupControlBlockDataTemplateKey">
+        <controls:ContextThumb Template="{DynamicResource GroupControlBlockControlTemplateKey}"/>
+    </DataTemplate>
+
+    <Style x:Key="GroupControlBlockContainerStyleKey" TargetType="ContentPresenter">
+        <Setter Property="Canvas.Left" Value="{Binding X}"/>
+        <Setter Property="Canvas.Top" Value="{Binding Y}"/>
+        <Setter Property="Panel.ZIndex" Value="{Binding Z}"/>
+    </Style>
+
+    <!-- OneOutOfTwoSelectionControlBlock template -->
+
+    <ControlTemplate x:Key="OneOutOfTwoSelectionControlBlockControlTemplateKey">
+        <Canvas Width="480" Height="120" Style="{DynamicResource BackgroundCanvasStyleKey}">
+            <Path Data="M0,0 L480,0 M480,15 L0,15 M0,30 L480,30 M480,45 L450,45 M30,45 L0,45 M0,60 L30,60 M450,60 L480,60 M480,75 L450,75 M30,75 L0,75 M0,90 L480,90 M480,105 0,105 M0,120 L480,120" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M0,0 L0,120 M30,120 L30,0" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M60,0 L60,30 M90,30 L90,0 M120,30 L120,0 M150,0 L150,30 M180,30 L180,0 M210,0 L210,30 M240,30 L240,0 M270,0 L270,30 M300,30 L300,0 M330,0 L330,30 M360,30 L360,0 M390,0 L390,30 M420,30 L420,0" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M60,90 L60,120 M90,120 L90,90 M120,120 L120,90 M150,90 L150,120 M180,120 L180,90 M210,90 L210,120 M240,120 L240,90 M270,90 L270,120 M300,120 L300,90 M330,90 L330,120 M360,120 L360,90 M390,90 L390,120 M420,120 L420,90" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M450,0 L450,120 M480,120 L480,0" Style="{DynamicResource LogicPathStyleKey}"/>
+
+            <Path Data="M30,45 L450,45" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M60,75 L300,75" Style="{DynamicResource LogicPathStyleKey}"/>
+
+            <Path Data="M150,30 L150,45 M240,45 L240,30" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M60,75 L60,90 M180,90 L180,75 M300,75 L300,90" Style="{DynamicResource LogicPathStyleKey}"/>
+
+            <Grid Width="480" Height="120">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <!-- inputs -->
+                <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="SA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YA32" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="FA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YA34" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="HA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YA12" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="AA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YA22" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="HE" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YA11" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="6" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="AE" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YA21" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="7" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="FE" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YA33" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="8" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="ST1" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YA44" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="9" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="ST2" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YA45" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="11" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="ZAA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YA72" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="12" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="ZAE" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YA71" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="13" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="SEL1" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="14" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="SEL2" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <!-- outputs -->
+                <StackPanel Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XA02" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="VWA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XA92" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="BA1" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XA91" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="BE1" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="8" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XA94" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="BA2" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="9" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XA93" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="BE2" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="14" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XA01" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="VWE" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <!-- headers -->
+                <TextBlock Grid.Row="1" Grid.Column="1" Grid.RowSpan="1" Grid.ColumnSpan="4" Text="OFF" Style="{DynamicResource LogicBlockMediumTextBlockStyleKey}"/>
+                <TextBlock Grid.Row="1" Grid.Column="5" Grid.RowSpan="1" Grid.ColumnSpan="3" Text="ON" Style="{DynamicResource LogicBlockMediumTextBlockStyleKey}"/>
+                <TextBlock Grid.Row="1" Grid.Column="8" Grid.RowSpan="1" Grid.ColumnSpan="7" Text="CRITERIA TO CHANGE" Style="{DynamicResource LogicBlockMediumTextBlockStyleKey}"/>
+                <TextBlock Grid.Row="4" Grid.Column="2" Grid.RowSpan="1" Grid.ColumnSpan="4" Text="EQUIPMENT 1" Style="{DynamicResource LogicBlockMediumTextBlockStyleKey}"/>
+                <TextBlock Grid.Row="4" Grid.Column="6" Grid.RowSpan="1" Grid.ColumnSpan="4" Text="EQUIPMENT 2" Style="{DynamicResource LogicBlockMediumTextBlockStyleKey}"/>
+            </Grid>
+        </Canvas>
+    </ControlTemplate>
+
+    <DataTemplate x:Key="OneOutOfTwoSelectionControlBlockDataTemplateKey">
+        <controls:ContextThumb Template="{DynamicResource OneOutOfTwoSelectionControlBlockControlTemplateKey}"/>
+    </DataTemplate>
+
+    <Style x:Key="OneOutOfTwoSelectionControlBlockContainerStyleKey" TargetType="ContentPresenter">
+        <Setter Property="Canvas.Left" Value="{Binding X}"/>
+        <Setter Property="Canvas.Top" Value="{Binding Y}"/>
+        <Setter Property="Panel.ZIndex" Value="{Binding Z}"/>
+    </Style>
+
+    <!-- OneOutOfThreeSelectionControlBlock template -->
+
+    <ControlTemplate x:Key="OneOutOfThreeSelectionControlBlockControlTemplateKey">
+        <Canvas Width="480" Height="120" Style="{DynamicResource BackgroundCanvasStyleKey}">
+            <Path Data="M0,0 L480,0 M480,15 L0,15 M0,30 L480,30 M480,45 L450,45 M30,45 L0,45 M0,60 L30,60 M450,60 L480,60 M480,75 L450,75 M30,75 L0,75 M0,90 L480,90 M480,105 0,105 M0,120 L480,120" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M0,0 L0,120 M30,120 L30,0" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M60,0 L60,30 M90,30 L90,0 M120,30 L120,0 M150,0 L150,30 M180,30 L180,0 M210,0 L210,30 M240,30 L240,0 M270,0 L270,30 M300,30 L300,0 M330,0 L330,30 M360,30 L360,0 M390,0 L390,30 M420,30 L420,0" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M60,90 L60,120 M90,120 L90,90 M120,120 L120,90 M150,90 L150,120 M180,120 L180,90 M210,90 L210,120 M240,120 L240,90 M270,90 L270,120 M300,120 L300,90 M330,90 L330,120 M360,120 L360,90 M390,90 L390,120 M420,120 L420,90" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M450,0 L450,120 M480,120 L480,0" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M30,45 L450,45" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M60,75 L420,75" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M150,30 L150,45 M240,45 L240,30" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M60,75 L60,90 M180,90 L180,75 M300,75 L300,90 M420,90 L420,75" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Grid Width="480" Height="120">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <!-- inputs -->
+                <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="SA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YA32" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="FA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YA34" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="HA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YA12" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="AA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YA22" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="HE" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YA11" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="6" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="AE" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YA21" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="7" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="FE" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YA33" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="8" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="ST1" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YA44" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="9" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="ST2" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YA45" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="10" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="ST3" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YA46" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="11" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="ZAA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YA72" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="12" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="ZAE" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YA71" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="13" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="SEL1" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="14" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="SEL2" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="15" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="SEL3" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <!-- outputs -->
+                <StackPanel Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XA02" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="VWA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XA92" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="BA1" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XA91" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="BE1" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="8" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XA94" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="BA2" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="9" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XA93" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="BE2" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="12" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XA96" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="BA3" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="13" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XA95" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="BE3" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="14" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XA01" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="VWE" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <!-- headers -->
+                <TextBlock Grid.Row="1" Grid.Column="1" Grid.RowSpan="1" Grid.ColumnSpan="4" Text="OFF" Style="{DynamicResource LogicBlockMediumTextBlockStyleKey}"/>
+                <TextBlock Grid.Row="1" Grid.Column="5" Grid.RowSpan="1" Grid.ColumnSpan="3" Text="ON" Style="{DynamicResource LogicBlockMediumTextBlockStyleKey}"/>
+                <TextBlock Grid.Row="1" Grid.Column="8" Grid.RowSpan="1" Grid.ColumnSpan="7" Text="CRITERIA TO CHANGE" Style="{DynamicResource LogicBlockMediumTextBlockStyleKey}"/>
+                <TextBlock Grid.Row="4" Grid.Column="2" Grid.RowSpan="1" Grid.ColumnSpan="4" Text="EQUIPMENT 1" Style="{DynamicResource LogicBlockMediumTextBlockStyleKey}"/>
+                <TextBlock Grid.Row="4" Grid.Column="6" Grid.RowSpan="1" Grid.ColumnSpan="4" Text="EQUIPMENT 2" Style="{DynamicResource LogicBlockMediumTextBlockStyleKey}"/>
+                <TextBlock Grid.Row="4" Grid.Column="10" Grid.RowSpan="1" Grid.ColumnSpan="4" Text="EQUIPMENT 3" Style="{DynamicResource LogicBlockMediumTextBlockStyleKey}"/>
+            </Grid>
+        </Canvas>
+    </ControlTemplate>
+
+    <DataTemplate x:Key="OneOutOfThreeSelectionControlBlockDataTemplateKey">
+        <controls:ContextThumb Template="{DynamicResource OneOutOfThreeSelectionControlBlockControlTemplateKey}"/>
+    </DataTemplate>
+
+    <Style x:Key="OneOutOfThreeSelectionControlBlockContainerStyleKey" TargetType="ContentPresenter">
+        <Setter Property="Canvas.Left" Value="{Binding X}"/>
+        <Setter Property="Canvas.Top" Value="{Binding Y}"/>
+        <Setter Property="Panel.ZIndex" Value="{Binding Z}"/>
+    </Style>
+
+    <!-- FunctionControlBlock template -->
+
+    <Style x:Key="FunctionControlBlockContainerStyleKey" TargetType="ContentPresenter">
+        <Setter Property="Canvas.Left" Value="{Binding X}"/>
+        <Setter Property="Canvas.Top" Value="{Binding Y}"/>
+        <Setter Property="Panel.ZIndex" Value="{Binding Z}"/>
+    </Style>
+
+    <ControlTemplate x:Key="FunctionControlBlockControlTemplateKey">
+        <Canvas Width="480" Height="120" Style="{DynamicResource BackgroundCanvasStyleKey}">
+            <Path Data="M0,0 L480,0 M480,15 L0,15 M0,30 L480,30 M480,45 L450,45 M30,45 L0,45 M0,60 L30,60 M450,60 L480,60 M480,75 L450,75 M30,75 L0,75 M0,90 L480,90 M480,105 0,105 M0,120 L480,120" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M0,0 L0,120 M30,120 L30,0" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M60,0 L60,30 M90,30 L90,0 M120,30 L120,0 M150,0 L150,30 M180,30 L180,0 M210,0 L210,30 M240,30 L240,0 M270,0 L270,30 M300,30 L300,0 M330,0 L330,30 M360,30 L360,0 M390,0 L390,30 M420,30 L420,0" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M60,90 L60,120 M90,120 L90,90 M120,120 L120,90 M150,90 L150,120 M180,120 L180,90 M210,90 L210,120 M240,120 L240,90 M270,90 L270,120 M300,120 L300,90 M330,90 L330,120 M360,120 L360,90 M390,90 L390,120 M420,120 L420,90" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M450,0 L450,120 M480,120 L480,0" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Path Data="M150,30 L150,90 M330,90 L330,30" Style="{DynamicResource LogicPathStyleKey}"/>
+            <Grid Width="480" Height="120">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <!-- inputs -->
+                <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="SA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YA32" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="FA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YA34" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="AA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YA22" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="HA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YA16" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="6" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="H/A" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YA11" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="7" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="ST" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YA05" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="11" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="HE" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YA15" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="12" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="AE" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YA21" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Grid.Column="13" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="FE" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="YA33" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <!-- outputs -->
+                <StackPanel Grid.Row="5" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XA02" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="TSA" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="7" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XA05" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="RST" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="5" Grid.Column="13" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="XA01" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                    <TextBlock Text="TSE" Style="{DynamicResource LogicBlockSmallTextBlockStyleKey}"/>
+                </StackPanel>
+                <!-- headers -->
+                <TextBlock Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="4" Text="OFF" Style="{DynamicResource LogicBlockLargeTextBlockStyleKey}"/>
+                <TextBlock Grid.Row="1" Grid.Column="5" Grid.RowSpan="2" Grid.ColumnSpan="6" Text="FUNCTION CONTROL" Style="{DynamicResource LogicBlockLargeTextBlockStyleKey}"/>
+                <TextBlock Grid.Row="1" Grid.Column="11" Grid.RowSpan="2" Grid.ColumnSpan="4" Text="ON" Style="{DynamicResource LogicBlockLargeTextBlockStyleKey}"/>
+            </Grid>
+        </Canvas>
+    </ControlTemplate>
+
+    <DataTemplate x:Key="FunctionControlBlockDataTemplateKey">
+        <controls:ContextThumb Template="{DynamicResource FunctionControlBlockControlTemplateKey}"/>
+    </DataTemplate>
+
+</ResourceDictionary>

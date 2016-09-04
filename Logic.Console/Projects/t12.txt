@@ -1,0 +1,27 @@
+delete all
+add context ctx1
+set context ctx1
+add signal s1
+add signal s2
+add signal s3
+add signal s4
+add orgate og1
+add orgate og2
+add pin p1
+add pin p2
+add pin p3
+add pin p4
+add pin p5
+add pin p6
+connect o_s1 l_og1 false false
+connect o_s2 l_og2 false false
+connect r_og2 p1 true false
+connect p1 p2 false false
+connect p2 p3 false false
+connect p3 b_og1 false false
+connect r_og1 p4 true false
+connect p4 p5 false false
+connect p5 p6 false false
+connect p6 t_og2 false false
+connect p4 i_s3 false false
+connect p1 i_s4 false false

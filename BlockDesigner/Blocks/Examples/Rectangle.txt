@@ -1,0 +1,8 @@
+﻿
+block begin Rectangle 30 30
+
+    path begin
+        line 0,0 30,0 30,30 0,30 close
+    path end
+
+block end

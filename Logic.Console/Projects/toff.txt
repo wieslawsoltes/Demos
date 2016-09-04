@@ -1,0 +1,14 @@
+add solution sln1
+add project prj1
+add context ctx1
+add signal s1
+add signal s2
+add orgate og1
+add signal s3
+add pin p1
+add timeroff toff1 5,0
+connect o_s1 p1 false false
+connect p1 t_og1 false false
+connect o_s2 l_og1 false false
+connect r_og1 l_toff1 false false
+connect r_toff1 i_s3 false false

@@ -1,0 +1,22 @@
+﻿<!-- Copyright (c) Wiesław Šoltés. All rights reserved. -->
+<!-- Licensed under the MIT license. See LICENSE file in the project root for full license information. -->
+<Application x:Class="Logic.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="Views/MainView.xaml">
+    <Application.Resources>
+
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Dictionaries/BaseDictionary.xaml"/>
+                <ResourceDictionary Source="Dictionaries/SignalDictionary.xaml"/>
+                <ResourceDictionary Source="Dictionaries/GatesDictionary.xaml"/>
+                <ResourceDictionary Source="Dictionaries/MemoryDictionary.xaml"/>
+                <ResourceDictionary Source="Dictionaries/TimersDictionary.xaml"/>
+                <ResourceDictionary Source="Dictionaries/BlocksDictionary.xaml"/>
+                <ResourceDictionary Source="Dictionaries/ContextDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
+    </Application.Resources>
+</Application>

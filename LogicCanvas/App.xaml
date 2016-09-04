@@ -1,0 +1,18 @@
+﻿<Application x:Class="LogicCanvas.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Dictionaries/ColorDictionary.Light.xaml"/>
+                <ResourceDictionary Source="Dictionaries/StyleDictionary.xaml"/>
+                <ResourceDictionary Source="Dictionaries/PageDictionary.xaml"/>
+                <ResourceDictionary Source="Dictionaries/LogicDictionary.xaml"/>
+                <ResourceDictionary Source="Dictionaries/ControlBlockDictionary.xaml"/>
+                <ResourceDictionary Source="Dictionaries/ItemTemplateDictionary.xaml"/>
+                <ResourceDictionary Source="Dictionaries/PropertiesDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

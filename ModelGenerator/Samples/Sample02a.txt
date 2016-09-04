@@ -1,0 +1,36 @@
+
+N Logic Model
+
+	A Element
+        	P Name			string
+        	P Id			UInt32
+        	P Parent		Element
+        	L Children		Element
+
+	I IClock
+		P Cycle			long
+		P Resolution		int
+
+	I ISimulation
+		F Compile		void
+		F Calculate		void
+		F Reset			void
+		P Element		Element
+		P Clock			IClock
+		P IState		State
+		P InitialState		bool?
+		P StatesCache		Tuple<IState,bool>[]
+		P HaveCache		bool
+		P DependsOn		Element[]
+
+	I IStateSimulation
+		P Simulation		ISimulation
+
+	C Wire Element
+		P Start			Pin
+		P End			Pin
+		P InvertStart		bool
+		P InvertEnd		bool
+
+	C AndGate Element IStateSimulation
+		P Simulation		ISimulation

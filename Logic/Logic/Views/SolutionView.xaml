@@ -1,0 +1,283 @@
+﻿<!-- Copyright (c) Wiesław Šoltés. All rights reserved. -->
+<!-- Licensed under the MIT license. See LICENSE file in the project root for full license information. -->
+<UserControl x:Class="Logic.Views.SolutionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Logic"
+             xmlns:controls="clr-namespace:Logic.Controls"
+             xmlns:utilities="clr-namespace:Logic.Utilities"
+             xmlns:views="clr-namespace:Logic.Views"
+             mc:Ignorable="d" 
+             Background="Black"
+             SnapsToDevicePixels="True" UseLayoutRounding="True"
+             TextOptions.TextFormattingMode="Display"
+             TextOptions.TextHintingMode="Auto"
+             TextOptions.TextRenderingMode="Auto"
+             d:DesignHeight="700" d:DesignWidth="1000">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </UserControl.Resources>
+
+    <Grid Margin="0" Background="White" SnapsToDevicePixels="True">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="25"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <Menu Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Background="White">
+            <MenuItem Header="_File">
+                <MenuItem Header="_New" Command="{Binding NewCommand}" InputGestureText="Ctrl+Alt+N"/>
+                <Separator/>
+                <MenuItem Header="_Open..." Command="{Binding OpenCommand}" InputGestureText="Ctrl+O"/>
+                <Separator/>
+                <MenuItem Header="Close" Command="{Binding CloseCommand}" InputGestureText="Ctrl+Alt+C"/>
+                <Separator/>
+                <MenuItem Header="_Save" Command="{Binding SaveCommand}" InputGestureText="Ctrl+S"/>
+                <MenuItem Header="Save _As..." Command="{Binding SaveAsCommand}" InputGestureText="Ctrl+Shift+S"/>
+                <Separator/>
+                <MenuItem Header="_Print..." Command="{Binding PrintCommand}" CommandParameter="{Binding Solution}" InputGestureText="Ctrl+P"/>
+                <Separator/>
+                <MenuItem Header="_Recent" ItemsSource="{Binding RecentSolutions}">
+                    <MenuItem.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </MenuItem.ItemTemplate>
+                    <MenuItem.ItemContainerStyle>
+                        <Style TargetType="MenuItem">
+                            <Setter Property="Command" Value="{Binding DataContext.OpenCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"/>
+                            <Setter Property="CommandParameter" Value="{Binding Path}"/>
+                        </Style>
+                    </MenuItem.ItemContainerStyle>
+                </MenuItem>
+                <Separator/>
+                <MenuItem Header="E_xit" Command="{Binding ExitCommand}" InputGestureText="Alt+F4"/>
+            </MenuItem>
+            <MenuItem Header="_Edit">
+                <MenuItem Header="_Undo" Command="{Binding UndoCommand}" InputGestureText="Ctrl+Z" IsEnabled="{Binding Source={x:Static utilities:UndoRedoFramework.State}, Path=CanUndo}"/>
+                <MenuItem Header="_Redo" Command="{Binding RedoCommand}" InputGestureText="Ctrl+Y" IsEnabled="{Binding Source={x:Static utilities:UndoRedoFramework.State}, Path=CanRedo}"/>
+                <Separator/>
+                <MenuItem Header="Cu_t" Command="{Binding CutCommand}" InputGestureText="Ctrl+X"/>
+                <MenuItem Header="_Copy" Command="{Binding CopyCommand}" InputGestureText="Ctrl+C"/>
+                <MenuItem Header="_Paste" Command="{Binding PasteCommand}" InputGestureText="Ctrl+V"/>
+                <MenuItem Header="_Delete" Command="{Binding DelCommand}" InputGestureText="Del"/>
+                <Separator/>
+                <MenuItem Header="Select _All" Command="{Binding SelectAllCommand}" InputGestureText="Ctrl+A"/>
+            </MenuItem>
+            <MenuItem Header="_View">
+                <MenuItem Header="Solution Ex_plorer" IsCheckable="True" IsChecked="{Binding Options.ShowSolutionExplorer}"/>
+                <MenuItem Header="Toolbo_x" IsCheckable="True" IsChecked="{Binding Options.ShowToolbox}"/>
+                <Separator/>
+                <MenuItem Header="Zoom To _Fit" Command="{Binding ZoomToFitCommand}" InputGestureText="Esc"/>
+                <MenuItem Header="_Reset Zoom" Command="{Binding ResetZoomCommand}" InputGestureText="Ctrl+0"/>
+                <MenuItem Header="Zoom _In" Command="{Binding ZoomInCommand}" InputGestureText="Ctrl++"/>
+                <MenuItem Header="Zoom _Out" Command="{Binding ZoomOutCommand}" InputGestureText="Ctrl+-"/>
+                <Separator/>
+                <MenuItem Header="_Next View" Command="{Binding NextViewCommand}" InputGestureText="F9"/>
+                <MenuItem Header="_Previous View" Command="{Binding PreviousViewCommand}" InputGestureText="F10"/>
+                <Separator/>
+                <MenuItem Header="_Views" ItemsSource="{Binding Views}">
+                    <MenuItem.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </MenuItem.ItemTemplate>
+                    <MenuItem.ItemContainerStyle>
+                        <Style TargetType="MenuItem">
+                            <Setter Property="Command" Value="{Binding DataContext.ChangeViewCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"/>
+                            <Setter Property="CommandParameter" Value="{Binding}"/>
+                        </Style>
+                    </MenuItem.ItemContainerStyle>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="_Solution">
+                <MenuItem Header="_Add Project" Command="{Binding AddProjectCommand}" InputGestureText="Ctrl+Shift+N"/>
+                <MenuItem Header="_Remove Project" Command="{Binding RemoveProjectCommand}" InputGestureText="Ctrl+Shift+R"/>
+                <Separator/>
+                <MenuItem Header="_Duplicate Project" Command="{Binding DuplicateProjectCommand}" InputGestureText="Ctrl+Shift+D"/>
+            </MenuItem>
+            <MenuItem Header="_Project">
+                <MenuItem Header="_Add Context" Command="{Binding AddContextCommand}" InputGestureText="Ctrl+N"/>
+                <MenuItem Header="_Remove Context" Command="{Binding RemoveContextCommand}" InputGestureText="Ctrl+R"/>
+                <Separator/>
+                <MenuItem Header="_Duplicate Context" Command="{Binding DuplicateContextCommand}" InputGestureText="Ctrl+D"/>
+            </MenuItem>
+            <MenuItem Header="Si_mulation">
+                <MenuItem Header="_Run" Command="{Binding RunCommand}" InputGestureText="F5"/>
+                <MenuItem Header="_Stop" Command="{Binding StopCommand}" InputGestureText="F6"/>
+                <Separator/>
+                <MenuItem Header="Res_tart" Command="{Binding RestartCommand}" InputGestureText="F7"/>
+                <Separator/>
+                <MenuItem Header="Enable _Charts" IsCheckable="True" IsChecked="{Binding Options.EnableCharts}"/>
+                <Separator/>
+                <MenuItem Header="S_how Charts" Command="{Binding ShowChartsCommand}" InputGestureText="F8" IsEnabled="{Binding Options.EnableCharts}"/>
+            </MenuItem>
+            <MenuItem Header="_Options">
+                <MenuItem Header="Hide _Pins" IsCheckable="True" IsChecked="{Binding Options.HidePins}"/>
+                <MenuItem Header="Hide _Helper Lines" IsCheckable="True" IsChecked="{Binding Options.HideHelperLines}"/>
+                <Separator/>
+                <MenuItem Header="Shorten Line _Starts" IsCheckable="True" IsChecked="{Binding Options.ShortenLineStarts}"/>
+                <MenuItem Header="Shorten Line _Ends" IsCheckable="True" IsChecked="{Binding Options.ShortenLineEnds}"/>
+                <Separator/>
+                <MenuItem Header="Enable _AutoFit" IsCheckable="True" IsChecked="{Binding Options.IsAutoFitEnabled}"/>
+                <MenuItem Header="Enable S_nap" IsCheckable="True" IsChecked="{Binding Options.IsSnapEnabled}"/>
+                <Separator/>
+                <MenuItem Header="Disable Print Co_lors" IsCheckable="True" IsChecked="{Binding Options.DisablePrintColors}"/>
+            </MenuItem>
+        </Menu>
+
+        <StatusBar Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5" Background="White">
+            <TextBlock Text="{Binding Solution.Children.Count, StringFormat={}Projects: {0}}" VerticalAlignment="Center" Margin="2"/>
+            <TextBlock Text="{Binding CurrentProject.Children.Count, StringFormat={}Contexts: {0}}" VerticalAlignment="Center" Margin="2"/>
+            <TextBlock Text="{Binding CurrentContext.Children.Count, StringFormat={}Elements: {0}}" VerticalAlignment="Center" Margin="2"/>
+            <TextBlock Text="{Binding Options.SimulationIsRunning, StringFormat={}Simulation: {0}}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="2"/>
+        </StatusBar>
+
+        <views:ToolboxView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,4,0" Visibility="{Binding Options.ShowToolbox, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+        <GridSplitter Grid.Row="1" Grid.Column="1" Background="White" Width="4" ResizeDirection="Columns" ResizeBehavior="CurrentAndNext"/>
+
+        <controls:ContextBorder x:Name="ContextBorder" Grid.Row="1" Grid.Column="2" Margin="0,4,0,4"
+                                UseLayoutRounding="True" SnapsToDevicePixels="False" ClipToBounds="True" 
+                                Background="{DynamicResource BackgroundColorKey}"
+                                Options="{Binding Path=Options, Mode=TwoWay}">
+            <views:ContextView ZoomManager="{Binding ElementName=ContextBorder}"/>
+        </controls:ContextBorder>
+
+        <GridSplitter Grid.Row="1" Grid.Column="3" Background="White" Width="4" ResizeDirection="Columns" ResizeBehavior="PreviousAndNext"/>
+
+        <TabControl Grid.Row="1" Grid.Column="4" TabStripPlacement="Top" Margin="0,4,0,4" Visibility="{Binding Options.ShowSolutionExplorer, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <TabItem Header="Explorer">
+                <views:SolutionTreeView/>
+            </TabItem>
+            <TabItem Header="Tags">
+                <views:TagView/>
+            </TabItem>
+            <TabItem Header="Properties">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                    <StackPanel>
+                        <Expander Header="Solution" IsExpanded="True">
+                            <StackPanel>
+                                <Grid Margin="2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Name:" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,4,0"/>
+                                    <TextBox Text="{Binding Solution.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1"/>
+                                </Grid>
+                            </StackPanel>
+                        </Expander>
+                        <Expander Header="Project" IsExpanded="True">
+                            <StackPanel>
+                                <Grid Margin="2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Id:" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,4,0"/>
+                                    <TextBox Text="{Binding CurrentProject.Title.DocumentId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1"/>
+                                </Grid>
+                                <Grid Margin="2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Title:" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,4,0"/>
+                                    <TextBox Text="{Binding CurrentProject.Title.DocumentTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1"/>
+                                </Grid>
+                                <Grid Margin="2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Number:" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,4,0"/>
+                                    <TextBox Text="{Binding CurrentProject.Title.DocumentNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1"/>
+                                </Grid>
+                            </StackPanel>
+                        </Expander>
+                        <Expander Header="Simulation" IsExpanded="True">
+                            <StackPanel>
+                                <Grid Margin="4">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="80"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Period [ms]:" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,4,0"/>
+                                    <TextBox Text="{Binding Options.SimulationPeriod, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Margin="1,0,-1,0"/>
+                                </Grid>
+                            </StackPanel>
+                        </Expander>
+                        <Expander Header="Options" IsExpanded="True">
+                            <StackPanel>
+                                <Grid Margin="4">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="105"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Default page type:" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,4,0"/>
+                                    <ComboBox ItemsSource="{Binding Source={StaticResource PageTypeEnum}}" SelectedValue="{Binding Options.DefaultPageType}" Grid.Column="1" Margin="1,0,-1,0"/>
+                                </Grid>
+                                <Grid Margin="4">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="80"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Zoom speed:" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,4,0"/>
+                                    <TextBox Text="{Binding Options.ZoomSpeed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Margin="1,0,-1,0"/>
+                                </Grid>
+                                <CheckBox IsChecked="{Binding Options.IsAutoFitEnabled}" Content="Enable Auto Fit" Margin="4"/>
+                                <CheckBox IsChecked="{Binding Options.IsSnapEnabled}" Content="Enable Snap" Margin="4"/>
+                                <Grid Margin="4">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Snap:" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,4,0"/>
+                                    <TextBox Text="{Binding Options.Snap, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1"/>
+                                </Grid>
+                                <Grid Margin="4">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="OffsetX:" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,4,0"/>
+                                    <TextBox Text="{Binding Options.OffsetX, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1"/>
+                                </Grid>
+                                <Grid Margin="4">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="OffsetY:" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,4,0"/>
+                                    <TextBox Text="{Binding Options.OffsetY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1"/>
+                                </Grid>
+                                <CheckBox IsChecked="{Binding Options.ShortenLineStarts}" Content="Shorten Line Starts" Margin="4"/>
+                                <CheckBox IsChecked="{Binding Options.ShortenLineEnds}" Content="Shorten Line Ends" Margin="4"/>
+                                <CheckBox IsChecked="{Binding Options.HidePins}" Content="Hide Pins" Margin="4"/>
+                                <CheckBox IsChecked="{Binding Options.HideHelperLines}" Content="Hide Helper Lines" Margin="4"/>
+                            </StackPanel>
+                        </Expander>
+                        <Expander Header="Colors" IsExpanded="True">
+                            <views:ColorEditorView/>
+                        </Expander>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
+   
+    </Grid>
+    
+</UserControl>

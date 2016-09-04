@@ -1,0 +1,517 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:custom="clr-namespace:LogicCanvas.CustomElements"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <!-- window editor style -->
+    
+    <Style x:Key="WindowEditorStyle" TargetType="Window">
+        <Setter Property="Background" Value="{DynamicResource ResourceKey=WindowEditBackgroundColor}"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=IsPrinting}" Value="True">
+                <Setter Property="Background" Value="{DynamicResource ResourceKey=WindowPrintBackgroundColor}"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="GridEditorStyle" TargetType="Grid">
+        <Setter Property="Background" Value="{DynamicResource ResourceKey=WindowEditBackgroundColor}"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=IsPrinting}" Value="True">
+                <Setter Property="Background" Value="{DynamicResource ResourceKey=WindowPrintBackgroundColor}"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- page canvas base style -->
+
+    <Style x:Key="PageBaseCanvasStyle" TargetType="Canvas">
+        <Setter Property="Background" Value="{DynamicResource ResourceKey=PageEditBackgroundColor}"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=DataContext.IsPrinting, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Canvas}}}" Value="True">
+                <Setter Property="Background" Value="{DynamicResource ResourceKey=PagePrintBackgroundColor}"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- page base text style -->
+
+    <Style x:Key="PageBaseTextStyle" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="Arial"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=DataContext.IsPrinting, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Canvas}}}" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource ResourceKey=PagePrintForegroundColor}"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- page base line style -->
+
+    <Style x:Key="PageBaseLineStyle" TargetType="Line">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=DataContext.IsPrinting, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Canvas}}}" Value="True">
+                <Setter Property="Stroke" Value="{DynamicResource ResourceKey=PagePrintForegroundColor}"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+ 
+    <!-- page line styles -->
+
+    <Style x:Key="PageFrameLineStyle" TargetType="Line" BasedOn="{StaticResource ResourceKey=PageBaseLineStyle}">
+        <Setter Property="Stroke" Value="{DynamicResource ResourceKey=PageEditForegroundColor}"/>
+        <Setter Property="StrokeThickness" Value="0.03cm"/>
+        <Setter Property="StrokeStartLineCap" Value="Round"/>
+        <Setter Property="StrokeEndLineCap" Value="Round"/>
+        <Setter Property="SnapsToDevicePixels" Value="False"/>
+        <Setter Property="RenderOptions.EdgeMode" Value="Aliased"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=DataContext.IsPrinting, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Canvas}}}" Value="True">
+                <Setter Property="StrokeThickness" Value="0.02cm"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="PageTableLineStyle" TargetType="Line" BasedOn="{StaticResource ResourceKey=PageBaseLineStyle}">
+        <Setter Property="Stroke" Value="{DynamicResource ResourceKey=PageTableEditForegroundColor}"/>
+        <Setter Property="StrokeThickness" Value="0.03cm"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=DataContext.IsPrinting, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Canvas}}}" Value="True">
+                <Setter Property="StrokeThickness" Value="0.02cm"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="PageLogicFrameLineStyle" TargetType="Line" BasedOn="{StaticResource ResourceKey=PageBaseLineStyle}">
+        <Setter Property="Stroke" Value="{DynamicResource ResourceKey=PageLogicEditForegroundColor}"/>
+        <Setter Property="StrokeThickness" Value="0.03cm"/>
+    </Style>
+
+    <Style x:Key="PageBackgroundGridLineStyle" TargetType="Line" BasedOn="{StaticResource ResourceKey=PageBaseLineStyle}">
+        <Setter Property="Stroke" Value="{DynamicResource ResourceKey=PageGridEditForegroundColor}"/>
+        <Setter Property="StrokeThickness" Value="0.03cm"/>
+        <Setter Property="Visibility" Value="Visible"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=DataContext.IsGridVisible, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Canvas}}}" Value="False">
+                <Setter Property="Visibility" Value="Collapsed"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=DataContext.IsPrinting, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Canvas}}}" Value="True">
+                <Setter Property="StrokeThickness" Value="0.02cm"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- page text styles -->
+
+    <Style x:Key="PageFrameTextStyle" TargetType="TextBlock" BasedOn="{StaticResource ResourceKey=PageBaseTextStyle}">
+        <Setter Property="FontSize" Value="10"/>
+        <Setter Property="FontWeight" Value="Thin"/>
+        <Setter Property="Foreground" Value="{DynamicResource ResourceKey=PageEditForegroundColor}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="PageFrameHeaderTextStyle" TargetType="TextBlock" BasedOn="{StaticResource ResourceKey=PageBaseTextStyle}">
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="Foreground" Value="{DynamicResource ResourceKey=PageLogicEditForegroundColor}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="PageDataHeaderTextStyle" TargetType="TextBlock" BasedOn="{StaticResource ResourceKey=PageBaseTextStyle}">
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="FontWeight" Value="Thin"/>
+        <Setter Property="Foreground" Value="{DynamicResource ResourceKey=PageLogicEditForegroundColor}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="Margin" Value="0.1cm,0.0cm,0.0cm,0.0cm"/>
+    </Style>
+
+    <Style x:Key="PageFrameNumberTextStyle" TargetType="TextBlock" BasedOn="{StaticResource ResourceKey=PageBaseTextStyle}">
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="Foreground" Value="{DynamicResource ResourceKey=PageLogicEditForegroundColor}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+    </Style>
+
+    <!-- table label text styles -->
+
+    <Style x:Key="TableLabelLeftTextStyle" TargetType="TextBlock" BasedOn="{StaticResource ResourceKey=PageBaseTextStyle}">
+        <Setter Property="FontSize" Value="11"/>
+        <Setter Property="FontWeight" Value="Thin"/>
+        <Setter Property="Foreground" Value="{DynamicResource ResourceKey=PageEditForegroundColor}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="Margin" Value="0.1cm,0.0cm,0.0cm,0.0cm"/>
+    </Style>
+
+    <Style x:Key="TableLabelCenterTextStyle" TargetType="TextBlock" BasedOn="{StaticResource ResourceKey=PageBaseTextStyle}">
+        <Setter Property="FontSize" Value="11"/>
+        <Setter Property="FontWeight" Value="Thin"/>
+        <Setter Property="Foreground" Value="{DynamicResource ResourceKey=PageEditForegroundColor}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="0.0cm,0.0cm,0.0cm,0.0cm"/>
+    </Style>
+
+    <!-- table normal text styles -->
+
+    <Style x:Key="TableNormalLeftTextStyle" TargetType="TextBlock" BasedOn="{StaticResource ResourceKey=PageBaseTextStyle}">
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="Foreground" Value="{DynamicResource ResourceKey=PageTextEditForegroundColor}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="Margin" Value="0.1cm,0.0cm,0.0cm,0.0cm"/>
+    </Style>
+
+    <Style x:Key="TableNormalRightTextStyle" TargetType="TextBlock" BasedOn="{StaticResource ResourceKey=PageBaseTextStyle}">
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="Foreground" Value="{DynamicResource ResourceKey=PageTextEditForegroundColor}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="Margin" Value="0.0cm,0.0cm,0.1cm,0.0cm"/>
+    </Style>
+
+    <Style x:Key="TableNormalCenterTextStyle" TargetType="TextBlock" BasedOn="{StaticResource ResourceKey=PageBaseTextStyle}">
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="Foreground" Value="{DynamicResource ResourceKey=PageTextEditForegroundColor}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="0.0cm,0.0cm,0.0cm,0.0cm"/>
+    </Style>
+
+    <!-- table large text styles -->
+
+    <Style x:Key="TableLargeLeftTextStyle" TargetType="TextBlock" BasedOn="{StaticResource ResourceKey=PageBaseTextStyle}">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="Foreground" Value="{DynamicResource ResourceKey=PageTextEditForegroundColor}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="Margin" Value="0.2cm,0.0cm,0.0cm,0.0cm"/>
+    </Style>
+
+    <Style x:Key="TableLargeCenterTextStyle" TargetType="TextBlock" BasedOn="{StaticResource ResourceKey=PageBaseTextStyle}">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="Foreground" Value="{DynamicResource ResourceKey=PageTextEditForegroundColor}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="0.0cm,0.0cm,0.0cm,0.0cm"/>
+    </Style>
+
+    <!-- logic canvas base style -->
+
+    <Style x:Key="LogicBaseCanvasStyle" TargetType="Canvas">
+        <Setter Property="Background" Value="{DynamicResource ResourceKey=LogickEditBackgroundColor}"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=DataContext.IsPrinting, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}" Value="True">
+                <Setter Property="Background" Value="{DynamicResource ResourceKey=LogicPrintBackgroundColor}"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- logic rectangle base style -->
+
+    <Style x:Key="LogicBaseRectangleStyle" TargetType="Rectangle">
+        <Setter Property="Fill" Value="{DynamicResource ResourceKey=LogicEditForegroundColor}"/>
+        <Setter Property="Stroke" Value="{DynamicResource ResourceKey=LogicEditForegroundColor}"/>
+        <Setter Property="StrokeThickness" Value="0.0cm"/>
+        <Style.Triggers>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=DataContext.IsPrinting, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}" Value="True"/>
+                    <Condition Binding="{Binding Path=IsModified}" Value="False"/>
+                    <Condition Binding="{Binding Path=IsNew}" Value="False"/>
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Fill" Value="{DynamicResource ResourceKey=LogicPrintForegroundColor}"/>
+                <Setter Property="Stroke" Value="{DynamicResource ResourceKey=LogicPrintForegroundColor}"/>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=DataContext.IsPrinting, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}" Value="True"/>
+                    <Condition Binding="{Binding Path=IsModified}" Value="True"/>
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Fill" Value="{DynamicResource ResourceKey=LogicPrintModifiedForegroundColor}"/>
+                <Setter Property="Stroke" Value="{DynamicResource ResourceKey=LogicPrintModifiedForegroundColor}"/>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=DataContext.IsPrinting, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}" Value="True"/>
+                    <Condition Binding="{Binding Path=IsNew}" Value="True"/>
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Fill" Value="{DynamicResource ResourceKey=LogicPrintNewForegroundColor}"/>
+                <Setter Property="Stroke" Value="{DynamicResource ResourceKey=LogicPrintNewForegroundColor}"/>
+            </MultiDataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- logic base text style -->
+
+    <Style x:Key="LogicBaseTextStyle" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="Arial"/>
+        <Style.Triggers>
+             <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=DataContext.IsPrinting, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}" Value="True"/>
+                    <Condition Binding="{Binding Path=IsModified}" Value="False"/>
+                    <Condition Binding="{Binding Path=IsNew}" Value="False"/>
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Foreground" Value="{DynamicResource ResourceKey=LogicPrintForegroundColor}"/>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=DataContext.IsPrinting, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}" Value="True"/>
+                    <Condition Binding="{Binding Path=IsModified}" Value="True"/>
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Foreground" Value="{DynamicResource ResourceKey=LogicPrintModifiedForegroundColor}"/>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=DataContext.IsPrinting, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}" Value="True"/>
+                    <Condition Binding="{Binding Path=IsNew}" Value="True"/>
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Foreground" Value="{DynamicResource ResourceKey=LogicPrintNewForegroundColor}"/>
+            </MultiDataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- logic base line style -->
+
+    <Style x:Key="LogicBaseLineStyle" TargetType="Line">
+	    <Setter Property="StrokeStartLineCap" Value="Round"/>
+        <Setter Property="StrokeEndLineCap" Value="Round"/>
+        <Style.Triggers>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=DataContext.IsPrinting, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}" Value="True"/>
+                    <Condition Binding="{Binding Path=IsModified}" Value="False"/>
+                    <Condition Binding="{Binding Path=IsNew}" Value="False"/>
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Stroke" Value="{DynamicResource ResourceKey=LogicPrintForegroundColor}"/>
+                <Setter Property="StrokeThickness" Value="0.04cm"/>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=DataContext.IsPrinting, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}" Value="True"/>
+                    <Condition Binding="{Binding Path=IsModified}" Value="True"/>
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Stroke" Value="{DynamicResource ResourceKey=LogicPrintModifiedForegroundColor}"/>
+                <Setter Property="StrokeThickness" Value="0.04cm"/>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=DataContext.IsPrinting, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}" Value="True"/>
+                    <Condition Binding="{Binding Path=IsNew}" Value="True"/>
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Stroke" Value="{DynamicResource ResourceKey=LogicPrintNewForegroundColor}"/>
+                <Setter Property="StrokeThickness" Value="0.04cm"/>
+            </MultiDataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- logic line styles -->
+
+    <Style x:Key="LogicLineStyle" TargetType="{x:Type custom:CustomLineElement}">
+        <Setter Property="Stroke" Value="{DynamicResource ResourceKey=LogicLineEditForegroundColor}"/>
+        <Setter Property="Thickness" Value="0.09cm"/>
+        <Setter Property="InvertedThickness" Value="0.125cm"/>
+        <Style.Triggers>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=DataContext.IsPrinting, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}" Value="True"/>
+                    <Condition Binding="{Binding Path=IsModified}" Value="False"/>
+                    <Condition Binding="{Binding Path=IsNew}" Value="False"/>
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Stroke" Value="{DynamicResource ResourceKey=LogicPrintForegroundColor}"/>
+                <Setter Property="Thickness" Value="0.03cm"/>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=DataContext.IsPrinting, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}" Value="True"/>
+                    <Condition Binding="{Binding Path=IsModified}" Value="True"/>
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Stroke" Value="{DynamicResource ResourceKey=LogicPrintModifiedForegroundColor}"/>
+                <Setter Property="Thickness" Value="0.03cm"/>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=DataContext.IsPrinting, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}" Value="True"/>
+                    <Condition Binding="{Binding Path=IsNew}" Value="True"/>
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Stroke" Value="{DynamicResource ResourceKey=LogicPrintNewForegroundColor}"/>
+                <Setter Property="Thickness" Value="0.03cm"/>
+            </MultiDataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="LogicDataLineStyle" TargetType="Line" BasedOn="{StaticResource ResourceKey=LogicBaseLineStyle}">
+        <Setter Property="Stroke" Value="{DynamicResource ResourceKey=LogicDataEditForegroundColor}"/>
+        <Setter Property="StrokeThickness" Value="0.06cm"/>
+    </Style>
+	
+    <Style x:Key="LogicBorderLineStyle" TargetType="Line" BasedOn="{StaticResource ResourceKey=LogicBaseLineStyle}">
+        <Setter Property="Stroke" Value="{DynamicResource ResourceKey=LogicEditForegroundColor}"/>
+        <Setter Property="StrokeThickness" Value="0.06cm"/>
+    </Style>
+
+    <!-- logic text styles -->
+
+    <Style x:Key="LogicCenterTextStyle" TargetType="TextBlock" BasedOn="{StaticResource ResourceKey=LogicBaseTextStyle}">
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="Foreground" Value="{DynamicResource ResourceKey=LogicEditForegroundColor}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="LogicStepCenterTextStyle" TargetType="TextBlock" BasedOn="{StaticResource ResourceKey=LogicBaseTextStyle}">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="Foreground" Value="{DynamicResource ResourceKey=LogicEditForegroundColor}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="LogicDataLeftTextStyle" TargetType="TextBlock" BasedOn="{StaticResource ResourceKey=LogicBaseTextStyle}">
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="FontWeight" Value="Thin"/>
+        <Setter Property="Foreground" Value="{DynamicResource ResourceKey=LogicEditForegroundColor}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+		<Setter Property="Margin" Value="0.1cm,0.0cm,0.0cm,0.0cm"/>
+    </Style>
+
+    <!-- control block canvas base style -->
+
+    <Style x:Key="ControlBlockBaseCanvasStyle" TargetType="Canvas">
+        <Setter Property="Background" Value="{DynamicResource ResourceKey=ControlBlockEditBackgroundColor}"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=DataContext.IsPrinting, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}" Value="True">
+                <Setter Property="Background" Value="{StaticResource ResourceKey=ControlBlockPrintBackgroundColor}"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- control block base text style -->
+
+    <Style x:Key="ControlBlockBaseTextStyle" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="Arial"/>
+        <Style.Triggers>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=DataContext.IsPrinting, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}" Value="True"/>
+                    <Condition Binding="{Binding Path=IsModified}" Value="False"/>
+                    <Condition Binding="{Binding Path=IsNew}" Value="False"/>
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Foreground" Value="{DynamicResource ResourceKey=ControlBlockPrintForegroundColor}"/>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=DataContext.IsPrinting, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}" Value="True"/>
+                    <Condition Binding="{Binding Path=IsModified}" Value="True"/>
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Foreground" Value="{DynamicResource ResourceKey=ControlBlockPrintModifiedForegroundColor}"/>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=DataContext.IsPrinting, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}" Value="True"/>
+                    <Condition Binding="{Binding Path=IsNew}" Value="True"/>
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Foreground" Value="{DynamicResource ResourceKey=ControlBlockPrintNewForegroundColor}"/>
+            </MultiDataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- control block base line style -->
+
+    <Style x:Key="ControlBlockBaseLineStyle" TargetType="Line">
+        <Style.Triggers>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=DataContext.IsPrinting, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}" Value="True"/>
+                    <Condition Binding="{Binding Path=IsModified}" Value="False"/>
+                    <Condition Binding="{Binding Path=IsNew}" Value="False"/>
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Stroke" Value="{DynamicResource ResourceKey=ControlBlockPrintForegroundColor}"/>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=DataContext.IsPrinting, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}" Value="True"/>
+                    <Condition Binding="{Binding Path=IsModified}" Value="True"/>
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Stroke" Value="{DynamicResource ResourceKey=ControlBlockPrintModifiedForegroundColor}"/>
+            </MultiDataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=DataContext.IsPrinting, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}" Value="True"/>
+                    <Condition Binding="{Binding Path=IsNew}" Value="True"/>
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Stroke" Value="{DynamicResource ResourceKey=ControlBlockPrintNewForegroundColor}"/>
+            </MultiDataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- control block line styles -->
+
+    <Style x:Key="ControlBlockLineStyle" TargetType="Line" BasedOn="{StaticResource ResourceKey=ControlBlockBaseLineStyle}">
+        <Setter Property="Stroke" Value="{DynamicResource ResourceKey=ControlBlockEditForegroundColor}"/>
+        <Setter Property="StrokeThickness" Value="0.03cm"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=DataContext.IsPrinting, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}" Value="True">
+                <Setter Property="StrokeThickness" Value="0.02cm"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="ControlBlockBorderLineStyle" TargetType="Line" BasedOn="{StaticResource ResourceKey=ControlBlockBaseLineStyle}">
+        <Setter Property="Stroke" Value="{DynamicResource ResourceKey=ControlBlockEditForegroundColor}"/>
+        <Setter Property="StrokeThickness" Value="0.06cm"/>
+        <Setter Property="StrokeStartLineCap" Value="Round"/>
+        <Setter Property="StrokeEndLineCap" Value="Round"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Path=DataContext.IsPrinting, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}" Value="True">
+                <Setter Property="StrokeThickness" Value="0.04cm"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- control block text styles -->
+
+    <Style x:Key="ControlBlockTitleTextStyle" TargetType="TextBlock" BasedOn="{StaticResource ResourceKey=ControlBlockBaseTextStyle}">
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Foreground" Value="{DynamicResource ResourceKey=ControlBlockEditForegroundColor}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="ControlBlockSubTitleTextStyle" TargetType="TextBlock" BasedOn="{StaticResource ResourceKey=ControlBlockBaseTextStyle}">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Foreground" Value="{DynamicResource ResourceKey=ControlBlockEditForegroundColor}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="ControlBlockInputTextStyle" TargetType="TextBlock" BasedOn="{StaticResource ResourceKey=ControlBlockBaseTextStyle}">
+        <Setter Property="FontSize" Value="11"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="Foreground" Value="{DynamicResource ResourceKey=ControlBlockEditForegroundColor}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="ControlBlockOutputTextStyle" TargetType="TextBlock" BasedOn="{StaticResource ResourceKey=ControlBlockBaseTextStyle}">
+        <Setter Property="FontSize" Value="11"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="Foreground" Value="{DynamicResource ResourceKey=ControlBlockEditForegroundColor}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+    </Style>
+
+</ResourceDictionary>

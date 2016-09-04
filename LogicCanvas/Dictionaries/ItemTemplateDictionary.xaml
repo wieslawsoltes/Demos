@@ -1,0 +1,72 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- logic data templates -->
+
+    <DataTemplate x:Key="LineLogicItemTemplate">
+        <Control Template="{StaticResource ResourceKey=LineLogic}"/>
+    </DataTemplate>
+
+    <DataTemplate x:Key="AndGateLogicItemTemplate">
+        <Thumb Template="{StaticResource ResourceKey=AndGateLogic}"/>
+    </DataTemplate>
+
+    <DataTemplate x:Key="OrGateLogicItemTemplate">
+        <Thumb Template="{StaticResource ResourceKey=OrGateLogic}"/>
+    </DataTemplate>
+
+    <DataTemplate x:Key="MemoryResetPriorityLogicItemTemplate">
+        <Thumb Template="{StaticResource ResourceKey=MemoryResetPriorityLogic}"/>
+    </DataTemplate>
+
+    <DataTemplate x:Key="MemorySetPriorityLogicItemTemplate">
+        <Thumb Template="{StaticResource ResourceKey=MemorySetPriorityLogic}"/>
+    </DataTemplate>
+
+    <DataTemplate x:Key="SequenceStepLogicItemTemplate">
+        <Thumb Template="{StaticResource ResourceKey=SequenceStepLogic}"/>
+    </DataTemplate>
+
+	<DataTemplate x:Key="DataBlockLogicItemTemplate">
+        <Thumb Template="{StaticResource ResourceKey=DataBlockLogic}"/>
+    </DataTemplate>
+	
+    <!-- control block data templates-->
+
+    <DataTemplate x:Key="OneWayMotorControlBlockItemTemplate">
+        <Thumb Template="{StaticResource ResourceKey=OneWayMotorControlBlock}"/>
+    </DataTemplate>
+
+    <DataTemplate x:Key="TwoWayMotorControlBlockItemTemplate">
+        <Thumb Template="{StaticResource ResourceKey=TwoWayMotorControlBlock}"/>
+    </DataTemplate>
+
+    <DataTemplate x:Key="SolenoidValveControlBlockItemTemplate">
+        <Thumb Template="{StaticResource ResourceKey=SolenoidValveControlBlock}"/>
+    </DataTemplate>
+
+    <DataTemplate x:Key="ThrottlingValveControlBlockItemTemplate">
+        <Thumb Template="{StaticResource ResourceKey=ThrottlingValveControlBlock}"/>
+    </DataTemplate>
+
+    <DataTemplate x:Key="ControlValveControlBlockItemTemplate">
+        <Thumb Template="{StaticResource ResourceKey=ControlValveControlBlock}"/>
+    </DataTemplate>
+
+    <DataTemplate x:Key="FrequencyConverterControlBlockItemTemplate">
+        <Thumb Template="{StaticResource ResourceKey=FrequencyConverterControlBlock}"/>
+    </DataTemplate>
+
+    <DataTemplate x:Key="SequenceControlControlBlockItemTemplate">
+        <Thumb Template="{StaticResource ResourceKey=SequenceControlControlBlock}"/>
+    </DataTemplate>
+
+    <DataTemplate x:Key="GroupControlTwoDevicesControlBlockItemTemplate">
+        <Thumb Template="{StaticResource ResourceKey=GroupControlTwoDevicesControlBlock}"/>
+    </DataTemplate>
+
+    <DataTemplate x:Key="GroupControlThreeDevicesControlBlockItemTemplate">
+        <Thumb Template="{StaticResource ResourceKey=GroupControlThreeDevicesControlBlock}"/>
+    </DataTemplate>
+
+</ResourceDictionary>

@@ -1,0 +1,104 @@
+﻿<!-- Copyright (c) Wiesław Šoltés. All rights reserved. -->
+<!-- Licensed under the MIT license. See LICENSE file in the project root for full license information. -->
+<UserControl x:Class="Logic.Views.ColorEditorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             SnapsToDevicePixels="True" UseLayoutRounding="True"
+             TextOptions.TextFormattingMode="Display"
+             TextOptions.TextHintingMode="Auto"
+             TextOptions.TextRenderingMode="Auto" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="200">
+
+    <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+                
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- BackgroundColorKey -->
+        <TextBlock Grid.Column="0" Grid.Row="0" Text="Background:" VerticalAlignment="Center"/>
+        <TextBox Grid.Column="1" Grid.Row="0" Width="80" Text="{Binding ElementName=BackgroundColorRect, Path=Fill, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center" VerticalAlignment="Center" Margin="2,2,1,2"/>
+        <Rectangle Grid.Column="2" Grid.Row="0" x:Name="BackgroundColorRect" Fill="{DynamicResource BackgroundColorKey}" Margin="1,2,2,2"/>
+
+        <!-- GridColorKey -->
+        <TextBlock Grid.Column="0" Grid.Row="1" Text="Grid:" VerticalAlignment="Center"/>
+        <TextBox Grid.Column="1" Grid.Row="1" Width="80" Text="{Binding ElementName=GridColorKeyRect, Path=Fill, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center" VerticalAlignment="Center" Margin="2,2,1,2"/>
+        <Rectangle Grid.Column="2" Grid.Row="1" x:Name="GridColorKeyRect" Fill="{DynamicResource GridColorKey}" Margin="1,2,2,2"/>
+
+        <!-- PageColorKey -->
+        <TextBlock Grid.Column="0" Grid.Row="2" Text="Page:" VerticalAlignment="Center"/>
+        <TextBox Grid.Column="1" Grid.Row="2" Width="80" Text="{Binding ElementName=PageColorKeyRect, Path=Fill, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center" VerticalAlignment="Center" Margin="2,2,1,2"/>
+        <Rectangle Grid.Column="2" Grid.Row="2" x:Name="PageColorKeyRect" Fill="{DynamicResource PageColorKey}" Margin="1,2,2,2"/>
+
+        <!-- LogicColorKey -->
+        <TextBlock Grid.Column="0" Grid.Row="3" Text="Logic:" VerticalAlignment="Center"/>
+        <TextBox Grid.Column="1" Grid.Row="3" Width="80" Text="{Binding ElementName=LogicColorKeyRect, Path=Fill, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center" VerticalAlignment="Center" Margin="2,2,1,2"/>
+        <Rectangle Grid.Column="2" Grid.Row="3" x:Name="LogicColorKeyRect" Fill="{DynamicResource LogicColorKey}" Margin="1,2,2,2"/>
+
+        <!-- LogicSelectedColorKey -->
+        <TextBlock Grid.Column="0" Grid.Row="4" Text="Selected:" VerticalAlignment="Center"/>
+        <TextBox Grid.Column="1" Grid.Row="4" Width="80" Text="{Binding ElementName=LogicSelectedColorKeyRect, Path=Fill, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center" VerticalAlignment="Center" Margin="2,2,1,2"/>
+        <Rectangle Grid.Column="2" Grid.Row="4" x:Name="LogicSelectedColorKeyRect" Fill="{DynamicResource LogicSelectedColorKey}" Margin="1,2,2,2"/>
+
+        <!-- HelperColorKey -->
+        <TextBlock Grid.Column="0" Grid.Row="5" Text="Helper:" VerticalAlignment="Center"/>
+        <TextBox Grid.Column="1" Grid.Row="5" Width="80" Text="{Binding ElementName=HelperColorKeyRect, Path=Fill, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center" VerticalAlignment="Center" Margin="2,2,1,2"/>
+        <Rectangle Grid.Column="2" Grid.Row="5" x:Name="HelperColorKeyRect" Fill="{DynamicResource HelperColorKey}" Margin="1,2,2,2"/>
+
+        <!-- LogicMouseOverColorKey -->
+        <TextBlock Grid.Column="0" Grid.Row="6" Text="Mouse over:" VerticalAlignment="Center"/>
+        <TextBox Grid.Column="1" Grid.Row="6" Width="80" Text="{Binding ElementName=LogicMouseOverColorKeyRect, Path=Fill, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center" VerticalAlignment="Center" Margin="2,2,1,2"/>
+        <Rectangle Grid.Column="2" Grid.Row="6" x:Name="LogicMouseOverColorKeyRect" Fill="{DynamicResource LogicMouseOverColorKey}" Margin="1,2,2,2"/>
+
+        <!-- LogicTrueStateColorKey -->
+        <TextBlock Grid.Column="0" Grid.Row="7" Text="True:" VerticalAlignment="Center"/>
+        <TextBox Grid.Column="1" Grid.Row="7" Width="80" Text="{Binding ElementName=LogicTrueStateColorKeyRect, Path=Fill, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center" VerticalAlignment="Center" Margin="2,2,1,2"/>
+        <Rectangle Grid.Column="2" Grid.Row="7" x:Name="LogicTrueStateColorKeyRect" Fill="{DynamicResource LogicTrueStateColorKey}" Margin="1,2,2,2"/>
+
+        <!-- LogicFalseStateColorKey -->
+        <TextBlock Grid.Column="0" Grid.Row="8" Text="False:" VerticalAlignment="Center"/>
+        <TextBox Grid.Column="1" Grid.Row="8" Width="80" Text="{Binding ElementName=LogicFalseStateColorKeyRect, Path=Fill, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center" VerticalAlignment="Center" Margin="2,2,1,2"/>
+        <Rectangle Grid.Column="2" Grid.Row="8" x:Name="LogicFalseStateColorKeyRect" Fill="{DynamicResource LogicFalseStateColorKey}" Margin="1,2,2,2"/>
+
+        <!-- LogicNullStateColorKey -->
+        <TextBlock Grid.Column="0" Grid.Row="9" Text="Null:" VerticalAlignment="Center"/>
+        <TextBox Grid.Column="1" Grid.Row="9" Width="80" Text="{Binding ElementName=LogicNullStateColorKeyRect, Path=Fill, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center" VerticalAlignment="Center" Margin="2,2,1,2"/>
+        <Rectangle Grid.Column="2" Grid.Row="9" x:Name="LogicNullStateColorKeyRect" Fill="{DynamicResource LogicNullStateColorKey}" Margin="1,2,2,2"/>
+
+        <!-- presets -->
+        <StackPanel Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="10" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <TextBlock Text="Preset:" VerticalAlignment="Center" Margin="2"/>
+            <Button x:Name="ButtonPrint" Content="Print" Margin="2" Width="60" Click="ButtonPrint_Click"/>
+            <Button x:Name="ButtonDefaults" Content="Defaults" Margin="2" Width="60" Click="ButtonDefaults_Click"/>
+        </StackPanel>
+
+        <!-- load/save/update -->
+        <StackPanel Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="11" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <Button x:Name="ButtonLoad" Content="Load..." Margin="2" Width="60" Click="ButtonLoad_Click"/>
+            <Button x:Name="ButtonSave" Content="Save..." Margin="2" Width="60" Click="ButtonSave_Click"/>
+            <Button x:Name="ButtonUpdate" Content="Update" Margin="2" Width="60" Click="ButtonUpdate_Click"/>
+        </StackPanel>
+
+    </Grid>
+
+</UserControl>

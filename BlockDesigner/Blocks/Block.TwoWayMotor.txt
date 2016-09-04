@@ -1,0 +1,126 @@
+﻿
+block begin TwoWayMotor 480 120
+
+    // horizontal lines
+    path begin
+        line 0,0 480,0
+        line 0,15 480,15
+        line 0,30 480,30
+        line 0,45 30,45
+        line 450,45 480,45
+        line 0,60 30,60
+        line 450,60 480,60
+        line 0,75 30,75
+        line 450,75 480,75
+        line 0,90 480,90
+        line 0,105 480,105
+        line 0,120 480,120
+    path end
+
+    // vertical lines
+    path begin
+        line 0,0 0,120
+        line 30,0 30,120
+        line 60,0 60,30
+        line 60,90 60,120
+        line 90,0 90,30
+        line 90,90 90,120
+        line 120,0 120,30
+        line 120,90 120,120
+        line 150,0 150,120
+        line 180,0 180,30
+        line 180,90 180,120
+        line 210,0 210,30
+        line 210,90 210,120
+        line 240,0 240,30
+        line 240,90 240,120
+        line 270,0 270,30
+        line 270,90 270,120
+        line 300,0 300,30
+        line 300,90 300,120
+        line 330,0 330,120
+        line 360,0 360,30
+        line 360,90 360,120
+        line 390,0 390,30
+        line 390,90 390,120
+        line 420,0 420,30
+        line 420,90 420,120
+        line 450,0 450,120
+        line 480,0 480,120
+    path end
+
+    // pins - inputs
+    pin SA 45 0
+    pin FA 75 0
+    pin HA 105 0
+    pin AA 135 0
+    pin ST 225 0
+    pin AR 345 0
+    pin HE 375 0
+    pin FE 405 0
+    pin SE 435 0
+
+    // pins - outputs
+    pin REA 75 120
+    pin BS 105 120
+    pin RST 225 120
+    pin REE 375 120
+    pin BE 405 120
+
+    grid begin 0 0 480 120
+        rows 8 15
+        columns 16 30
+        // text - inputs left
+        text 0 1 1 1 center center Arial 9 false SA
+        text 1 1 1 1 center center Arial 9 false YB32
+        text 0 2 1 1 center center Arial 9 false FA
+        text 1 2 1 1 center center Arial 9 false YB34
+        text 0 3 1 1 center center Arial 9 false HA
+        text 1 3 1 1 center center Arial 9 false YB12
+        text 0 4 1 1 center center Arial 9 false AA
+        text 1 4 1 1 center center Arial 9 false YB22
+        // text - inputs stop/fault
+        text 0 6 1 1 center center Arial 9 false SS
+        text 1 6 1 1 center center Arial 9 false YB33
+        text 0 7 1 1 center center Arial 9 false ST
+        text 1 7 1 1 center center Arial 9 false YB44
+        text 0 8 1 1 center center Arial 9 false AS
+        text 1 8 1 1 center center Arial 9 false YB23
+        text 0 9 1 1 center center Arial 9 false HS
+        text 1 9 1 1 center center Arial 9 false YB13
+        // text - inputs right
+        text 0 11 1 1 center center Arial 9 false AE
+        text 1 11 1 1 center center Arial 9 false YB21
+        text 0 12 1 1 center center Arial 9 false HE
+        text 1 12 1 1 center center Arial 9 false YB11
+        text 0 13 1 1 center center Arial 9 false FE
+        text 1 13 1 1 center center Arial 9 false YB33
+        text 0 14 1 1 center center Arial 9 false SE
+        text 1 14 1 1 center center Arial 9 false YB31
+        // text - labels
+        text 2 1 2 4 center center Arial 14 true LEFT
+        text 2 5 2 6 center center Arial 14 true STOP
+        text 2 11 2 4 center center Arial 14 true RIGHT
+        // text - outputs left
+        text 6 2 1 1 center center Arial 9 false XB02
+        text 7 2 1 1 center center Arial 9 false REA
+        text 6 3 1 1 center center Arial 9 false XB92
+        text 7 3 1 1 center center Arial 9 false BA
+        // text - outputs stop/fault
+        text 6 7 1 1 center center Arial 9 false XB46
+        text 7 7 1 1 center center Arial 9 false RST
+        text 6 8 1 1 center center Arial 9 false XB03
+        text 7 8 1 1 center center Arial 9 false RES
+        text 6 9 1 1 center center Arial 9 false XB93
+        text 7 9 1 1 center center Arial 9 false BS
+        // text - outputs right
+        text 6 12 1 1 center center Arial 9 false XB01
+        text 7 12 1 1 center center Arial 9 false REE
+        text 6 13 1 1 center center Arial 9 false XB91
+        text 7 13 1 1 center center Arial 9 false BE
+    grid end
+
+    // name
+    //text 480 120 bottom right Arial 10 false twmb1
+
+block end

@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DigitalLogicDiagram xmlns:i="http://www.w3.org/2001/XMLSchema-instance" z:Id="1" xmlns:z="http://schemas.microsoft.com/2003/10/Serialization/" xmlns="http://schemas.datacontract.org/2004/07/Logic.Model.Diagrams">
+    <Id xmlns="http://schemas.datacontract.org/2004/07/Logic.Model.Core">25cd85d1-4821-4e60-9eeb-db9a5bfa4ec2</Id>
+    <Name z:Id="2" xmlns="http://schemas.datacontract.org/2004/07/Logic.Model.Core"></Name>
+    <X xmlns="http://schemas.datacontract.org/2004/07/Logic.Model.Core">0</X>
+    <Y xmlns="http://schemas.datacontract.org/2004/07/Logic.Model.Core">0</Y>
+    <Z xmlns="http://schemas.datacontract.org/2004/07/Logic.Model.Core">0</Z>
+    <Inputs z:Id="3" z:Size="0" xmlns="http://schemas.datacontract.org/2004/07/Logic.Model.Core" />
+    <Outputs z:Id="4" z:Size="0" xmlns="http://schemas.datacontract.org/2004/07/Logic.Model.Core" />
+    <Pins z:Id="5" z:Size="0" xmlns="http://schemas.datacontract.org/2004/07/Logic.Model.Core" />
+    <Elements xmlns:d2p1="http://schemas.datacontract.org/2004/07/Logic.Model.Core" z:Id="6" z:Size="12">
+        <d2p1:LogicObject z:Id="7" i:type="d2p1:DigitalWire">
+            <d2p1:Id>b8189fe7-3de6-4625-8956-2bcf02158b6c</d2p1:Id>
+            <d2p1:Name z:Id="8">wire1</d2p1:Name>
+            <d2p1:X>0</d2p1:X>
+            <d2p1:Y>0</d2p1:Y>
+            <d2p1:Z>0</d2p1:Z>
+            <d2p1:EndPin z:Id="9">
+                <d2p1:Id>045c396a-42f0-4997-8e5e-582f73538974</d2p1:Id>
+                <d2p1:Name z:Id="10">endPin</d2p1:Name>
+                <d2p1:X>180</d2p1:X>
+                <d2p1:Y>105</d2p1:Y>
+                <d2p1:Z>0</d2p1:Z>
+                <d2p1:Signal i:nil="true" />
+            </d2p1:EndPin>
+            <d2p1:Signal z:Id="11">
+                <d2p1:Id>0b6dec37-d26c-4fda-ae4a-963deb340105</d2p1:Id>
+                <d2p1:Name z:Id="12">R</d2p1:Name>
+                <d2p1:X>0</d2p1:X>
+                <d2p1:Y>90</d2p1:Y>
+                <d2p1:Z>0</d2p1:Z>
+                <d2p1:InputPin i:nil="true" />
+                <d2p1:OutputPin i:nil="true" />
+                <d2p1:State>false</d2p1:State>
+            </d2p1:Signal>
+            <d2p1:StartPin z:Id="13">
+                <d2p1:Id>ce743265-646c-4892-8390-60b5a69319ea</d2p1:Id>
+                <d2p1:Name z:Id="14">startPin</d2p1:Name>
+                <d2p1:X>120</d2p1:X>
+                <d2p1:Y>105</d2p1:Y>
+                <d2p1:Z>0</d2p1:Z>
+                <d2p1:Signal i:nil="true" />
+            </d2p1:StartPin>
+        </d2p1:LogicObject>
+        <d2p1:LogicObject z:Id="15" i:type="d2p1:DigitalWire">
+            <d2p1:Id>ce8ff25c-a612-4178-a125-9652f69c85b7</d2p1:Id>
+            <d2p1:Name z:Id="16">wire2</d2p1:Name>
+            <d2p1:X>0</d2p1:X>
+            <d2p1:Y>0</d2p1:Y>
+            <d2p1:Z>0</d2p1:Z>
+            <d2p1:EndPin z:Id="17">
+                <d2p1:Id>8f87ab36-12ee-441d-b8f9-3a43e05a1969</d2p1:Id>
+                <d2p1:Name z:Ref="10" i:nil="true" />
+                <d2p1:X>180</d2p1:X>
+                <d2p1:Y>165</d2p1:Y>
+                <d2p1:Z>0</d2p1:Z>
+                <d2p1:Signal i:nil="true" />
+            </d2p1:EndPin>
+            <d2p1:Signal z:Id="18">
+                <d2p1:Id>22f48086-ad89-4cd5-8eb2-2588e2da46c8</d2p1:Id>
+                <d2p1:Name z:Id="19">S</d2p1:Name>
+                <d2p1:X>0</d2p1:X>
+                <d2p1:Y>150</d2p1:Y>
+                <d2p1:Z>0</d2p1:Z>
+                <d2p1:InputPin i:nil="true" />
+                <d2p1:OutputPin i:nil="true" />
+                <d2p1:State>false</d2p1:State>
+            </d2p1:Signal>
+            <d2p1:StartPin z:Id="20">
+                <d2p1:Id>68f8eeb4-7b3b-4fd2-885d-909ba6be188a</d2p1:Id>
+                <d2p1:Name z:Ref="14" i:nil="true" />
+                <d2p1:X>120</d2p1:X>
+                <d2p1:Y>165</d2p1:Y>
+                <d2p1:Z>0</d2p1:Z>
+                <d2p1:Signal i:nil="true" />
+            </d2p1:StartPin>
+        </d2p1:LogicObject>
+        <d2p1:LogicObject z:Id="21" i:type="d2p1:DigitalWire">
+            <d2p1:Id>b84fccd0-43c6-4d87-bf11-765a8c2df176</d2p1:Id>
+            <d2p1:Name z:Id="22">wire3</d2p1:Name>
+            <d2p1:X>0</d2p1:X>
+            <d2p1:Y>0</d2p1:Y>
+            <d2p1:Z>0</d2p1:Z>
+            <d2p1:EndPin z:Id="23">
+                <d2p1:Id>a70dbddd-6117-4190-888f-36c9673eb8cd</d2p1:Id>
+                <d2p1:Name z:Ref="10" i:nil="true" />
+                <d2p1:X>270</d2p1:X>
+                <d2p1:Y>105</d2p1:Y>
+                <d2p1:Z>0</d2p1:Z>
+                <d2p1:Signal i:nil="true" />
+            </d2p1:EndPin>
+            <d2p1:Signal z:Id="24">
+                <d2p1:Id>5ee3b944-05b5-491d-aab3-c0ad392c9b0c</d2p1:Id>
+                <d2p1:Name z:Id="25">Q</d2p1:Name>
+                <d2p1:X>270</d2p1:X>
+                <d2p1:Y>90</d2p1:Y>
+                <d2p1:Z>0</d2p1:Z>
+                <d2p1:InputPin i:nil="true" />
+                <d2p1:OutputPin i:nil="true" />
+                <d2p1:State>true</d2p1:State>
+            </d2p1:Signal>
+            <d2p1:StartPin z:Id="26">
+                <d2p1:Id>335aadbd-6e8c-457d-98f7-1a65d380c0f3</d2p1:Id>
+                <d2p1:Name z:Ref="14" i:nil="true" />
+                <d2p1:X>218</d2p1:X>
+                <d2p1:Y>105</d2p1:Y>
+                <d2p1:Z>0</d2p1:Z>
+                <d2p1:Signal i:nil="true" />
+            </d2p1:StartPin>
+        </d2p1:LogicObject>
+        <d2p1:LogicObject z:Id="27" i:type="d2p1:DigitalWire">
+            <d2p1:Id>f1b19448-b0bd-44b6-91d2-6988147900c6</d2p1:Id>
+            <d2p1:Name z:Id="28">wire4</d2p1:Name>
+            <d2p1:X>0</d2p1:X>
+            <d2p1:Y>0</d2p1:Y>
+            <d2p1:Z>0</d2p1:Z>
+            <d2p1:EndPin z:Id="29">
+                <d2p1:Id>6e44d584-2727-4a32-bc6b-dfb6fc42d3ad</d2p1:Id>
+                <d2p1:Name z:Ref="10" i:nil="true" />
+                <d2p1:X>270</d2p1:X>
+                <d2p1:Y>165</d2p1:Y>
+                <d2p1:Z>0</d2p1:Z>
+                <d2p1:Signal i:nil="true" />
+            </d2p1:EndPin>
+            <d2p1:Signal z:Id="30">
+                <d2p1:Id>170f3229-754b-4353-969b-dd79a00a49ce</d2p1:Id>
+                <d2p1:Name z:Id="31">Q'</d2p1:Name>
+                <d2p1:X>270</d2p1:X>
+                <d2p1:Y>150</d2p1:Y>
+                <d2p1:Z>0</d2p1:Z>
+                <d2p1:InputPin i:nil="true" />
+                <d2p1:OutputPin i:nil="true" />
+                <d2p1:State>false</d2p1:State>
+            </d2p1:Signal>
+            <d2p1:StartPin z:Id="32">
+                <d2p1:Id>15317cc4-acf5-4b56-badf-370d46fe8906</d2p1:Id>
+                <d2p1:Name z:Ref="14" i:nil="true" />
+                <d2p1:X>218</d2p1:X>
+                <d2p1:Y>165</d2p1:Y>
+                <d2p1:Z>0</d2p1:Z>
+                <d2p1:Signal i:nil="true" />
+            </d2p1:StartPin>
+        </d2p1:LogicObject>
+        <d2p1:LogicObject z:Id="33" i:type="d2p1:DigitalWire">
+            <d2p1:Id>a8bcd688-efe2-4445-a45d-4a4d917ef947</d2p1:Id>
+            <d2p1:Name z:Id="34">wire5</d2p1:Name>
+            <d2p1:X>0</d2p1:X>
+            <d2p1:Y>0</d2p1:Y>
+            <d2p1:Z>0</d2p1:Z>
+            <d2p1:EndPin z:Id="35">
+                <d2p1:Id>a547e45b-8081-4ce1-a32d-1bde4d66468d</d2p1:Id>
+                <d2p1:Name z:Ref="10" i:nil="true" />
+                <d2p1:X>195</d2p1:X>
+                <d2p1:Y>150</d2p1:Y>
+                <d2p1:Z>0</d2p1:Z>
+                <d2p1:Signal i:nil="true" />
+            </d2p1:EndPin>
+            <d2p1:Signal z:Ref="24" i:nil="true" />
+            <d2p1:StartPin z:Id="36">
+                <d2p1:Id>961e5be0-5aa1-4f69-8300-b9fdcb140514</d2p1:Id>
+                <d2p1:Name z:Ref="14" i:nil="true" />
+                <d2p1:X>240</d2p1:X>
+                <d2p1:Y>105</d2p1:Y>
+                <d2p1:Z>0</d2p1:Z>
+                <d2p1:Signal i:nil="true" />
+            </d2p1:StartPin>
+        </d2p1:LogicObject>
+        <d2p1:LogicObject z:Id="37" i:type="d2p1:DigitalWire">
+            <d2p1:Id>97fd8361-20fa-470d-bbec-c85149a0fb02</d2p1:Id>
+            <d2p1:Name z:Id="38">wire6</d2p1:Name>
+            <d2p1:X>0</d2p1:X>
+            <d2p1:Y>0</d2p1:Y>
+            <d2p1:Z>0</d2p1:Z>
+            <d2p1:EndPin z:Id="39">
+                <d2p1:Id>fb1cfd12-d6b7-4e22-8656-b2c4e95c0283</d2p1:Id>
+                <d2p1:Name z:Ref="10" i:nil="true" />
+                <d2p1:X>195</d2p1:X>
+                <d2p1:Y>120</d2p1:Y>
+                <d2p1:Z>0</d2p1:Z>
+                <d2p1:Signal i:nil="true" />
+            </d2p1:EndPin>
+            <d2p1:Signal z:Ref="30" i:nil="true" />
+            <d2p1:StartPin z:Id="40">
+                <d2p1:Id>5e54af65-a933-42cd-8357-f3f618b3909b</d2p1:Id>
+                <d2p1:Name z:Ref="14" i:nil="true" />
+                <d2p1:X>240</d2p1:X>
+                <d2p1:Y>165</d2p1:Y>
+                <d2p1:Z>0</d2p1:Z>
+                <d2p1:Signal i:nil="true" />
+            </d2p1:StartPin>
+        </d2p1:LogicObject>
+        <d2p1:LogicObject z:Id="41" xmlns:d3p1="http://schemas.datacontract.org/2004/07/Logic.Model.Gates" i:type="d3p1:NorGate">
+            <d2p1:Id>8881d708-abe8-468b-9f97-749371dd9e6a</d2p1:Id>
+            <d2p1:Name z:Id="42">NorGate1</d2p1:Name>
+            <d2p1:X>180</d2p1:X>
+            <d2p1:Y>90</d2p1:Y>
+            <d2p1:Z>0</d2p1:Z>
+            <d2p1:Inputs z:Id="43" z:Size="2">
+                <d2p1:DigitalSignal z:Ref="11" i:nil="true" />
+                <d2p1:DigitalSignal z:Ref="30" i:nil="true" />
+            </d2p1:Inputs>
+            <d2p1:Outputs z:Id="44" z:Size="1">
+                <d2p1:DigitalSignal z:Ref="24" i:nil="true" />
+            </d2p1:Outputs>
+            <d2p1:Pins z:Id="45" z:Size="0" />
+        </d2p1:LogicObject>
+        <d2p1:LogicObject z:Id="46" xmlns:d3p1="http://schemas.datacontract.org/2004/07/Logic.Model.Gates" i:type="d3p1:NorGate">
+            <d2p1:Id>05b4fbe3-3057-42d8-ab96-12a92f3fad6e</d2p1:Id>
+            <d2p1:Name z:Id="47">NorGate2</d2p1:Name>
+            <d2p1:X>180</d2p1:X>
+            <d2p1:Y>150</d2p1:Y>
+            <d2p1:Z>0</d2p1:Z>
+            <d2p1:Inputs z:Id="48" z:Size="2">
+                <d2p1:DigitalSignal z:Ref="18" i:nil="true" />
+                <d2p1:DigitalSignal z:Ref="24" i:nil="true" />
+            </d2p1:Inputs>
+            <d2p1:Outputs z:Id="49" z:Size="1">
+                <d2p1:DigitalSignal z:Ref="30" i:nil="true" />
+            </d2p1:Outputs>
+            <d2p1:Pins z:Id="50" z:Size="0" />
+        </d2p1:LogicObject>
+        <d2p1:LogicObject z:Ref="11" i:nil="true" />
+        <d2p1:LogicObject z:Ref="18" i:nil="true" />
+        <d2p1:LogicObject z:Ref="24" i:nil="true" />
+        <d2p1:LogicObject z:Ref="30" i:nil="true" />
+    </Elements>
+</DigitalLogicDiagram>
