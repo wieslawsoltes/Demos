@@ -1,0 +1,58 @@
+- 2015-Jul-19
+    * Add patch for failure in hurd-i386 build (debian 1%0.5.20150702-2)
+
+- 2015-Jul-02
+    * Libspiro Version 0.5.20150702
+    * Important bug fix issue #11 (missing file not included in 0v4).
+    * 2 Minor bug fixes caught on Coverity scan, 'free()' and 'if (c=3)'
+
+- 2015-Jul-01
+    * Libspiro Version 0.4.20150701
+    * Re-edit lib and tests to be more accommodating of older compilers.
+    * Many changes to call-test.c to run on bigger variety of platforms,
+      and some minor configure.ac tweaks done to resolve issues #9, #10.
+      as seen on https://github.com/fontforge/libspiro/issues and:
+	https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=789012
+    * Added developer/install test for cyclic spiros (without {} or z).
+    * Verify libspiro output data is correct for test curves {0,1,2,4}.
+    * User can overide default configure flags with LS_CFLAGS and LS_LIB
+
+- 2015-Jan-31
+    * Libspiro Version 0.3.20150131
+    * Allow Libspiro to be included using PKG_CHECK_MODULES().
+    * Bug fixes in configure.ac m4 calls that caused problems seen in:
+	https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=196780
+	https://bugs.archlinux.org/task/43373
+    * Add TaggedSpiroCPsToBezier1() and SpiroCPsToBezier1() for programs
+      that cannot use TaggedSpiroCPsToBezier0() or SpiroCPsToBezier0().
+
+- 2013-Sep-30
+    * Libspiro Version 0.2.20130930
+    * Optional 'make check' runs 'call-test' to check libspiro functions.
+    * Minor logic optimizations. Removed global 'n', passed 'n' instead.
+
+- 2013-Jul-22
+    * Use 'make check' to run spiro.c UNIT_TEST internal main() routine.
+
+- 2013-Jun-28
+    * Allow for setting VERBOSE during configure - helps with debugging.
+    * Allow for setting CHECK_INPUT_FINITENESS during configure - to test
+      input values for finiteness before doing calculations (optional).
+    * Pass nmat variable to reduce repeatedly recomputing with count_vec().
+
+- 2013-May-31
+    * Convert build system to autotools method (configure.ac, Makefile.am).
+    * Backporting robustness patches from Inkscape.
+    * Increase Spiro max iterations to 30 after finding convergences of 15.
+    * If did not converge or encountered non-finite values, do not output
+      spline. Only good splines will be output.
+
+- 2013-Apr-20
+    * Initial commit to https://github.com/fontforge/libspiro.git
+    * Add bezctx.md based on http://libspiro.sourceforge.net/bezctx.html
+
+- 2009-May-08
+    * Add Java implementation.
+
+- 2007-Oct-28
+    * Initial release.

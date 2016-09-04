@@ -1,0 +1,309 @@
+{
+  "$id": "1",
+  "$type": "SpiroNet.Wpf.PathDrawing, SpiroNet.Wpf",
+  "Width": 600.0,
+  "Height": 600.0,
+  "Shapes": [
+    {
+      "$id": "2",
+      "$type": "SpiroNet.Wpf.PathShape, SpiroNet.Wpf",
+      "IsClosed": false,
+      "IsTagged": false,
+      "Points": [
+        {
+          "$id": "3",
+          "$type": "SpiroNet.SpiroControlPoint, SpiroNet",
+          "X": 263.0,
+          "Y": 128.0,
+          "Type": 111
+        },
+        {
+          "$id": "4",
+          "$type": "SpiroNet.SpiroControlPoint, SpiroNet",
+          "X": 299.0,
+          "Y": 218.0,
+          "Type": 111
+        },
+        {
+          "$id": "5",
+          "$type": "SpiroNet.SpiroControlPoint, SpiroNet",
+          "X": 393.0,
+          "Y": 279.0,
+          "Type": 111
+        }
+      ]
+    },
+    {
+      "$id": "6",
+      "$type": "SpiroNet.Wpf.PathShape, SpiroNet.Wpf",
+      "IsClosed": false,
+      "IsTagged": false,
+      "Points": [
+        {
+          "$id": "7",
+          "$type": "SpiroNet.SpiroControlPoint, SpiroNet",
+          "X": 63.0,
+          "Y": 358.0,
+          "Type": 111
+        },
+        {
+          "$id": "8",
+          "$type": "SpiroNet.SpiroControlPoint, SpiroNet",
+          "X": 74.0,
+          "Y": 294.0,
+          "Type": 111
+        },
+        {
+          "$id": "9",
+          "$type": "SpiroNet.SpiroControlPoint, SpiroNet",
+          "X": 60.0,
+          "Y": 217.0,
+          "Type": 111
+        },
+        {
+          "$id": "10",
+          "$type": "SpiroNet.SpiroControlPoint, SpiroNet",
+          "X": 106.0,
+          "Y": 205.0,
+          "Type": 111
+        },
+        {
+          "$id": "11",
+          "$type": "SpiroNet.SpiroControlPoint, SpiroNet",
+          "X": 105.0,
+          "Y": 252.0,
+          "Type": 111
+        },
+        {
+          "$id": "12",
+          "$type": "SpiroNet.SpiroControlPoint, SpiroNet",
+          "X": 108.0,
+          "Y": 290.0,
+          "Type": 111
+        },
+        {
+          "$id": "13",
+          "$type": "SpiroNet.SpiroControlPoint, SpiroNet",
+          "X": 159.0,
+          "Y": 355.0,
+          "Type": 111
+        }
+      ]
+    },
+    {
+      "$id": "14",
+      "$type": "SpiroNet.Wpf.PathShape, SpiroNet.Wpf",
+      "IsClosed": false,
+      "IsTagged": false,
+      "Points": [
+        {
+          "$id": "15",
+          "$type": "SpiroNet.SpiroControlPoint, SpiroNet",
+          "X": 218.0,
+          "Y": 435.0,
+          "Type": 111
+        },
+        {
+          "$id": "16",
+          "$type": "SpiroNet.SpiroControlPoint, SpiroNet",
+          "X": 233.0,
+          "Y": 376.0,
+          "Type": 111
+        },
+        {
+          "$id": "17",
+          "$type": "SpiroNet.SpiroControlPoint, SpiroNet",
+          "X": 282.0,
+          "Y": 366.0,
+          "Type": 111
+        },
+        {
+          "$id": "18",
+          "$type": "SpiroNet.SpiroControlPoint, SpiroNet",
+          "X": 320.0,
+          "Y": 396.0,
+          "Type": 111
+        },
+        {
+          "$id": "19",
+          "$type": "SpiroNet.SpiroControlPoint, SpiroNet",
+          "X": 258.0,
+          "Y": 448.0,
+          "Type": 111
+        },
+        {
+          "$id": "20",
+          "$type": "SpiroNet.SpiroControlPoint, SpiroNet",
+          "X": 281.0,
+          "Y": 499.0,
+          "Type": 111
+        },
+        {
+          "$id": "21",
+          "$type": "SpiroNet.SpiroControlPoint, SpiroNet",
+          "X": 361.0,
+          "Y": 404.0,
+          "Type": 111
+        },
+        {
+          "$id": "22",
+          "$type": "SpiroNet.SpiroControlPoint, SpiroNet",
+          "X": 424.0,
+          "Y": 351.0,
+          "Type": 111
+        },
+        {
+          "$id": "23",
+          "$type": "SpiroNet.SpiroControlPoint, SpiroNet",
+          "X": 520.0,
+          "Y": 390.0,
+          "Type": 111
+        },
+        {
+          "$id": "24",
+          "$type": "SpiroNet.SpiroControlPoint, SpiroNet",
+          "X": 403.0,
+          "Y": 449.0,
+          "Type": 111
+        }
+      ]
+    },
+    {
+      "$id": "25",
+      "$type": "SpiroNet.Wpf.PathShape, SpiroNet.Wpf",
+      "IsClosed": true,
+      "IsTagged": false,
+      "Points": [
+        {
+          "$id": "26",
+          "$type": "SpiroNet.SpiroControlPoint, SpiroNet",
+          "X": 392.0,
+          "Y": 104.0,
+          "Type": 111
+        },
+        {
+          "$id": "27",
+          "$type": "SpiroNet.SpiroControlPoint, SpiroNet",
+          "X": 435.0,
+          "Y": 56.0,
+          "Type": 111
+        },
+        {
+          "$id": "28",
+          "$type": "SpiroNet.SpiroControlPoint, SpiroNet",
+          "X": 435.0,
+          "Y": 105.0,
+          "Type": 111
+        },
+        {
+          "$id": "29",
+          "$type": "SpiroNet.SpiroControlPoint, SpiroNet",
+          "X": 415.0,
+          "Y": 165.0,
+          "Type": 111
+        }
+      ]
+    },
+    {
+      "$id": "30",
+      "$type": "SpiroNet.Wpf.PathShape, SpiroNet.Wpf",
+      "IsClosed": true,
+      "IsTagged": false,
+      "Points": [
+        {
+          "$id": "31",
+          "$type": "SpiroNet.SpiroControlPoint, SpiroNet",
+          "X": 475.0,
+          "Y": 214.0,
+          "Type": 111
+        },
+        {
+          "$id": "32",
+          "$type": "SpiroNet.SpiroControlPoint, SpiroNet",
+          "X": 500.0,
+          "Y": 229.0,
+          "Type": 111
+        },
+        {
+          "$id": "33",
+          "$type": "SpiroNet.SpiroControlPoint, SpiroNet",
+          "X": 507.0,
+          "Y": 167.0,
+          "Type": 111
+        }
+      ]
+    },
+    {
+      "$id": "34",
+      "$type": "SpiroNet.Wpf.PathShape, SpiroNet.Wpf",
+      "IsClosed": true,
+      "IsTagged": false,
+      "Points": [
+        {
+          "$id": "35",
+          "$type": "SpiroNet.SpiroControlPoint, SpiroNet",
+          "X": 456.0,
+          "Y": 136.0,
+          "Type": 111
+        },
+        {
+          "$id": "36",
+          "$type": "SpiroNet.SpiroControlPoint, SpiroNet",
+          "X": 476.0,
+          "Y": 110.0,
+          "Type": 111
+        },
+        {
+          "$id": "37",
+          "$type": "SpiroNet.SpiroControlPoint, SpiroNet",
+          "X": 482.0,
+          "Y": 151.0,
+          "Type": 111
+        }
+      ]
+    },
+    {
+      "$id": "38",
+      "$type": "SpiroNet.Wpf.PathShape, SpiroNet.Wpf",
+      "IsClosed": true,
+      "IsTagged": false,
+      "Points": [
+        {
+          "$id": "39",
+          "$type": "SpiroNet.SpiroControlPoint, SpiroNet",
+          "X": 77.0,
+          "Y": 97.0,
+          "Type": 111
+        },
+        {
+          "$id": "40",
+          "$type": "SpiroNet.SpiroControlPoint, SpiroNet",
+          "X": 161.0,
+          "Y": 46.0,
+          "Type": 111
+        },
+        {
+          "$id": "41",
+          "$type": "SpiroNet.SpiroControlPoint, SpiroNet",
+          "X": 179.0,
+          "Y": 72.0,
+          "Type": 111
+        },
+        {
+          "$id": "42",
+          "$type": "SpiroNet.SpiroControlPoint, SpiroNet",
+          "X": 96.0,
+          "Y": 124.0,
+          "Type": 111
+        },
+        {
+          "$id": "43",
+          "$type": "SpiroNet.SpiroControlPoint, SpiroNet",
+          "X": 68.0,
+          "Y": 115.0,
+          "Type": 111
+        }
+      ]
+    }
+  ]
+}

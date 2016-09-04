@@ -1,0 +1,16 @@
+﻿<Window x:Class="DemoDraw.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="clr-namespace:DemoDraw.Editor.Controls;assembly=DemoDraw.Editor"
+        Title="DemoDraw" Height="700" Width="1100" 
+        WindowStartupLocation="CenterScreen" 
+        UseLayoutRounding="True" SnapsToDevicePixels="True" TextOptions.TextFormattingMode="Display">
+    <TabControl>
+        <TabItem Header="Page1">
+            <controls:EditorControl x:Name="Page1" Background="LightGray"/>
+        </TabItem>
+        <TabItem Header="Page2">
+            <controls:EditorControl x:Name="Page2" Background="LightGray"/>
+        </TabItem>
+    </TabControl>
+</Window>

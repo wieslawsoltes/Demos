@@ -1,0 +1,41 @@
+<Window x:Class="TestDemo.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:TestDemo"
+        Title="TestDemo" 
+        Height="600" Width="900"
+        Background="White"
+        WindowStartupLocation="CenterScreen"
+        UseLayoutRounding="True" SnapsToDevicePixels="True"
+        TextOptions.TextFormattingMode="Display">
+    <Grid>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        
+        <local:GuideCanvas 
+            x:Name="canvas" 
+            Width="640" 
+            Height="480" 
+            Background="SlateGray"
+            ClipToBounds="True"
+            Grid.Column="0">
+        </local:GuideCanvas>
+    
+        <StackPanel VerticalAlignment="Center" Grid.Column="1" Margin="2" Background="White">
+            <GroupBox Header="Snap">
+                <StackPanel Margin="2">
+                    <CheckBox x:Name="snapModePoint" Content="_Point"/>
+                    <CheckBox x:Name="snapModeMiddle" Content="_Middle"/>
+                    <CheckBox x:Name="snapModeNearest" Content="_Nearest"/>
+                    <CheckBox x:Name="snapModeIntersection" Content="_Intersection"/>
+                    <CheckBox x:Name="snapModeHorizontal" Content="_Horizontal"/>
+                    <CheckBox x:Name="snapModeVertical" Content="_Vertical"/>
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+
+    </Grid>
+</Window>
