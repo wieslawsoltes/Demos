@@ -26,7 +26,7 @@ var configuration = Argument("configuration", "Release");
 ///////////////////////////////////////////////////////////////////////////////
 
 var solutions = GetFiles("./**/*.sln").ToList();
-solutions.ForEach(solution => Information("[{1}] Solution: {0}", solution));
+solutions.ForEach(solution => Information("Solution: {0}", solution));
 
 ///////////////////////////////////////////////////////////////////////////////
 // TASKS
