@@ -31,6 +31,9 @@ int counter = 0;
 solutions.ForEach(solution => Information("[{1}] Solution: {0}", solution, counter++));
 Information("Found {0} solutions.", counter);
 
+int restoreErrors = 0;
+int buildErrors = 0;
+
 ///////////////////////////////////////////////////////////////////////////////
 // TASKS
 ///////////////////////////////////////////////////////////////////////////////
@@ -54,11 +57,24 @@ Task("Restore-NuGet-Packages")
             }})
         .Execute(()=> {
             solutions.ForEach(solution => {
-                NuGetRestore(solution, new NuGetRestoreSettings {
-                    ToolTimeout = TimeSpan.FromMinutes(toolTimeout)
-                });
+                try
+                {
+                    NuGetRestore(solution, new NuGetRestoreSettings {
+                        ToolTimeout = TimeSpan.FromMinutes(toolTimeout)
+                    });
+                }
+                catch (Exception)
+                {
+                    Information("Failed to restore: {0}", solution);
+                    restoreErrors++;
+                }
             });
+
         });
+})
+.Finally(() =>
+{  
+    Information("Failed to restore {0} solutions.", restoreErrors);
 });
 
 Task("Build")
@@ -68,23 +84,43 @@ Task("Build")
     if(IsRunningOnWindows())
     {
         solutions.ForEach(solution => {
-            MSBuild(solution, settings => {
-                settings.SetConfiguration(configuration);
-                settings.WithProperty("Platform", "\"" + platform + "\"");
-                settings.SetVerbosity(Verbosity.Minimal);
-            });
+            try
+            {
+                MSBuild(solution, settings => {
+                    settings.SetConfiguration(configuration);
+                    settings.WithProperty("Platform", "\"" + platform + "\"");
+                    settings.SetVerbosity(Verbosity.Minimal);
+                });
+            }
+            catch (Exception)
+            {
+                Information("Failed to build: {0}", solution);
+                buildErrors++;
+            }
         });
     }
     else
     {
         solutions.ForEach(solution => {
-            XBuild(solution, settings => {
-                settings.SetConfiguration(configuration);
-                settings.WithProperty("Platform", "\"" + platform + "\"");
-                settings.SetVerbosity(Verbosity.Minimal);
-            });
+            try
+            {
+                XBuild(solution, settings => {
+                    settings.SetConfiguration(configuration);
+                    settings.WithProperty("Platform", "\"" + platform + "\"");
+                    settings.SetVerbosity(Verbosity.Minimal);
+                });
+            }
+            catch (Exception)
+            {
+                Information("Failed to build: {0}", solution);
+                buildErrors++;
+            }
         });
     }
+})
+.Finally(() =>
+{
+    Information("Failed to build {0} solutions.", buildErrors);
 });
 
 ///////////////////////////////////////////////////////////////////////////////
