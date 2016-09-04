@@ -59,6 +59,7 @@ Task("Restore-NuGet-Packages")
             solutions.ForEach(solution => {
                 try
                 {
+                    Information("Restoring: {0}", solution);
                     NuGetRestore(solution, new NuGetRestoreSettings {
                         ToolTimeout = TimeSpan.FromMinutes(toolTimeout)
                     });
@@ -86,6 +87,7 @@ Task("Build")
         solutions.ForEach(solution => {
             try
             {
+                Information("Building: {0}", solution);
                 MSBuild(solution, settings => {
                     settings.SetConfiguration(configuration);
                     settings.WithProperty("Platform", "\"" + platform + "\"");
@@ -104,6 +106,7 @@ Task("Build")
         solutions.ForEach(solution => {
             try
             {
+                Information("Building: {0}", solution);
                 XBuild(solution, settings => {
                     settings.SetConfiguration(configuration);
                     settings.WithProperty("Platform", "\"" + platform + "\"");
