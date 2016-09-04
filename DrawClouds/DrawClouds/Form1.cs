@@ -63,7 +63,6 @@ namespace DrawClouds
         /// Start and end flags used for drawing.
         /// </summary>
         private bool haveStart = false;
-        private bool haveEnd = true;
 
         /// <summary>
         /// Size of cloud grip rectangle.
@@ -435,7 +434,6 @@ namespace DrawClouds
                     this.pTmpEnd = new PointF(m_X2, m_Y2);
                     this.pFirst = new PointF(m_X1, m_Y1);
                     this.haveStart = true;
-                    this.haveEnd = false;
 
                     //Debug.WriteLine("Left click new start point: " + this.pTmpStart.ToString() + " | " + this.pTmpEnd.ToString());
                 }
@@ -523,7 +521,6 @@ namespace DrawClouds
         private void Project_New()
         {
             this.haveStart = false;
-            this.haveEnd = false;
             this.tmpCloud.Arcs.Clear();
             this.clouds.Clear();
 
