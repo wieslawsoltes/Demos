@@ -1,0 +1,13 @@
+language: csharp
+os:
+  - linux
+  - osx
+mono:
+  - latest
+env:
+  matrix:
+    - CONFIGURATION=Release PLATFORM=Any CPU
+matrix:
+  fast_finish: true
+script:
+  - ./build.sh --target "Build" --platform "$PLATFORM" --configuration "$CONFIGURATION"
