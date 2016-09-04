@@ -36,7 +36,6 @@ namespace ColorBlenderDotNET
         string Algorithm { get { return (algorithm.SelectedItem as ComboBoxItem).Content.ToString(); } }
 
         List<MatchColors> Palettes = new List<MatchColors>();
-        string palettesFileName = "palettes.xml";
 
         bool LoadPalettes(string fileName)
         {
