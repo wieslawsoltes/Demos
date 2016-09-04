@@ -25,14 +25,8 @@ var configuration = Argument("configuration", "Release");
 // SOLUTIONS
 ///////////////////////////////////////////////////////////////////////////////
 
-Information("Searching for solutions:");
 var solutions = GetFiles("./**/*.sln").ToList();
-int counter = 0;
-solutions.ForEach(solution => Information("[{1}] Solution: {0}", solution, counter++));
-Information("Found {0} solutions.", counter);
-
-int restoreErrors = 0;
-int buildErrors = 0;
+solutions.ForEach(solution => Information("[{1}] Solution: {0}", solution));
 
 ///////////////////////////////////////////////////////////////////////////////
 // TASKS
@@ -57,73 +51,27 @@ Task("Restore-NuGet-Packages")
             }})
         .Execute(()=> {
             solutions.ForEach(solution => {
-                try
-                {
-                    Information("Restoring: {0}", solution);
-                    NuGetRestore(solution, new NuGetRestoreSettings {
-                        ToolTimeout = TimeSpan.FromMinutes(toolTimeout)
-                    });
-                }
-                catch (Exception)
-                {
-                    Information("Failed to restore: {0}", solution);
-                    restoreErrors++;
-                }
+                Information("Restoring: {0}", solution);
+                NuGetRestore(solution, new NuGetRestoreSettings {
+                    ToolTimeout = TimeSpan.FromMinutes(toolTimeout)
+                });
             });
 
         });
-})
-.Finally(() =>
-{  
-    Information("Failed to restore {0} solutions.", restoreErrors);
 });
 
 Task("Build")
     .IsDependentOn("Restore-NuGet-Packages")
     .Does(() =>
 {
-    if(IsRunningOnWindows())
-    {
-        solutions.ForEach(solution => {
-            try
-            {
-                Information("Building: {0}", solution);
-                MSBuild(solution, settings => {
-                    settings.SetConfiguration(configuration);
-                    settings.WithProperty("Platform", "\"" + platform + "\"");
-                    settings.SetVerbosity(Verbosity.Minimal);
-                });
-            }
-            catch (Exception)
-            {
-                Information("Failed to build: {0}", solution);
-                buildErrors++;
-            }
+    solutions.ForEach(solution => {
+        Information("Building: {0}", solution);
+        MSBuild(solution, settings => {
+            settings.SetConfiguration(configuration);
+            settings.WithProperty("Platform", "\"" + platform + "\"");
+            settings.SetVerbosity(Verbosity.Minimal);
         });
-    }
-    else
-    {
-        solutions.ForEach(solution => {
-            try
-            {
-                Information("Building: {0}", solution);
-                XBuild(solution, settings => {
-                    settings.SetConfiguration(configuration);
-                    settings.WithProperty("Platform", "\"" + platform + "\"");
-                    settings.SetVerbosity(Verbosity.Minimal);
-                });
-            }
-            catch (Exception)
-            {
-                Information("Failed to build: {0}", solution);
-                buildErrors++;
-            }
-        });
-    }
-})
-.Finally(() =>
-{
-    Information("Failed to build {0} solutions.", buildErrors);
+    });
 });
 
 ///////////////////////////////////////////////////////////////////////////////
