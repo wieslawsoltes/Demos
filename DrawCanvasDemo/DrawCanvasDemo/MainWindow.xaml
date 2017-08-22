@@ -1,0 +1,10 @@
+﻿<Window x:Class="DrawCanvasDemo.MainWindow"
+        xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:DrawCanvasDemo;assembly=DrawCanvasDemo"
+        Title="DrawCanvasDemo" Height="700" Width="1000"
+        UseLayoutRounding="True">
+    <Grid>
+        <local:DrawCanvas Background="LightGray" Width="600" Height="600"/>
+    </Grid>
+</Window>

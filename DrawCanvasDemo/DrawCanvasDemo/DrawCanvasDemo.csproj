@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0CE702D6-A441-4E46-ACFC-9890C1751D62}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DrawCanvasDemo</RootNamespace>
+    <AssemblyName>DrawCanvasDemo</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <NoWin32Manifest>False</NoWin32Manifest>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <NoStdLib>False</NoStdLib>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="App.xaml" />
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="MainWindow.xaml" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DrawCanvas.cs" />
+    <Compile Include="EllipseShape.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="0.5.0" />
+    <PackageReference Include="Avalonia.Cairo" Version="0.5.0" />
+    <PackageReference Include="Avalonia.Direct2D1" Version="0.5.0" />
+    <PackageReference Include="Avalonia.Gtk" Version="0.5.0" />
+    <PackageReference Include="Avalonia.Gtk3" Version="0.5.0" />
+    <PackageReference Include="Avalonia.Skia.Desktop" Version="0.5.0" />
+    <PackageReference Include="Avalonia.Skia.Linux.Natives" Version="1.57.1.4" />
+    <PackageReference Include="Avalonia.Win32" Version="0.5.0" />
+    <PackageReference Include="Serilog" Version="2.4.0" />
+    <PackageReference Include="Serilog.Sinks.Trace" Version="2.1.0" />
+    <PackageReference Include="SharpDX" Version="3.1.1" />
+    <PackageReference Include="SharpDX.Direct2D1" Version="3.1.1" />
+    <PackageReference Include="SharpDX.Direct3D11" Version="3.1.1" />
+    <PackageReference Include="SharpDX.DXGI" Version="3.1.1" />
+    <PackageReference Include="SkiaSharp" Version="1.57.1" />
+    <PackageReference Include="Splat" Version="2.0.0" />
+    <PackageReference Include="Sprache" Version="2.1.0" />
+    <PackageReference Include="System.Reactive" Version="3.0.0" />
+    <PackageReference Include="System.Reactive.Core" Version="3.0.0" />
+    <PackageReference Include="System.Reactive.Interfaces" Version="3.0.0" />
+    <PackageReference Include="System.Reactive.Linq" Version="3.0.0" />
+    <PackageReference Include="System.Reactive.PlatformServices" Version="3.0.0" />
+    <PackageReference Include="System.Reactive.Windows.Threading" Version="3.0.0" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
