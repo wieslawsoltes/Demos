@@ -2,7 +2,13 @@
 // ADDINS
 ///////////////////////////////////////////////////////////////////////////////
 
-#addin "nuget:?package=Polly&version=5.1.0"
+#addin "nuget:?package=Polly&version=5.3.1"
+
+///////////////////////////////////////////////////////////////////////////////
+// TOOLS
+///////////////////////////////////////////////////////////////////////////////
+
+#tool "nuget:?package=NuGet.CommandLine&version=4.3.0"
 
 ///////////////////////////////////////////////////////////////////////////////
 // USINGS
@@ -70,6 +76,7 @@ Task("Build")
             settings.SetConfiguration(configuration);
             settings.WithProperty("Platform", "\"" + platform + "\"");
             settings.SetVerbosity(Verbosity.Minimal);
+            settings.SetMaxCpuCount(0);
         });
     });
 });
