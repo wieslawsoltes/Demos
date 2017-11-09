@@ -121,8 +121,6 @@ artifacts:
   name: LineEx
 - path: Matrix\WpfMatrix\bin\Release\
   name: WpfMatrix
-- path: MultiLineDemo\MultiLineDemo\bin\Release\
-  name: MultiLineDemo
 - path: SelectionAdorner\SelectionAdornerDemo\bin\Release\
   name: SelectionAdorner
 - path: TemplateCreator\TemplateCreator\bin\Release\
