@@ -127,7 +127,6 @@
     </ApplicationDefinition>
     <Compile Include="Math.cs" />
     <Compile Include="Model.cs" />
-    <Compile Include="Wpf.cs" />
     <Page Include="SelectedItemControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
