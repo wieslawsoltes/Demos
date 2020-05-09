@@ -582,7 +582,6 @@ namespace CanvasDiagram
         private enum HitResult { None, Point1, Point2, Line };
 
         private LineShape _line;
-        private double _size;
         private double _offset;
         private CanvasShape _canvasShape;
         private PolygonShape _polygonLine;
@@ -592,10 +591,9 @@ namespace CanvasDiagram
         private HitResult _hitResult;
         private Vector2[] _vertices;
 
-        public LineBounds(CanvasShape canvasShape, LineShape line, double size, double offset)
+        public LineBounds(CanvasShape canvasShape, LineShape line, double offset)
         {
             _line = line;
-            _size = size;
             _offset = offset;
             _canvasShape = canvasShape;
 
@@ -611,14 +609,14 @@ namespace CanvasDiagram
         {
             var ps = _polygonPoint1.Points;
             var ls = _polygonPoint1.Lines;
-            HitTestHelper.UpdatePointBounds(_line.Point1, ps, ls, _size, _offset);
+            HitTestHelper.UpdatePointBounds(_line.Point1, ps, ls, _line.StrokeThickness, _offset);
         }
 
         private void UpdatePoint2Bounds()
         {
             var ps = _polygonPoint2.Points;
             var ls = _polygonPoint2.Lines;
-            HitTestHelper.UpdatePointBounds(_line.Point2, ps, ls, _size, _offset);
+            HitTestHelper.UpdatePointBounds(_line.Point2, ps, ls, _line.StrokeThickness, _offset);
         }
 
         private void UpdateLineBounds()
@@ -969,7 +967,8 @@ namespace CanvasDiagram
             SelectedMove = Selected | Move
         }
 
-        private CanvasShape _canvasShape;
+        private CanvasShape _drawingCanvas;
+        private CanvasShape _boundsCanvas;
         private Vector2 _original;
         private Vector2 _start;
         private BaseShape _selected;
@@ -993,14 +992,15 @@ namespace CanvasDiagram
             }
         }
 
-        public SelectionEditor(CanvasShape canvasShape)
+        public SelectionEditor(CanvasShape drawingCanvas, CanvasShape boundsCanvas)
         {
-            _canvasShape = canvasShape;
+            _drawingCanvas = drawingCanvas;
+            _boundsCanvas = boundsCanvas;
 
-            var drags = Observable.Merge(_canvasShape.Downs, _canvasShape.Ups, _canvasShape.Moves);
+            var drags = Observable.Merge(_drawingCanvas.Downs, _drawingCanvas.Ups, _drawingCanvas.Moves);
 
-            _downs = _canvasShape.Downs.Where(_ => IsEnabled).Subscribe(p => Down(p));
-            _ups = _canvasShape.Ups.Where(_ => IsEnabled).Subscribe(p => Up(p));
+            _downs = _drawingCanvas.Downs.Where(_ => IsEnabled).Subscribe(p => Down(p));
+            _ups = _drawingCanvas.Ups.Where(_ => IsEnabled).Subscribe(p => Up(p));
             _drag = drags.Where(_ => IsEnabled).Subscribe(p => Drag(p));
         }
 
@@ -1025,36 +1025,37 @@ namespace CanvasDiagram
                 render = true;
             }
 
-            _selected = HitTestHelper.HitTest(_canvasShape.Children, p.X, p.Y);
+            _selected = HitTestHelper.HitTest(_drawingCanvas.Children, p.X, p.Y);
             if (_selected != null)
             {
                 ShowSelected();
                 InitMove(p);
-                _canvasShape.Capture?.Invoke();
+                _drawingCanvas.Capture?.Invoke();
                 render = true;
             }
 
             if (render)
             {
-                _canvasShape.InvalidateShape();
+                _drawingCanvas.InvalidateShape();
+                _boundsCanvas.InvalidateShape();
             }
         }
 
         private void Up(Vector2 p)
         {
-            if (_canvasShape.IsCaptured?.Invoke() == true)
+            if (_drawingCanvas.IsCaptured?.Invoke() == true)
             {
                 if (IsState(State.Move))
                 {
                     FinishMove(p);
-                    _canvasShape.ReleaseCapture?.Invoke();
+                    _drawingCanvas.ReleaseCapture?.Invoke();
                 }
             }
         }
 
         private void Drag(Vector2 p)
         {
-            if (_canvasShape.IsCaptured?.Invoke() == true)
+            if (_drawingCanvas.IsCaptured?.Invoke() == true)
             {
                 if (IsState(State.Move))
                 {
@@ -1064,7 +1065,7 @@ namespace CanvasDiagram
             else
             {
                 bool render = false;
-                var result = HitTestHelper.HitTest(_canvasShape.Children, p.X, p.Y);
+                var result = HitTestHelper.HitTest(_drawingCanvas.Children, p.X, p.Y);
 
                 if (IsState(State.Hover))
                 {
@@ -1115,7 +1116,8 @@ namespace CanvasDiagram
 
                 if (render)
                 {
-                    _canvasShape.InvalidateShape();
+                    _drawingCanvas.InvalidateShape();
+                    _boundsCanvas.InvalidateShape();
                 }
             }
         }
@@ -1167,7 +1169,8 @@ namespace CanvasDiagram
                 _start = p;
                 _selected.Bounds.MoveContaining(dx, dy);
                 _selected.Bounds.Update();
-                _canvasShape.InvalidateShape();
+                _drawingCanvas.InvalidateShape();
+                _boundsCanvas.InvalidateShape();
             }
         }
 
@@ -1193,7 +1196,8 @@ namespace CanvasDiagram
 
             if (render)
             {
-                _canvasShape.InvalidateShape();
+                _drawingCanvas.InvalidateShape();
+                _boundsCanvas.InvalidateShape();
             }
         }
 
@@ -1211,27 +1215,30 @@ namespace CanvasDiagram
 
         public bool IsEnabled { get; set; }
 
-        private CanvasShape _canvasShape;
+        private CanvasShape _drawingCanvas;
+        private CanvasShape _boundsCanvas;
         private LineShape _lineShape;
         private State _state = State.None;
         private IDisposable _downs;
         private IDisposable _drags;
 
-        public LineEditor(CanvasShape canvasShape)
+        public LineEditor(CanvasShape drawingCanvas, CanvasShape boundsCanvas)
         {
-            _canvasShape = canvasShape;
+            _drawingCanvas = drawingCanvas;
+            _boundsCanvas = boundsCanvas;
 
-            var moves = _canvasShape.Moves.Where(_ => _canvasShape.IsCaptured?.Invoke() == true);
-            var drags = Observable.Merge(_canvasShape.Downs, _canvasShape.Ups, moves);
+            var moves = _drawingCanvas.Moves.Where(_ => _drawingCanvas.IsCaptured?.Invoke() == true);
+            var drags = Observable.Merge(_drawingCanvas.Downs, _drawingCanvas.Ups, moves);
 
-            _downs = _canvasShape.Downs.Where(_ => IsEnabled).Subscribe(p =>
+            _downs = _drawingCanvas.Downs.Where(_ => IsEnabled).Subscribe(p =>
             {
-                if (_canvasShape.IsCaptured?.Invoke() == true)
+                if (_drawingCanvas.IsCaptured?.Invoke() == true)
                 {
                     _lineShape.Bounds.Hide();
-                    _canvasShape.InvalidateShape();
+                    _drawingCanvas.InvalidateShape();
+                    _boundsCanvas.InvalidateShape();
                     _state = State.None;
-                    _canvasShape.ReleaseCapture?.Invoke();
+                    _drawingCanvas.ReleaseCapture?.Invoke();
                 }
                 else
                 {
@@ -1241,12 +1248,13 @@ namespace CanvasDiagram
                     _lineShape.Point2.X = p.X;
                     _lineShape.Point2.Y = p.Y;
 
-                    _canvasShape.Add(_lineShape);
-                    _lineShape.Bounds = new LineBounds(_canvasShape, _lineShape, _lineShape.StrokeThickness, 0.0);
+                    _drawingCanvas.Add(_lineShape);
+                    _lineShape.Bounds = new LineBounds(_boundsCanvas, _lineShape, 0.0);
                     _lineShape.Bounds.Update();
                     _lineShape.Bounds.Show();
-                    _canvasShape.Capture?.Invoke();
-                    _canvasShape.InvalidateShape();
+                    _drawingCanvas.Capture?.Invoke();
+                    _drawingCanvas.InvalidateShape();
+                    _boundsCanvas.InvalidateShape();
                     _state = State.End;
                 }
             });
@@ -1258,7 +1266,8 @@ namespace CanvasDiagram
                     _lineShape.Point2.X = p.X;
                     _lineShape.Point2.Y = p.Y;
                     _lineShape.Bounds.Update();
-                    _canvasShape.InvalidateShape();
+                    _drawingCanvas.InvalidateShape();
+                    _boundsCanvas.InvalidateShape();
                 }
             });
         }
@@ -1276,6 +1285,8 @@ namespace CanvasDiagram
 
         public CanvasShape DrawingCanvas { get; set; }
 
+        public CanvasShape BoundsCanvas { get; set; }
+
         public SelectionEditor SelectionEditor { get; set; }
 
         public LineEditor LineEditor { get; set; }
@@ -1289,12 +1300,14 @@ namespace CanvasDiagram
         {
             DrawingCanvas.Clear();
             DrawingCanvas.InvalidateShape();
+            BoundsCanvas.InvalidateShape();
         }
 
         public void Render()
         {
             BackgroundCanvas.InvalidateShape();
             DrawingCanvas.InvalidateShape();
+            BoundsCanvas.InvalidateShape();
         }
 
         public void Delete()
@@ -1312,7 +1325,46 @@ namespace CanvasDiagram
             }
 
             DrawingCanvas.InvalidateShape();
+            BoundsCanvas.InvalidateShape();
         }
+
+        public void EnableInput(CanvasShape canvasShape, RenderCanvas target)
+        {
+            canvasShape.Downs = Observable.FromEventPattern<MouseButtonEventArgs>(
+                 target,
+                 "PreviewMouseLeftButtonDown").Select(e =>
+                 {
+                     var p = e.EventArgs.GetPosition(target);
+                     return new Vector2(
+                         canvasShape.EnableSnap ? canvasShape.Snap(p.X, canvasShape.SnapX) : p.X,
+                         canvasShape.EnableSnap ? canvasShape.Snap(p.Y, canvasShape.SnapY) : p.Y);
+                 });
+
+            canvasShape.Ups = Observable.FromEventPattern<MouseButtonEventArgs>(
+                target,
+                "PreviewMouseLeftButtonUp").Select(e =>
+                {
+                    var p = e.EventArgs.GetPosition(target);
+                    return new Vector2(
+                        canvasShape.EnableSnap ? canvasShape.Snap(p.X, canvasShape.SnapX) : p.X,
+                        canvasShape.EnableSnap ? canvasShape.Snap(p.Y, canvasShape.SnapY) : p.Y);
+                });
+
+            canvasShape.Moves = Observable.FromEventPattern<MouseEventArgs>(
+                target,
+                "PreviewMouseMove").Select(e =>
+                {
+                    var p = e.EventArgs.GetPosition(target);
+                    return new Vector2(
+                        canvasShape.EnableSnap ? canvasShape.Snap(p.X, canvasShape.SnapX) : p.X,
+                        canvasShape.EnableSnap ? canvasShape.Snap(p.Y, canvasShape.SnapY) : p.Y);
+                });
+
+            canvasShape.IsCaptured = () => Mouse.Captured == target;
+            canvasShape.Capture = () => target.CaptureMouse();
+            canvasShape.ReleaseCapture = () => target.ReleaseMouseCapture();
+        }
+
 
         public void CreateGrid(CanvasShape canvasShape, double width, double height, double size, double originX, double originY)
         {
@@ -1343,7 +1395,6 @@ namespace CanvasDiagram
                 canvasShape.Add(lineShape);
             }
         }
-
     }
 
     public static class ArgbColorExtensions
@@ -1473,63 +1524,19 @@ namespace CanvasDiagram
         }
     }
 
-    public class DrawingCanvas : Canvas, IDrawableShape
+    public class RenderCanvas : Canvas, IDrawableShape
     {
         private readonly CanvasShape _canvasShape;
 
-        public DrawingCanvas(CanvasShape canvasShape, bool enableInput)
+        public RenderCanvas(CanvasShape canvasShape)
         {
             _canvasShape = canvasShape;
-
-            if (enableInput)
-            {
-                _canvasShape.Downs = Observable.FromEventPattern<MouseButtonEventArgs>(
-                     this,
-                     "PreviewMouseLeftButtonDown").Select(e =>
-                     {
-                         var p = e.EventArgs.GetPosition(this);
-                         return new Vector2(
-                             _canvasShape.EnableSnap ? _canvasShape.Snap(p.X, _canvasShape.SnapX) : p.X,
-                             _canvasShape.EnableSnap ? _canvasShape.Snap(p.Y, _canvasShape.SnapY) : p.Y);
-                     });
-
-                _canvasShape.Ups = Observable.FromEventPattern<MouseButtonEventArgs>(
-                    this,
-                    "PreviewMouseLeftButtonUp").Select(e =>
-                    {
-                        var p = e.EventArgs.GetPosition(this);
-                        return new Vector2(
-                            _canvasShape.EnableSnap ? _canvasShape.Snap(p.X, _canvasShape.SnapX) : p.X,
-                            _canvasShape.EnableSnap ? _canvasShape.Snap(p.Y, _canvasShape.SnapY) : p.Y);
-                    });
-
-                _canvasShape.Moves = Observable.FromEventPattern<MouseEventArgs>(
-                    this,
-                    "PreviewMouseMove").Select(e =>
-                    {
-                        var p = e.EventArgs.GetPosition(this);
-                        return new Vector2(
-                            _canvasShape.EnableSnap ? _canvasShape.Snap(p.X, _canvasShape.SnapX) : p.X,
-                            _canvasShape.EnableSnap ? _canvasShape.Snap(p.Y, _canvasShape.SnapY) : p.Y);
-                    });
-
-                _canvasShape.IsCaptured = () => Mouse.Captured == this;
-                _canvasShape.Capture = () => this.CaptureMouse();
-                _canvasShape.ReleaseCapture = () => this.ReleaseMouseCapture();
-            }
-
             _canvasShape.Native = this;
-
             this.Width = _canvasShape.Width;
             this.Height = _canvasShape.Height;
         }
 
-        public void InvalidateShape()
-        {
-            InvalidateVisual();
-        }
-
-        private PenLineCap ToPenLineCap(LineCap lineCap)
+        public PenLineCap ToPenLineCap(LineCap lineCap)
         {
             switch (lineCap)
             {
@@ -1543,6 +1550,11 @@ namespace CanvasDiagram
                 case LineCap.Triangle:
                     return PenLineCap.Triangle;
             }
+        }
+
+        public void InvalidateShape()
+        {
+            InvalidateVisual();
         }
 
         protected override void OnRender(DrawingContext dc)
@@ -1622,13 +1634,20 @@ namespace CanvasDiagram
 
         private void InitializeModel()
         {
-            _canvasView = new CanvasView();
+            _canvasView = new CanvasView
+            {
+                BackgroundCanvas = new CanvasShape(),
+                DrawingCanvas = new CanvasShape(),
+                BoundsCanvas = new CanvasShape()
+            };
 
-            _canvasView.BackgroundCanvas = new CanvasShape();
-            layout.Children.Add(new DrawingCanvas(_canvasView.BackgroundCanvas, false));
+            var backgroundRenderCanvas = new RenderCanvas(_canvasView.BackgroundCanvas);
+            var drawingRenderCanvas = new RenderCanvas(_canvasView.DrawingCanvas);
+            var boundsRenderCanvas = new RenderCanvas(_canvasView.BoundsCanvas);
 
-            _canvasView.DrawingCanvas = new CanvasShape();
-            layout.Children.Add(new DrawingCanvas(_canvasView.DrawingCanvas, true));
+            layout.Children.Add(backgroundRenderCanvas);
+            layout.Children.Add(drawingRenderCanvas);
+            layout.Children.Add(boundsRenderCanvas);
 
             _canvasView.CreateGrid(
                 _canvasView.BackgroundCanvas,
@@ -1637,12 +1656,14 @@ namespace CanvasDiagram
                 30,
                 0, 0);
 
-            _canvasView.SelectionEditor = new SelectionEditor(_canvasView.DrawingCanvas)
+            _canvasView.EnableInput(_canvasView.DrawingCanvas, boundsRenderCanvas);
+
+            _canvasView.SelectionEditor = new SelectionEditor(_canvasView.DrawingCanvas, _canvasView.BoundsCanvas)
             {
                 IsEnabled = false
             };
 
-            _canvasView.LineEditor = new LineEditor(_canvasView.DrawingCanvas)
+            _canvasView.LineEditor = new LineEditor(_canvasView.DrawingCanvas, _canvasView.BoundsCanvas)
             {
                 IsEnabled = true
             };
