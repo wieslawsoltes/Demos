@@ -79,16 +79,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="PdfSharp">
-      <HintPath>..\packages\PDFsharp.1.32.3057.0\lib\net20\PdfSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="PdfSharp.Charting">
-      <HintPath>..\packages\PDFsharp.1.32.3057.0\lib\net20\PdfSharp.Charting.dll</HintPath>
-    </Reference>
     <Reference Include="Splat, Version=1.6.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Splat.1.6.2\lib\Net45\Splat.dll</HintPath>
       <Private>True</Private>
@@ -133,18 +123,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="WpfArc.cs" />
-    <Compile Include="WpfBezier.cs" />
-    <Compile Include="WpfCanvas.cs" />
-    <Compile Include="WpfConverter.cs" />
-    <Compile Include="WpfEllipse.cs" />
-    <Compile Include="WpfExtensions.cs" />
-    <Compile Include="WpfLine.cs" />
-    <Compile Include="WpfModule.cs" />
-    <Compile Include="WpfPin.cs" />
-    <Compile Include="WpfQuadraticBezier.cs" />
-    <Compile Include="WpfRectangle.cs" />
-    <Compile Include="WpfText.cs" />
+    <Compile Include="Math.cs" />
+    <Compile Include="Model.cs" />
+    <Compile Include="Wpf.cs" />
     <Page Include="SelectedItemControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -193,12 +174,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\RxCanvas\RxCanvas.csproj">
-      <Project>{4171f861-3e6b-4498-994d-7b9eb1025033}</Project>
-      <Name>RxCanvas</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,28 +1,16 @@
-﻿// Copyright (c) Wiesław Šoltés. All rights reserved.
-// Licensed under the MIT license. See LICENSE file in the project root for full license information.
-using System;
+﻿using System;
 
 namespace MathUtil
 {
     public struct Vector2 : IComparable<Vector2>
     {
-        #region Properties
-
-        public double X { get; private set; }
-        public double Y { get; private set; }
-
-        #endregion
-
-        #region Vectors
-
         public static Vector2 One { get { return new Vector2(1.0); } }
         public static Vector2 Zero { get { return new Vector2(0.0); } }
         public static Vector2 UnitX { get { return new Vector2(1.0, 0.0); } }
         public static Vector2 UnitY { get { return new Vector2(0.0, 1.0); } }
 
-        #endregion
-
-        #region Constructor
+        public double X { get; private set; }
+        public double Y { get; private set; }
 
         public Vector2(double value)
             : this()
@@ -38,18 +26,10 @@ namespace MathUtil
             this.Y = y;
         }
 
-        #endregion
-
-        #region ToString
-
         public override string ToString()
         {
             return string.Concat(X, System.Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberGroupSeparator, Y);
         }
-
-        #endregion
-
-        #region IComparable
 
         public static bool operator <(Vector2 v1, Vector2 v2)
         {
@@ -64,11 +44,7 @@ namespace MathUtil
         public int CompareTo(Vector2 v)
         {
             return (this > v) ? -1 : ((this < v) ? 1 : 0);
-        } 
-
-        #endregion
-
-        #region Equals
+        }
 
         public bool Equals(Vector2 v)
         {
@@ -88,10 +64,6 @@ namespace MathUtil
         {
             return this.X.GetHashCode() + this.Y.GetHashCode();
         }
-
-        #endregion
-
-        #region Arithmetic
 
         public Vector2 Negate()
         {
@@ -157,10 +129,6 @@ namespace MathUtil
             return (this.X * v.Y) - (this.Y * v.X);
         }
 
-        #endregion
-
-        #region Operators
-
         public static bool operator ==(Vector2 v1, Vector2 v2)
         {
             return v1.X == v2.X && v1.Y == v2.Y;
@@ -222,10 +190,6 @@ namespace MathUtil
                 v1.Y / v2.Y);
         }
 
-        #endregion
-
-        #region Vector
-
         public double Magnitude()
         {
             return Math.Sqrt(this.X * this.X + this.Y * this.Y);
@@ -260,7 +224,7 @@ namespace MathUtil
         {
             return v * (this.Dot(v) / v.Dot(v));
         }
-        
+
         //public Vector2 Project(Vector2 v)
         //{
         //    return v.Normalize() * this.Component(v);
@@ -288,10 +252,6 @@ namespace MathUtil
                 this.Y > v.Y ? this.Y : v.Y);
         }
 
-        #endregion
-
-        #region Interpolation
-
         public Vector2 Lerp(Vector2 v, double amount)
         {
             return this + (v - this) * amount;
@@ -309,10 +269,6 @@ namespace MathUtil
         {
             return this.Lerp(v, amount).Normalize();
         }
-
-        #endregion
-
-        #region Point
 
         public double Distance(Vector2 v)
         {
@@ -333,10 +289,6 @@ namespace MathUtil
             return (this - a).Project(b - a) + a;
         }
 
-        #endregion
-
-        #region Math
-
         public const double RadiansToDegrees = 180.0 / Math.PI;
         public const double DegreesToRadians = Math.PI / 180.0;
 
@@ -344,7 +296,52 @@ namespace MathUtil
         {
             return value > max ? max : value < min ? min : value;
         }
+    }
 
-        #endregion
+    public class MonotoneChain
+    {
+        // Implementation of Andrew's monotone chain 2D convex hull algorithm.
+        // http://en.wikibooks.org/wiki/Algorithm_Implementation/Geometry/Convex_hull/Monotone_chain
+        // Asymptotic complexity O(n log n).
+
+        // 2D cross product of OA and OB vectors, i.e. z-component of their 3D cross product.
+        // Returns a positive value, if OAB makes a counter-clockwise turn,
+        // negative for clockwise turn, and zero if the vertices are collinear.
+        public double Cross(Vector2 p1, Vector2 p2, Vector2 p3)
+        {
+            return (p2.X - p1.X) * (p3.Y - p1.Y) - (p2.Y - p1.Y) * (p3.X - p1.X);
+        }
+
+        // Returns a list of vertices on the convex hull in counter-clockwise order.
+        // Note: the last vertice in the returned list is the same as the first one.
+        public void ConvexHull(Vector2[] vertices, out Vector2[] hull, out int k)
+        {
+            int n = vertices.Length;
+            int i, t;
+
+            k = 0;
+            hull = new Vector2[2 * n];
+
+            // sort vertices lexicographically
+            Array.Sort(vertices);
+
+            // lower hull
+            for (i = 0; i < n; i++)
+            {
+                while (k >= 2 && Cross(hull[k - 2], hull[k - 1], vertices[i]) <= 0)
+                    k--;
+
+                hull[k++] = vertices[i];
+            }
+
+            // upper hull
+            for (i = n - 2, t = k + 1; i >= 0; i--)
+            {
+                while (k >= t && Cross(hull[k - 2], hull[k - 1], vertices[i]) <= 0)
+                    k--;
+
+                hull[k++] = vertices[i];
+            }
+        }
     }
 }

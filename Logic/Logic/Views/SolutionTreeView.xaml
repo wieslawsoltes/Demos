@@ -106,7 +106,7 @@
                                   ItemTemplate="{StaticResource ElementTemplate}"
                                   ItemContainerStyle="{StaticResource ElementTreeViewItemStyle}">
             <StackPanel Orientation="Horizontal" Margin="0,2,0,2">
-                <Image Source="/Logic;component/Images/PageWhite.png"/>
+                <!--<Image Source="/Logic;component/Images/PageWhite.png"/>-->
                 <TextBlock Margin="2,0,0,0" Text="{Binding}"/>
             </StackPanel>
         </HierarchicalDataTemplate>
@@ -116,10 +116,10 @@
                                   ItemTemplate="{StaticResource ContextTemplate}"
                                   ItemContainerStyle="{StaticResource ContextTreeViewItemStyle}">
             <StackPanel Orientation="Horizontal" Margin="0,2,0,2">
-                <Image x:Name="Folder" Source="/Logic;component/Images/ProjectClosed.png"/>
+                <!--<Image x:Name="Folder" Source="/Logic;component/Images/ProjectClosed.png"/>-->
                 <TextBlock Margin="2,0,0,0" Text="{Binding}" FontWeight="Bold"/>
             </StackPanel>
-            <DataTemplate.Triggers>
+            <!--<DataTemplate.Triggers>
                 <DataTrigger Binding="{Binding Path=IsExpanded, RelativeSource={RelativeSource TemplatedParent}}" Value="True">
                     <Setter Property="Source" TargetName="Folder" Value="/Logic;component/Images/ProjectOpen.png" />
                 </DataTrigger>
@@ -129,7 +129,7 @@
                 <DataTrigger Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource TemplatedParent}}" Value="True">
                     <Setter Property="Source" TargetName="Folder" Value="/Logic;component/Images/ProjectSelected.png" />
                 </DataTrigger>
-            </DataTemplate.Triggers>
+            </DataTemplate.Triggers>-->
         </HierarchicalDataTemplate>
 
     </UserControl.Resources> 
