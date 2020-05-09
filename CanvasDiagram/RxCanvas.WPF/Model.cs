@@ -234,9 +234,9 @@ namespace RxCanvas.WPF
 
             _hitResult = HitResult.None;
 
-            _polygonPoint1 = HitTestHelper.CreateBoundsPolygon(4);
-            _polygonPoint2 = HitTestHelper.CreateBoundsPolygon(4);
-            _polygonLine = HitTestHelper.CreateBoundsPolygon(4);
+            _polygonPoint1 = HitTestHelper.CreatePolygonBounds(4);
+            _polygonPoint2 = HitTestHelper.CreatePolygonBounds(4);
+            _polygonLine = HitTestHelper.CreatePolygonBounds(4);
             _vertices = new Vector2[4];
         }
 
@@ -490,7 +490,7 @@ namespace RxCanvas.WPF
         }
     }
 
-    internal static class HitTestHelper
+    public static class HitTestHelper
     {
         public static MonotoneChain ConvexHull = new MonotoneChain();
 
@@ -511,7 +511,7 @@ namespace RxCanvas.WPF
             return Math.Max(Math.Max(val1, val2), Math.Max(val3, val4));
         }
 
-        public static PolygonShape CreateBoundsPolygon(int points)
+        public static PolygonShape CreatePolygonBounds(int points)
         {
             var polygon = new PolygonShape();
             polygon.Points = new PointShape[points];
@@ -542,7 +542,7 @@ namespace RxCanvas.WPF
             double width = size;
             double height = size;
 
-            HitTestHelper.UpdateRectangleBounds(ps, ls, offset, x, y, width, height);
+            UpdateRectangleBounds(ps, ls, offset, x, y, width, height);
         }
 
         public static void UpdateRectangleBounds(PointShape[] ps, LineShape[] ls, double offset, double x, double y, double width, double height)
@@ -552,23 +552,23 @@ namespace RxCanvas.WPF
             Debug.Assert(ps.Length == PointBoundVertexCount);
             Debug.Assert(ls.Length == PointBoundVertexCount);
 
-            // top-left
+            // Top-Left
             ps[0].X = x - offset;
             ps[0].Y = y - offset;
-            // top-right
+            // Top-Right
             ps[1].X = (x + width) + offset;
             ps[1].Y = y - offset;
-            // botton-right
+            // Botton-Right
             ps[2].X = (x + width) + offset;
             ps[2].Y = (y + height) + offset;
-            // bottom-left
+            // Bottom-Left
             ps[3].X = x - offset;
             ps[3].Y = (y + height) + offset;
 
-            HitTestHelper.MoveLine(ls[0], ps[0], ps[1]);
-            HitTestHelper.MoveLine(ls[1], ps[1], ps[2]);
-            HitTestHelper.MoveLine(ls[2], ps[2], ps[3]);
-            HitTestHelper.MoveLine(ls[3], ps[3], ps[0]);
+            MoveLine(ls[0], ps[0], ps[1]);
+            MoveLine(ls[1], ps[1], ps[2]);
+            MoveLine(ls[2], ps[2], ps[3]);
+            MoveLine(ls[3], ps[3], ps[0]);
         }
 
         public static void MoveLine(LineShape line, PointShape point1, PointShape point2)
@@ -588,12 +588,7 @@ namespace RxCanvas.WPF
         }
     }
 
-    public interface IEditor
-    {
-        bool IsEnabled { get; set; }
-    }
-
-    public class SelectionEditor : IEditor, IDisposable
+    public class SelectionEditor : IDisposable
     {
         [Flags]
         public enum State
@@ -668,7 +663,7 @@ namespace RxCanvas.WPF
             {
                 ShowSelected();
                 InitMove(p);
-                _canvasShape.Capture();
+                _canvasShape.Capture?.Invoke();
                 render = true;
             }
 
@@ -685,7 +680,7 @@ namespace RxCanvas.WPF
                 if (IsState(State.Move))
                 {
                     FinishMove(p);
-                    _canvasShape.ReleaseCapture();
+                    _canvasShape.ReleaseCapture?.Invoke();
                 }
             }
         }
@@ -843,7 +838,7 @@ namespace RxCanvas.WPF
         }
     }
 
-    public class LineEditor : IEditor, IDisposable
+    public class LineEditor : IDisposable
     {
         public enum State { None, Start, End }
 
@@ -869,7 +864,7 @@ namespace RxCanvas.WPF
                     _lineShape.Bounds.Hide();
                     _canvasShape.InvalidateShape();
                     _state = State.None;
-                    _canvasShape.ReleaseCapture();
+                    _canvasShape.ReleaseCapture?.Invoke();
                 }
                 else
                 {
@@ -883,7 +878,7 @@ namespace RxCanvas.WPF
                     _lineShape.Bounds = new LineBounds(_canvasShape, _lineShape, _lineShape.StrokeThickness, 0.0);
                     _lineShape.Bounds.Update();
                     _lineShape.Bounds.Show();
-                    _canvasShape.Capture();
+                    _canvasShape.Capture?.Invoke();
                     _canvasShape.InvalidateShape();
                     _state = State.End;
                 }
@@ -935,36 +930,6 @@ namespace RxCanvas.WPF
             DrawingCanvas.InvalidateShape();
         }
 
-        public void CreateGrid(double width, double height, double size, double originX, double originY)
-        {
-            var thickness = 2.0;
-            var stroke = new ArgbColor(0xFF, 0xE8, 0xE8, 0xE8);
-
-            for (double y = size; y < height; y += size)
-            {
-                var lineShape = new LineShape();
-                lineShape.Point1.X = originX;
-                lineShape.Point1.Y = y;
-                lineShape.Point2.X = width;
-                lineShape.Point2.Y = y;
-                lineShape.Stroke = stroke;
-                lineShape.StrokeThickness = thickness;
-                BackgroundCanvas.Add(lineShape);
-            }
-
-            for (double x = size; x < width; x += size)
-            {
-                var lineShape = new LineShape();
-                lineShape.Point1.X = x;
-                lineShape.Point1.Y = originY;
-                lineShape.Point2.X = x;
-                lineShape.Point2.Y = height;
-                lineShape.Stroke = stroke;
-                lineShape.StrokeThickness = thickness;
-                BackgroundCanvas.Add(lineShape);
-            }
-        }
-
         public void Delete()
         {
             var selectedShapes = DrawingCanvas.Children.Where(c => c.Bounds != null && c.Bounds.IsVisible()).ToList();
@@ -981,5 +946,36 @@ namespace RxCanvas.WPF
 
             DrawingCanvas.InvalidateShape();
         }
+
+        public void CreateGrid(CanvasShape canvasShape, double width, double height, double size, double originX, double originY)
+        {
+            var thickness = 2.0;
+            var stroke = new ArgbColor(0xFF, 0xE8, 0xE8, 0xE8);
+
+            for (double y = size; y < height; y += size)
+            {
+                var lineShape = new LineShape();
+                lineShape.Point1.X = originX;
+                lineShape.Point1.Y = y;
+                lineShape.Point2.X = width;
+                lineShape.Point2.Y = y;
+                lineShape.Stroke = stroke;
+                lineShape.StrokeThickness = thickness;
+                canvasShape.Add(lineShape);
+            }
+
+            for (double x = size; x < width; x += size)
+            {
+                var lineShape = new LineShape();
+                lineShape.Point1.X = x;
+                lineShape.Point1.Y = originY;
+                lineShape.Point2.X = x;
+                lineShape.Point2.Y = height;
+                lineShape.Stroke = stroke;
+                lineShape.StrokeThickness = thickness;
+                canvasShape.Add(lineShape);
+            }
+        }
+
     }
 }
