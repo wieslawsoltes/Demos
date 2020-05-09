@@ -114,10 +114,17 @@ namespace RxCanvas.WPF
             _canvasView = new CanvasView();
 
             _canvasView.BackgroundCanvas = new CanvasShape();
-            Layout.Children.Add(new MyCanvas(_canvasView.BackgroundCanvas, false));
+            layout.Children.Add(new MyCanvas(_canvasView.BackgroundCanvas, false));
 
             _canvasView.DrawingCanvas = new CanvasShape();
-            Layout.Children.Add(new MyCanvas(_canvasView.DrawingCanvas, true));
+            layout.Children.Add(new MyCanvas(_canvasView.DrawingCanvas, true));
+
+            _canvasView.CreateGrid(
+                _canvasView.BackgroundCanvas, 
+                _canvasView.BackgroundCanvas.Width, 
+                _canvasView.BackgroundCanvas.Height, 
+                30, 
+                0, 0);
 
             _canvasView.SelectionEditor = new SelectionEditor(_canvasView.DrawingCanvas)
             {
@@ -129,7 +136,27 @@ namespace RxCanvas.WPF
                 IsEnabled = true
             };
 
+            PreviewKeyDown += MainWindow_PreviewKeyDown;
+
             DataContext = _canvasView;
+        }
+
+        private void MainWindow_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case Key.S:
+                    _canvasView.LineEditor.IsEnabled = false;
+                    _canvasView.SelectionEditor.IsEnabled = true;
+                    break;
+                case Key.L:
+                    _canvasView.LineEditor.IsEnabled = false;
+                    _canvasView.SelectionEditor.IsEnabled = true;
+                    break;
+                case Key.Delete:
+                    _canvasView.Delete();
+                    break;
+            }
         }
     }
 }
