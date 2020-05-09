@@ -631,9 +631,9 @@ namespace RxCanvas.WPF
             }
         }
 
-        public SelectionEditor(CanvasShape canvas)
+        public SelectionEditor(CanvasShape canvasShape)
         {
-            _canvasShape = canvas;
+            _canvasShape = canvasShape;
 
             var drags = Observable.Merge(_canvasShape.Downs, _canvasShape.Ups, _canvasShape.Moves);
 
@@ -917,23 +917,6 @@ namespace RxCanvas.WPF
         public SelectionEditor SelectionEditor { get; set; }
 
         public LineEditor LineEditor { get; set; }
-
-        public CanvasView()
-        {
-            BackgroundCanvas = new CanvasShape();
-
-            DrawingCanvas = new CanvasShape();
-
-            SelectionEditor = new SelectionEditor(DrawingCanvas)
-            {
-                IsEnabled = false
-            };
-
-            LineEditor = new LineEditor(DrawingCanvas)
-            {
-                IsEnabled = true
-            };
-        }
 
         public void ToggleSnap()
         {
