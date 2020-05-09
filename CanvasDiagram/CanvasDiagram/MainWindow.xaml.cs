@@ -438,6 +438,7 @@ namespace CanvasDiagram
     public class PolygonShape : BaseShape
     {
         public PointShape[] Points { get; set; }
+
         public LineShape[] Lines { get; set; }
 
         public bool Contains(PointShape point)
@@ -463,6 +464,7 @@ namespace CanvasDiagram
     public class PointShape : BaseShape
     {
         public double X { get; set; }
+
         public double Y { get; set; }
 
         public PointShape(double x, double y)
@@ -490,9 +492,16 @@ namespace CanvasDiagram
     public class LineShape : BaseShape
     {
         public PointShape Point1 { get; set; }
+
         public PointShape Point2 { get; set; }
+
         public ArgbColor Stroke { get; set; }
+
         public double StrokeThickness { get; set; }
+
+        public PenLineCap StartLineCap { get; set; }
+
+        public PenLineCap EndLineCap { get; set; }
 
         public LineShape()
         {
@@ -500,6 +509,8 @@ namespace CanvasDiagram
             Point2 = new PointShape(0.0, 0.0);
             Stroke = new ArgbColor(0xFF, 0x00, 0x00, 0x00);
             StrokeThickness = 30.0;
+            StartLineCap = PenLineCap.Square;
+            EndLineCap = PenLineCap.Square;
         }
     }
 
@@ -1454,11 +1465,11 @@ namespace CanvasDiagram
         }
     }
 
-    public class MyCanvas : Canvas, IDrawableShape
+    public class DrawingCanvas : Canvas, IDrawableShape
     {
         private readonly CanvasShape _canvasShape;
 
-        public MyCanvas(CanvasShape canvasShape, bool enableInput)
+        public DrawingCanvas(CanvasShape canvasShape, bool enableInput)
         {
             _canvasShape = canvasShape;
 
@@ -1526,11 +1537,13 @@ namespace CanvasDiagram
                     var brush = new SolidColorBrush(lineShape.Stroke.ToColor());
                     brush.Freeze();
 
-                    var pen = new Pen(brush, lineShape.StrokeThickness);
-                    pen.Brush = brush;
-                    pen.Thickness = lineShape.StrokeThickness;
-                    pen.StartLineCap = PenLineCap.Flat;
-                    pen.EndLineCap = PenLineCap.Square;
+                    var pen = new Pen(brush, lineShape.StrokeThickness)
+                    {
+                        Brush = brush,
+                        Thickness = lineShape.StrokeThickness,
+                        StartLineCap = lineShape.StartLineCap,
+                        EndLineCap = lineShape.EndLineCap
+                    };
                     pen.Freeze();
 
                     var point0 = new Point(lineShape.Point1.X, lineShape.Point1.Y);
@@ -1588,10 +1601,10 @@ namespace CanvasDiagram
             _canvasView = new CanvasView();
 
             _canvasView.BackgroundCanvas = new CanvasShape();
-            layout.Children.Add(new MyCanvas(_canvasView.BackgroundCanvas, false));
+            layout.Children.Add(new DrawingCanvas(_canvasView.BackgroundCanvas, false));
 
             _canvasView.DrawingCanvas = new CanvasShape();
-            layout.Children.Add(new MyCanvas(_canvasView.DrawingCanvas, true));
+            layout.Children.Add(new DrawingCanvas(_canvasView.DrawingCanvas, true));
 
             _canvasView.CreateGrid(
                 _canvasView.BackgroundCanvas,
