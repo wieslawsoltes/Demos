@@ -19,43 +19,47 @@ namespace RxCanvas.WPF
     {
         private readonly CanvasShape _canvasShape;
 
-        public MyCanvas(CanvasShape canvasShape)
+        public MyCanvas(CanvasShape canvasShape, bool enableInput)
         {
             _canvasShape = canvasShape;
 
-            _canvasShape.Downs = Observable.FromEventPattern<MouseButtonEventArgs>(
-                 this,
-                 "PreviewMouseLeftButtonDown").Select(e =>
-                 {
-                     var p = e.EventArgs.GetPosition(this);
-                     return new Vector2(
-                         _canvasShape.EnableSnap ? _canvasShape.Snap(p.X, _canvasShape.SnapX) : p.X,
-                         _canvasShape.EnableSnap ? _canvasShape.Snap(p.Y, _canvasShape.SnapY) : p.Y);
-                 });
+            if (enableInput)
+            {
+                _canvasShape.Downs = Observable.FromEventPattern<MouseButtonEventArgs>(
+                     this,
+                     "PreviewMouseLeftButtonDown").Select(e =>
+                     {
+                         var p = e.EventArgs.GetPosition(this);
+                         return new Vector2(
+                             _canvasShape.EnableSnap ? _canvasShape.Snap(p.X, _canvasShape.SnapX) : p.X,
+                             _canvasShape.EnableSnap ? _canvasShape.Snap(p.Y, _canvasShape.SnapY) : p.Y);
+                     });
 
-            _canvasShape.Ups = Observable.FromEventPattern<MouseButtonEventArgs>(
-                this,
-                "PreviewMouseLeftButtonUp").Select(e =>
-                {
-                    var p = e.EventArgs.GetPosition(this);
-                    return new Vector2(
-                        _canvasShape.EnableSnap ? _canvasShape.Snap(p.X, _canvasShape.SnapX) : p.X,
-                        _canvasShape.EnableSnap ? _canvasShape.Snap(p.Y, _canvasShape.SnapY) : p.Y);
-                });
+                _canvasShape.Ups = Observable.FromEventPattern<MouseButtonEventArgs>(
+                    this,
+                    "PreviewMouseLeftButtonUp").Select(e =>
+                    {
+                        var p = e.EventArgs.GetPosition(this);
+                        return new Vector2(
+                            _canvasShape.EnableSnap ? _canvasShape.Snap(p.X, _canvasShape.SnapX) : p.X,
+                            _canvasShape.EnableSnap ? _canvasShape.Snap(p.Y, _canvasShape.SnapY) : p.Y);
+                    });
 
-            _canvasShape.Moves = Observable.FromEventPattern<MouseEventArgs>(
-                this,
-                "PreviewMouseMove").Select(e =>
-                {
-                    var p = e.EventArgs.GetPosition(this);
-                    return new Vector2(
-                        _canvasShape.EnableSnap ? _canvasShape.Snap(p.X, _canvasShape.SnapX) : p.X,
-                        _canvasShape.EnableSnap ? _canvasShape.Snap(p.Y, _canvasShape.SnapY) : p.Y);
-                });
+                _canvasShape.Moves = Observable.FromEventPattern<MouseEventArgs>(
+                    this,
+                    "PreviewMouseMove").Select(e =>
+                    {
+                        var p = e.EventArgs.GetPosition(this);
+                        return new Vector2(
+                            _canvasShape.EnableSnap ? _canvasShape.Snap(p.X, _canvasShape.SnapX) : p.X,
+                            _canvasShape.EnableSnap ? _canvasShape.Snap(p.Y, _canvasShape.SnapY) : p.Y);
+                    });
 
-            _canvasShape.IsCaptured = () => Mouse.Captured == this;
-            _canvasShape.Capture = () => this.CaptureMouse();
-            _canvasShape.ReleaseCapture = () => this.ReleaseMouseCapture();
+                _canvasShape.IsCaptured = () => Mouse.Captured == this;
+                _canvasShape.Capture = () => this.CaptureMouse();
+                _canvasShape.ReleaseCapture = () => this.ReleaseMouseCapture(); 
+            }
+
             _canvasShape.Native = this;
 
             this.Width = _canvasShape.Width;
@@ -109,8 +113,21 @@ namespace RxCanvas.WPF
 
             _canvasView = new CanvasView();
 
-            Layout.Children.Add(new MyCanvas(_canvasView.BackgroundCanvas));
-            Layout.Children.Add(new MyCanvas(_canvasView.DrawingCanvas));
+            _canvasView.BackgroundCanvas = new CanvasShape();
+            Layout.Children.Add(new MyCanvas(_canvasView.BackgroundCanvas, false));
+
+            _canvasView.DrawingCanvas = new CanvasShape();
+            Layout.Children.Add(new MyCanvas(_canvasView.DrawingCanvas, true));
+
+            _canvasView.SelectionEditor = new SelectionEditor(_canvasView.DrawingCanvas)
+            {
+                IsEnabled = false
+            };
+
+            _canvasView.LineEditor = new LineEditor(_canvasView.DrawingCanvas)
+            {
+                IsEnabled = true
+            };
 
             DataContext = _canvasView;
         }
