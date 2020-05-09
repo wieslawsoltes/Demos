@@ -11,7 +11,7 @@ using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 
-namespace RxCanvas.WPF
+namespace CanvasDiagram
 {
     public struct Vector2 : IComparable<Vector2>
     {
@@ -565,7 +565,7 @@ namespace RxCanvas.WPF
         private LineShape _line;
         private double _size;
         private double _offset;
-        private CanvasShape _canvas;
+        private CanvasShape _canvasShape;
         private PolygonShape _polygonLine;
         private PolygonShape _polygonPoint1;
         private PolygonShape _polygonPoint2;
@@ -573,12 +573,12 @@ namespace RxCanvas.WPF
         private HitResult _hitResult;
         private Vector2[] _vertices;
 
-        public LineBounds(CanvasShape canvas, LineShape line, double size, double offset)
+        public LineBounds(CanvasShape canvasShape, LineShape line, double size, double offset)
         {
             _line = line;
             _size = size;
             _offset = offset;
-            _canvas = canvas;
+            _canvasShape = canvasShape;
 
             _hitResult = HitResult.None;
 
@@ -725,16 +725,16 @@ namespace RxCanvas.WPF
             {
                 foreach (var line in _polygonLine.Lines)
                 {
-                    _canvas.Add(line);
+                    _canvasShape.Add(line);
                 }
 #if true
                 foreach (var line in _polygonPoint1.Lines)
                 {
-                    _canvas.Add(line);
+                    _canvasShape.Add(line);
                 }
                 foreach (var line in _polygonPoint2.Lines)
                 {
-                    _canvas.Add(line);
+                    _canvasShape.Add(line);
                 }
 #endif
                 _isVisible = true;
@@ -747,16 +747,16 @@ namespace RxCanvas.WPF
             {
                 foreach (var line in _polygonLine.Lines)
                 {
-                    _canvas.Remove(line);
+                    _canvasShape.Remove(line);
                 }
 #if true
                 foreach (var line in _polygonPoint1.Lines)
                 {
-                    _canvas.Remove(line);
+                    _canvasShape.Remove(line);
                 }
                 foreach (var line in _polygonPoint2.Lines)
                 {
-                    _canvas.Remove(line);
+                    _canvasShape.Remove(line);
                 }
 #endif
                 _isVisible = false;
@@ -809,8 +809,8 @@ namespace RxCanvas.WPF
         {
             double x1 = _line.Point1.X - dx;
             double y1 = _line.Point1.Y - dy;
-            _line.Point1.X = _canvas.EnableSnap ? _canvas.Snap(x1, _canvas.SnapX) : x1;
-            _line.Point1.Y = _canvas.EnableSnap ? _canvas.Snap(y1, _canvas.SnapY) : y1;
+            _line.Point1.X = _canvasShape.EnableSnap ? _canvasShape.Snap(x1, _canvasShape.SnapX) : x1;
+            _line.Point1.Y = _canvasShape.EnableSnap ? _canvasShape.Snap(y1, _canvasShape.SnapY) : y1;
             _line.Point1 = _line.Point1;
         }
 
@@ -818,8 +818,8 @@ namespace RxCanvas.WPF
         {
             double x2 = _line.Point2.X - dx;
             double y2 = _line.Point2.Y - dy;
-            _line.Point2.X = _canvas.EnableSnap ? _canvas.Snap(x2, _canvas.SnapX) : x2;
-            _line.Point2.Y = _canvas.EnableSnap ? _canvas.Snap(y2, _canvas.SnapY) : y2;
+            _line.Point2.X = _canvasShape.EnableSnap ? _canvasShape.Snap(x2, _canvasShape.SnapX) : x2;
+            _line.Point2.Y = _canvasShape.EnableSnap ? _canvasShape.Snap(y2, _canvasShape.SnapY) : y2;
             _line.Point2 = _line.Point2;
         }
 
@@ -829,10 +829,10 @@ namespace RxCanvas.WPF
             double y1 = _line.Point1.Y - dy;
             double x2 = _line.Point2.X - dx;
             double y2 = _line.Point2.Y - dy;
-            _line.Point1.X = _canvas.EnableSnap ? _canvas.Snap(x1, _canvas.SnapX) : x1;
-            _line.Point1.Y = _canvas.EnableSnap ? _canvas.Snap(y1, _canvas.SnapY) : y1;
-            _line.Point2.X = _canvas.EnableSnap ? _canvas.Snap(x2, _canvas.SnapX) : x2;
-            _line.Point2.Y = _canvas.EnableSnap ? _canvas.Snap(y2, _canvas.SnapY) : y2;
+            _line.Point1.X = _canvasShape.EnableSnap ? _canvasShape.Snap(x1, _canvasShape.SnapX) : x1;
+            _line.Point1.Y = _canvasShape.EnableSnap ? _canvasShape.Snap(y1, _canvasShape.SnapY) : y1;
+            _line.Point2.X = _canvasShape.EnableSnap ? _canvasShape.Snap(x2, _canvasShape.SnapX) : x2;
+            _line.Point2.Y = _canvasShape.EnableSnap ? _canvasShape.Snap(y2, _canvasShape.SnapY) : y2;
             _line.Point1 = _line.Point1;
             _line.Point2 = _line.Point2;
         }

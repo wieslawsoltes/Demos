@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace RxCanvas.WPF
+namespace CanvasDiagram
 {
     public partial class App : Application
     {
