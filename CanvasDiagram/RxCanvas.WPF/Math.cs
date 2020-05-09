@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MathUtil
+namespace RxCanvas.WPF
 {
     public struct Vector2 : IComparable<Vector2>
     {

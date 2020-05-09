@@ -18,7 +18,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <ListBox x:Name="Children" Grid.Row="0" ItemsSource="{Binding Children}" HorizontalContentAlignment="Stretch" BorderBrush="{x:Null}" BorderThickness="0" FocusVisualStyle="{x:Null}"/>
-            <local:SelectedItemControl Grid.Row="1"  DataContext="{Binding ElementName=Children, Path=SelectedItem}"/>
+            <local:SelectedItemControl Grid.Row="1" DataContext="{Binding ElementName=Children, Path=SelectedItem}"/>
         </Grid>
         <local:PanAndZoomBorder ClipToBounds="True" Background="Transparent" Grid.Column="1">
             <Grid x:Name="Layout"/>

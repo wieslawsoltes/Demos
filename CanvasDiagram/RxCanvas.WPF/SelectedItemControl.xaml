@@ -10,7 +10,7 @@
     <UserControl.Resources>
         <local:XColorValueConverter x:Key="XColorValueConverter"/>
         <local:XPointValueConverter x:Key="XPointValueConverter"/>
-        <DataTemplate DataType="{x:Type model:WpfLine}">
+        <DataTemplate DataType="{x:Type model:LineShape}">
             <Grid Margin="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>

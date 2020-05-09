@@ -5,11 +5,8 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Reactive.Linq;
-using System.Reflection;
-using Autofac;
-using MathUtil;
 
-namespace RxCanvas
+namespace RxCanvas.WPF
 {
     public interface IBounds
     {
@@ -23,23 +20,9 @@ namespace RxCanvas
         void MoveAll(double dx, double dy);
     }
 
-    public interface IEditor
+    public static class Extenstions
     {
-        string Name { get; set; }
-        bool IsEnabled { get; set; }
-        string Key { get; set; }
-        string Modifiers { get; set; }
-    }
-
-    public interface INativeConverter
-    {
-        LineShape Convert(LineShape line);
-        CanvasShape Convert(CanvasShape canvas);
-    }
-
-    public static class ModelExtenstion
-    {
-        private static readonly char[] Separators = new char[] { ',' };
+        private static readonly char[] s_separators = new char[] { ',' };
 
         public static ArgbColor FromHtml(this string str)
         {
@@ -65,13 +48,13 @@ namespace RxCanvas
 
             return string.Concat(
                 point.X.ToString(NumberFormat),
-                Separators[0],
+                s_separators[0],
                 point.Y.ToString(NumberFormat));
         }
 
         public static PointShape FromText(this string str)
         {
-            string[] values = str.Split(Separators);
+            string[] values = str.Split(s_separators);
             return new PointShape(
                 double.Parse(values[0], NumberFormat),
                 double.Parse(values[1], NumberFormat));
@@ -94,13 +77,17 @@ namespace RxCanvas
         }
     }
 
-    public abstract class NativeShape
+    public interface IDrawableShape
     {
-        public object Native { get; set; }
+        void InvalidateShape();
+    }
+
+    public abstract class BaseShape
+    {
         public IBounds Bounds { get; set; }
     }
 
-    public class PolygonShape : NativeShape
+    public class PolygonShape : BaseShape
     {
         public PointShape[] Points { get; set; }
         public LineShape[] Lines { get; set; }
@@ -125,7 +112,7 @@ namespace RxCanvas
         }
     }
 
-    public class PointShape : NativeShape
+    public class PointShape : BaseShape
     {
         public double X { get; set; }
         public double Y { get; set; }
@@ -152,16 +139,25 @@ namespace RxCanvas
         }
     }
 
-    public class LineShape : NativeShape
+    public class LineShape : BaseShape
     {
         public PointShape Point1 { get; set; }
         public PointShape Point2 { get; set; }
         public ArgbColor Stroke { get; set; }
         public double StrokeThickness { get; set; }
+
+        public LineShape()
+        {
+            Point1 = new PointShape(0.0, 0.0);
+            Point2 = new PointShape(0.0, 0.0);
+            Stroke = new ArgbColor(0xFF, 0x00, 0x00, 0x00);
+            StrokeThickness = 30.0;
+        }
     }
 
-    public class CanvasShape : NativeShape
+    public class CanvasShape : BaseShape, IDrawableShape
     {
+        public IDrawableShape Native { get; set; }
         public IObservable<Vector2> Downs { get; set; }
         public IObservable<Vector2> Ups { get; set; }
         public IObservable<Vector2> Moves { get; set; }
@@ -171,8 +167,10 @@ namespace RxCanvas
         public bool EnableSnap { get; set; }
         public double SnapX { get; set; }
         public double SnapY { get; set; }
-        public bool IsCaptured { get; set; }
-        public IList<NativeShape> Children { get; set; }
+        public Func<bool> IsCaptured { get; set; }
+        public Action Capture { get; set; }
+        public Action ReleaseCapture { get; set; }
+        public IList<BaseShape> Children { get; set; }
 
         public double Snap(double val, double snap)
         {
@@ -182,25 +180,21 @@ namespace RxCanvas
 
         public CanvasShape()
         {
-            Children = new ObservableCollection<NativeShape>();
+            Width = 600.0;
+            Height = 600.0;
+            Background = new ArgbColor(0x00, 0xFF, 0xFF, 0xFF);
+            SnapX = 15.0;
+            SnapY = 15.0;
+            EnableSnap = true;
+            Children = new ObservableCollection<BaseShape>();
         }
 
-        public void Capture()
-        {
-            IsCaptured = true;
-        }
-
-        public void ReleaseCapture()
-        {
-            IsCaptured = false;
-        }
-
-        public void Add(NativeShape value)
+        public void Add(BaseShape value)
         {
             Children.Add(value);
         }
 
-        public void Remove(NativeShape value)
+        public void Remove(BaseShape value)
         {
             Children.Remove(value);
         }
@@ -210,13 +204,16 @@ namespace RxCanvas
             Children.Clear();
         }
 
-        public void Render(NativeShape context)
+        public void InvalidateShape()
         {
+            Native?.InvalidateShape();
         }
     }
 
     public class LineBounds : IBounds
     {
+        private enum HitResult { None, Point1, Point2, Line };
+
         private LineShape _line;
         private double _size;
         private double _offset;
@@ -225,12 +222,10 @@ namespace RxCanvas
         private PolygonShape _polygonPoint1;
         private PolygonShape _polygonPoint2;
         private bool _isVisible;
-
-        private enum HitResult { None, Point1, Point2, Line };
         private HitResult _hitResult;
         private Vector2[] _vertices;
 
-        public LineBounds(INativeConverter nativeConverter, CanvasFactory canvasFactory, CanvasShape canvas, LineShape line, double size, double offset)
+        public LineBounds(CanvasShape canvas, LineShape line, double size, double offset)
         {
             _line = line;
             _size = size;
@@ -239,16 +234,9 @@ namespace RxCanvas
 
             _hitResult = HitResult.None;
 
-            InitBounds(nativeConverter, canvasFactory);
-        }
-
-        private void InitBounds(
-            INativeConverter nativeConverter,
-            CanvasFactory canvasFactory)
-        {
-            _polygonPoint1 = HitTestHelper.CreateBoundsPolygon(nativeConverter, canvasFactory, 4);
-            _polygonPoint2 = HitTestHelper.CreateBoundsPolygon(nativeConverter, canvasFactory, 4);
-            _polygonLine = HitTestHelper.CreateBoundsPolygon(nativeConverter, canvasFactory, 4);
+            _polygonPoint1 = HitTestHelper.CreateBoundsPolygon(4);
+            _polygonPoint2 = HitTestHelper.CreateBoundsPolygon(4);
+            _polygonLine = HitTestHelper.CreateBoundsPolygon(4);
             _vertices = new Vector2[4];
         }
 
@@ -502,39 +490,16 @@ namespace RxCanvas
         }
     }
 
-    public class BoundsFactory
-    {
-        private readonly INativeConverter _nativeConverter;
-        private readonly CanvasFactory _canvasFactory;
-
-        public BoundsFactory(INativeConverter nativeConverter, CanvasFactory canvasFactory)
-        {
-            _nativeConverter = nativeConverter;
-            _canvasFactory = canvasFactory;
-        }
-
-        public IBounds Create(CanvasShape canvas, LineShape line)
-        {
-            return new LineBounds
-                (_nativeConverter,
-                _canvasFactory,
-                canvas,
-                line,
-                line.StrokeThickness,
-                0.0);
-        }
-    }
-
     internal static class HitTestHelper
     {
-        public static NativeShape HitTest(IList<NativeShape> children, double x, double y)
-        {
-            return children.Where(c => c.Bounds != null && c.Bounds.Contains(x, y)).FirstOrDefault();
-        }
-
         public static MonotoneChain ConvexHull = new MonotoneChain();
 
         public const int PointBoundVertexCount = 4;
+
+        public static BaseShape HitTest(IList<BaseShape> children, double x, double y)
+        {
+            return children.Where(c => c.Bounds != null && c.Bounds.Contains(x, y)).FirstOrDefault();
+        }
 
         public static double Min(double val1, double val2, double val3, double val4)
         {
@@ -546,25 +511,23 @@ namespace RxCanvas
             return Math.Max(Math.Max(val1, val2), Math.Max(val3, val4));
         }
 
-        public static PolygonShape CreateBoundsPolygon(INativeConverter nativeConverter, CanvasFactory canvasFactory, int points)
+        public static PolygonShape CreateBoundsPolygon(int points)
         {
-            var polygon = canvasFactory.CreatePolygon();
+            var polygon = new PolygonShape();
             polygon.Points = new PointShape[points];
             polygon.Lines = new LineShape[points];
 
             for (int i = 0; i < points; i++)
             {
-                polygon.Points[i] = canvasFactory.CreatePoint();
+                polygon.Points[i] = new PointShape(0, 0);
 
-                var _xline = canvasFactory.CreateLine();
-                _xline.Stroke = canvasFactory.CreateColor();
-                _xline.Stroke.A = 0xFF;
-                _xline.Stroke.R = 0x00;
-                _xline.Stroke.G = 0xBF;
-                _xline.Stroke.B = 0xFF;
-                _xline.StrokeThickness = 2.0;
-                var _nline = nativeConverter.Convert(_xline);
-                polygon.Lines[i] = _nline;
+                var lineShape = new LineShape
+                {
+                    Stroke = new ArgbColor(0xFF, 0x00, 0xBF, 0xFF),
+                    StrokeThickness = 2.0
+                };
+
+                polygon.Lines[i] = lineShape;
             }
 
             return polygon;
@@ -625,6 +588,11 @@ namespace RxCanvas
         }
     }
 
+    public interface IEditor
+    {
+        bool IsEnabled { get; set; }
+    }
+
     public class SelectionEditor : IEditor, IDisposable
     {
         [Flags]
@@ -639,9 +607,17 @@ namespace RxCanvas
             SelectedMove = Selected | Move
         }
 
-        public string Name { get; set; }
-
+        private CanvasShape _canvasShape;
+        private Vector2 _original;
+        private Vector2 _start;
+        private BaseShape _selected;
+        private BaseShape _hover;
+        private State _state = State.None;
+        private IDisposable _downs;
+        private IDisposable _ups;
+        private IDisposable _drag;
         private bool _isEnabled;
+
         public bool IsEnabled
         {
             get { return _isEnabled; }
@@ -655,31 +631,14 @@ namespace RxCanvas
             }
         }
 
-        public string Key { get; set; }
-        public string Modifiers { get; set; }
-
-        private CanvasShape _canvas;
-        private Vector2 _original;
-        private Vector2 _start;
-        private NativeShape _selected;
-        private NativeShape _hover;
-        private State _state = State.None;
-        private IDisposable _downs;
-        private IDisposable _ups;
-        private IDisposable _drag;
-
         public SelectionEditor(CanvasShape canvas)
         {
-            _canvas = canvas;
+            _canvasShape = canvas;
 
-            Name = "Single Selection";
-            Key = "H";
-            Modifiers = "";
+            var drags = Observable.Merge(_canvasShape.Downs, _canvasShape.Ups, _canvasShape.Moves);
 
-            var drags = Observable.Merge(_canvas.Downs, _canvas.Ups, _canvas.Moves);
-
-            _downs = _canvas.Downs.Where(_ => IsEnabled).Subscribe(p => Down(p));
-            _ups = _canvas.Ups.Where(_ => IsEnabled).Subscribe(p => Up(p));
+            _downs = _canvasShape.Downs.Where(_ => IsEnabled).Subscribe(p => Down(p));
+            _ups = _canvasShape.Ups.Where(_ => IsEnabled).Subscribe(p => Up(p));
             _drag = drags.Where(_ => IsEnabled).Subscribe(p => Drag(p));
         }
 
@@ -704,36 +663,36 @@ namespace RxCanvas
                 render = true;
             }
 
-            _selected = HitTestHelper.HitTest(_canvas.Children, p.X, p.Y);
+            _selected = HitTestHelper.HitTest(_canvasShape.Children, p.X, p.Y);
             if (_selected != null)
             {
                 ShowSelected();
                 InitMove(p);
-                _canvas.Capture();
+                _canvasShape.Capture();
                 render = true;
             }
 
             if (render)
             {
-                _canvas.Render(null);
+                _canvasShape.InvalidateShape();
             }
         }
 
         private void Up(Vector2 p)
         {
-            if (_canvas.IsCaptured)
+            if (_canvasShape.IsCaptured?.Invoke() == true)
             {
                 if (IsState(State.Move))
                 {
                     FinishMove(p);
-                    _canvas.ReleaseCapture();
+                    _canvasShape.ReleaseCapture();
                 }
             }
         }
 
         private void Drag(Vector2 p)
         {
-            if (_canvas.IsCaptured)
+            if (_canvasShape.IsCaptured?.Invoke() == true)
             {
                 if (IsState(State.Move))
                 {
@@ -743,7 +702,7 @@ namespace RxCanvas
             else
             {
                 bool render = false;
-                var result = HitTestHelper.HitTest(_canvas.Children, p.X, p.Y);
+                var result = HitTestHelper.HitTest(_canvasShape.Children, p.X, p.Y);
 
                 if (IsState(State.Hover))
                 {
@@ -794,7 +753,7 @@ namespace RxCanvas
 
                 if (render)
                 {
-                    _canvas.Render(null);
+                    _canvasShape.InvalidateShape();
                 }
             }
         }
@@ -803,7 +762,6 @@ namespace RxCanvas
         {
             _hover.Bounds.Show();
             _state |= State.Hover;
-            Debug.WriteLine("_state: {0}", _state);
         }
 
         private void HideHover()
@@ -811,14 +769,12 @@ namespace RxCanvas
             _hover.Bounds.Hide();
             _hover = null;
             _state = _state & ~State.Hover;
-            Debug.WriteLine("_state: {0}", _state);
         }
 
         private void ShowSelected()
         {
             _selected.Bounds.Show();
             _state |= State.Selected;
-            Debug.WriteLine("_state: {0}", _state);
         }
 
         private void HideSelected()
@@ -826,30 +782,18 @@ namespace RxCanvas
             _selected.Bounds.Hide();
             _selected = null;
             _state = _state & ~State.Selected;
-            Debug.WriteLine("_state: {0}", _state);
         }
 
         private void InitMove(Vector2 p)
         {
-            // TODO: Create history snapshot but do not push undo.
             _original = p;
             _start = p;
             _state |= State.Move;
-            Debug.WriteLine("_state: {0}", _state);
         }
 
         private void FinishMove(Vector2 p)
         {
-            if (p.X == _original.X && p.Y == _original.Y)
-            {
-                // TODO: Do not push history undo.
-            }
-            else
-            {
-                // TODO: Push history undo.
-            }
             _state = _state & ~State.Move;
-            Debug.WriteLine("_state: {0}", _state);
         }
 
         private void Move(Vector2 p)
@@ -861,7 +805,7 @@ namespace RxCanvas
                 _start = p;
                 _selected.Bounds.MoveContaining(dx, dy);
                 _selected.Bounds.Update();
-                _canvas.Render(null);
+                _canvasShape.InvalidateShape();
             }
         }
 
@@ -884,11 +828,10 @@ namespace RxCanvas
             }
 
             _state = State.None;
-            Debug.WriteLine("_state: {0}", _state);
 
             if (render)
             {
-                _canvas.Render(null);
+                _canvasShape.InvalidateShape();
             }
         }
 
@@ -904,57 +847,44 @@ namespace RxCanvas
     {
         public enum State { None, Start, End }
 
-        public string Name { get; set; }
         public bool IsEnabled { get; set; }
-        public string Key { get; set; }
-        public string Modifiers { get; set; }
 
-        private CanvasShape _canvas;
-        private LineShape _xline;
-        private LineShape _nline;
+        private CanvasShape _canvasShape;
+        private LineShape _lineShape;
         private State _state = State.None;
         private IDisposable _downs;
         private IDisposable _drags;
 
-        public LineEditor(
-            INativeConverter nativeConverter,
-            CanvasFactory canvasFactory,
-            BoundsFactory boundsFactory,
-            CanvasShape canvas)
+        public LineEditor(CanvasShape canvasShape)
         {
-            _canvas = canvas;
+            _canvasShape = canvasShape;
 
-            Name = "Line";
-            Key = "L";
-            Modifiers = "";
+            var moves = _canvasShape.Moves.Where(_ => _canvasShape.IsCaptured?.Invoke() == true);
+            var drags = Observable.Merge(_canvasShape.Downs, _canvasShape.Ups, moves);
 
-            var moves = _canvas.Moves.Where(_ => _canvas.IsCaptured);
-            var drags = Observable.Merge(_canvas.Downs, _canvas.Ups, moves);
-
-            _downs = _canvas.Downs.Where(_ => IsEnabled).Subscribe(p =>
+            _downs = _canvasShape.Downs.Where(_ => IsEnabled).Subscribe(p =>
             {
-                if (_canvas.IsCaptured)
+                if (_canvasShape.IsCaptured?.Invoke() == true)
                 {
-                    _nline.Bounds.Hide();
-                    _canvas.Render(null);
+                    _lineShape.Bounds.Hide();
+                    _canvasShape.InvalidateShape();
                     _state = State.None;
-                    _canvas.ReleaseCapture();
+                    _canvasShape.ReleaseCapture();
                 }
                 else
                 {
-                    _xline = canvasFactory.CreateLine();
-                    _xline.Point1.X = p.X;
-                    _xline.Point1.Y = p.Y;
-                    _xline.Point2.X = p.X;
-                    _xline.Point2.Y = p.Y;
-                    _nline = nativeConverter.Convert(_xline);
+                    _lineShape = new LineShape();
+                    _lineShape.Point1.X = p.X;
+                    _lineShape.Point1.Y = p.Y;
+                    _lineShape.Point2.X = p.X;
+                    _lineShape.Point2.Y = p.Y;
 
-                    _canvas.Add(_nline);
-                    _nline.Bounds = boundsFactory.Create(_canvas, _nline);
-                    _nline.Bounds.Update();
-                    _nline.Bounds.Show();
-                    _canvas.Capture();
-                    _canvas.Render(null);
+                    _canvasShape.Add(_lineShape);
+                    _lineShape.Bounds = new LineBounds(_canvasShape, _lineShape, _lineShape.StrokeThickness, 0.0);
+                    _lineShape.Bounds.Update();
+                    _lineShape.Bounds.Show();
+                    _canvasShape.Capture();
+                    _canvasShape.InvalidateShape();
                     _state = State.End;
                 }
             });
@@ -963,11 +893,10 @@ namespace RxCanvas
             {
                 if (_state == State.End)
                 {
-                    _xline.Point2.X = p.X;
-                    _xline.Point2.Y = p.Y;
-                    _nline.Point2 = _xline.Point2;
-                    _nline.Bounds.Update();
-                    _canvas.Render(null);
+                    _lineShape.Point2.X = p.X;
+                    _lineShape.Point2.Y = p.Y;
+                    _lineShape.Bounds.Update();
+                    _canvasShape.InvalidateShape();
                 }
             });
         }
@@ -979,255 +908,95 @@ namespace RxCanvas
         }
     }
 
-    public class CanvasFactory
+    public class CanvasView
     {
-        public ArgbColor CreateColor()
-        {
-            return new ArgbColor(0x00, 0x00, 0x00, 0x00);
-        }
+        public CanvasShape BackgroundCanvas { get; set; }
 
-        public PointShape CreatePoint()
-        {
-            return new PointShape(0.0, 0.0);
-        }
+        public CanvasShape DrawingCanvas { get; set; }
 
-        public PolygonShape CreatePolygon()
-        {
-            return new PolygonShape();
-        }
+        public SelectionEditor SelectionEditor { get; set; }
 
-        public LineShape CreateLine()
+        public LineEditor LineEditor { get; set; }
+
+        public CanvasView()
         {
-            var line = new LineShape()
+            BackgroundCanvas = new CanvasShape();
+
+            DrawingCanvas = new CanvasShape();
+
+            SelectionEditor = new SelectionEditor(DrawingCanvas)
             {
-                Point1 = new PointShape(0.0, 0.0),
-                Point2 = new PointShape(0.0, 0.0),
-                Stroke = new ArgbColor(0xFF, 0x00, 0x00, 0x00),
-                StrokeThickness = 30.0,
-            };
-            return line;
-        }
-
-        public CanvasShape CreateCanvas()
-        {
-            return new CanvasShape()
-            {
-                Width = 600.0,
-                Height = 600.0,
-                Background = new ArgbColor(0x00, 0xFF, 0xFF, 0xFF),
-                SnapX = 15.0,
-                SnapY = 15.0,
-                EnableSnap = true
-            };
-        }
-    }
-
-    public class Bootstrapper
-    {
-        public IContainer Build(Assembly[] assembly)
-        {
-            var builder = new ContainerBuilder();
-
-            builder.RegisterAssemblyTypes(assembly).As<IEditor>().InstancePerLifetimeScope();
-
-            builder.Register<CanvasFactory>(c => new CanvasFactory()).SingleInstance();
-
-            builder.Register<BoundsFactory>(c =>
-            {
-                var nativeConverter = c.Resolve<INativeConverter>();
-                var canvasFactory = c.Resolve<CanvasFactory>();
-                return new BoundsFactory(nativeConverter, canvasFactory);
-            }).InstancePerLifetimeScope();
-
-            builder.Register<CanvasShape>(c =>
-            {
-                var nativeConverter = c.Resolve<INativeConverter>();
-                var canvasFactory = c.Resolve<CanvasFactory>();
-                var xcanvas = canvasFactory.CreateCanvas();
-                return nativeConverter.Convert(xcanvas);
-            }).InstancePerLifetimeScope();
-
-            builder.RegisterAssemblyModules(assembly);
-
-            return builder.Build();
-        }
-    }
-
-    public class DrawingView
-    {
-        private readonly IList<ILifetimeScope> _scopes;
-
-        public IList<CanvasShape> Layers { get; set; }
-
-        public IList<IEditor> Editors { get; set; }
-
-        public DrawingView(Assembly[] assembly)
-        {
-            var bootstrapper = new Bootstrapper();
-            var container = bootstrapper.Build(assembly);
-
-            _scopes = new List<ILifetimeScope>
-            {
-                container.BeginLifetimeScope(),
-                container.BeginLifetimeScope()
+                IsEnabled = false
             };
 
-            Layers = new List<CanvasShape>();
-
-            for (int i = 0; i < _scopes.Count; i++)
+            LineEditor = new LineEditor(DrawingCanvas)
             {
-                Layers.Add(_scopes[i].Resolve<CanvasShape>());
-            }
-        }
-
-        public void Initialize()
-        {
-            var scope = _scopes.LastOrDefault();
-
-            Editors = scope.Resolve<IList<IEditor>>();
-            Editors.Where(e => e.Name == "Line").FirstOrDefault().IsEnabled = true;
-        }
-
-        public void Enable(IEditor editor)
-        {
-            for (int i = 0; i < Editors.Count; i++)
-            {
-                Editors[i].IsEnabled = false;
-            }
-
-            if (editor != null)
-            {
-                editor.IsEnabled = true;
-            }
+                IsEnabled = true
+            };
         }
 
         public void ToggleSnap()
         {
-            var drawingCanvas = Layers.LastOrDefault();
-            drawingCanvas.EnableSnap = drawingCanvas.EnableSnap ? false : true;
+            DrawingCanvas.EnableSnap = DrawingCanvas.EnableSnap ? false : true; 
         }
-
 
         public void Clear()
         {
-            var drawingCanvas = Layers.LastOrDefault();
-            drawingCanvas.Clear();
-            drawingCanvas.Render(null);
+            DrawingCanvas.Clear();
+            DrawingCanvas.InvalidateShape();
         }
 
         public void Render()
         {
-            for (int i = 0; i < Layers.Count; i++)
-            {
-                Layers[i].Render(null);
-            }
+            BackgroundCanvas.InvalidateShape();
+            DrawingCanvas.InvalidateShape();
         }
 
         public void CreateGrid(double width, double height, double size, double originX, double originY)
         {
-            var scope = _scopes.FirstOrDefault();
-            var backgroundCanvas = scope.Resolve<CanvasShape>();
-            var nativeConverter = scope.Resolve<INativeConverter>();
-            var canvasFactory = scope.Resolve<CanvasFactory>();
-
-            double thickness = 2.0;
-
-            var stroke = canvasFactory.CreateColor();
-            stroke.A = 0xFF;
-            stroke.R = 0xE8;
-            stroke.G = 0xE8;
-            stroke.B = 0xE8;
+            var thickness = 2.0;
+            var stroke = new ArgbColor(0xFF, 0xE8, 0xE8, 0xE8);
 
             for (double y = size; y < height; y += size)
             {
-                var xline = canvasFactory.CreateLine();
-                xline.Point1.X = originX;
-                xline.Point1.Y = y;
-                xline.Point2.X = width;
-                xline.Point2.Y = y;
-                xline.Stroke = stroke;
-                xline.StrokeThickness = thickness;
-                var nline = nativeConverter.Convert(xline);
-                backgroundCanvas.Add(nline);
+                var lineShape = new LineShape();
+                lineShape.Point1.X = originX;
+                lineShape.Point1.Y = y;
+                lineShape.Point2.X = width;
+                lineShape.Point2.Y = y;
+                lineShape.Stroke = stroke;
+                lineShape.StrokeThickness = thickness;
+                BackgroundCanvas.Add(lineShape);
             }
 
             for (double x = size; x < width; x += size)
             {
-                var xline = canvasFactory.CreateLine();
-                xline.Point1.X = x;
-                xline.Point1.Y = originY;
-                xline.Point2.X = x;
-                xline.Point2.Y = height;
-                xline.Stroke = stroke;
-                xline.StrokeThickness = thickness;
-                var nline = nativeConverter.Convert(xline);
-                backgroundCanvas.Add(nline);
+                var lineShape = new LineShape();
+                lineShape.Point1.X = x;
+                lineShape.Point1.Y = originY;
+                lineShape.Point2.X = x;
+                lineShape.Point2.Y = height;
+                lineShape.Stroke = stroke;
+                lineShape.StrokeThickness = thickness;
+                BackgroundCanvas.Add(lineShape);
             }
-        }
-
-        public CanvasShape ToModel()
-        {
-            var scope = _scopes.LastOrDefault();
-            return scope.Resolve<CanvasShape>();
-        }
-
-        public NativeShape ToNative(CanvasShape xcanvas)
-        {
-            var scope = _scopes.LastOrDefault();
-            var nativeConverter = scope.Resolve<INativeConverter>();
-            var nativeCanvas = scope.Resolve<CanvasShape>();
-            var boundsFactory = scope.Resolve<BoundsFactory>();
-
-            nativeCanvas.Clear();
-
-            var natives = ToNatives(nativeConverter, boundsFactory, nativeCanvas, xcanvas.Children);
-
-            foreach (var native in natives)
-            {
-                nativeCanvas.Add(native);
-            }
-
-            return nativeCanvas;
-        }
-
-        private IList<NativeShape> ToNatives(INativeConverter nativeConverter, BoundsFactory boundsFactory, CanvasShape nativeCanvas, IList<NativeShape> xchildren)
-        {
-            var natives = new List<NativeShape>();
-
-            foreach (var child in xchildren)
-            {
-                if (child is LineShape)
-                {
-                    var native = nativeConverter.Convert(child as LineShape);
-                    natives.Add(native);
-                    native.Bounds = boundsFactory.Create(nativeCanvas, native);
-                    if (native.Bounds != null)
-                    {
-                        native.Bounds.Update();
-                    }
-                }
-            }
-            return natives;
         }
 
         public void Delete()
         {
-            var scope = _scopes.LastOrDefault();
-            var drawingCanvas = scope.Resolve<CanvasShape>();
+            var selectedShapes = DrawingCanvas.Children.Where(c => c.Bounds != null && c.Bounds.IsVisible()).ToList();
 
-            var selected = drawingCanvas.Children.Where(c => c.Bounds != null && c.Bounds.IsVisible()).ToList();
-
-            foreach (var child in selected)
+            foreach (var child in selectedShapes)
             {
                 child.Bounds.Hide();
             }
 
-            foreach (var child in selected)
+            foreach (var child in selectedShapes)
             {
-                drawingCanvas.Children.Remove(child);
+                DrawingCanvas.Children.Remove(child);
             }
 
-            drawingCanvas.Render(null);
+            DrawingCanvas.InvalidateShape();
         }
     }
 }
