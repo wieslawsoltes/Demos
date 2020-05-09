@@ -56,7 +56,7 @@
             </ContentControl>
         </Grid>
         <local:PanAndZoomBorder ClipToBounds="True" Background="Transparent" Grid.Column="1">
-            <Grid x:Name="layout"/>
+            <Grid x:Name="layout" Focusable="True" FocusVisualStyle="{x:Null}"/>
         </local:PanAndZoomBorder>
     </Grid>
 </Window>
