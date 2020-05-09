@@ -489,6 +489,14 @@ namespace CanvasDiagram
         }
     }
 
+    public enum LineCap
+    {
+        Flat = 0,
+        Square = 1,
+        Round = 2,
+        Triangle = 3
+    }
+
     public class LineShape : BaseShape
     {
         public PointShape Point1 { get; set; }
@@ -499,9 +507,9 @@ namespace CanvasDiagram
 
         public double StrokeThickness { get; set; }
 
-        public PenLineCap StartLineCap { get; set; }
+        public LineCap StartLineCap { get; set; }
 
-        public PenLineCap EndLineCap { get; set; }
+        public LineCap EndLineCap { get; set; }
 
         public LineShape()
         {
@@ -509,8 +517,8 @@ namespace CanvasDiagram
             Point2 = new PointShape(0.0, 0.0);
             Stroke = new ArgbColor(0xFF, 0x00, 0x00, 0x00);
             StrokeThickness = 30.0;
-            StartLineCap = PenLineCap.Square;
-            EndLineCap = PenLineCap.Square;
+            StartLineCap = LineCap.Square;
+            EndLineCap = LineCap.Square;
         }
     }
 
@@ -1521,6 +1529,22 @@ namespace CanvasDiagram
             InvalidateVisual();
         }
 
+        private PenLineCap ToPenLineCap(LineCap lineCap)
+        {
+            switch (lineCap)
+            {
+                default:
+                case LineCap.Flat:
+                    return PenLineCap.Flat;
+                case LineCap.Square:
+                    return PenLineCap.Square;
+                case LineCap.Round:
+                    return PenLineCap.Round;
+                case LineCap.Triangle:
+                    return PenLineCap.Triangle;
+            }
+        }
+
         protected override void OnRender(DrawingContext dc)
         {
             base.OnRender(dc);
@@ -1541,8 +1565,8 @@ namespace CanvasDiagram
                     {
                         Brush = brush,
                         Thickness = lineShape.StrokeThickness,
-                        StartLineCap = lineShape.StartLineCap,
-                        EndLineCap = lineShape.EndLineCap
+                        StartLineCap = ToPenLineCap(lineShape.StartLineCap),
+                        EndLineCap = ToPenLineCap(lineShape.EndLineCap)
                     };
                     pen.Freeze();
 
