@@ -311,53 +311,6 @@ namespace CanvasDiagram
         }
     }
 
-    public class MonotoneChain
-    {
-        // Implementation of Andrew's monotone chain 2D convex hull algorithm.
-        // http://en.wikibooks.org/wiki/Algorithm_Implementation/Geometry/Convex_hull/Monotone_chain
-        // Asymptotic complexity O(n log n).
-
-        // 2D cross product of OA and OB vectors, i.e. z-component of their 3D cross product.
-        // Returns a positive value, if OAB makes a counter-clockwise turn,
-        // negative for clockwise turn, and zero if the vertices are collinear.
-        public double Cross(Vector2 p1, Vector2 p2, Vector2 p3)
-        {
-            return (p2.X - p1.X) * (p3.Y - p1.Y) - (p2.Y - p1.Y) * (p3.X - p1.X);
-        }
-
-        // Returns a list of vertices on the convex hull in counter-clockwise order.
-        // Note: the last vertice in the returned list is the same as the first one.
-        public void ConvexHull(Vector2[] vertices, out Vector2[] hull, out int k)
-        {
-            int n = vertices.Length;
-            int i, t;
-
-            k = 0;
-            hull = new Vector2[2 * n];
-
-            // sort vertices lexicographically
-            Array.Sort(vertices);
-
-            // lower hull
-            for (i = 0; i < n; i++)
-            {
-                while (k >= 2 && Cross(hull[k - 2], hull[k - 1], vertices[i]) <= 0)
-                    k--;
-
-                hull[k++] = vertices[i];
-            }
-
-            // upper hull
-            for (i = n - 2, t = k + 1; i >= 0; i--)
-            {
-                while (k >= t && Cross(hull[k - 2], hull[k - 1], vertices[i]) <= 0)
-                    k--;
-
-                hull[k++] = vertices[i];
-            }
-        }
-    }
-
     public static class Extenstions
     {
         private static readonly char[] s_separators = new char[] { ',' };
@@ -383,19 +336,13 @@ namespace CanvasDiagram
 
         public static string ToText(this PointShape point)
         {
-
-            return string.Concat(
-                point.X.ToString(s_numberFormat),
-                s_separators[0],
-                point.Y.ToString(s_numberFormat));
+            return string.Concat(point.X.ToString(s_numberFormat), s_separators[0], point.Y.ToString(s_numberFormat));
         }
 
         public static PointShape FromText(this string str)
         {
             string[] values = str.Split(s_separators);
-            return new PointShape(
-                double.Parse(values[0], s_numberFormat),
-                double.Parse(values[1], s_numberFormat));
+            return new PointShape(double.Parse(values[0], s_numberFormat), double.Parse(values[1], s_numberFormat));
         }
     }
 
@@ -420,7 +367,6 @@ namespace CanvasDiagram
 
     public interface IBounds
     {
-        Vector2[] GetVertices();
         void Update();
         bool IsVisible();
         void Show();
@@ -444,7 +390,21 @@ namespace CanvasDiagram
     {
         public PointShape[] Points { get; set; }
 
-        public LineShape[] Lines { get; set; }
+        public ArgbColor Stroke { get; set; }
+
+        public double StrokeThickness { get; set; }
+
+        public LineCap StartLineCap { get; set; }
+
+        public LineCap EndLineCap { get; set; }
+
+        public PolygonShape()
+        {
+            Stroke = new ArgbColor(0xFF, 0x00, 0xBF, 0xFF);
+            StrokeThickness = 2.0;
+            StartLineCap = LineCap.Round;
+            EndLineCap = LineCap.Round;
+        }
 
         public bool Contains(double x, double y)
         {
@@ -586,7 +546,6 @@ namespace CanvasDiagram
         private PolygonShape _polygonPoint1;
         private PolygonShape _polygonPoint2;
         private bool _isVisible;
-        private Vector2[] _vertices;
 
         public LineBounds(CanvasShape canvasShape, LineShape line, double offset)
         {
@@ -594,136 +553,98 @@ namespace CanvasDiagram
             _offset = offset;
             _canvasShape = canvasShape;
             _hitResult = HitResult.None;
-            _polygonPoint1 = HitTestHelper.CreatePolygonBounds(4);
-            _polygonPoint2 = HitTestHelper.CreatePolygonBounds(4);
-            _polygonLine = HitTestHelper.CreatePolygonBounds(4);
-            _vertices = new Vector2[4];
+            _polygonPoint1 = CreatePolygon(4);
+            _polygonPoint2 = CreatePolygon(4);
+            _polygonLine = CreatePolygon(4);
         }
 
-        private void UpdatePoint1Bounds()
+        private PolygonShape CreatePolygon(int vertexes)
         {
-            var ps = _polygonPoint1.Points;
-            var ls = _polygonPoint1.Lines;
-            HitTestHelper.UpdatePointBounds(_line.Point1, ps, ls, _line.StrokeThickness, _offset);
-        }
+            var points = new PointShape[vertexes];
 
-        private void UpdatePoint2Bounds()
-        {
-            var ps = _polygonPoint2.Points;
-            var ls = _polygonPoint2.Lines;
-            HitTestHelper.UpdatePointBounds(_line.Point2, ps, ls, _line.StrokeThickness, _offset);
-        }
-
-        private void UpdateLineBounds()
-        {
-            var ps = _polygonLine.Points;
-            var ls = _polygonLine.Lines;
-            var ps1 = _polygonPoint1.Points;
-            var ps2 = _polygonPoint2.Points;
-
-            double min1X = HitTestHelper.Min(ps1[0].X, ps1[1].X, ps1[2].X, ps1[3].X);
-            double min1Y = HitTestHelper.Min(ps1[0].Y, ps1[1].Y, ps1[2].Y, ps1[3].Y);
-            double max1X = HitTestHelper.Max(ps1[0].X, ps1[1].X, ps1[2].X, ps1[3].X);
-            double max1Y = HitTestHelper.Max(ps1[0].Y, ps1[1].Y, ps1[2].Y, ps1[3].Y);
-            double min2X = HitTestHelper.Min(ps2[0].X, ps2[1].X, ps2[2].X, ps2[3].X);
-            double min2Y = HitTestHelper.Min(ps2[0].Y, ps2[1].Y, ps2[2].Y, ps2[3].Y);
-            double max2X = HitTestHelper.Max(ps2[0].X, ps2[1].X, ps2[2].X, ps2[3].X);
-            double max2Y = HitTestHelper.Max(ps2[0].Y, ps2[1].Y, ps2[2].Y, ps2[3].Y);
-
-            if (Math.Round(_line.Point1.X, 1) == Math.Round(_line.Point2.X, 1))
+            for (int i = 0; i < vertexes; i++)
             {
-                ps[0].X = Math.Min(min1X, min2X);
-                ps[0].Y = Math.Max(min1Y, min2Y);
-                ps[1].X = Math.Min(min1X, min2X);
-                ps[1].Y = Math.Min(max1Y, max2Y);
-                ps[2].X = Math.Max(max1X, max2X);
-                ps[2].Y = Math.Min(max1Y, max2Y);
-                ps[3].X = Math.Max(max1X, max2X);
-                ps[3].Y = Math.Max(min1Y, min2Y);
-            }
-            else if (Math.Round(_line.Point1.Y, 1) == Math.Round(_line.Point2.Y, 1))
-            {
-                ps[0].X = Math.Max(min1X, min2X);
-                ps[0].Y = Math.Min(min1Y, min2Y);
-                ps[1].X = Math.Min(max1X, max2X);
-                ps[1].Y = Math.Min(min1Y, min2Y);
-                ps[2].X = Math.Min(max1X, max2X);
-                ps[2].Y = Math.Max(max1Y, max2Y);
-                ps[3].X = Math.Max(min1X, min2X);
-                ps[3].Y = Math.Max(max1Y, max2Y);
-            }
-            else
-            {
-                if (((_line.Point2.X > _line.Point1.X) && (_line.Point2.Y < _line.Point1.Y)) ||
-                    ((_line.Point2.X < _line.Point1.X) && (_line.Point2.Y > _line.Point1.Y)))
-                {
-                    ps[0].X = min1X;
-                    ps[0].Y = min1Y;
-                    ps[1].X = max1X;
-                    ps[1].Y = max1Y;
-                    ps[2].X = max2X;
-                    ps[2].Y = max2Y;
-                    ps[3].X = min2X;
-                    ps[3].Y = min2Y;
-                }
-                else
-                {
-                    ps[0].X = min1X;
-                    ps[0].Y = max1Y;
-                    ps[1].X = max1X;
-                    ps[1].Y = min1Y;
-                    ps[2].X = max2X;
-                    ps[2].Y = min2Y;
-                    ps[3].X = min2X;
-                    ps[3].Y = max2Y;
-                }
+                points[i] = new PointShape(0, 0);
             }
 
-#if true
-            HitTestHelper.MoveLine(ls[0], ps[0], ps[1]);
-            HitTestHelper.MoveLine(ls[1], ps[1], ps[2]);
-            HitTestHelper.MoveLine(ls[2], ps[2], ps[3]);
-            HitTestHelper.MoveLine(ls[3], ps[3], ps[0]);
-#else
-            double tlx = Math.Min(min1X, min2X);
-            double tly = Math.Min(min1Y, min2Y);
-            double brx = Math.Max(max1X, max2X);
-            double bry = Math.Max(max1Y, max2Y);
-            ps[0].X = tlx;
-            ps[0].Y = tly;
-            ps[1].X = brx;
-            ps[1].Y = tly;
-            ps[2].X = brx;
-            ps[2].Y = bry;
-            ps[3].X = tlx;
-            ps[3].Y = bry;
-            HitTestHelper.MoveLine(ls[0], ps[0], ps[1]);
-            HitTestHelper.MoveLine(ls[1], ps[1], ps[2]);
-            HitTestHelper.MoveLine(ls[2], ps[2], ps[3]);
-            HitTestHelper.MoveLine(ls[3], ps[3], ps[0]);
-#endif
+            var polygon = new PolygonShape
+            {
+                Points = points
+            };
 
-            UpdateVertices(ps);
+            return polygon;
         }
 
-        private void UpdateVertices(PointShape[] ps)
+        private double Angle(PointShape point0, PointShape point1)
         {
-            _vertices[0] = new Vector2(ps[0].X, ps[0].Y);
-            _vertices[1] = new Vector2(ps[1].X, ps[1].Y);
-            _vertices[2] = new Vector2(ps[2].X, ps[2].Y);
-            _vertices[3] = new Vector2(ps[3].X, ps[3].Y);
+            return (double)Math.Atan2(point0.Y - point1.Y, point0.X - point1.X);
+            //double angle1 = (double)Math.Atan2(point0.Y - point1.Y, point0.X - point1.X);
+            //double result = angle1 * 180.0 / Math.PI;
+            //if (result < 0.0d)
+            //    result += 360.0;
+            //return result;
         }
 
-        public Vector2[] GetVertices()
+        private void Rotate(PointShape point, double radians, double centerX, double centerY)
         {
-            return _vertices;
+            var x = (point.X - centerX) * Math.Cos(radians) - (point.Y - centerY) * Math.Sin(radians) + centerX;
+            var y = (point.X - centerX) * Math.Sin(radians) + (point.Y - centerY) * Math.Cos(radians) + centerY;
+            point.X = x;
+            point.Y = y;
+        }
+
+        private void UpdatePoints(PointShape point, PointShape[] ps, double size, double offset)
+        {
+            var x = point.X - (size / 2.0);
+            var y = point.Y - (size / 2.0);
+            var width = size;
+            var height = size;
+
+            ps[0].X = x - offset;
+            ps[0].Y = y - offset;
+            ps[1].X = (x + width) + offset;
+            ps[1].Y = y - offset;
+            ps[2].X = (x + width) + offset;
+            ps[2].Y = (y + height) + offset;
+            ps[3].X = x - offset;
+            ps[3].Y = (y + height) + offset;
+        }
+
+        private void RotatePoints(PointShape point, PointShape[] ps, double radians)
+        {
+            var centerX = point.X;
+            var centerY = point.Y;
+
+            Rotate(ps[0], radians, centerX, centerY);
+            Rotate(ps[1], radians, centerX, centerY);
+            Rotate(ps[2], radians, centerX, centerY);
+            Rotate(ps[3], radians, centerX, centerY);
         }
 
         public void Update()
         {
-            UpdatePoint1Bounds();
-            UpdatePoint2Bounds();
-            UpdateLineBounds();
+            var radians = Angle(_line.Point1, _line.Point2);
+
+            UpdatePoints(_line.Point1, _polygonPoint1.Points, _line.StrokeThickness, _offset);
+
+            UpdatePoints(_line.Point2, _polygonPoint2.Points, _line.StrokeThickness, _offset);
+
+            RotatePoints(_line.Point1, _polygonPoint1.Points, radians);
+
+            RotatePoints(_line.Point2, _polygonPoint2.Points, radians);
+
+            var ps1 = _polygonPoint1.Points;
+            var ps2 = _polygonPoint2.Points;
+            var ps = _polygonLine.Points;
+
+            ps[0].X = ps1[1].X;
+            ps[0].Y = ps1[1].Y;
+            ps[1].X = ps1[2].X;
+            ps[1].Y = ps1[2].Y;
+            ps[2].X = ps2[3].X;
+            ps[2].Y = ps2[3].Y;
+            ps[3].X = ps2[0].X;
+            ps[3].Y = ps2[0].Y;
         }
 
         public bool IsVisible()
@@ -735,19 +656,10 @@ namespace CanvasDiagram
         {
             if (!_isVisible)
             {
-                foreach (var line in _polygonLine.Lines)
-                {
-                    _canvasShape.Children.Add(line);
-                }
+                _canvasShape.Children.Add(_polygonLine);
 #if true
-                foreach (var line in _polygonPoint1.Lines)
-                {
-                    _canvasShape.Children.Add(line);
-                }
-                foreach (var line in _polygonPoint2.Lines)
-                {
-                    _canvasShape.Children.Add(line);
-                }
+                _canvasShape.Children.Add(_polygonPoint1);
+                _canvasShape.Children.Add(_polygonPoint2); 
 #endif
                 _isVisible = true;
             }
@@ -757,19 +669,10 @@ namespace CanvasDiagram
         {
             if (_isVisible)
             {
-                foreach (var line in _polygonLine.Lines)
-                {
-                    _canvasShape.Children.Remove(line);
-                }
+                _canvasShape.Children.Remove(_polygonLine);
 #if true
-                foreach (var line in _polygonPoint1.Lines)
-                {
-                    _canvasShape.Children.Remove(line);
-                }
-                foreach (var line in _polygonPoint2.Lines)
-                {
-                    _canvasShape.Children.Remove(line);
-                }
+                _canvasShape.Children.Remove(_polygonPoint1);
+                _canvasShape.Children.Remove(_polygonPoint2); 
 #endif
                 _isVisible = false;
             }
@@ -852,10 +755,6 @@ namespace CanvasDiagram
 
     public static class HitTestHelper
     {
-        public static MonotoneChain ConvexHull = new MonotoneChain();
-
-        public const int PointBoundVertexCount = 4;
-
         public static BaseShape HitTest(IList<BaseShape> children, double x, double y)
         {
             return children.Where(c => c.Bounds != null && c.Bounds.Contains(x, y)).FirstOrDefault();
@@ -869,82 +768,6 @@ namespace CanvasDiagram
         public static double Max(double val1, double val2, double val3, double val4)
         {
             return Math.Max(Math.Max(val1, val2), Math.Max(val3, val4));
-        }
-
-        public static PolygonShape CreatePolygonBounds(int points)
-        {
-            var polygon = new PolygonShape();
-            polygon.Points = new PointShape[points];
-            polygon.Lines = new LineShape[points];
-
-            for (int i = 0; i < points; i++)
-            {
-                polygon.Points[i] = new PointShape(0, 0);
-
-                var lineShape = new LineShape
-                {
-                    Stroke = new ArgbColor(0xFF, 0x00, 0xBF, 0xFF),
-                    StrokeThickness = 2.0
-                };
-
-                polygon.Lines[i] = lineShape;
-            }
-
-            return polygon;
-        }
-
-        public static void UpdatePointBounds(PointShape point, PointShape[] ps, LineShape[] ls, double size, double offset)
-        {
-            Debug.Assert(point != null);
-
-            double x = point.X - (size / 2.0);
-            double y = point.Y - (size / 2.0);
-            double width = size;
-            double height = size;
-
-            UpdateRectangleBounds(ps, ls, offset, x, y, width, height);
-        }
-
-        public static void UpdateRectangleBounds(PointShape[] ps, LineShape[] ls, double offset, double x, double y, double width, double height)
-        {
-            Debug.Assert(ps != null);
-            Debug.Assert(ls != null);
-            Debug.Assert(ps.Length == PointBoundVertexCount);
-            Debug.Assert(ls.Length == PointBoundVertexCount);
-
-            // Top-Left
-            ps[0].X = x - offset;
-            ps[0].Y = y - offset;
-            // Top-Right
-            ps[1].X = (x + width) + offset;
-            ps[1].Y = y - offset;
-            // Botton-Right
-            ps[2].X = (x + width) + offset;
-            ps[2].Y = (y + height) + offset;
-            // Bottom-Left
-            ps[3].X = x - offset;
-            ps[3].Y = (y + height) + offset;
-
-            MoveLine(ls[0], ps[0], ps[1]);
-            MoveLine(ls[1], ps[1], ps[2]);
-            MoveLine(ls[2], ps[2], ps[3]);
-            MoveLine(ls[3], ps[3], ps[0]);
-        }
-
-        public static void MoveLine(LineShape line, PointShape point1, PointShape point2)
-        {
-            line.Point1 = point1;
-            line.Point2 = point2;
-        }
-
-        public static void MoveLine(LineShape line, Vector2 point1, Vector2 point2)
-        {
-            line.Point1.X = point1.X;
-            line.Point1.Y = point1.Y;
-            line.Point2.X = point2.X;
-            line.Point2.Y = point2.Y;
-            line.Point1 = line.Point1;
-            line.Point2 = line.Point2;
         }
     }
 
@@ -1359,14 +1182,6 @@ namespace CanvasDiagram
         }
     }
 
-    public static class ArgbColorExtensions
-    {
-        public static Color ToColor(this ArgbColor color)
-        {
-            return Color.FromArgb(color.A, color.R, color.G, color.B);
-        }
-    }
-
     public class PanAndZoomBorder : Border
     {
         private bool initialize = true;
@@ -1519,11 +1334,16 @@ namespace CanvasDiagram
             InvalidateVisual();
         }
 
+        public Color ToColor(ArgbColor color)
+        {
+            return Color.FromArgb(color.A, color.R, color.G, color.B);
+        }
+
         protected override void OnRender(DrawingContext dc)
         {
             base.OnRender(dc);
 
-            var backgroundBrush = new SolidColorBrush(_canvasShape.Background.ToColor());
+            var backgroundBrush = new SolidColorBrush(ToColor(_canvasShape.Background));
             backgroundBrush.Freeze();
 
             dc.DrawRectangle(backgroundBrush, null, new Rect(0, 0, _canvasShape.Width, _canvasShape.Height));
@@ -1532,7 +1352,7 @@ namespace CanvasDiagram
             {
                 if (shape is LineShape lineShape)
                 {
-                    var brush = new SolidColorBrush(lineShape.Stroke.ToColor());
+                    var brush = new SolidColorBrush(ToColor(lineShape.Stroke));
                     brush.Freeze();
 
                     var pen = new Pen(brush, lineShape.StrokeThickness)
@@ -1548,6 +1368,32 @@ namespace CanvasDiagram
                     var point1 = new Point(lineShape.Point2.X, lineShape.Point2.Y);
 
                     dc.DrawLine(pen, point0, point1);
+                }
+                else if (shape is PolygonShape polygonShape)
+                {
+                    var brush = new SolidColorBrush(ToColor(polygonShape.Stroke));
+                    brush.Freeze();
+
+                    var pen = new Pen(brush, polygonShape.StrokeThickness)
+                    {
+                        Brush = brush,
+                        Thickness = polygonShape.StrokeThickness,
+                        StartLineCap = ToPenLineCap(polygonShape.StartLineCap),
+                        EndLineCap = ToPenLineCap(polygonShape.EndLineCap)
+                    };
+                    pen.Freeze();
+
+                    var points = polygonShape.Points;
+                    var length = polygonShape.Points.Length;
+
+                    for (int i = 0; i < length; i++)
+                    {
+                        var index0 = i;
+                        var index1 = (i == length - 1) ? 0 : i + 1;
+                        var point0 = new Point(points[index0].X, points[index0].Y);
+                        var point1 = new Point(points[index1].X, points[index1].Y);
+                        dc.DrawLine(pen, point0, point1);
+                    }
                 }
             }
         }
