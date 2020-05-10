@@ -52,8 +52,7 @@ namespace CanvasDiagram
         void Show();
         void Hide();
         bool Contains(double x, double y);
-        void MoveContaining(double dx, double dy);
-        void MoveAll(double dx, double dy);
+        void Move(double dx, double dy);
     }
 
     public interface IDrawableShape
@@ -379,7 +378,7 @@ namespace CanvasDiagram
             return false;
         }
 
-        public void MoveContaining(double dx, double dy)
+        public void Move(double dx, double dy)
         {
             switch (_hitResult)
             {
@@ -393,11 +392,6 @@ namespace CanvasDiagram
                     MoveLine(dx, dy);
                     break;
             }
-        }
-
-        public void MoveAll(double dx, double dy)
-        {
-            MoveLine(dx, dy);
         }
 
         private void MovePoint1(double dx, double dy)
@@ -664,7 +658,7 @@ namespace CanvasDiagram
                 double dx = _start.X - p.X;
                 double dy = _start.Y - p.Y;
                 _start = p;
-                _selected.Bounds.MoveContaining(dx, dy);
+                _selected.Bounds.Move(dx, dy);
                 _selected.Bounds.Update();
                 _drawingCanvas.InvalidateShape();
                 _boundsCanvas.InvalidateShape();
