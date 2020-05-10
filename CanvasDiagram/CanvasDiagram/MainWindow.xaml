@@ -1,12 +1,20 @@
 ﻿<Window x:Class="CanvasDiagram.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:CanvasDiagram"
         Title="CanvasDiagram" Height="700" Width="920"
         Background="White"
         WindowStartupLocation="CenterScreen"
         UseLayoutRounding="False" SnapsToDevicePixels="True"
         TextOptions.TextFormattingMode="Ideal" TextOptions.TextHintingMode="Auto" TextOptions.TextRenderingMode="ClearType">
+    <Window.Resources>
+        <ObjectDataProvider x:Key="LineCapValues" MethodName="GetValues" ObjectType="{x:Type system:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="local:LineCap"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
@@ -17,7 +25,13 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <ListBox x:Name="children" Grid.Row="0" ItemsSource="{Binding DrawingCanvas.Children}" HorizontalContentAlignment="Stretch" BorderBrush="{x:Null}" BorderThickness="0" FocusVisualStyle="{x:Null}"/>
+            <ListBox x:Name="children" Grid.Row="0" ItemsSource="{Binding DrawingCanvas.Children}" HorizontalContentAlignment="Stretch" BorderBrush="{x:Null}" BorderThickness="0" FocusVisualStyle="{x:Null}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="LineShape"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
             <ContentControl Content="{Binding FallbackValue={x:Null}}"  Grid.Row="1" DataContext="{Binding ElementName=children, Path=SelectedItem}">
                 <ContentControl.Resources>
                     <local:ArgbColorValueConverter x:Key="ArgbColorValueConverter"/>
@@ -47,9 +61,11 @@
                             <TextBlock Grid.Column="0" Grid.Row="4" Text="StrokeThickness" Margin="1,1,4,1"/>
                             <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding StrokeThickness}" Margin="1"/>
                             <TextBlock Grid.Column="0" Grid.Row="5" Text="StartLineCap" Margin="1,1,4,1"/>
-                            <TextBox Grid.Column="1" Grid.Row="5" Text="{Binding StartLineCap}" Margin="1"/>
+                            <!--<TextBox Grid.Column="1" Grid.Row="5" Text="{Binding StartLineCap}" Margin="1"/>-->
+                            <ComboBox Grid.Column="1" Grid.Row="5" ItemsSource="{Binding Source={StaticResource LineCapValues}}" SelectedItem="{Binding Path=StartLineCap}" Margin="1"/>
                             <TextBlock Grid.Column="0" Grid.Row="6" Text="EndLineCap" Margin="1,1,4,1"/>
-                            <TextBox Grid.Column="1" Grid.Row="6" Text="{Binding EndLineCap}" Margin="1"/>
+                            <!--<TextBox Grid.Column="1" Grid.Row="6" Text="{Binding EndLineCap}" Margin="1"/>-->
+                            <ComboBox Grid.Column="1" Grid.Row="6" ItemsSource="{Binding Source={StaticResource LineCapValues}}" SelectedItem="{Binding Path=EndLineCap}" Margin="1"/>
                         </Grid>
                     </DataTemplate>
                 </ContentControl.Resources>
