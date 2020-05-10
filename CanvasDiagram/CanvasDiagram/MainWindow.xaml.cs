@@ -1516,8 +1516,11 @@ namespace CanvasDiagram
                     _canvasView.SelectionEditor.IsEnabled = true;
                     break;
                 case Key.L:
-                    _canvasView.LineEditor.IsEnabled = false;
-                    _canvasView.SelectionEditor.IsEnabled = true;
+                    _canvasView.LineEditor.IsEnabled = true;
+                    _canvasView.SelectionEditor.IsEnabled = false;
+                    break;
+                case Key.G:
+                    _canvasView.ToggleSnap();
                     break;
                 case Key.Delete:
                     _canvasView.Delete();
