@@ -16,30 +16,32 @@ namespace CanvasDiagram
     public struct Vector2 : IComparable<Vector2>
     {
         public static Vector2 One { get { return new Vector2(1.0); } }
+
         public static Vector2 Zero { get { return new Vector2(0.0); } }
+
         public static Vector2 UnitX { get { return new Vector2(1.0, 0.0); } }
+
         public static Vector2 UnitY { get { return new Vector2(0.0, 1.0); } }
 
         public double X { get; private set; }
+
         public double Y { get; private set; }
 
         public Vector2(double value)
-            : this()
         {
-            this.X = value;
-            this.Y = value;
+            X = value;
+            Y = value;
         }
 
         public Vector2(double x, double y)
-            : this()
         {
-            this.X = x;
-            this.Y = y;
+            X = x;
+            Y = y;
         }
 
         public override string ToString()
         {
-            return string.Concat(X, System.Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberGroupSeparator, Y);
+            return string.Concat(X, CultureInfo.CurrentCulture.NumberFormat.NumberGroupSeparator, Y);
         }
 
         public static bool operator <(Vector2 v1, Vector2 v2)
@@ -59,85 +61,85 @@ namespace CanvasDiagram
 
         public bool Equals(Vector2 v)
         {
-            return this.X == v.X && this.Y == v.Y;
+            return X == v.X && Y == v.Y;
         }
 
         public override bool Equals(object obj)
         {
             if (obj is Vector2)
             {
-                return this.Equals((Vector2)obj);
+                return Equals((Vector2)obj);
             }
             return false;
         }
 
         public override int GetHashCode()
         {
-            return this.X.GetHashCode() + this.Y.GetHashCode();
+            return X.GetHashCode() + Y.GetHashCode();
         }
 
         public Vector2 Negate()
         {
-            return new Vector2(-this.X, -this.Y);
+            return new Vector2(-X, -Y);
         }
 
         public Vector2 Perpendicular()
         {
-            return new Vector2(-this.Y, this.X);
+            return new Vector2(-Y, X);
         }
 
         public Vector2 Subtract(Vector2 v)
         {
-            return new Vector2(this.X - v.X, this.Y - v.Y);
+            return new Vector2(X - v.X, Y - v.Y);
         }
 
         public Vector2 Add(Vector2 v)
         {
-            return new Vector2(this.X + v.X, this.Y + v.Y);
+            return new Vector2(X + v.X, Y + v.Y);
         }
 
         public Vector2 Multiply(double scalar)
         {
             return new Vector2(
-                this.X * scalar,
-                this.Y * scalar);
+                X * scalar,
+                Y * scalar);
         }
 
         public Vector2 Multiply(Vector2 v)
         {
             return new Vector2(
-                this.X * v.X,
-                this.Y * v.Y);
+                X * v.X,
+                Y * v.Y);
         }
 
         public Vector2 Divide(double scalar)
         {
             double value = 1.0 / scalar;
             return new Vector2(
-                this.X * value,
-                this.Y * value);
+                X * value,
+                Y * value);
         }
 
         public Vector2 Divide(Vector2 v)
         {
             return new Vector2(
-                this.X / v.X,
-                this.Y / v.Y);
+                X / v.X,
+                Y / v.Y);
         }
 
         public double Dot(Vector2 v)
         {
-            return (this.X * v.X) + (this.Y * v.Y);
+            return (X * v.X) + (Y * v.Y);
         }
 
         public double Angle(Vector2 v)
         {
-            return Math.Acos(this.Dot(v));
+            return Math.Acos(Dot(v));
         }
 
         public double Cross(Vector2 v)
         {
-            return (this.X * v.Y) - (this.Y * v.X);
+            return (X * v.Y) - (Y * v.X);
         }
 
         public static bool operator ==(Vector2 v1, Vector2 v2)
@@ -203,27 +205,27 @@ namespace CanvasDiagram
 
         public double Magnitude()
         {
-            return Math.Sqrt(this.X * this.X + this.Y * this.Y);
+            return Math.Sqrt(X * X + Y * Y);
         }
 
         public double MagnitudeSquared()
         {
-            return this.X * this.X + this.Y * this.Y;
+            return X * X + Y * Y;
         }
 
         public double Length()
         {
-            return Math.Sqrt(this.X * this.X + this.Y * this.Y);
+            return Math.Sqrt(X * X + Y * Y);
         }
 
         public double LengthSquared()
         {
-            return this.X * this.X + this.Y * this.Y;
+            return X * X + Y * Y;
         }
 
         public Vector2 Normalize()
         {
-            return this / this.Length();
+            return this / Length();
         }
 
         //public double Component(Vector2 v)
@@ -233,7 +235,7 @@ namespace CanvasDiagram
 
         public Vector2 Project(Vector2 v)
         {
-            return v * (this.Dot(v) / v.Dot(v));
+            return v * (Dot(v) / v.Dot(v));
         }
 
         //public Vector2 Project(Vector2 v)
@@ -243,24 +245,24 @@ namespace CanvasDiagram
 
         public Vector2 Reflect(Vector2 normal)
         {
-            double dot = this.Dot(normal);
+            double dot = Dot(normal);
             return new Vector2(
-                this.X - 2.0 * dot * normal.X,
-                this.Y - 2.0 * dot * normal.Y);
+                X - 2.0 * dot * normal.X,
+                Y - 2.0 * dot * normal.Y);
         }
 
         public Vector2 Min(Vector2 v)
         {
             return new Vector2(
-                this.X < v.X ? this.X : v.X,
-                this.Y < v.Y ? this.Y : v.Y);
+                X < v.X ? X : v.X,
+                Y < v.Y ? Y : v.Y);
         }
 
         public Vector2 Max(Vector2 v)
         {
             return new Vector2(
-                this.X > v.X ? this.X : v.X,
-                this.Y > v.Y ? this.Y : v.Y);
+                X > v.X ? X : v.X,
+                Y > v.Y ? Y : v.Y);
         }
 
         public Vector2 Lerp(Vector2 v, double amount)
@@ -270,7 +272,7 @@ namespace CanvasDiagram
 
         public Vector2 Slerp(Vector2 v, double amount)
         {
-            double dot = Clamp(this.Dot(v), -1.0, 1.0);
+            double dot = Clamp(Dot(v), -1.0, 1.0);
             double theta = Math.Acos(dot) * amount;
             Vector2 relative = (v - this * dot).Normalize();
             return ((this * Math.Cos(theta)) + (relative * Math.Sin(theta)));
@@ -278,21 +280,21 @@ namespace CanvasDiagram
 
         public Vector2 Nlerp(Vector2 v, double amount)
         {
-            return this.Lerp(v, amount).Normalize();
+            return Lerp(v, amount).Normalize();
         }
 
         public double Distance(Vector2 v)
         {
-            double dx = this.X - v.X;
-            double dy = this.Y - v.Y;
+            double dx = X - v.X;
+            double dy = Y - v.Y;
             return Math.Sqrt(dx * dx + dy * dy);
         }
 
         public Vector2 Middle(Vector2 v)
         {
             return new Vector2(
-                (this.X + v.X) / 2.0,
-                (this.Y + v.Y) / 2.0);
+                (X + v.X) / 2.0,
+                (Y + v.Y) / 2.0);
         }
 
         public Vector2 NearestPointOnLine(Vector2 a, Vector2 b)
@@ -356,21 +358,11 @@ namespace CanvasDiagram
         }
     }
 
-    public interface IBounds
-    {
-        Vector2[] GetVertices();
-        void Update();
-        bool IsVisible();
-        void Show();
-        void Hide();
-        bool Contains(double x, double y);
-        void MoveContaining(double dx, double dy);
-        void MoveAll(double dx, double dy);
-    }
-
     public static class Extenstions
     {
         private static readonly char[] s_separators = new char[] { ',' };
+
+        private static readonly NumberFormatInfo s_numberFormat = new CultureInfo("en-GB").NumberFormat;
 
         public static ArgbColor FromHtml(this string str)
         {
@@ -389,31 +381,32 @@ namespace CanvasDiagram
                 color.B.ToString("X2"));
         }
 
-        private static readonly NumberFormatInfo NumberFormat = new CultureInfo("en-GB").NumberFormat;
-
         public static string ToText(this PointShape point)
         {
 
             return string.Concat(
-                point.X.ToString(NumberFormat),
+                point.X.ToString(s_numberFormat),
                 s_separators[0],
-                point.Y.ToString(NumberFormat));
+                point.Y.ToString(s_numberFormat));
         }
 
         public static PointShape FromText(this string str)
         {
             string[] values = str.Split(s_separators);
             return new PointShape(
-                double.Parse(values[0], NumberFormat),
-                double.Parse(values[1], NumberFormat));
+                double.Parse(values[0], s_numberFormat),
+                double.Parse(values[1], s_numberFormat));
         }
     }
 
     public class ArgbColor
     {
         public byte A { get; set; }
+
         public byte R { get; set; }
+
         public byte G { get; set; }
+
         public byte B { get; set; }
 
         public ArgbColor(byte a, byte r, byte g, byte b)
@@ -423,6 +416,18 @@ namespace CanvasDiagram
             G = g;
             B = b;
         }
+    }
+
+    public interface IBounds
+    {
+        Vector2[] GetVertices();
+        void Update();
+        bool IsVisible();
+        void Show();
+        void Hide();
+        bool Contains(double x, double y);
+        void MoveContaining(double dx, double dy);
+        void MoveAll(double dx, double dy);
     }
 
     public interface IDrawableShape
@@ -1384,7 +1389,7 @@ namespace CanvasDiagram
             get { return base.Child; }
             set
             {
-                if (value != null && value != this.Child)
+                if (value != null && value != Child)
                 {
                     _child = value;
                     if (initialize)
@@ -1396,11 +1401,11 @@ namespace CanvasDiagram
                         group.Children.Add(tt);
                         _child.RenderTransform = group;
                         _child.RenderTransformOrigin = new Point(0.0, 0.0);
-                        this.MouseWheel += Border_MouseWheel;
-                        this.MouseRightButtonDown += Border_MouseRightButtonDown;
-                        this.MouseRightButtonUp += Border_MouseRightButtonUp;
-                        this.MouseMove += Border_MouseMove;
-                        this.PreviewMouseDown += Border_PreviewMouseDown;
+                        MouseWheel += Border_MouseWheel;
+                        MouseRightButtonDown += Border_MouseRightButtonDown;
+                        MouseRightButtonUp += Border_MouseRightButtonUp;
+                        MouseMove += Border_MouseMove;
+                        PreviewMouseDown += Border_PreviewMouseDown;
                         initialize = false;
                     }
                 }
@@ -1447,7 +1452,7 @@ namespace CanvasDiagram
                 var tt = GetTranslateTransform(_child);
                 _start = e.GetPosition(this);
                 _origin = new Point(tt.X, tt.Y);
-                this.Cursor = Cursors.Hand;
+                Cursor = Cursors.Hand;
                 _child.CaptureMouse();
             }
         }
@@ -1457,7 +1462,7 @@ namespace CanvasDiagram
             if (initialize == false && _child != null)
             {
                 _child.ReleaseMouseCapture();
-                this.Cursor = Cursors.Arrow;
+                Cursor = Cursors.Arrow;
             }
         }
 
@@ -1476,7 +1481,7 @@ namespace CanvasDiagram
         {
             if (e.ChangedButton == MouseButton.Middle && e.ClickCount == 2 && initialize == false && _child != null)
             {
-                this.Reset();
+                Reset();
             }
         }
     }
@@ -1489,8 +1494,8 @@ namespace CanvasDiagram
         {
             _canvasShape = canvasShape;
             _canvasShape.Native = this;
-            this.Width = _canvasShape.Width;
-            this.Height = _canvasShape.Height;
+            Width = _canvasShape.Width;
+            Height = _canvasShape.Height;
         }
 
         public PenLineCap ToPenLineCap(LineCap lineCap)
