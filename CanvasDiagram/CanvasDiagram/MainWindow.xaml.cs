@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Globalization;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -45,6 +42,14 @@ namespace CanvasDiagram
         }
     }
 
+    public enum LineCap
+    {
+        Flat = 0,
+        Square = 1,
+        Round = 2,
+        Triangle = 3
+    }
+
     public interface IBounds
     {
         void Update();
@@ -55,14 +60,62 @@ namespace CanvasDiagram
         void Move(double dx, double dy);
     }
 
-    public interface IDrawableShape
-    {
-        void InvalidateShape();
-    }
-
     public abstract class BaseShape
     {
         public IBounds Bounds { get; set; }
+    }
+
+    public class PointShape : BaseShape
+    {
+        public double X { get; set; }
+
+        public double Y { get; set; }
+
+        public PointShape(double x, double y)
+        {
+            X = x;
+            Y = y;
+        }
+
+        public static bool operator <(PointShape p1, PointShape p2)
+        {
+            return p1.X < p2.X || (p1.X == p2.X && p1.Y < p2.Y);
+        }
+
+        public static bool operator >(PointShape p1, PointShape p2)
+        {
+            return p1.X > p2.X || (p1.X == p2.X && p1.Y > p2.Y);
+        }
+
+        public int CompareTo(PointShape other)
+        {
+            return (this > other) ? -1 : ((this < other) ? 1 : 0);
+        }
+    }
+
+    public class LineShape : BaseShape
+    {
+        public PointShape Point1 { get; set; }
+
+        public PointShape Point2 { get; set; }
+
+        public ArgbColor Stroke { get; set; }
+
+        public double StrokeThickness { get; set; }
+
+        public LineCap StartLineCap { get; set; }
+
+        public LineCap EndLineCap { get; set; }
+
+        public LineShape()
+        {
+            Point1 = new PointShape(0.0, 0.0);
+            Point2 = new PointShape(0.0, 0.0);
+            Stroke = new ArgbColor(0xFF, 0x00, 0x00, 0x00);
+            StrokeThickness = 30.0;
+            StartLineCap = LineCap.Square;
+            EndLineCap = LineCap.Square;
+        }
     }
 
     public class PolygonShape : BaseShape
@@ -100,82 +153,15 @@ namespace CanvasDiagram
         }
     }
 
-    public class PointShape : BaseShape
+    public class CanvasShape : BaseShape
     {
-        public double X { get; set; }
-
-        public double Y { get; set; }
-
-        public PointShape(double x, double y)
-        {
-            X = x;
-            Y = y;
-        }
-
-        public static bool operator <(PointShape p1, PointShape p2)
-        {
-            return p1.X < p2.X || (p1.X == p2.X && p1.Y < p2.Y);
-        }
-
-        public static bool operator >(PointShape p1, PointShape p2)
-        {
-            return p1.X > p2.X || (p1.X == p2.X && p1.Y > p2.Y);
-        }
-
-        public int CompareTo(PointShape other)
-        {
-            return (this > other) ? -1 : ((this < other) ? 1 : 0);
-        }
-    }
-
-    public enum LineCap
-    {
-        Flat = 0,
-        Square = 1,
-        Round = 2,
-        Triangle = 3
-    }
-
-    public class LineShape : BaseShape
-    {
-        public PointShape Point1 { get; set; }
-
-        public PointShape Point2 { get; set; }
-
-        public ArgbColor Stroke { get; set; }
-
-        public double StrokeThickness { get; set; }
-
-        public LineCap StartLineCap { get; set; }
-
-        public LineCap EndLineCap { get; set; }
-
-        public LineShape()
-        {
-            Point1 = new PointShape(0.0, 0.0);
-            Point2 = new PointShape(0.0, 0.0);
-            Stroke = new ArgbColor(0xFF, 0x00, 0x00, 0x00);
-            StrokeThickness = 30.0;
-            StartLineCap = LineCap.Square;
-            EndLineCap = LineCap.Square;
-        }
-    }
-
-    public class CanvasShape : BaseShape, IDrawableShape
-    {
-        public IDrawableShape Native { get; set; }
-
-        public IObservable<Point2> Downs { get; set; }
-
-        public IObservable<Point2> Ups { get; set; }
-
-        public IObservable<Point2> Moves { get; set; }
-
         public double Width { get; set; }
 
         public double Height { get; set; }
 
         public ArgbColor Background { get; set; }
+
+        public IList<BaseShape> Children { get; set; }
 
         public bool EnableSnap { get; set; }
 
@@ -189,28 +175,29 @@ namespace CanvasDiagram
 
         public Action ReleaseCapture { get; set; }
 
-        public IList<BaseShape> Children { get; set; }
+        public Action InvalidateShape { get; set; }
+
+        public IObservable<Point2> Downs { get; set; }
+
+        public IObservable<Point2> Ups { get; set; }
+
+        public IObservable<Point2> Moves { get; set; }
 
         public CanvasShape()
         {
             Width = 600.0;
             Height = 600.0;
             Background = new ArgbColor(0x00, 0xFF, 0xFF, 0xFF);
+            Children = new ObservableCollection<BaseShape>();
             SnapX = 15.0;
             SnapY = 15.0;
             EnableSnap = true;
-            Children = new ObservableCollection<BaseShape>();
         }
 
         public double Snap(double val, double snap)
         {
             double r = val % snap;
             return r >= snap / 2.0 ? val + snap - r : val - r;
-        }
-
-        public void InvalidateShape()
-        {
-            Native?.InvalidateShape();
         }
     }
 
@@ -422,24 +409,6 @@ namespace CanvasDiagram
         }
     }
 
-    public static class HitTestHelper
-    {
-        public static BaseShape HitTest(IList<BaseShape> children, double x, double y)
-        {
-            return children.Where(c => c.Bounds != null && c.Bounds.Contains(x, y)).FirstOrDefault();
-        }
-
-        public static double Min(double val1, double val2, double val3, double val4)
-        {
-            return Math.Min(Math.Min(val1, val2), Math.Min(val3, val4));
-        }
-
-        public static double Max(double val1, double val2, double val3, double val4)
-        {
-            return Math.Max(Math.Max(val1, val2), Math.Max(val3, val4));
-        }
-    }
-
     public class SelectionEditor : IDisposable
     {
         [Flags]
@@ -490,6 +459,11 @@ namespace CanvasDiagram
             _drag = drags.Where(_ => IsEnabled).Subscribe(p => Drag(p));
         }
 
+        private BaseShape HitTest(IList<BaseShape> children, double x, double y)
+        {
+            return children.Where(c => c.Bounds != null && c.Bounds.Contains(x, y)).FirstOrDefault();
+        }
+
         private bool IsState(State state)
         {
             return (_state & state) == state;
@@ -511,7 +485,7 @@ namespace CanvasDiagram
                 render = true;
             }
 
-            _selected = HitTestHelper.HitTest(_drawingCanvas.Children, p.X, p.Y);
+            _selected = HitTest(_drawingCanvas.Children, p.X, p.Y);
             if (_selected != null)
             {
                 ShowSelected();
@@ -522,8 +496,8 @@ namespace CanvasDiagram
 
             if (render)
             {
-                _drawingCanvas.InvalidateShape();
-                _boundsCanvas.InvalidateShape();
+                _drawingCanvas.InvalidateShape?.Invoke();
+                _boundsCanvas.InvalidateShape?.Invoke();
             }
         }
 
@@ -551,7 +525,7 @@ namespace CanvasDiagram
             else
             {
                 bool render = false;
-                var result = HitTestHelper.HitTest(_drawingCanvas.Children, p.X, p.Y);
+                var result = HitTest(_drawingCanvas.Children, p.X, p.Y);
 
                 if (IsState(State.Hover))
                 {
@@ -602,8 +576,8 @@ namespace CanvasDiagram
 
                 if (render)
                 {
-                    _drawingCanvas.InvalidateShape();
-                    _boundsCanvas.InvalidateShape();
+                    _drawingCanvas.InvalidateShape?.Invoke();
+                    _boundsCanvas.InvalidateShape?.Invoke();
                 }
             }
         }
@@ -655,8 +629,8 @@ namespace CanvasDiagram
                 _start = p;
                 _selected.Bounds.Move(dx, dy);
                 _selected.Bounds.Update();
-                _drawingCanvas.InvalidateShape();
-                _boundsCanvas.InvalidateShape();
+                _drawingCanvas.InvalidateShape?.Invoke();
+                _boundsCanvas.InvalidateShape?.Invoke();
             }
         }
 
@@ -682,8 +656,8 @@ namespace CanvasDiagram
 
             if (render)
             {
-                _drawingCanvas.InvalidateShape();
-                _boundsCanvas.InvalidateShape();
+                _drawingCanvas.InvalidateShape?.Invoke();
+                _boundsCanvas.InvalidateShape?.Invoke();
             }
         }
 
@@ -720,8 +694,8 @@ namespace CanvasDiagram
                 if (_drawingCanvas.IsCaptured?.Invoke() == true)
                 {
                     _lineShape.Bounds.Hide();
-                    _drawingCanvas.InvalidateShape();
-                    _boundsCanvas.InvalidateShape();
+                    _drawingCanvas.InvalidateShape?.Invoke();
+                    _boundsCanvas.InvalidateShape?.Invoke();
                     _state = State.None;
                     _drawingCanvas.ReleaseCapture?.Invoke();
                 }
@@ -738,8 +712,8 @@ namespace CanvasDiagram
                     _lineShape.Bounds.Update();
                     _lineShape.Bounds.Show();
                     _drawingCanvas.Capture?.Invoke();
-                    _drawingCanvas.InvalidateShape();
-                    _boundsCanvas.InvalidateShape();
+                    _drawingCanvas.InvalidateShape?.Invoke();
+                    _boundsCanvas.InvalidateShape?.Invoke();
                     _state = State.End;
                 }
             });
@@ -751,8 +725,8 @@ namespace CanvasDiagram
                     _lineShape.Point2.X = p.X;
                     _lineShape.Point2.Y = p.Y;
                     _lineShape.Bounds.Update();
-                    _drawingCanvas.InvalidateShape();
-                    _boundsCanvas.InvalidateShape();
+                    _drawingCanvas.InvalidateShape?.Invoke();
+                    _boundsCanvas.InvalidateShape?.Invoke();
                 }
             });
         }
@@ -784,15 +758,15 @@ namespace CanvasDiagram
         public void Clear()
         {
             DrawingCanvas.Children.Clear();
-            DrawingCanvas.InvalidateShape();
-            BoundsCanvas.InvalidateShape();
+            DrawingCanvas.InvalidateShape?.Invoke();
+            BoundsCanvas.InvalidateShape?.Invoke();
         }
 
         public void Render()
         {
-            BackgroundCanvas.InvalidateShape();
-            DrawingCanvas.InvalidateShape();
-            BoundsCanvas.InvalidateShape();
+            BackgroundCanvas.InvalidateShape?.Invoke();
+            DrawingCanvas.InvalidateShape?.Invoke();
+            BoundsCanvas.InvalidateShape?.Invoke();
         }
 
         public void Delete()
@@ -809,8 +783,8 @@ namespace CanvasDiagram
                 DrawingCanvas.Children.Remove(child);
             }
 
-            DrawingCanvas.InvalidateShape();
-            BoundsCanvas.InvalidateShape();
+            DrawingCanvas.InvalidateShape?.Invoke();
+            BoundsCanvas.InvalidateShape?.Invoke();
         }
 
         public void ObserveInput(CanvasShape canvasShape, RenderCanvas target)
@@ -970,19 +944,20 @@ namespace CanvasDiagram
         }
     }
 
-    public class RenderCanvas : Canvas, IDrawableShape
+    public class RenderCanvas : Canvas
     {
         private readonly CanvasShape _canvasShape;
 
         public RenderCanvas(CanvasShape canvasShape)
         {
             _canvasShape = canvasShape;
-            _canvasShape.Native = this;
+            _canvasShape.InvalidateShape = () => this.InvalidateVisual();
+
             Width = _canvasShape.Width;
             Height = _canvasShape.Height;
         }
 
-        public PenLineCap ToPenLineCap(LineCap lineCap)
+        private PenLineCap ToPenLineCap(LineCap lineCap)
         {
             switch (lineCap)
             {
@@ -998,134 +973,90 @@ namespace CanvasDiagram
             }
         }
 
-        public void InvalidateShape()
-        {
-            InvalidateVisual();
-        }
-
-        public Color ToColor(ArgbColor color)
+        private Color ToColor(ArgbColor color)
         {
             return Color.FromArgb(color.A, color.R, color.G, color.B);
+        }
+
+        private void DrawPolygon(DrawingContext dc, PolygonShape polygonShape)
+        {
+            var brush = new SolidColorBrush(ToColor(polygonShape.Stroke));
+            brush.Freeze();
+
+            var pen = new Pen(brush, polygonShape.StrokeThickness)
+            {
+                Brush = brush,
+                Thickness = polygonShape.StrokeThickness,
+                StartLineCap = ToPenLineCap(polygonShape.StartLineCap),
+                EndLineCap = ToPenLineCap(polygonShape.EndLineCap)
+            };
+            pen.Freeze();
+
+            var points = polygonShape.Points;
+            var length = polygonShape.Points.Length;
+
+            for (int i = 0; i < length; i++)
+            {
+                var index0 = i;
+                var index1 = (i == length - 1) ? 0 : i + 1;
+                var point0 = new Point(points[index0].X, points[index0].Y);
+                var point1 = new Point(points[index1].X, points[index1].Y);
+
+                dc.DrawLine(pen, point0, point1);
+            }
+        }
+
+        private void DrawLine(DrawingContext dc, LineShape lineShape)
+        {
+            var brush = new SolidColorBrush(ToColor(lineShape.Stroke));
+            brush.Freeze();
+
+            var pen = new Pen(brush, lineShape.StrokeThickness)
+            {
+                Brush = brush,
+                Thickness = lineShape.StrokeThickness,
+                StartLineCap = ToPenLineCap(lineShape.StartLineCap),
+                EndLineCap = ToPenLineCap(lineShape.EndLineCap)
+            };
+            pen.Freeze();
+
+            var point0 = new Point(lineShape.Point1.X, lineShape.Point1.Y);
+            var point1 = new Point(lineShape.Point2.X, lineShape.Point2.Y);
+
+            dc.DrawLine(pen, point0, point1);
+        }
+
+        private void DrawCanvasShape(DrawingContext dc, CanvasShape canvasShape)
+        {
+            foreach (var shape in canvasShape.Children)
+            {
+                if (shape is LineShape lineShape)
+                {
+                    DrawLine(dc, lineShape);
+                }
+                else if (shape is PolygonShape polygonShape)
+                {
+                    DrawPolygon(dc, polygonShape);
+                }
+            }
+        }
+
+        private void DrawBackground(DrawingContext dc, CanvasShape canvasShape)
+        {
+            var brush = new SolidColorBrush(ToColor(canvasShape.Background));
+            brush.Freeze();
+
+            var rectangle = new Rect(0, 0, canvasShape.Width, canvasShape.Height);
+
+            dc.DrawRectangle(brush, null, rectangle);
         }
 
         protected override void OnRender(DrawingContext dc)
         {
             base.OnRender(dc);
 
-            var backgroundBrush = new SolidColorBrush(ToColor(_canvasShape.Background));
-            backgroundBrush.Freeze();
-
-            dc.DrawRectangle(backgroundBrush, null, new Rect(0, 0, _canvasShape.Width, _canvasShape.Height));
-
-            foreach (var shape in _canvasShape.Children)
-            {
-                if (shape is LineShape lineShape)
-                {
-                    var brush = new SolidColorBrush(ToColor(lineShape.Stroke));
-                    brush.Freeze();
-
-                    var pen = new Pen(brush, lineShape.StrokeThickness)
-                    {
-                        Brush = brush,
-                        Thickness = lineShape.StrokeThickness,
-                        StartLineCap = ToPenLineCap(lineShape.StartLineCap),
-                        EndLineCap = ToPenLineCap(lineShape.EndLineCap)
-                    };
-                    pen.Freeze();
-
-                    var point0 = new Point(lineShape.Point1.X, lineShape.Point1.Y);
-                    var point1 = new Point(lineShape.Point2.X, lineShape.Point2.Y);
-
-                    dc.DrawLine(pen, point0, point1);
-                }
-                else if (shape is PolygonShape polygonShape)
-                {
-                    var brush = new SolidColorBrush(ToColor(polygonShape.Stroke));
-                    brush.Freeze();
-
-                    var pen = new Pen(brush, polygonShape.StrokeThickness)
-                    {
-                        Brush = brush,
-                        Thickness = polygonShape.StrokeThickness,
-                        StartLineCap = ToPenLineCap(polygonShape.StartLineCap),
-                        EndLineCap = ToPenLineCap(polygonShape.EndLineCap)
-                    };
-                    pen.Freeze();
-
-                    var points = polygonShape.Points;
-                    var length = polygonShape.Points.Length;
-
-                    for (int i = 0; i < length; i++)
-                    {
-                        var index0 = i;
-                        var index1 = (i == length - 1) ? 0 : i + 1;
-                        var point0 = new Point(points[index0].X, points[index0].Y);
-                        var point1 = new Point(points[index1].X, points[index1].Y);
-                        dc.DrawLine(pen, point0, point1);
-                    }
-                }
-            }
-        }
-    }
-
-    public static class Extenstions
-    {
-        private static readonly char[] s_separators = new char[] { ',' };
-
-        private static readonly NumberFormatInfo s_numberFormat = new CultureInfo("en-GB").NumberFormat;
-
-        public static ArgbColor FromHtml(this string str)
-        {
-            return new ArgbColor(byte.Parse(str.Substring(1, 2), NumberStyles.HexNumber),
-                byte.Parse(str.Substring(3, 2), NumberStyles.HexNumber),
-                byte.Parse(str.Substring(5, 2), NumberStyles.HexNumber),
-                byte.Parse(str.Substring(7, 2), NumberStyles.HexNumber));
-        }
-
-        public static string ToHtml(this ArgbColor color)
-        {
-            return string.Concat('#',
-                color.A.ToString("X2"),
-                color.R.ToString("X2"),
-                color.G.ToString("X2"),
-                color.B.ToString("X2"));
-        }
-
-        public static string ToText(this PointShape point)
-        {
-            return string.Concat(point.X.ToString(s_numberFormat), s_separators[0], point.Y.ToString(s_numberFormat));
-        }
-
-        public static PointShape FromText(this string str)
-        {
-            string[] values = str.Split(s_separators);
-            return new PointShape(double.Parse(values[0], s_numberFormat), double.Parse(values[1], s_numberFormat));
-        }
-    }
-
-    public class ArgbColorValueConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return ((ArgbColor)value).ToHtml();
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return ((string)value).FromHtml();
-        }
-    }
-
-    public class PointShapeValueConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return ((PointShape)value).ToText();
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return ((string)value).FromText();
+            DrawBackground(dc, _canvasShape);
+            DrawCanvasShape(dc, _canvasShape);
         }
     }
 
