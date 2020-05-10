@@ -34,8 +34,6 @@
             </ListBox>
             <ContentControl Content="{Binding FallbackValue={x:Null}}"  Grid.Row="1" DataContext="{Binding ElementName=children, Path=SelectedItem}">
                 <ContentControl.Resources>
-                    <local:ArgbColorValueConverter x:Key="ArgbColorValueConverter"/>
-                    <local:PointShapeValueConverter x:Key="PointShapeValueConverter"/>
                     <DataTemplate DataType="{x:Type local:LineShape}">
                         <Grid Margin="2">
                             <Grid.ColumnDefinitions>
@@ -50,22 +48,33 @@
                                 <RowDefinition/>
                                 <RowDefinition/>
                                 <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
                             </Grid.RowDefinitions>
-                            <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Text="Line" FontWeight="Bold" Margin="1"/>
-                            <TextBlock Grid.Column="0" Grid.Row="1" Text="Point1" Margin="1,1,4,1"/>
-                            <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Point1, Converter={StaticResource PointShapeValueConverter}}" Margin="1"/>
-                            <TextBlock Grid.Column="0" Grid.Row="2" Text="Point2"  Margin="1,1,4,1"/>
-                            <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Point2, Converter={StaticResource PointShapeValueConverter}}" Margin="1"/>
-                            <TextBlock Grid.Column="0" Grid.Row="3" Text="Stroke" Margin="1,1,4,1"/>
-                            <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding Stroke, Converter={StaticResource ArgbColorValueConverter}}" Margin="1"/>
-                            <TextBlock Grid.Column="0" Grid.Row="4" Text="StrokeThickness" Margin="1,1,4,1"/>
-                            <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding StrokeThickness}" Margin="1"/>
-                            <TextBlock Grid.Column="0" Grid.Row="5" Text="StartLineCap" Margin="1,1,4,1"/>
-                            <!--<TextBox Grid.Column="1" Grid.Row="5" Text="{Binding StartLineCap}" Margin="1"/>-->
-                            <ComboBox Grid.Column="1" Grid.Row="5" ItemsSource="{Binding Source={StaticResource LineCapValues}}" SelectedItem="{Binding Path=StartLineCap}" Margin="1"/>
-                            <TextBlock Grid.Column="0" Grid.Row="6" Text="EndLineCap" Margin="1,1,4,1"/>
-                            <!--<TextBox Grid.Column="1" Grid.Row="6" Text="{Binding EndLineCap}" Margin="1"/>-->
-                            <ComboBox Grid.Column="1" Grid.Row="6" ItemsSource="{Binding Source={StaticResource LineCapValues}}" SelectedItem="{Binding Path=EndLineCap}" Margin="1"/>
+                            <TextBlock Grid.Column="0" Grid.Row="0" Text="Point1.X" Margin="1,1,4,1"/>
+                            <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Point1.X}" Margin="1"/>
+                            <TextBlock Grid.Column="0" Grid.Row="1" Text="Point1.Y" Margin="1,1,4,1"/>
+                            <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Point1.Y}" Margin="1"/>
+                            <TextBlock Grid.Column="0" Grid.Row="2" Text="Point2.X" Margin="1,1,4,1"/>
+                            <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Point2.X}" Margin="1"/>
+                            <TextBlock Grid.Column="0" Grid.Row="3" Text="Point2.Y" Margin="1,1,4,1"/>
+                            <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding Point2.Y}" Margin="1"/>
+                            <TextBlock Grid.Column="0" Grid.Row="4" Text="Stroke.A" Margin="1,1,4,1"/>
+                            <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding Stroke.A}" Margin="1"/>
+                            <TextBlock Grid.Column="0" Grid.Row="5" Text="Stroke.R" Margin="1,1,4,1"/>
+                            <TextBox Grid.Column="1" Grid.Row="5" Text="{Binding Stroke.R}" Margin="1"/>
+                            <TextBlock Grid.Column="0" Grid.Row="6" Text="Stroke.G" Margin="1,1,4,1"/>
+                            <TextBox Grid.Column="1" Grid.Row="6" Text="{Binding Stroke.G}" Margin="1"/>
+                            <TextBlock Grid.Column="0" Grid.Row="7" Text="Stroke.B" Margin="1,1,4,1"/>
+                            <TextBox Grid.Column="1" Grid.Row="7" Text="{Binding Stroke.B}" Margin="1"/>
+                            <TextBlock Grid.Column="0" Grid.Row="8" Text="StrokeThickness" Margin="1,1,4,1"/>
+                            <TextBox Grid.Column="1" Grid.Row="8" Text="{Binding StrokeThickness}" Margin="1"/>
+                            <TextBlock Grid.Column="0" Grid.Row="9" Text="StartLineCap" Margin="1,1,4,1"/>
+                            <ComboBox Grid.Column="1" Grid.Row="9" ItemsSource="{Binding Source={StaticResource LineCapValues}}" SelectedItem="{Binding Path=StartLineCap}" Margin="1"/>
+                            <TextBlock Grid.Column="0" Grid.Row="10" Text="EndLineCap" Margin="1,1,4,1"/>
+                            <ComboBox Grid.Column="1" Grid.Row="10" ItemsSource="{Binding Source={StaticResource LineCapValues}}" SelectedItem="{Binding Path=EndLineCap}" Margin="1"/>
                         </Grid>
                     </DataTemplate>
                 </ContentControl.Resources>
