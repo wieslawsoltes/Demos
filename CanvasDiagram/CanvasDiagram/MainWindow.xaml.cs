@@ -256,12 +256,7 @@ namespace CanvasDiagram
 
         private double Angle(PointShape point0, PointShape point1)
         {
-            return (double)Math.Atan2(point0.Y - point1.Y, point0.X - point1.X);
-            //double angle1 = (double)Math.Atan2(point0.Y - point1.Y, point0.X - point1.X);
-            //double result = angle1 * 180.0 / Math.PI;
-            //if (result < 0.0d)
-            //    result += 360.0;
-            //return result;
+            return Math.Atan2(point0.Y - point1.Y, point0.X - point1.X);
         }
 
         private void Rotate(PointShape point, double radians, double centerX, double centerY)
@@ -270,6 +265,17 @@ namespace CanvasDiagram
             var y = (point.X - centerX) * Math.Sin(radians) + (point.Y - centerY) * Math.Cos(radians) + centerY;
             point.X = x;
             point.Y = y;
+        }
+
+        private void RotatePoints(PointShape point, PointShape[] ps, double radians)
+        {
+            var centerX = point.X;
+            var centerY = point.Y;
+
+            Rotate(ps[0], radians, centerX, centerY);
+            Rotate(ps[1], radians, centerX, centerY);
+            Rotate(ps[2], radians, centerX, centerY);
+            Rotate(ps[3], radians, centerX, centerY);
         }
 
         private void UpdatePoints(PointShape point, PointShape[] ps, double size, double offset)
@@ -287,17 +293,6 @@ namespace CanvasDiagram
             ps[2].Y = (y + height) + offset;
             ps[3].X = x - offset;
             ps[3].Y = (y + height) + offset;
-        }
-
-        private void RotatePoints(PointShape point, PointShape[] ps, double radians)
-        {
-            var centerX = point.X;
-            var centerY = point.Y;
-
-            Rotate(ps[0], radians, centerX, centerY);
-            Rotate(ps[1], radians, centerX, centerY);
-            Rotate(ps[2], radians, centerX, centerY);
-            Rotate(ps[3], radians, centerX, centerY);
         }
 
         public void Update()
