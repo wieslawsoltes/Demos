@@ -441,11 +441,6 @@ namespace CanvasDiagram
 
         public LineShape[] Lines { get; set; }
 
-        public bool Contains(PointShape point)
-        {
-            return Contains(point.X, point.Y);
-        }
-
         public bool Contains(double x, double y)
         {
             bool contains = false;
@@ -525,25 +520,32 @@ namespace CanvasDiagram
     public class CanvasShape : BaseShape, IDrawableShape
     {
         public IDrawableShape Native { get; set; }
-        public IObservable<Vector2> Downs { get; set; }
-        public IObservable<Vector2> Ups { get; set; }
-        public IObservable<Vector2> Moves { get; set; }
-        public double Width { get; set; }
-        public double Height { get; set; }
-        public ArgbColor Background { get; set; }
-        public bool EnableSnap { get; set; }
-        public double SnapX { get; set; }
-        public double SnapY { get; set; }
-        public Func<bool> IsCaptured { get; set; }
-        public Action Capture { get; set; }
-        public Action ReleaseCapture { get; set; }
-        public IList<BaseShape> Children { get; set; }
 
-        public double Snap(double val, double snap)
-        {
-            double r = val % snap;
-            return r >= snap / 2.0 ? val + snap - r : val - r;
-        }
+        public IObservable<Vector2> Downs { get; set; }
+
+        public IObservable<Vector2> Ups { get; set; }
+
+        public IObservable<Vector2> Moves { get; set; }
+
+        public double Width { get; set; }
+
+        public double Height { get; set; }
+
+        public ArgbColor Background { get; set; }
+
+        public bool EnableSnap { get; set; }
+
+        public double SnapX { get; set; }
+
+        public double SnapY { get; set; }
+
+        public Func<bool> IsCaptured { get; set; }
+
+        public Action Capture { get; set; }
+
+        public Action ReleaseCapture { get; set; }
+
+        public IList<BaseShape> Children { get; set; }
 
         public CanvasShape()
         {
@@ -556,19 +558,10 @@ namespace CanvasDiagram
             Children = new ObservableCollection<BaseShape>();
         }
 
-        public void Add(BaseShape value)
+        public double Snap(double val, double snap)
         {
-            Children.Add(value);
-        }
-
-        public void Remove(BaseShape value)
-        {
-            Children.Remove(value);
-        }
-
-        public void Clear()
-        {
-            Children.Clear();
+            double r = val % snap;
+            return r >= snap / 2.0 ? val + snap - r : val - r;
         }
 
         public void InvalidateShape()
@@ -580,7 +573,7 @@ namespace CanvasDiagram
     public class LineBounds : IBounds
     {
         private enum HitResult { None, Point1, Point2, Line };
-
+        private HitResult _hitResult;
         private LineShape _line;
         private double _offset;
         private CanvasShape _canvasShape;
@@ -588,7 +581,6 @@ namespace CanvasDiagram
         private PolygonShape _polygonPoint1;
         private PolygonShape _polygonPoint2;
         private bool _isVisible;
-        private HitResult _hitResult;
         private Vector2[] _vertices;
 
         public LineBounds(CanvasShape canvasShape, LineShape line, double offset)
@@ -596,9 +588,7 @@ namespace CanvasDiagram
             _line = line;
             _offset = offset;
             _canvasShape = canvasShape;
-
             _hitResult = HitResult.None;
-
             _polygonPoint1 = HitTestHelper.CreatePolygonBounds(4);
             _polygonPoint2 = HitTestHelper.CreatePolygonBounds(4);
             _polygonLine = HitTestHelper.CreatePolygonBounds(4);
@@ -742,16 +732,16 @@ namespace CanvasDiagram
             {
                 foreach (var line in _polygonLine.Lines)
                 {
-                    _canvasShape.Add(line);
+                    _canvasShape.Children.Add(line);
                 }
 #if true
                 foreach (var line in _polygonPoint1.Lines)
                 {
-                    _canvasShape.Add(line);
+                    _canvasShape.Children.Add(line);
                 }
                 foreach (var line in _polygonPoint2.Lines)
                 {
-                    _canvasShape.Add(line);
+                    _canvasShape.Children.Add(line);
                 }
 #endif
                 _isVisible = true;
@@ -764,16 +754,16 @@ namespace CanvasDiagram
             {
                 foreach (var line in _polygonLine.Lines)
                 {
-                    _canvasShape.Remove(line);
+                    _canvasShape.Children.Remove(line);
                 }
 #if true
                 foreach (var line in _polygonPoint1.Lines)
                 {
-                    _canvasShape.Remove(line);
+                    _canvasShape.Children.Remove(line);
                 }
                 foreach (var line in _polygonPoint2.Lines)
                 {
-                    _canvasShape.Remove(line);
+                    _canvasShape.Children.Remove(line);
                 }
 #endif
                 _isVisible = false;
@@ -956,7 +946,7 @@ namespace CanvasDiagram
     public class SelectionEditor : IDisposable
     {
         [Flags]
-        public enum State
+        private enum State
         {
             None = 0,
             Hover = 1,
@@ -966,14 +956,13 @@ namespace CanvasDiagram
             HoverMove = Hover | Move,
             SelectedMove = Selected | Move
         }
-
+        private State _state = State.None;
         private CanvasShape _drawingCanvas;
         private CanvasShape _boundsCanvas;
         private Vector2 _original;
         private Vector2 _start;
         private BaseShape _selected;
         private BaseShape _hover;
-        private State _state = State.None;
         private IDisposable _downs;
         private IDisposable _ups;
         private IDisposable _drag;
@@ -1132,7 +1121,7 @@ namespace CanvasDiagram
         {
             _hover.Bounds.Hide();
             _hover = null;
-            _state = _state & ~State.Hover;
+            _state &= ~State.Hover;
         }
 
         private void ShowSelected()
@@ -1145,7 +1134,7 @@ namespace CanvasDiagram
         {
             _selected.Bounds.Hide();
             _selected = null;
-            _state = _state & ~State.Selected;
+            _state &= ~State.Selected;
         }
 
         private void InitMove(Vector2 p)
@@ -1157,7 +1146,7 @@ namespace CanvasDiagram
 
         private void FinishMove(Vector2 p)
         {
-            _state = _state & ~State.Move;
+            _state &= ~State.Move;
         }
 
         private void Move(Vector2 p)
@@ -1211,16 +1200,15 @@ namespace CanvasDiagram
 
     public class LineEditor : IDisposable
     {
-        public enum State { None, Start, End }
-
-        public bool IsEnabled { get; set; }
-
+        private enum State { None, Start, End }
+        private State _state = State.None;
         private CanvasShape _drawingCanvas;
         private CanvasShape _boundsCanvas;
         private LineShape _lineShape;
-        private State _state = State.None;
         private IDisposable _downs;
         private IDisposable _drags;
+
+        public bool IsEnabled { get; set; }
 
         public LineEditor(CanvasShape drawingCanvas, CanvasShape boundsCanvas)
         {
@@ -1248,7 +1236,7 @@ namespace CanvasDiagram
                     _lineShape.Point2.X = p.X;
                     _lineShape.Point2.Y = p.Y;
 
-                    _drawingCanvas.Add(_lineShape);
+                    _drawingCanvas.Children.Add(_lineShape);
                     _lineShape.Bounds = new LineBounds(_boundsCanvas, _lineShape, 0.0);
                     _lineShape.Bounds.Update();
                     _lineShape.Bounds.Show();
@@ -1293,12 +1281,12 @@ namespace CanvasDiagram
 
         public void ToggleSnap()
         {
-            DrawingCanvas.EnableSnap = DrawingCanvas.EnableSnap ? false : true;
+            DrawingCanvas.EnableSnap = !DrawingCanvas.EnableSnap;
         }
 
         public void Clear()
         {
-            DrawingCanvas.Clear();
+            DrawingCanvas.Children.Clear();
             DrawingCanvas.InvalidateShape();
             BoundsCanvas.InvalidateShape();
         }
@@ -1328,7 +1316,7 @@ namespace CanvasDiagram
             BoundsCanvas.InvalidateShape();
         }
 
-        public void EnableInput(CanvasShape canvasShape, RenderCanvas target)
+        public void ObserveInput(CanvasShape canvasShape, RenderCanvas target)
         {
             canvasShape.Downs = Observable.FromEventPattern<MouseButtonEventArgs>(
                  target,
@@ -1363,37 +1351,6 @@ namespace CanvasDiagram
             canvasShape.IsCaptured = () => Mouse.Captured == target;
             canvasShape.Capture = () => target.CaptureMouse();
             canvasShape.ReleaseCapture = () => target.ReleaseMouseCapture();
-        }
-
-
-        public void CreateGrid(CanvasShape canvasShape, double width, double height, double size, double originX, double originY)
-        {
-            var thickness = 2.0;
-            var stroke = new ArgbColor(0xFF, 0xE8, 0xE8, 0xE8);
-
-            for (double y = size; y < height; y += size)
-            {
-                var lineShape = new LineShape();
-                lineShape.Point1.X = originX;
-                lineShape.Point1.Y = y;
-                lineShape.Point2.X = width;
-                lineShape.Point2.Y = y;
-                lineShape.Stroke = stroke;
-                lineShape.StrokeThickness = thickness;
-                canvasShape.Add(lineShape);
-            }
-
-            for (double x = size; x < width; x += size)
-            {
-                var lineShape = new LineShape();
-                lineShape.Point1.X = x;
-                lineShape.Point1.Y = originY;
-                lineShape.Point2.X = x;
-                lineShape.Point2.Y = height;
-                lineShape.Stroke = stroke;
-                lineShape.StrokeThickness = thickness;
-                canvasShape.Add(lineShape);
-            }
         }
     }
 
@@ -1649,14 +1606,14 @@ namespace CanvasDiagram
             layout.Children.Add(drawingRenderCanvas);
             layout.Children.Add(boundsRenderCanvas);
 
-            _canvasView.CreateGrid(
+            CreateGrid(
                 _canvasView.BackgroundCanvas,
                 _canvasView.BackgroundCanvas.Width,
                 _canvasView.BackgroundCanvas.Height,
                 30,
                 0, 0);
 
-            _canvasView.EnableInput(_canvasView.DrawingCanvas, boundsRenderCanvas);
+            _canvasView.ObserveInput(_canvasView.DrawingCanvas, boundsRenderCanvas);
 
             _canvasView.SelectionEditor = new SelectionEditor(_canvasView.DrawingCanvas, _canvasView.BoundsCanvas)
             {
@@ -1667,6 +1624,36 @@ namespace CanvasDiagram
             {
                 IsEnabled = true
             };
+        }
+
+        private void CreateGrid(CanvasShape canvasShape, double width, double height, double size, double originX, double originY)
+        {
+            var thickness = 2.0;
+            var stroke = new ArgbColor(0xFF, 0xE8, 0xE8, 0xE8);
+
+            for (double y = size; y < height; y += size)
+            {
+                var lineShape = new LineShape();
+                lineShape.Point1.X = originX;
+                lineShape.Point1.Y = y;
+                lineShape.Point2.X = width;
+                lineShape.Point2.Y = y;
+                lineShape.Stroke = stroke;
+                lineShape.StrokeThickness = thickness;
+                canvasShape.Children.Add(lineShape);
+            }
+
+            for (double x = size; x < width; x += size)
+            {
+                var lineShape = new LineShape();
+                lineShape.Point1.X = x;
+                lineShape.Point1.Y = originY;
+                lineShape.Point2.X = x;
+                lineShape.Point2.Y = height;
+                lineShape.Stroke = stroke;
+                lineShape.StrokeThickness = thickness;
+                canvasShape.Children.Add(lineShape);
+            }
         }
 
         private void MainWindow_PreviewKeyDown(object sender, KeyEventArgs e)
