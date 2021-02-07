@@ -56,7 +56,7 @@
         <KeyBinding Key="Z" Modifiers="Control" Command="{Binding UndoCommand}"/>
         <KeyBinding Key="Y" Modifiers="Control" Command="{Binding RedoCommand}"/>
         <!-- view -->
-        <KeyBinding Key="Escape" Modifiers="" Command="{Binding ZoomToFitCommand}"/>
+        <KeyBinding Key="Escape" Command="{Binding ZoomToFitCommand}"/>
         <KeyBinding Key="D5" Modifiers="Control" Command="{Binding ZoomToFitCommand}"/>
         <KeyBinding Key="NumPad5" Modifiers="Control" Command="{Binding ZoomToFitCommand}"/>
         <KeyBinding Key="D0" Modifiers="Control" Command="{Binding ResetZoomCommand}"/>
@@ -65,8 +65,8 @@
         <KeyBinding Key="Add" Modifiers="Control" Command="{Binding ZoomInCommand}"/>
         <KeyBinding Key="OemMinus" Modifiers="Control" Command="{Binding ZoomOutCommand}"/>
         <KeyBinding Key="Subtract" Modifiers="Control" Command="{Binding ZoomOutCommand}"/>
-        <KeyBinding Key="F9" Modifiers="" Command="{Binding PreviousViewCommand}"/>
-        <KeyBinding Key="F10" Modifiers="" Command="{Binding NextViewCommand}"/>
+        <KeyBinding Key="F9" Command="{Binding PreviousViewCommand}"/>
+        <KeyBinding Key="F10" Command="{Binding NextViewCommand}"/>
         <!-- solution -->
         <KeyBinding Key="N" Modifiers="Control+Shift" Command="{Binding AddProjectCommand}"/>
         <KeyBinding Key="R" Modifiers="Control+Shift" Command="{Binding RemoveProjectCommand}"/>
@@ -76,11 +76,11 @@
         <KeyBinding Key="R" Modifiers="Control" Command="{Binding RemoveContextCommand}"/>
         <KeyBinding Key="D" Modifiers="Control" Command="{Binding DuplicateContextCommand}"/>
         <!-- simulation -->
-        <KeyBinding Key="F5" Modifiers="" Command="{Binding RunCommand}"/>
-        <KeyBinding Key="F6" Modifiers="" Command="{Binding StopCommand}"/>
-        <KeyBinding Key="F7" Modifiers="" Command="{Binding RestartCommand}"/>
+        <KeyBinding Key="F5" Command="{Binding RunCommand}"/>
+        <KeyBinding Key="F6" Command="{Binding StopCommand}"/>
+        <KeyBinding Key="F7" Command="{Binding RestartCommand}"/>
         <!-- other -->
-        <KeyBinding Key="F8" Modifiers="" Command="{Binding ShowChartsCommand}"/>
+        <KeyBinding Key="F8" Command="{Binding ShowChartsCommand}"/>
     </Window.InputBindings>
 
     <Grid>

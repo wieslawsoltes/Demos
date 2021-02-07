@@ -3,23 +3,17 @@
 <Window x:Class="CheckboxDemo.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="500" Width="600" WindowStartupLocation="CenterScreen" WindowState="Maximized"
+        Title="MainWindow" Height="200" Width="200" WindowStartupLocation="CenterScreen" WindowState="Maximized"
         UseLayoutRounding="True" SnapsToDevicePixels="True">
-
     <Grid Background="Black" UseLayoutRounding="True" SnapsToDevicePixels="False">
-        
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-
             <StackPanel.LayoutTransform>
                 <ScaleTransform ScaleX="1.0" ScaleY="1.0"/>
             </StackPanel.LayoutTransform>
-            
             <StackPanel.Resources>
-
                 <SolidColorBrush x:Key="NotCheckedBrushKey" Color="#FF555555"/>
                 <SolidColorBrush x:Key="CheckedBrushKey" Color="Lavender"/>
                 <SolidColorBrush x:Key="BackgroundBrushKey" Color="#FF212121"/>
-
                 <Style x:Key="TextBlockStyleKey" TargetType="TextBlock">
                     <Setter Property="Foreground" Value="{StaticResource BackgroundBrushKey}"/>
                     <Setter Property="FontFamily" Value="Arial"/>
@@ -28,7 +22,6 @@
                     <Setter Property="VerticalAlignment" Value="Center"/>
                     <Setter Property="HorizontalAlignment" Value="Center"/>
                 </Style>
-                
                 <Style x:Key="CustomCheckBoxKey" TargetType="CheckBox">
                     <Setter Property="Template">
                         <Setter.Value>
@@ -42,7 +35,6 @@
                             </ControlTemplate>
                         </Setter.Value>
                     </Setter>
-                    
                     <Style.Triggers>
                        <Trigger Property="IsChecked" Value="True">
                             <Setter Property="Template">
@@ -60,23 +52,16 @@
                         </Trigger>
                     </Style.Triggers>
                 </Style>
-                
             </StackPanel.Resources>
-
             <CheckBox Style="{DynamicResource CustomCheckBoxKey}" IsChecked="False" Margin="2">
                 <VisualStateManager.VisualStateGroups>
                     <VisualStateGroup>
                         <VisualState Name="Checked">
-
                         </VisualState>
                     </VisualStateGroup>
                 </VisualStateManager.VisualStateGroups>
             </CheckBox>
-
             <CheckBox Style="{DynamicResource CustomCheckBoxKey}" IsChecked="True" Margin="2"/>
-
         </StackPanel>
- 
     </Grid>
-    
 </Window>

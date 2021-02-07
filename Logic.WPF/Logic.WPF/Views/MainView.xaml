@@ -3,7 +3,7 @@
 <Window x:Class="Logic.WPF.Views.MainView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:local="clr-namespace:Logic.WPF"
         xmlns:native="clr-namespace:Logic.Native"
         Title="{Binding FileName, StringFormat={}{0} - Logic, FallbackValue=Logic, TargetNullValue=Logic}" 
@@ -39,24 +39,24 @@
         <KeyBinding Command="{Binding EditAlignRightTopCommand}" Gesture="Ctrl+9"/>
         <KeyBinding Command="{Binding EditIncreaseTextSizeCommand}" Gesture="Ctrl+Plus"/>
         <KeyBinding Command="{Binding EditDecreaseTextSizeCommand}" Gesture="Ctrl+Minus"/>
-        <KeyBinding Command="{Binding EditToggleFillCommand}" Key="F" Modifiers=""/>
-        <KeyBinding Command="{Binding EditToggleSnapCommand}" Key="G" Modifiers=""/>
-        <KeyBinding Command="{Binding EditToggleInvertStartCommand}" Key="OemOpenBrackets" Modifiers=""/>
-        <KeyBinding Command="{Binding EditToggleInvertEndCommand}" Key="OemCloseBrackets" Modifiers=""/>
-        <KeyBinding Command="{Binding EditToggleShortenWireCommand}" Key="H" Modifiers=""/>
-        <KeyBinding Command="{Binding EditCancelCommand}" Key="Esc" Modifiers=""/>
-        <KeyBinding Command="{Binding ToolNoneCommand}" Key="N" Modifiers=""/>
-        <KeyBinding Command="{Binding ToolSelectionCommand}" Key="S" Modifiers=""/>
-        <KeyBinding Command="{Binding ToolWireCommand}" Key="W" Modifiers=""/>
-        <KeyBinding Command="{Binding ToolPinCommand}" Key="P" Modifiers=""/>
-        <KeyBinding Command="{Binding ToolLineCommand}" Key="L" Modifiers=""/>
-        <KeyBinding Command="{Binding ToolEllipseCommand}" Key="E" Modifiers=""/>
-        <KeyBinding Command="{Binding ToolRectangleCommand}" Key="R" Modifiers=""/>
-        <KeyBinding Command="{Binding ToolTextCommand}" Key="T" Modifiers=""/>
-        <KeyBinding Command="{Binding ToolImageCommand}" Key="I" Modifiers=""/>
+        <KeyBinding Command="{Binding EditToggleFillCommand}" Key="F"/>
+        <KeyBinding Command="{Binding EditToggleSnapCommand}" Key="G"/>
+        <KeyBinding Command="{Binding EditToggleInvertStartCommand}" Key="OemOpenBrackets"/>
+        <KeyBinding Command="{Binding EditToggleInvertEndCommand}" Key="OemCloseBrackets"/>
+        <KeyBinding Command="{Binding EditToggleShortenWireCommand}" Key="H"/>
+        <KeyBinding Command="{Binding EditCancelCommand}" Key="Esc"/>
+        <KeyBinding Command="{Binding ToolNoneCommand}" Key="N"/>
+        <KeyBinding Command="{Binding ToolSelectionCommand}" Key="S"/>
+        <KeyBinding Command="{Binding ToolWireCommand}" Key="W"/>
+        <KeyBinding Command="{Binding ToolPinCommand}" Key="P"/>
+        <KeyBinding Command="{Binding ToolLineCommand}" Key="L"/>
+        <KeyBinding Command="{Binding ToolEllipseCommand}" Key="E"/>
+        <KeyBinding Command="{Binding ToolRectangleCommand}" Key="R"/>
+        <KeyBinding Command="{Binding ToolTextCommand}" Key="T"/>
+        <KeyBinding Command="{Binding ToolImageCommand}" Key="I"/>
         <KeyBinding Command="{Binding BlockImportCommand}" Gesture="Ctrl+Shift+B"/>
         <KeyBinding Command="{Binding BlockImportCodeCommand}" Gesture="Shift+Alt+B"/>
-        <KeyBinding Command="{Binding BlockExportCommand}" Key="B" Modifiers=""/>
+        <KeyBinding Command="{Binding BlockExportCommand}" Key="B"/>
         <KeyBinding Command="{Binding BlockExportAsCodeCommand}" Gesture="Ctrl+B"/>
         <KeyBinding Command="{Binding TemplateImportCommand}" Gesture="Ctrl+Shift+T"/>
         <KeyBinding Command="{Binding TemplateImportCodeCommand}" Gesture="Shift+Alt+T"/>

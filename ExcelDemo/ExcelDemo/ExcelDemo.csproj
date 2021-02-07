@@ -8,7 +8,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>ExcelDemo</RootNamespace>
     <AssemblyName>ExcelDemo</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <AppDesignerFolder>Properties</AppDesignerFolder>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
