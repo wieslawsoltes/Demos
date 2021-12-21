@@ -119,6 +119,7 @@
                 <Image x:Name="Folder" Source="/Logic;component/Images/ProjectClosed.png"/>
                 <TextBlock Margin="2,0,0,0" Text="{Binding}" FontWeight="Bold"/>
             </StackPanel>
+            <!--
             <DataTemplate.Triggers>
                 <DataTrigger Binding="{Binding Path=IsExpanded, RelativeSource={RelativeSource TemplatedParent}}" Value="True">
                     <Setter Property="Source" TargetName="Folder" Value="/Logic;component/Images/ProjectOpen.png" />
@@ -130,6 +131,7 @@
                     <Setter Property="Source" TargetName="Folder" Value="/Logic;component/Images/ProjectSelected.png" />
                 </DataTrigger>
             </DataTemplate.Triggers>
+            -->
         </HierarchicalDataTemplate>
 
     </UserControl.Resources> 
